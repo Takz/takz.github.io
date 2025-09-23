@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarik Awad - XR Developer & Designer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0066ff;
+            --dark: #0a0a0a;
+            --light: #ffffff;
+            --gray: #666;
+            --border: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem 5%;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, var(--primary), #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+            position: relative;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 102, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--light) 0%, var(--primary) 50%, #00ffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #0052cc);
+            color: var(--light);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 102, 255, 0.4);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: var(--light);
+            transform: translateY(-3px);
+        }
+
+        /* Projects Section */
+        .projects {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--light), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 4rem;
+            font-size: 1.2rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 102, 255, 0.2);
+            border-color: var(--primary);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 102, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+
+        .project-year {
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 102, 255, 0.1);
+            border: 1px solid rgba(0, 102, 255, 0.3);
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: var(--primary);
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, rgba(0, 102, 255, 0.05) 0%, transparent 100%);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--primary), #00ffff);
+            padding: 3px;
+        }
+
+        .about-image-inner {
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            border-radius: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--primary);
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--light), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-content p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .skills {
+            margin-top: 2rem;
+        }
+
+        .skills h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .skill-item {
+            padding: 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.2);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 5%;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            padding: 1rem 2rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .contact-link:hover {
+            border-color: var(--primary);
+            background: rgba(0, 102, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 5%;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            color: var(--gray);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--light);
+            transition: all 0.3s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-links.active {
+                display: flex;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: rgba(10, 10, 10, 0.98);
+                padding: 2rem;
+                gap: 1rem;
+                backdrop-filter: blur(20px);
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">Tarik Awad</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobileMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>XR Developer & Designer</h1>
+            <p class="subtitle">Creating Immersive Experiences</p>
+            <p class="hero-description">
+                Specializing in Apple Vision Pro and Microsoft HoloLens development. 
+                Building the future of spatial computing through innovative mixed reality applications.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2 class="section-title scroll-reveal">Featured Projects</h2>
+        <p class="section-subtitle scroll-reveal">Pushing the boundaries of XR technology</p>
+        
+        <div class="projects-grid">
+            <!-- YachtXR -->
+            <div class="project-card scroll-reveal">
+                <div class="project-image">
+                    <img src="https://via.placeholder.com/400x250/1a1a2e/0066ff?text=YachtXR" alt="YachtXR">
+                    <span class="project-badge">Latest</span>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">YachtXR</h3>
+                    <p class="project-year">2025</p>
+                    <p class="project-description">
+                        Revolutionary yacht visualization and configuration platform for Apple Vision Pro. 
+                        Experience luxury yachts in stunning spatial detail.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vision Pro</span>
+                        <span class="tech-tag">SwiftUI</span>
+                        <span class="tech-tag">RealityKit</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real Estate Management -->
+            <div class="project-card scroll-reveal">
+                <div class="project-image">
+                    <img src="https://via.placeholder.com/400x250/1a1a2e/0066ff?text=Real+Estate+XR" alt="Real Estate Management">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Real Estate Management</h3>
+                    <p class="project-year">2024</p>
+                    <p class="project-description">
+                        Immersive property viewing and management system. Navigate properties in 3D space, 
+                        visualize renovations, and manage portfolios in XR.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vision Pro</span>
+                        <span class="tech-tag">ARKit</span>
+                        <span class="tech-tag">3D Modeling</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interior Design -->
+            <div class="project-card scroll-reveal">
+                <div class="project-image">
+                    <img src="https://via.placeholder.com/400x250/1a1a2e/0066ff?text=Interior+Design" alt="Interior Design">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Interior Design</h3>
+                    <p class="project-year">2024</p>
+                    <p class="project-description">
+                        Spatial interior design tool allowing real-time furniture placement, material changes, 
+                        and lighting adjustments in mixed reality.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vision Pro</span>
+                        <span class="tech-tag">USD</span>
+                        <span class="tech-tag">Reality Composer</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HoloPatient -->
+            <div class="project-card scroll-reveal">
+                <div class="project-image">
+                    <img src="https://via.placeholder.com/400x250/1a1a2e/0066ff?text=HoloPatient" alt="HoloPatient">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">HoloPatient</h3>
+                    <p class="project-year">2022</p>
+                    <p class="project-description">
+                        Medical training application for HoloLens featuring interactive 3D anatomical models 
+                        and patient simulation scenarios.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HoloLens</span>
+                        <span class="tech-tag">Unity</span>
+                        <span class="tech-tag">MRTK</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HoloHuman -->
+            <div class="project-card scroll-reveal">
+                <div class="project-image">
+                    <img src="https://via.placeholder.com/400x250/1a1a2e/0066ff?text=HoloHuman" alt="HoloHuman">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">HoloHuman</h3>
+                    <p class="project-year">2020</p>
+                    <p class="project-description">
+                        Advanced human anatomy visualization system for medical education, featuring detailed 
+                        organ systems and physiological simulations.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">HoloLens</span>
+                        <span class="tech-tag">C#</span>
+                        <span class="tech-tag">Mixed Reality</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <div class="about-image scroll-reveal">
+                <div class="about-image-inner">
+                    TA
+                </div>
+            </div>
+            <div class="about-content scroll-reveal">
+                <h2>About Me</h2>
+                <p>
+                    I'm a passionate XR developer and designer specializing in creating immersive experiences 
+                    for Apple Vision Pro and Microsoft HoloLens. With a background in both technology and design, 
+                    I bridge the gap between technical innovation and user-centered experiences.
+                </p>
+                <p>
+                    My work focuses on pushing the boundaries of what's possible in spatial computing, 
+                    from medical training applications to real estate visualization. I believe XR technology 
+                    has the power to transform how we interact with digital content and each other.
+                </p>
+                
+                <div class="skills">
+                    <h3>Core Technologies</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">Apple Vision Pro</div>
+                        <div class="skill-item">Microsoft HoloLens</div>
+                        <div class="skill-item">Unity 3D</div>
+                        <div class="skill-item">RealityKit</div>
+                        <div class="skill-item">ARKit</div>
+                        <div class="skill-item">SwiftUI</div>
+                        <div class="skill-item">MRTK</div>
+                        <div class="skill-item">3D Modeling</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title scroll-reveal">Let's Connect</h2>
+        <p class="section-subtitle scroll-reveal">
+            Interested in XR development or have a project in mind? Let's discuss how we can create 
+            something amazing together.
+        </p>
+        <div class="contact-links scroll-reveal">
+            <a href="mailto:your.email@example.com" class="contact-link">
+                <span>📧</span> Email
+            </a>
+            <a href="https://linkedin.com/in/yourprofile" class="contact-link">
+                <span>💼</span> LinkedIn
+            </a>
+            <a href="https://github.com/yourprofile" class="contact-link">
+                <span>💻</span> GitHub
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Tarik Awad. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add project click interactions
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // You can add modal or navigation logic here
+                console.log('Project clicked:', this.querySelector('.project-title').textContent);
+            });
+        });
+
+        // Dynamic copyright year
+        document.querySelector('footer p').textContent = `© ${new Date().getFullYear()} Tarik Awad. All rights reserved.`;
+    </script>
+</body>
+</html>
