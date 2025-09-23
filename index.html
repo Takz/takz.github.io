@@ -61,6 +61,15 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: var(--primary); /* Fallback for browsers that don't support gradient text */
+        }
+        
+        /* Firefox-specific fallback */
+        @-moz-document url-prefix() {
+            .logo {
+                background: none;
+                color: var(--primary);
+            }
         }
 
         .nav-links {
@@ -128,6 +137,24 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: var(--light); /* Fallback */
+        }
+        
+        /* Firefox fallback for gradient text */
+        @-moz-document url-prefix() {
+            .hero h1 {
+                background: none;
+                -webkit-text-fill-color: initial;
+                color: var(--light);
+            }
+        }
+        
+        /* iOS Safari/Firefox specific */
+        @supports not (-webkit-background-clip: text) {
+            .hero h1 {
+                background: none;
+                color: var(--light);
+            }
         }
 
         .hero .subtitle {
@@ -199,6 +226,15 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: var(--light); /* Fallback */
+        }
+        
+        @-moz-document url-prefix() {
+            .section-title {
+                background: none;
+                -webkit-text-fill-color: initial;
+                color: var(--light);
+            }
         }
 
         .section-subtitle {
@@ -358,6 +394,15 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: var(--light); /* Fallback */
+        }
+        
+        @-moz-document url-prefix() {
+            .about-content h2 {
+                background: none;
+                -webkit-text-fill-color: initial;
+                color: var(--light);
+            }
         }
 
         .about-content p {

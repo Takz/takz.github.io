@@ -61,6 +61,14 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             text-decoration: none;
+            color: var(--primary); /* Fallback */
+        }
+        
+        @-moz-document url-prefix() {
+            .logo {
+                background: none;
+                color: var(--primary);
+            }
         }
 
         .nav-links {
@@ -110,6 +118,15 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            color: var(--light); /* Fallback */
+        }
+        
+        @-moz-document url-prefix() {
+            .project-hero h1 {
+                background: none;
+                -webkit-text-fill-color: initial;
+                color: var(--light);
+            }
         }
 
         .project-meta {
@@ -146,7 +163,7 @@
             padding: 4rem 5%;
         }
 
-        /* Image Gallery */
+        /* Image Gallery - Enhanced */
         .image-gallery {
             margin-bottom: 4rem;
         }
@@ -159,12 +176,14 @@
             border-radius: 20px;
             overflow: hidden;
             margin-bottom: 1rem;
+            position: relative;
         }
 
         .main-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: opacity 0.3s ease;
         }
 
         .thumbnail-grid {
@@ -176,22 +195,103 @@
         .thumbnail {
             height: 100px;
             background: var(--card-bg);
-            border: 1px solid var(--border);
+            border: 2px solid var(--border);
             border-radius: 10px;
             overflow: hidden;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: relative;
         }
 
         .thumbnail:hover {
             border-color: var(--primary);
             transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.2);
         }
 
         .thumbnail img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .thumbnail:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Gallery Navigation Arrows */
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            z-index: 10;
+            transition: all 0.3s ease;
+            border-radius: 5px;
+        }
+
+        .gallery-nav:hover {
+            background: rgba(0, 102, 255, 0.8);
+        }
+
+        .gallery-nav.prev {
+            left: 1rem;
+        }
+
+        .gallery-nav.next {
+            right: 1rem;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .lightbox-close:hover {
+            color: var(--primary);
         }
 
         /* Content Sections */
@@ -482,21 +582,29 @@
         <div class="image-gallery fade-in">
             <div class="main-image">
                 <img src="https://via.placeholder.com/1200x500/1a1a2e/0066ff?text=YachtXR+Main+View" alt="YachtXR Main View" id="mainImage">
+                <button class="gallery-nav prev" onclick="navigateGallery(-1)">‹</button>
+                <button class="gallery-nav next" onclick="navigateGallery(1)">›</button>
             </div>
             <div class="thumbnail-grid">
-                <div class="thumbnail" onclick="changeImage('https://via.placeholder.com/1200x500/1a1a2e/0066ff?text=YachtXR+Main+View')">
+                <div class="thumbnail active" onclick="changeImage(0, this)" data-image="https://via.placeholder.com/1200x500/1a1a2e/0066ff?text=YachtXR+Main+View">
                     <img src="https://via.placeholder.com/150x100/1a1a2e/0066ff?text=View+1" alt="View 1">
                 </div>
-                <div class="thumbnail" onclick="changeImage('https://via.placeholder.com/1200x500/1a1a2e/0066ff?text=Interior+View')">
+                <div class="thumbnail" onclick="changeImage(1, this)" data-image="https://via.placeholder.com/1200x500/1a1a2e/0066ff?text=Interior+View">
                     <img src="https://via.placeholder.com/150x100/1a1a2e/0066ff?text=View+2" alt="View 2">
                 </div>
-                <div class="thumbnail" onclick="changeImage('https://via.placeholder.com/1200x500/1a1a2e/0066ff?text=Deck+View')">
+                <div class="thumbnail" onclick="changeImage(2, this)" data-image="https://via.placeholder.com/1200x500/1a1a2e/0066ff?text=Deck+View">
                     <img src="https://via.placeholder.com/150x100/1a1a2e/0066ff?text=View+3" alt="View 3">
                 </div>
-                <div class="thumbnail" onclick="changeImage('https://via.placeholder.com/1200x500/1a1a2e/0066ff?text=Configuration+Panel')">
+                <div class="thumbnail" onclick="changeImage(3, this)" data-image="https://via.placeholder.com/1200x500/1a1a2e/0066ff?text=Configuration+Panel">
                     <img src="https://via.placeholder.com/150x100/1a1a2e/0066ff?text=View+4" alt="View 4">
                 </div>
             </div>
+        </div>
+
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+            <button class="lightbox-close" onclick="closeLightbox(event)">✕</button>
+            <img src="" alt="Lightbox Image" id="lightboxImage">
         </div>
 
         <!-- Overview Section -->
@@ -622,9 +730,97 @@
             }
         });
 
-        // Image gallery functionality
-        function changeImage(src) {
-            document.getElementById('mainImage').src = src;
+        // Enhanced Image Gallery
+        let currentImageIndex = 0;
+        const galleryImages = document.querySelectorAll('.thumbnail');
+        const mainImage = document.getElementById('mainImage');
+        
+        // Store all image URLs
+        const imageUrls = Array.from(galleryImages).map(thumb => thumb.dataset.image);
+
+        function changeImage(index, thumbnailElement) {
+            // Update current index
+            currentImageIndex = index;
+            
+            // Update main image
+            mainImage.style.opacity = '0';
+            setTimeout(() => {
+                mainImage.src = imageUrls[index];
+                mainImage.style.opacity = '1';
+            }, 150);
+            
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+            });
+            
+            if (thumbnailElement) {
+                thumbnailElement.classList.add('active');
+            } else {
+                galleryImages[index].classList.add('active');
+            }
+        }
+
+        function navigateGallery(direction) {
+            currentImageIndex += direction;
+            
+            // Wrap around
+            if (currentImageIndex < 0) {
+                currentImageIndex = imageUrls.length - 1;
+            } else if (currentImageIndex >= imageUrls.length) {
+                currentImageIndex = 0;
+            }
+            
+            changeImage(currentImageIndex);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                navigateGallery(-1);
+            } else if (e.key === 'ArrowRight') {
+                navigateGallery(1);
+            } else if (e.key === 'Escape') {
+                closeLightbox(e);
+            }
+        });
+
+        // Lightbox functionality
+        mainImage.addEventListener('click', () => {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            lightboxImage.src = mainImage.src;
+            lightbox.classList.add('active');
+        });
+
+        function closeLightbox(event) {
+            if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
+                document.getElementById('lightbox').classList.remove('active');
+            }
+        }
+
+        // Touch/Swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        const mainImageContainer = document.querySelector('.main-image');
+        
+        mainImageContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, false);
+
+        mainImageContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, false);
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                navigateGallery(1); // Swipe left, go next
+            }
+            if (touchEndX > touchStartX + 50) {
+                navigateGallery(-1); // Swipe right, go previous
+            }
         }
 
         // Fade in animation on scroll
