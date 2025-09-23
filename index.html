@@ -3,623 +3,908 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XR Developer & Designer Portfolio</title>
+    <title>ORANGE CAT XR | Building Tomorrow's Immersive Experiences</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
             color: #ffffff;
-            line-height: 1.6;
             overflow-x: hidden;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 20px;
         }
 
         /* Header */
         header {
-            padding: 2rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #00d4ff, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: #00d4ff;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
             position: relative;
             overflow: hidden;
         }
 
-        .hero {
-            text-align: center;
-            padding: 4rem 0 6rem 0;
-            position: relative;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(79, 172, 254, 0.3) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.3; }
-            50% { transform: translateX(-50%) scale(1.1); opacity: 0.6; }
+        .hero-content {
+            z-index: 2;
+            max-width: 600px;
         }
 
         .hero h1 {
             font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ffffff, #00d4ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            position: relative;
-            z-index: 1;
+            line-height: 1.1;
         }
 
         .hero .subtitle {
-            font-size: 1.5rem;
-            color: #a0a0a0;
-            margin-bottom: 2rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero .tagline {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 3rem auto;
-            color: #cccccc;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Skills Section */
-        .skills {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 2rem;
-            margin: 3rem 0;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .skills h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2.5rem;
-            color: #4facfe;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .skill-category {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.5rem;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid rgba(79, 172, 254, 0.2);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            border-color: rgba(79, 172, 254, 0.6);
-        }
-
-        .skill-category h3 {
-            color: #4facfe;
-            margin-bottom: 1rem;
             font-size: 1.3rem;
+            color: #b8b8b8;
+            margin-bottom: 2rem;
+            font-weight: 300;
         }
 
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            justify-content: center;
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #00d4ff, #4ecdc4);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
         }
 
-        .skill-tag {
-            background: rgba(79, 172, 254, 0.2);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid rgba(79, 172, 254, 0.3);
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.4);
         }
 
-        /* Projects Section */
-        .projects {
-            padding: 4rem 0;
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .floating-cube {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(255, 107, 107, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-cube:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .floating-cube:nth-child(2) { top: 60%; left: 80%; animation-delay: 2s; }
+        .floating-cube:nth-child(3) { top: 30%; left: 70%; animation-delay: 4s; }
+
+        /* Animated Building/Architecture Elements */
+        .building-animation {
+            position: absolute;
+            top: 50%;
+            right: 5%;
+            width: 200px;
+            height: 150px;
+            transform: translateY(-50%);
+            opacity: 0.6;
+        }
+
+        .building-floor {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(78, 205, 196, 0.1));
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 4px;
+            animation: buildingGrow 8s ease-in-out infinite;
+        }
+
+        .floor-1 {
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 30px;
+            animation-delay: 0s;
+        }
+
+        .floor-2 {
+            bottom: 25px;
+            left: 20px;
+            width: 70px;
+            height: 30px;
+            animation-delay: 1s;
+        }
+
+        .floor-3 {
+            bottom: 50px;
+            left: 40px;
+            width: 60px;
+            height: 30px;
+            animation-delay: 2s;
+        }
+
+        .floor-4 {
+            bottom: 75px;
+            left: 60px;
+            width: 50px;
+            height: 30px;
+            animation-delay: 3s;
+        }
+
+        /* Floating Particles */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(0, 212, 255, 0.6);
+            border-radius: 50%;
+            animation: particleFloat 12s linear infinite;
+        }
+
+        .particle:nth-child(5) { left: 15%; animation-delay: 0s; }
+        .particle:nth-child(6) { left: 35%; animation-delay: 3s; }
+        .particle:nth-child(7) { left: 55%; animation-delay: 6s; }
+        .particle:nth-child(8) { left: 75%; animation-delay: 9s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        @keyframes buildingGrow {
+            0%, 20% { 
+                transform: scaleY(0) scaleX(0.8);
+                opacity: 0;
+            }
+            30%, 70% { 
+                transform: scaleY(1) scaleX(1);
+                opacity: 0.8;
+            }
+            80%, 100% { 
+                transform: scaleY(0.8) scaleX(1.1);
+                opacity: 0.4;
+            }
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 0;
+            position: relative;
         }
 
         .section-title {
-            font-size: 3rem;
             text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
             margin-bottom: 3rem;
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            background: linear-gradient(45deg, #ffffff, #00d4ff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .project-grid {
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #b8b8b8;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        /* Services Grid */
+        .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
         }
 
-        .project-card {
-            background: rgba(255, 255, 255, 0.05);
+        .service-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            padding: 3rem 2rem;
             border-radius: 20px;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(79, 172, 254, 0.3);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(45deg, #1a1a2e, #16213e);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .project-image::before {
+        .service-card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-        }
-
-        .project-image img {
+            left: -100%;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            transition: left 0.5s;
         }
 
-        .placeholder-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(79, 172, 254, 0.2);
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #00d4ff, #4ecdc4);
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            color: #4facfe;
-            z-index: 1;
-            position: relative;
-        }
-
-        .project-content {
-            padding: 2rem;
-        }
-
-        .project-year {
-            display: inline-block;
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: #0a0a0a;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-title {
             font-size: 1.5rem;
-            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
             margin-bottom: 1rem;
             color: #ffffff;
         }
 
-        .project-description {
-            color: #cccccc;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+        .service-card p {
+            color: #b8b8b8;
+            line-height: 1.8;
         }
 
-        .project-tech {
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .project-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .project-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(78, 205, 196, 0.1));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        /* Project Media */
+        .project-media {
+            width: 100%;
+            height: 200px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            margin: 1rem 0;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+
+        .project-gif {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* Placeholder animation for demo */
+        .demo-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(78, 205, 196, 0.1));
+        }
+
+        .vision-pro-demo {
+            position: relative;
+            width: 80%;
+            height: 60%;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .demo-interface {
+            position: absolute;
+            width: 90%;
+            height: 40px;
+            background: rgba(0, 212, 255, 0.3);
+            border-radius: 20px;
+            animation: interfaceGlow 3s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00d4ff;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .demo-building {
+            position: absolute;
+            bottom: 20%;
+            left: 20%;
+            width: 60px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.4);
+            animation: buildingPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes interfaceGlow {
+            0%, 100% { 
+                background: rgba(0, 212, 255, 0.3);
+                box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+            }
+            50% { 
+                background: rgba(0, 212, 255, 0.6);
+                box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+            }
+        }
+
+        @keyframes buildingPulse {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        .project-year {
+            background: rgba(0, 212, 255, 0.2);
+            color: #00d4ff;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
             margin-bottom: 1rem;
         }
 
-        .tech-tag {
-            background: rgba(79, 172, 254, 0.1);
-            border: 1px solid rgba(79, 172, 254, 0.3);
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            color: #4facfe;
+        .project-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
         }
 
-        .project-links {
+        .project-card p {
+            color: #b8b8b8;
+            line-height: 1.8;
+            padding: 0 2rem 2rem;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
             display: flex;
+            flex-wrap: wrap;
             gap: 1rem;
+            margin-top: 3rem;
+            justify-content: center;
         }
 
-        .project-link {
-            padding: 0.7rem 1.5rem;
-            border-radius: 25px;
-            text-decoration: none;
+        .tech-item {
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(78, 205, 196, 0.1));
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            padding: 1rem 2rem;
+            border-radius: 50px;
             font-weight: 600;
+            color: #00d4ff;
             transition: all 0.3s ease;
-            border: 1px solid transparent;
         }
 
-        .project-link.primary {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            color: #0a0a0a;
-        }
-
-        .project-link.primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
-        }
-
-        .project-link.secondary {
-            border: 1px solid rgba(79, 172, 254, 0.5);
-            color: #4facfe;
-        }
-
-        .project-link.secondary:hover {
-            background: rgba(79, 172, 254, 0.1);
+        .tech-item:hover {
+            background: rgba(0, 212, 255, 0.2);
             transform: translateY(-2px);
         }
 
         /* About Section */
-        .about {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 3rem;
-            margin: 4rem 0;
-            backdrop-filter: blur(10px);
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-image {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(45deg, #1a1a2e, #16213e);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="2" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23dots)"/></svg>');
-        }
-
-        .about-text h2 {
+        .stat-number {
             font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: #4facfe;
+            font-weight: 800;
+            color: #00d4ff;
+            display: block;
         }
 
-        .about-text p {
-            color: #cccccc;
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
+        .stat-label {
+            color: #b8b8b8;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
         }
 
         /* Contact Section */
-        .contact {
+        .contact-content {
             text-align: center;
-            padding: 4rem 0;
-        }
-
-        .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #4facfe;
-        }
-
-        .contact p {
-            font-size: 1.2rem;
-            color: #cccccc;
-            margin-bottom: 2rem;
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin: 0 auto;
         }
 
-        .contact-links {
+        .contact-info {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 3rem;
+            margin: 3rem 0;
             flex-wrap: wrap;
         }
 
-        .contact-link {
+        .contact-item {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 25px;
-            text-decoration: none;
-            color: #4facfe;
-            border: 1px solid rgba(79, 172, 254, 0.3);
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            gap: 1rem;
+            font-size: 1.1rem;
         }
 
-        .contact-link:hover {
-            background: rgba(79, 172, 254, 0.1);
-            transform: translateY(-2px);
-            border-color: rgba(79, 172, 254, 0.6);
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #00d4ff, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: #b8b8b8;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
-            }
-
             .hero h1 {
                 font-size: 2.5rem;
             }
-
-            .hero .subtitle {
-                font-size: 1.2rem;
+            
+            .nav-links {
+                display: none;
             }
-
-            .hero .tagline {
-                font-size: 1rem;
-            }
-
-            .project-grid {
-                grid-template-columns: 1fr;
-            }
-
+            
             .about-content {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
-
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .skills-grid {
+            
+            .services-grid, .projects-grid {
                 grid-template-columns: 1fr;
             }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
+            
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="hero">
-                <h1>XR Developer & Designer</h1>
-                <p class="subtitle">Creating Immersive Experiences</p>
-                <p class="tagline">Specializing in Apple Vision Pro and Microsoft HoloLens development. Building the future of spatial computing through innovative mixed reality applications.</p>
-            </div>
-        </header>
+    <header>
+        <nav class="container">
+            <div class="logo">Fidelis XR</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <!-- Skills Section -->
-        <section class="skills">
-            <h2>Technologies & Expertise</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>XR Platforms</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Apple Vision Pro</span>
-                        <span class="skill-tag">HoloLens</span>
-                        <span class="skill-tag">Unity XR</span>
-                        <span class="skill-tag">Unreal Engine</span>
-                    </div>
+    <section id="home" class="hero">
+        <div class="floating-elements">
+            <div class="floating-cube"></div>
+            <div class="floating-cube"></div>
+            <div class="floating-cube"></div>
+            
+            <!-- Animated Building/Architecture -->
+            <div class="building-animation">
+                <div class="building-floor floor-1"></div>
+                <div class="building-floor floor-2"></div>
+                <div class="building-floor floor-3"></div>
+                <div class="building-floor floor-4"></div>
+            </div>
+            
+            <!-- Floating Particles -->
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Building Tomorrow's<br>Immersive Experiences</h1>
+                <p class="subtitle">Premier XR development studio specializing in Apple Vision Pro, Microsoft HoloLens, and cutting-edge spatial computing solutions for forward-thinking enterprises.</p>
+                <a href="#contact" class="cta-button">Start Your XR Journey</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title">Our XR Solutions</h2>
+            <p class="section-subtitle">We transform your vision into immersive reality through cutting-edge XR technology and innovative design approaches.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🥽</div>
+                    <h3>Apple Vision Pro Development</h3>
+                    <p>Native visionOS applications leveraging spatial computing, hand tracking, and eye tracking for revolutionary user experiences in enterprise and consumer markets.</p>
                 </div>
-                <div class="skill-category">
-                    <h3>Development</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">C#</span>
-                        <span class="skill-tag">Swift</span>
-                        <span class="skill-tag">ARKit</span>
-                        <span class="skill-tag">Mixed Reality Toolkit</span>
-                    </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🔬</div>
+                    <h3>Microsoft HoloLens Solutions</h3>
+                    <p>Enterprise-grade mixed reality applications for manufacturing, healthcare, education, and remote collaboration with advanced holographic interfaces.</p>
                 </div>
-                <div class="skill-category">
-                    <h3>Design</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Spatial UI/UX</span>
-                        <span class="skill-tag">3D Modeling</span>
-                        <span class="skill-tag">Prototyping</span>
-                        <span class="skill-tag">User Research</span>
-                    </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3>Virtual Real Estate & Architecture</h3>
+                    <p>Immersive property visualization, virtual walkthroughs, and architectural planning tools that revolutionize how clients experience spaces.</p>
                 </div>
-                <div class="skill-category">
-                    <h3>Industries</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Healthcare</span>
-                        <span class="skill-tag">Real Estate</span>
-                        <span class="skill-tag">Luxury Goods</span>
-                        <span class="skill-tag">Education</span>
-                    </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">⚕️</div>
+                    <h3>Medical Training & Simulation</h3>
+                    <p>Advanced medical training applications featuring interactive 3D anatomy, surgical simulations, and patient care scenarios for healthcare professionals.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Spatial Design & Prototyping</h3>
+                    <p>3D design tools for architects and designers, enabling real-time collaboration, material visualization, and spatial planning in mixed reality environments.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>Custom XR Development</h3>
+                    <p>Bespoke extended reality solutions tailored to your industry needs, from concept through deployment and ongoing support.</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Projects Section -->
-        <section class="projects">
+    <section id="projects">
+        <div class="container">
             <h2 class="section-title">Featured Projects</h2>
-            <div class="project-grid">
+            <p class="section-subtitle">Showcasing our latest innovations in extended reality across various industries.</p>
+            
+            <div class="projects-grid">
                 <div class="project-card">
-                    <div class="project-image">
-                        <div class="placeholder-icon">🛥️</div>
-                    </div>
-                    <div class="project-content">
+                    <div class="project-header">
                         <span class="project-year">2025</span>
-                        <h3 class="project-title">Yacht Vision Pro</h3>
-                        <p class="project-description">Revolutionary yacht visualization and configuration platform for Apple Vision Pro. Experience luxury yachts in stunning spatial detail with real-time customization and immersive walkthroughs.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">visionOS</span>
-                            <span class="tech-tag">RealityKit</span>
-                            <span class="tech-tag">SwiftUI</span>
-                            <span class="tech-tag">3D Graphics</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link primary">View Case Study</a>
-                            <a href="#" class="project-link secondary">Live Demo</a>
-                        </div>
+                        <h3>LuxYacht Vision Pro Platform</h3>
                     </div>
+                    <p>Revolutionary yacht visualization and configuration platform for Apple Vision Pro. Clients can explore luxury yachts in stunning spatial detail, customize interiors, and experience maritime luxury like never before. Features real-time material changes, lighting simulation, and immersive ocean environments.</p>
                 </div>
-
+                
                 <div class="project-card">
-                    <div class="project-image">
-                        <div class="placeholder-icon">🏠</div>
-                    </div>
-                    <div class="project-content">
+                    <div class="project-header">
                         <span class="project-year">2024</span>
-                        <h3 class="project-title">PropVision XR</h3>
-                        <p class="project-description">Immersive property viewing and management system. Navigate properties in 3D space, visualize renovations, and manage portfolios in extended reality.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HoloLens 2</span>
-                            <span class="tech-tag">Unity</span>
-                            <span class="tech-tag">Azure Spatial Anchors</span>
-                            <span class="tech-tag">MRTK</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link primary">View Case Study</a>
-                            <a href="#" class="project-link secondary">GitHub</a>
+                        <h3>PropVision XR Suite</h3>
+                        
+                        <!-- Media Container for GIF -->
+                        <div class="project-media">
+                            <!-- Replace this src with your uploaded gif URL -->
+                            <!-- <img src="your-propvision-gif-url-here.gif" alt="PropVision XR Suite Demo" class="project-gif"> -->
+                            
+                            <!-- Demo animation placeholder -->
+                            <div class="demo-animation">
+                                <div class="vision-pro-demo">
+                                    <div class="demo-interface">🏠 Property Interface</div>
+                                    <div class="demo-building"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <p>Comprehensive property viewing and management system for real estate professionals. Navigate properties in 3D space, visualize renovations in real-time, and manage entire portfolios through mixed reality interfaces. Includes virtual staging, measurement tools, and collaborative viewing sessions.</p>
                 </div>
-
+                
                 <div class="project-card">
-                    <div class="project-image">
-                        <div class="placeholder-icon">🪑</div>
-                    </div>
-                    <div class="project-content">
+                    <div class="project-header">
                         <span class="project-year">2024</span>
-                        <h3 class="project-title">SpatialDesign Studio</h3>
-                        <p class="project-description">Spatial interior design tool allowing real-time furniture placement, material changes, and lighting adjustments in mixed reality environments.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Mixed Reality</span>
-                            <span class="tech-tag">Unity XR</span>
-                            <span class="tech-tag">Hand Tracking</span>
-                            <span class="tech-tag">Real-time Rendering</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link primary">View Case Study</a>
-                            <a href="#" class="project-link secondary">Try Demo</a>
-                        </div>
+                        <h3>SpatialDesign Studio</h3>
                     </div>
+                    <p>Professional spatial interior design tool for architects and designers. Features real-time furniture placement, advanced material libraries, dynamic lighting adjustments, and collaborative design sessions in mixed reality environments. Integrated with major CAD software and design workflows.</p>
                 </div>
-
+                
                 <div class="project-card">
-                    <div class="project-image">
-                        <div class="placeholder-icon">🫀</div>
-                    </div>
-                    <div class="project-content">
+                    <div class="project-header">
                         <span class="project-year">2022</span>
-                        <h3 class="project-title">MedTraining XR</h3>
-                        <p class="project-description">Medical training application for HoloLens featuring interactive 3D anatomical models and patient simulation scenarios for enhanced medical education.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">HoloLens</span>
-                            <span class="tech-tag">Medical Visualization</span>
-                            <span class="tech-tag">Gesture Controls</span>
-                            <span class="tech-tag">Educational XR</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link primary">View Case Study</a>
-                            <a href="#" class="project-link secondary">Research Paper</a>
-                        </div>
+                        <h3>MedTrain HoloLens Platform</h3>
+                    </div>
+                    <p>Advanced medical training application for Microsoft HoloLens featuring interactive 3D anatomical models, patient simulation scenarios, and collaborative learning environments. Used by medical schools and hospitals worldwide for enhanced medical education.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">Technology Stack</h2>
+            <div class="tech-stack">
+                <div class="tech-item">Unity 3D</div>
+                <div class="tech-item">Unreal Engine</div>
+                <div class="tech-item">visionOS SDK</div>
+                <div class="tech-item">MRTK</div>
+                <div class="tech-item">ARKit</div>
+                <div class="tech-item">WebXR</div>
+                <div class="tech-item">OpenXR</div>
+                <div class="tech-item">SwiftUI</div>
+                <div class="tech-item">C# / C++</div>
+                <div class="tech-item">Blender</div>
+                <div class="tech-item">Maya</div>
+                <div class="tech-item">Figma</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About NEXUS XR</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>NEXUS XR Studio stands at the forefront of extended reality innovation, bridging the gap between cutting-edge technology and exceptional user experiences. Our multidisciplinary team combines deep technical expertise with creative vision to deliver transformative XR solutions.</p>
+                    
+                    <p>We specialize in creating immersive experiences that push the boundaries of spatial computing, from medical training applications that save lives to architectural visualizations that revolutionize design workflows. Our commitment to excellence has made us the trusted partner for enterprises seeking to harness the power of XR technology.</p>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Projects Delivered</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">25+</span>
+                        <span class="stat-label">Enterprise Clients</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Industry Awards</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- About Section -->
-        <section class="about">
-            <div class="about-content">
-                <div class="about-image">
-                    <div class="placeholder-icon" style="width: 120px; height: 120px; font-size: 3rem;">👨‍💻</div>
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Build the Future Together</h2>
+            <div class="contact-content">
+                <p class="section-subtitle">Ready to transform your vision into immersive reality? Our team of XR experts is here to bring your most ambitious projects to life.</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <span>hello@nexusxr.studio</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <span>San Francisco, CA</span>
+                    </div>
                 </div>
-                <div class="about-text">
-                    <h2>About Me</h2>
-                    <p>I'm a passionate XR developer and designer specializing in creating immersive experiences for Apple Vision Pro and Microsoft HoloLens. With a background in both technology and design, I bridge the gap between technical innovation and user-centered experiences.</p>
-                    <p>My work focuses on pushing the boundaries of what's possible in spatial computing, from medical training applications to real estate visualization. I believe XR technology has the power to transform how we interact with digital content and each other.</p>
-                    <p>When I'm not building the future of mixed reality, you can find me exploring the latest XR research, contributing to open-source projects, or mentoring the next generation of XR developers.</p>
-                </div>
+                
+                <a href="mailto:hello@nexusxr.studio" class="cta-button">Start Your Project</a>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Contact Section -->
-        <section class="contact">
-            <h2>Let's Build Something Amazing</h2>
-            <p>Interested in XR development or have a project in mind? Let's discuss how we can create something amazing together.</p>
-            <div class="contact-links">
-                <a href="mailto:hello@example.com" class="contact-link">
-                    <span>📧</span>
-                    Email Me
-                </a>
-                <a href="#" class="contact-link">
-                    <span>💼</span>
-                    LinkedIn
-                </a>
-                <a href="#" class="contact-link">
-                    <span>🐙</span>
-                    GitHub
-                </a>
-                <a href="#" class="contact-link">
-                    <span>🐦</span>
-                    Twitter
-                </a>
-            </div>
-        </section>
-    </div>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 NEXUS XR Studio. All rights reserved. Building tomorrow's immersive experiences today.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 10, 10, 0.98)';
+            } else {
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+            }
+        });
+
+        // Add intersection observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for animation
+        document.querySelectorAll('.service-card, .project-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
