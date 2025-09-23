@@ -223,6 +223,8 @@
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             cursor: pointer;
             position: relative;
+            text-decoration: none;
+            display: block;
         }
 
         .project-card:hover {
@@ -291,13 +293,26 @@
             flex-wrap: wrap;
         }
 
-        .tech-tag {
-            padding: 0.3rem 0.8rem;
-            background: rgba(0, 102, 255, 0.1);
-            border: 1px solid rgba(0, 102, 255, 0.3);
-            border-radius: 15px;
+        .project-link-indicator {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: var(--primary);
+            color: var(--light);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
             font-size: 0.85rem;
-            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-link-indicator {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         /* About Section */
@@ -555,7 +570,7 @@
         
         <div class="projects-grid">
             <!-- YachtXR -->
-            <div class="project-card scroll-reveal">
+            <a href="projects/yachtxr.html" class="project-card scroll-reveal">
                 <div class="project-image">
                     <img src="https://via.placeholder.com/400x250/1a1a2e/0066ff?text=YachtXR" alt="YachtXR">
                     <span class="project-badge">Latest</span>
@@ -572,11 +587,14 @@
                         <span class="tech-tag">SwiftUI</span>
                         <span class="tech-tag">RealityKit</span>
                     </div>
+                    <div class="project-link-indicator">
+                        View Case Study →
+                    </div>
                 </div>
-            </div>
+            </a>
 
             <!-- Real Estate Management -->
-            <div class="project-card scroll-reveal">
+            <a href="projects/real-estate.html" class="project-card scroll-reveal">
                 <div class="project-image">
                     <img src="https://via.placeholder.com/400x250/1a1a2e/0066ff?text=Real+Estate+XR" alt="Real Estate Management">
                 </div>
@@ -593,10 +611,10 @@
                         <span class="tech-tag">3D Modeling</span>
                     </div>
                 </div>
-            </div>
+            </a>
 
             <!-- Interior Design -->
-            <div class="project-card scroll-reveal">
+            <a href="projects/interior-design.html" class="project-card scroll-reveal">
                 <div class="project-image">
                     <img src="https://via.placeholder.com/400x250/1a1a2e/0066ff?text=Interior+Design" alt="Interior Design">
                 </div>
@@ -613,10 +631,10 @@
                         <span class="tech-tag">Reality Composer</span>
                     </div>
                 </div>
-            </div>
+            </a>
 
             <!-- HoloPatient -->
-            <div class="project-card scroll-reveal">
+            <a href="projects/holopatient.html" class="project-card scroll-reveal">
                 <div class="project-image">
                     <img src="https://via.placeholder.com/400x250/1a1a2e/0066ff?text=HoloPatient" alt="HoloPatient">
                 </div>
@@ -633,10 +651,10 @@
                         <span class="tech-tag">MRTK</span>
                     </div>
                 </div>
-            </div>
+            </a>
 
             <!-- HoloHuman -->
-            <div class="project-card scroll-reveal">
+            <a href="projects/holohuman.html" class="project-card scroll-reveal">
                 <div class="project-image">
                     <img src="https://via.placeholder.com/400x250/1a1a2e/0066ff?text=HoloHuman" alt="HoloHuman">
                 </div>
@@ -653,7 +671,7 @@
                         <span class="tech-tag">Mixed Reality</span>
                     </div>
                 </div>
-            </div>
+            </a>
         </div>
     </section>
 
