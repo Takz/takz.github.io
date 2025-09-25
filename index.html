@@ -18,6 +18,8 @@
             --light: #ffffff;
             --gray: #8892b0;
             --card-bg: rgba(20, 25, 40, 0.7);
+            --section-padding: clamp(3rem, 8vw, 6rem);
+            --content-padding: clamp(1rem, 5vw, 5%);
         }
 
         body {
@@ -41,13 +43,14 @@
             background: rgba(10, 14, 26, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1.5rem 5%;
+            padding: 1.5rem var(--content-padding);
             transition: all 0.3s ease;
         }
 
         nav.scrolled {
-            padding: 1rem 5%;
+            padding: 1rem var(--content-padding);
             background: rgba(6, 9, 16, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
         .nav-container {
@@ -64,7 +67,10 @@
             background: linear-gradient(135deg, var(--primary), #00ccff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
+            z-index: 1001;
+            position: relative;
         }
 
         .nav-links {
@@ -96,16 +102,107 @@
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
             width: 100%;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 28px;
+            height: 20px;
+            cursor: pointer;
+            z-index: 1001;
+            position: relative;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background: var(--primary);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+            transform-origin: center;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8.5px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8.5px) rotate(-45deg);
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 300px;
+                height: 100vh;
+                background: rgba(10, 14, 26, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 0.5rem 1rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            /* Overlay */
+            .mobile-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 999;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .mobile-overlay.active {
+                display: block;
+                opacity: 1;
+            }
         }
 
         /* Hero Section */
         .hero {
-  position: relative;
-  width: 100%;
-  height: 100vh; /* full screen hero */
-  overflow: hidden;
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+            margin-top: 76px; /* Account for fixed nav */
         }
 
         .hero::before {
@@ -116,6 +213,7 @@
             background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
             opacity: 0.05;
             animation: float 20s infinite ease-in-out;
+            pointer-events: none;
         }
 
         @keyframes float {
@@ -124,15 +222,15 @@
         }
 
         .hero-content {
-  position: relative;
-  z-index: 10; /* keeps it above the video */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 100%;
-  color: white;
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100%;
+            padding: var(--content-padding);
         }
 
         .hero-text-center {
@@ -142,43 +240,48 @@
         }
 
         .hero-text-center h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(2rem, 5vw, 4rem);
             font-weight: 700;
             line-height: 1.2;
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, var(--light) 0%, var(--gray) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
             animation: fadeInUp 1s ease;
         }
 
         .hero-text-center .tagline {
-            font-size: 1.4rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
             color: var(--primary);
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease 0.2s backwards;
         }
 
         .hero-text-center p {
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
             color: var(--gray);
             margin: 0 auto 2rem;
             max-width: 700px;
             animation: fadeInUp 1s ease 0.4s backwards;
+            padding: 0 1rem;
         }
 
         .cta-buttons {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             justify-content: center;
+            flex-wrap: wrap;
             animation: fadeInUp 1s ease 0.6s backwards;
+            padding: 0 1rem;
         }
 
-        /* Showreel Section - Full Width like nDreams */
+        /* Showreel Section */
         .showreel-section {
             background: var(--darker);
             padding: 0;
             position: relative;
+            margin-top: -76px; /* Negative margin to go under nav */
         }
 
         .showreel-container {
@@ -190,100 +293,44 @@
 
         .video-header {
             position: absolute;
+            top: 50%;
             left: 50%;
-            transform: translate(-50%, 50%);
+            transform: translate(-50%, -50%);
             text-align: center;
-            z-index: 5;
-            width: 100%;
-            height: 100%;
+            z-index: 10;
+            width: 90%;
+            max-width: 800px;
+            padding: 2rem;
         }
 
         .video-header h2 {
-            position: relative;
-            font-size: clamp(1rem, 5vw, 3rem);
+            font-size: clamp(1.8rem, 5vw, 3rem);
             color: white;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+            margin-bottom: 0.75rem;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+            line-height: 1.2;
         }
 
         .video-header p {
-            position: relative;
-              font-size: clamp(1rem, 2vw, 1.5rem);
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+            line-height: 1.4;
         }
 
-  /*      .video-wrapper {
+        .video-wrapper-container {
             position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            background: #000;
-            overflow: hidden;
-        }
-*/
-        .video-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .video-wrapper-native {
-            position: relative;
-            width: 100%;
             padding-bottom: 56.25%;
-            background: #000;
-            overflow: hidden;
+            width: 100%;
         }
 
-        .video-wrapper-native video {
+        .video-wrapper-container iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-        }
-
-        /* Optional play button overlay */
-        .play-button {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--primary);
-            color: var(--dark);
             border: none;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: all 0.3s ease;
-            z-index: 10;
-        }
-
-        .play-button:hover {
-            transform: translateX(-50%) translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
-        }
-
-        .play-button span {
-            font-size: 1.2rem;
         }
 
         /* Dark overlay for better text visibility */
@@ -294,7 +341,11 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.7) 100%);
+            background: linear-gradient(180deg, 
+                rgba(0,0,0,0.8) 0%, 
+                rgba(0,0,0,0.3) 40%, 
+                rgba(0,0,0,0.3) 60%, 
+                rgba(0,0,0,0.8) 100%);
             z-index: 5;
             pointer-events: none;
         }
@@ -312,7 +363,7 @@
 
         .btn {
             padding: 1rem 2rem;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2vw, 1rem);
             font-weight: 600;
             text-decoration: none;
             border-radius: 50px;
@@ -320,6 +371,7 @@
             display: inline-block;
             position: relative;
             overflow: hidden;
+            white-space: nowrap;
         }
 
         .btn-primary {
@@ -329,7 +381,7 @@
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
         }
 
         .btn-secondary {
@@ -342,11 +394,12 @@
             background: var(--primary);
             color: var(--dark);
             transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
         }
 
         /* Partners Section */
         .partners {
-            padding: 5rem 5%;
+            padding: var(--section-padding) var(--content-padding);
             background: var(--darker);
             position: relative;
         }
@@ -364,26 +417,28 @@
         .section-header {
             text-align: center;
             max-width: 800px;
-            margin: 0 auto 4rem;
+            margin: 0 auto clamp(2rem, 5vw, 4rem);
+            padding: 0 1rem;
         }
 
         .section-header h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(1.8rem, 4vw, 3rem);
             margin-bottom: 1rem;
             background: linear-gradient(135deg, var(--light) 0%, var(--gray) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .section-header p {
             color: var(--gray);
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
         }
 
         .partners-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
+            gap: clamp(1.5rem, 3vw, 3rem);
             max-width: 1000px;
             margin: 0 auto;
             align-items: center;
@@ -391,7 +446,7 @@
 
         .partner-card {
             background: var(--card-bg);
-            padding: 2rem;
+            padding: clamp(1.5rem, 3vw, 2rem);
             border-radius: 15px;
             text-align: center;
             transition: all 0.3s ease;
@@ -405,26 +460,26 @@
         }
 
         .partner-card h3 {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
             color: var(--light);
             margin-bottom: 0.5rem;
         }
 
         .partner-card p {
             color: var(--gray);
-            font-size: 0.9rem;
+            font-size: clamp(0.85rem, 1.5vw, 0.9rem);
         }
 
         /* Projects Section */
         .projects {
-            padding: 5rem 5%;
+            padding: var(--section-padding) var(--content-padding);
             background: var(--dark);
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -470,18 +525,18 @@
         }
 
         .project-info {
-            padding: 1.5rem;
+            padding: clamp(1.25rem, 2.5vw, 1.5rem);
         }
 
         .project-info h3 {
-            font-size: 1.4rem;
+            font-size: clamp(1.2rem, 2.5vw, 1.4rem);
             margin-bottom: 0.5rem;
             color: var(--light);
         }
 
         .project-tech {
             color: var(--primary);
-            font-size: 0.9rem;
+            font-size: clamp(0.85rem, 1.5vw, 0.9rem);
             margin-bottom: 1rem;
             font-weight: 600;
         }
@@ -489,25 +544,26 @@
         .project-description {
             color: var(--gray);
             line-height: 1.6;
+            font-size: clamp(0.9rem, 1.8vw, 1rem);
         }
 
         /* Services Section */
         .services {
-            padding: 5rem 5%;
+            padding: var(--section-padding) var(--content-padding);
             background: var(--darker);
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(1.5rem, 3vw, 2rem);
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .service-card {
             background: var(--card-bg);
-            padding: 2.5rem;
+            padding: clamp(2rem, 4vw, 2.5rem);
             border-radius: 15px;
             text-align: center;
             border: 1px solid rgba(0, 255, 136, 0.1);
@@ -521,16 +577,17 @@
         }
 
         .service-icon {
-            font-size: 3rem;
+            font-size: clamp(2.5rem, 5vw, 3rem);
             margin-bottom: 1.5rem;
             display: inline-block;
             background: linear-gradient(135deg, var(--primary), #00ccff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .service-card h3 {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
             margin-bottom: 1rem;
             color: var(--light);
         }
@@ -538,11 +595,12 @@
         .service-card p {
             color: var(--gray);
             line-height: 1.6;
+            font-size: clamp(0.9rem, 1.8vw, 1rem);
         }
 
         /* Footer */
         footer {
-            padding: 3rem 5%;
+            padding: clamp(2rem, 5vw, 3rem) var(--content-padding);
             background: var(--darker);
             text-align: center;
             border-top: 1px solid rgba(0, 255, 136, 0.2);
@@ -553,59 +611,111 @@
             margin: 0 auto;
         }
 
+        .footer-content h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 1rem;
+        }
+
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: clamp(1rem, 3vw, 2rem);
+            margin: 2rem 0;
             list-style: none;
+            flex-wrap: wrap;
         }
 
         .footer-links a {
             color: var(--gray);
             text-decoration: none;
             transition: color 0.3s ease;
+            font-size: clamp(0.9rem, 1.8vw, 1rem);
         }
 
         .footer-links a:hover {
             color: var(--primary);
         }
 
-        /* Responsive Design */
+        /* Loading animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design Improvements */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
             .hero {
-                min-height: 60vh;
+                height: 85vh;
+                min-height: 500px;
+                margin-top: 60px;
             }
 
-            .video-header {
-                top: 30px;
+            nav {
+                padding: 1rem var(--content-padding);
             }
 
-            .video-header h2 {
-                font-size: 1.8rem;
+            nav.scrolled {
+                padding: 0.75rem var(--content-padding);
             }
 
-            .video-header p {
-                font-size: 1rem;
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
             }
 
-            .projects-grid {
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .projects-grid,
+            .services-grid {
                 grid-template-columns: 1fr;
             }
 
             .partners-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                height: 75vh;
+                min-height: 450px;
             }
 
-            .play-button {
-                bottom: 20px;
-                padding: 0.8rem 1.5rem;
-                font-size: 0.9rem;
+            .partners-grid {
+                grid-template-columns: 1fr;
             }
+
+            .video-header {
+                padding: 1rem;
+            }
+        }
+
+        /* Accessibility Improvements */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* Focus styles for keyboard navigation */
+        a:focus,
+        button:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
         }
     </style>
 </head>
@@ -614,7 +724,12 @@
     <nav id="navbar">
         <div class="nav-container">
             <a href="#" class="logo">AWAD XR</a>
-            <ul class="nav-links">
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#services">Services</a></li>
@@ -623,6 +738,28 @@
             </ul>
         </div>
     </nav>
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <!-- Showreel Section -->
+    <section class="showreel-section">
+        <div class="showreel-container">
+            <div class="video-header">
+                <h2>The Spatial Computing Experts</h2>
+                <p>Immersive environments that redefine interaction</p>
+            </div>
+            
+            <!-- Optimized Vimeo embed -->
+            <div class="video-wrapper-container">
+                <iframe 
+                    src="https://player.vimeo.com/video/1121820526?autoplay=1&loop=1&muted=1&autopause=0&background=1&controls=0&title=0&byline=0&portrait=0" 
+                    frameborder="0" 
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    title="Apartment Walkthrough">
+                </iframe>
+            </div>
+        </div>
+    </section>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -639,28 +776,6 @@
         </div>
     </section>
 
-    <!-- Showreel Section -->
-<section class="showreel-section">
-    <div class="showreel-container">
-        <div class="video-header">
-            <h2>Experience Spatial Computing</h2>
-            <p>Immersive environments that redefine interaction</p>
-        </div>
-        
-        <!-- Optimized Vimeo embed for cross-browser autoplay -->
-        <div style="padding:56.25% 0 0 0;position:relative;">
-            <iframe 
-                src="https://player.vimeo.com/video/1121820526?autoplay=1&loop=1&muted=1&autopause=0&background=1&controls=0&title=0&byline=0&portrait=0" 
-                frameborder="0" 
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" 
-                style="position:absolute;top:0;left:0;width:100%;height:100%;" 
-                title="Apartment Walkthrough">
-            </iframe>
-        </div>
-    </div>
-</section>
-
     <!-- Partners Section -->
     <section class="partners" id="partners">
         <div class="section-header">
@@ -668,19 +783,19 @@
             <p>We partner with innovative companies to deliver world-class XR solutions</p>
         </div>
         <div class="partners-grid">
-            <div class="partner-card">
+            <div class="partner-card fade-in">
                 <h3>Apple</h3>
                 <p>Vision Pro Development Partner</p>
             </div>
-            <div class="partner-card">
+            <div class="partner-card fade-in">
                 <h3>FormaXR</h3>
                 <p>Enterprise Training Solutions</p>
             </div>
-            <div class="partner-card">
+            <div class="partner-card fade-in">
                 <h3>Pearson Education</h3>
                 <p>Educational XR Experiences</p>
             </div>
-            <div class="partner-card">
+            <div class="partner-card fade-in">
                 <h3>Microsoft</h3>
                 <p>HoloLens Development</p>
             </div>
@@ -694,7 +809,7 @@
             <p>Innovative XR solutions across industries</p>
         </div>
         <div class="projects-grid">
-            <div class="project-card">
+            <div class="project-card fade-in">
                 <div class="project-image">🛥️</div>
                 <div class="project-info">
                     <h3>YachtXR</h3>
@@ -702,7 +817,7 @@
                     <p class="project-description">Revolutionary yacht visualization platform enabling clients to explore luxury vessels in stunning spatial detail before purchase.</p>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card fade-in">
                 <div class="project-image">🏢</div>
                 <div class="project-info">
                     <h3>Real Estate Management</h3>
@@ -710,7 +825,7 @@
                     <p class="project-description">Immersive property management system transforming how real estate professionals showcase and manage properties.</p>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card fade-in">
                 <div class="project-image">🎨</div>
                 <div class="project-info">
                     <h3>Interior Design Studio</h3>
@@ -718,7 +833,7 @@
                     <p class="project-description">Spatial design platform empowering interior designers to create and present concepts in real-world scale.</p>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card fade-in">
                 <div class="project-image">🏥</div>
                 <div class="project-info">
                     <h3>HoloPatient</h3>
@@ -726,7 +841,7 @@
                     <p class="project-description">Advanced medical training platform with Pearson Education, revolutionizing healthcare education through mixed reality.</p>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card fade-in">
                 <div class="project-image">👤</div>
                 <div class="project-info">
                     <h3>HoloHuman</h3>
@@ -734,7 +849,7 @@
                     <p class="project-description">Anatomical visualization system providing medical professionals with unprecedented 3D human body exploration.</p>
                 </div>
             </div>
-            <div class="project-card">
+            <div class="project-card fade-in">
                 <div class="project-image">🎓</div>
                 <div class="project-info">
                     <h3>Educational XR Platform</h3>
@@ -752,22 +867,22 @@
             <p>End-to-end XR development services</p>
         </div>
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card fade-in">
                 <div class="service-icon">🎯</div>
                 <h3>XR Strategy & Consulting</h3>
                 <p>We help organizations identify opportunities and develop comprehensive XR strategies aligned with business objectives.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card fade-in">
                 <div class="service-icon">💡</div>
                 <h3>Concept & Design</h3>
                 <p>From initial wireframes to polished prototypes, we create intuitive spatial interfaces that delight users.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card fade-in">
                 <div class="service-icon">⚡</div>
                 <h3>Development & Engineering</h3>
                 <p>Expert development across all major XR platforms including Vision Pro, Quest, and HoloLens.</p>
             </div>
-            <div class="service-card">
+            <div class="service-card fade-in">
                 <div class="service-icon">🚀</div>
                 <h3>Deployment & Support</h3>
                 <p>Seamless deployment with ongoing support to ensure your XR solutions deliver continuous value.</p>
@@ -778,10 +893,10 @@
     <!-- Footer -->
     <footer id="contact">
         <div class="footer-content">
-            <h2 style="margin-bottom: 1rem;">Let's Build Something Amazing</h2>
+            <h2>Let's Build Something Amazing</h2>
             <p style="color: var(--gray); margin-bottom: 2rem;">Ready to transform your vision into reality?</p>
             <a href="mailto:hello@awadxr.com" class="btn btn-primary">hello@awadxr.com</a>
-            <ul class="footer-links" style="margin-top: 3rem;">
+            <ul class="footer-links">
                 <li><a href="#">LinkedIn</a></li>
                 <li><a href="#">Twitter</a></li>
                 <li><a href="#">Instagram</a></li>
@@ -792,14 +907,45 @@
     </footer>
 
     <script>
+        // Hamburger menu functionality
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const navLinksItems = document.querySelectorAll('.nav-links a');
+
+        // Toggle mobile menu
+        function toggleMenu() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        }
+
+        hamburger.addEventListener('click', toggleMenu);
+        mobileOverlay.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking a link
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+
         // Navbar scroll effect
+        let lastScrollY = window.scrollY;
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
+            const currentScrollY = window.scrollY;
+            
+            if (currentScrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
+            
+            lastScrollY = currentScrollY;
         });
 
         // Smooth scroll for navigation links
@@ -808,21 +954,38 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const offset = 80; // Account for fixed header
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
                     });
                 }
             });
         });
 
-        // Play full video function
-        function playFullVideo() {
-            // Opens the Vimeo video in a new tab with full controls
-            window.open('https://vimeo.com/1121820526', '_blank');
+        // Active nav link highlighting
+        const sections = document.querySelectorAll('section[id]');
+        function highlightNavLink() {
+            const scrollY = window.scrollY;
+            
+            sections.forEach(section => {
+                const sectionHeight = section.offsetHeight;
+                const sectionTop = section.offsetTop - 150;
+                const sectionId = section.getAttribute('id');
+                const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
+                
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    navLinksItems.forEach(link => link.classList.remove('active'));
+                    if (navLink) navLink.classList.add('active');
+                }
+            });
         }
+        
+        window.addEventListener('scroll', highlightNavLink);
+        highlightNavLink(); // Initial call
 
-        // Add animation on scroll
+        // Enhanced fade-in animation on scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -831,22 +994,31 @@
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); // Stop observing once visible
                 }
             });
         }, observerOptions);
 
-        // Observe all cards
-        document.querySelectorAll('.project-card, .service-card, .partner-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(20px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Prevent body scroll when mobile menu is open
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+
+        // Add loading state for video
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
         });
     </script>
     
-    <!-- Vimeo Player API (optional - for advanced controls) -->
+    <!-- Vimeo Player API -->
     <script src="https://player.vimeo.com/api/player.js"></script>
 </body>
 </html>
