@@ -303,6 +303,18 @@
             padding: 2rem;
         }
 
+        /* Mobile adjustments for video header */
+        @media (max-width: 768px) {
+            .showreel-section {
+                margin-top: 0; /* Remove negative margin on mobile */
+            }
+
+            .video-header {
+                top: 50%;
+                padding: 1rem;
+            }
+        }
+
         .video-header h2 {
             font-size: clamp(1.8rem, 5vw, 3rem);
             color: white;
