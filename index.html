@@ -190,10 +190,9 @@
         }
 
         .video-header {
-            padding-top: 2.5%;
             position: absolute;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translate(-50%, 50%);
             text-align: center;
             z-index: 5;
             width: 100%;
@@ -201,13 +200,15 @@
         }
 
         .video-header h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
+            position: relative;
+            font-size: clamp(4rem, 5vw, 3rem);
             color: white;
             margin-bottom: 0.5rem;
             text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
         }
 
         .video-header p {
+            position: relative;
               font-size: clamp(1rem, 2vw, 1.5rem);
             color: rgba(255, 255, 255, 0.9);
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
