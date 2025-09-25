@@ -102,13 +102,14 @@
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            min-height: 70vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
             overflow: hidden;
+            padding-top: 100px;
         }
 
         .hero::before {
@@ -134,14 +135,13 @@
             position: relative;
         }
 
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+        .hero-text-center {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .hero-text h1 {
+        .hero-text-center h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 700;
             line-height: 1.2;
@@ -152,19 +152,141 @@
             animation: fadeInUp 1s ease;
         }
 
-        .hero-text .tagline {
+        .hero-text-center .tagline {
             font-size: 1.4rem;
             color: var(--primary);
             margin-bottom: 1rem;
             animation: fadeInUp 1s ease 0.2s backwards;
         }
 
-        .hero-text p {
+        .hero-text-center p {
             font-size: 1.1rem;
             color: var(--gray);
-            margin-bottom: 2rem;
-            max-width: 500px;
+            margin: 0 auto 2rem;
+            max-width: 700px;
             animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        /* Showreel Section - Full Width like nDreams */
+        .showreel-section {
+            background: var(--darker);
+            padding: 0;
+            position: relative;
+        }
+
+        .showreel-container {
+            width: 100%;
+            max-width: 100%;
+            position: relative;
+            background: #000;
+        }
+
+        .video-header {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 10;
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .video-header h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: white;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-header p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            background: #000;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-wrapper-native {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .video-wrapper-native video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Optional play button overlay */
+        .play-button {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: var(--dark);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .play-button:hover {
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
+        }
+
+        .play-button span {
+            font-size: 1.2rem;
+        }
+
+        /* Dark overlay for better text visibility */
+        .showreel-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.7) 100%);
+            z-index: 5;
+            pointer-events: none;
         }
 
         @keyframes fadeInUp {
@@ -176,12 +298,6 @@
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1.5rem;
-            animation: fadeInUp 1s ease 0.6s backwards;
         }
 
         .btn {
@@ -216,48 +332,6 @@
             background: var(--primary);
             color: var(--dark);
             transform: translateY(-2px);
-        }
-
-        /* Showreel Container */
-        .showreel-container {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 1rem;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            animation: fadeInUp 1s ease 0.8s backwards;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .showreel-container::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 20px;
-            padding: 2px;
-            background: linear-gradient(135deg, var(--primary), transparent);
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0.5;
-        }
-
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            border-radius: 12px;
-            overflow: hidden;
-            background: var(--darker);
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
         }
 
         /* Partners Section */
@@ -493,13 +567,20 @@
                 display: none;
             }
 
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .hero {
+                min-height: 60vh;
             }
 
-            .showreel-container {
-                margin-top: 2rem;
+            .video-header {
+                top: 30px;
+            }
+
+            .video-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .video-header p {
+                font-size: 1rem;
             }
 
             .projects-grid {
@@ -508,6 +589,12 @@
 
             .partners-grid {
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .play-button {
+                bottom: 20px;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -530,23 +617,60 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-content">
-            <div class="hero-grid">
-                <div class="hero-text">
-                    <p class="tagline">Pioneering Spatial Computing</p>
-                    <h1>We Create Immersive XR Experiences That Transform Industries</h1>
-                    <p>From enterprise training to interactive healthcare solutions, we develop cutting-edge applications for Apple Vision Pro, Meta Quest, and Microsoft HoloLens.</p>
-                    <div class="cta-buttons">
-                        <a href="#projects" class="btn btn-primary">View Our Work</a>
-                        <a href="#contact" class="btn btn-secondary">Start a Project</a>
-                    </div>
-                </div>
-                <div class="showreel-container">
-                    <div class="video-wrapper">
-                        <!-- Replace with your actual showreel video embed -->
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/yeRyuH5DrWc?si=aIL2GgM3xKdpPliL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    </div>
+            <div class="hero-text-center">
+                <p class="tagline">Pioneering Spatial Computing</p>
+                <h1>We Create Immersive XR Experiences That Transform Industries</h1>
+                <p>From enterprise training to interactive healthcare solutions, we develop cutting-edge applications for Apple Vision Pro, Meta Quest, and Microsoft HoloLens.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary">View Our Work</a>
+                    <a href="#contact" class="btn btn-secondary">Start a Project</a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Showreel Section -->
+    <section class="showreel-section">
+        <div class="showreel-container">
+            <div class="video-header">
+                <h2>See Our Work in Action</h2>
+                <p>Experience the future of spatial computing</p>
+            </div>
+            
+            <!-- Option 1: Vimeo (Recommended - cleanest for background videos) -->
+            <div class="video-wrapper">
+                <iframe 
+                    src="https://player.vimeo.com/video/YOUR_VIDEO_ID?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1"
+                    frameborder="0" 
+                    allow="autoplay; fullscreen; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            
+            <!-- Option 2: YouTube (Uncomment to use - replace YOUR_VIDEO_ID) -->
+            <!-- <div class="video-wrapper">
+                <iframe 
+                    src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&playlist=YOUR_VIDEO_ID"
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div> -->
+            
+            <!-- Option 3: Self-hosted video (Best control, uncomment to use) -->
+            <!-- <div class="video-wrapper-native">
+                <video autoplay muted loop playsinline>
+                    <source src="your-video.mp4" type="video/mp4">
+                    <source src="your-video.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+            </div> -->
+            
+            <!-- Play button overlay (optional) -->
+            <button class="play-button" onclick="playFullVideo()">
+                <span>▶</span>
+                Watch Full Showreel
+            </button>
         </div>
     </section>
 
@@ -704,6 +828,20 @@
                 }
             });
         });
+
+        // Play full video function
+        function playFullVideo() {
+            // Option 1: Open video in modal/lightbox
+            // You can implement a modal here
+            
+            // Option 2: Open video in new tab (simple solution)
+            // Replace with your actual video URL
+            window.open('https://www.youtube.com/watch?v=YOUR_VIDEO_ID', '_blank');
+            
+            // Option 3: Replace the background video with full controls version
+            // const videoWrapper = document.querySelector('.video-wrapper');
+            // videoWrapper.innerHTML = '<iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        }
 
         // Add animation on scroll
         const observerOptions = {
