@@ -8,28 +8,7 @@
     name="description"
     content="AwadXR is a spatial computing studio building Apple Vision Pro and XR experiences for real estate, infrastructure, healthcare and education."
   />
-  <!-- 
-    REQUIRED ASSETS:
-    Place these files in the same directory as index.html:
-    
-    Video:
-    - showreel.mp4 (and/or showreel.webm for better browser support)
-    - showreel-poster.jpg (fallback image while video loads)
-    
-    Project Thumbnails:
-    - forma-thumb.jpg
-    - holopatient-thumb.jpg  
-    - holohuman-thumb.jpg
-    - airport-thumb.jpg
-    
-    Company Logos (in a 'logos' folder):
-    - logos/apple.png
-    - logos/microsoft.png
-    - logos/formaxr.png
-    - logos/adr.png
-    - logos/gigxr.png
-    - logos/pearson.jpg
-  -->
+  
   <style>
     :root {
       --bg: #020617;
@@ -808,9 +787,19 @@
       font-weight: 700;
       color: white;
     }
+
+    .founder-avatar-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(148, 163, 184, 0.7);
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+    }
     
     .founder-info {
       text-align: left;
+      max-width: 460px;
     }
     
     .founder-name {
@@ -822,6 +811,13 @@
     .founder-role {
       color: var(--muted);
       font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .founder-bio {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.6;
     }
 
     /* Contact section */
@@ -950,6 +946,11 @@
       
       .floating-capabilities {
         display: none;
+      }
+
+      /* Faster marquee on mobile */
+      .marquee-track {
+        animation-duration: 15s;
       }
     }
   </style>
@@ -1189,10 +1190,16 @@
         </p>
 
         <div class="about-founder">
-          <div class="founder-avatar">TA</div>
+          <img src="tarik.jpg" alt="Tarik Awad" class="founder-avatar-img" />
           <div class="founder-info">
             <div class="founder-name">Tarik Awad</div>
             <div class="founder-role">Founder & XR Developer</div>
+            <p class="founder-bio">
+              With over a decade in XR, Tarik has delivered spatial experiences across real estate, healthcare,
+              education and infrastructure—collaborating with teams at Apple, Microsoft, Pearson and GIGXR,
+              integrating VR with robotic systems in his early Dubai work at DigiRobotics, and teaching game
+              development at Masters level.
+            </p>
           </div>
         </div>
       </div>
@@ -1292,7 +1299,7 @@
       });
     });
 
-    // Mobile menu toggle
+    // Mobile menu toggle (stub for future)
     const menuToggle = document.getElementById('menuToggle');
     menuToggle?.addEventListener('click', () => {
       // Add mobile menu implementation here if needed
