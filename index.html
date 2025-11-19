@@ -919,15 +919,7 @@
       align-items: center;
       gap: 1rem;
       white-space: nowrap;
-      filter: grayscale(100%) brightness(0.8);
-      opacity: 0.6;
       transition: all 0.3s ease;
-    }
-    
-    .client-logo:hover {
-      filter: grayscale(0%) brightness(1);
-      opacity: 1;
-      transform: scale(1.05);
     }
     
     .client-logo img {
@@ -944,10 +936,6 @@
       transition: color 0.3s ease;
     }
     
-    .client-logo:hover span {
-      color: var(--text);
-    }
-
     /* About section */
     .about-container {
       max-width: 800px;
@@ -1136,8 +1124,39 @@
 
       /* Faster marquee on mobile */
       .marquee-track {
-        animation-duration: 15s;
+        animation-duration: 7s;
       }
+
+        /* Mobile nav open state */
+  .nav-container.mobile-open {
+    background: rgba(2, 6, 23, 0.98);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.4);
+  }
+
+  .nav-container.mobile-open .nav {
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+
+  .nav-container.mobile-open .nav-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+
+  .nav-container.mobile-open .nav-cta {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+
+  .nav-container.mobile-open .nav-menu-toggle {
+    transform: rotate(0deg);
+  }
+
     }
 
     /* Touch devices (no hover): make images bright by default and pill always visible */
@@ -1550,6 +1569,29 @@
         }
       });
     });
+
+        // Mobile nav toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navbarEl = document.getElementById('navbar');
+    const navLinksEls = document.querySelectorAll('.nav-links a');
+
+    if (menuToggle) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = navbarEl.classList.toggle('mobile-open');
+        menuToggle.textContent = isOpen ? '✕' : '☰';
+      });
+
+      // Close menu when a link is tapped
+      navLinksEls.forEach(link => {
+        link.addEventListener('click', () => {
+          if (navbarEl.classList.contains('mobile-open')) {
+            navbarEl.classList.remove('mobile-open');
+            menuToggle.textContent = '☰';
+          }
+        });
+      });
+    }
+
 
     // ---- Project modal logic ----
     const projectData = {
