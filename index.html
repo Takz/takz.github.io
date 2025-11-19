@@ -8,7 +8,39 @@
     name="description"
     content="AwadXR is a spatial computing studio building Apple Vision Pro and XR experiences for real estate, infrastructure, healthcare and education."
   />
+  <!-- 
+    REQUIRED ASSETS:
+    Place these files in the same directory as index.html:
+    
+    Video:
+    - showreel.mp4 (and/or showreel.webm)
+    - showreel-poster.jpg
 
+    Project Thumbnails:
+    - forma-thumb.jpg
+    - holopatient-thumb.jpg  
+    - holohuman-thumb.jpg
+    - airport-thumb.jpg
+    - yachtxr-thumb.jpg
+
+    Project Videos (for modal):
+    - formaxr.mp4
+    - holopatient.mp4
+    - holohuman.mp4
+    - airportxr.mp4
+    - yachtxr.mp4
+    
+    Company Logos (in a 'logos' folder):
+    - logos/apple.png
+    - logos/microsoft.png
+    - logos/formaxr.png
+    - logos/adr.png
+    - logos/gigxr.png
+    - logos/pearson.jpg
+
+    Founder Photo:
+    - tarik.jpg
+  -->
   <style>
     :root {
       --bg: #020617;
@@ -696,6 +728,131 @@
       line-height: 1.5;
     }
 
+    /* Project modal */
+    .project-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+    }
+
+    .project-modal.open {
+      display: flex;
+    }
+
+    .project-modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(2, 6, 23, 0.85);
+      backdrop-filter: blur(18px);
+    }
+
+    .project-modal-dialog {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      width: 90%;
+      max-height: 80vh;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.98));
+      border-radius: 1.5rem;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      overflow: hidden;
+    }
+
+    .project-modal-media {
+      position: relative;
+      background: #020617;
+    }
+
+    .project-modal-video {
+      width: 100%;
+      height: 100%;
+      max-height: 80vh;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-modal-body {
+      padding: 1.8rem;
+      overflow-y: auto;
+    }
+
+    .project-modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .project-modal-tags .tag {
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .project-modal-title {
+      font-size: 1.4rem;
+      margin: 0 0 0.6rem 0;
+    }
+
+    .project-modal-text {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .project-modal-list {
+      padding-left: 1.1rem;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .project-modal-list li + li {
+      margin-top: 0.2rem;
+    }
+
+    .project-modal-close {
+      position: absolute;
+      top: 0.9rem;
+      right: 0.9rem;
+      border: none;
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
+      border-radius: 999px;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .project-modal-close:hover {
+      color: #e5e7eb;
+      border-color: rgba(56, 189, 248, 0.8);
+    }
+
+    @media (max-width: 900px) {
+      .project-modal-dialog {
+        grid-template-columns: 1fr;
+        max-height: 90vh;
+      }
+      
+      .project-modal-media {
+        max-height: 45vh;
+      }
+    }
+
     /* Clients marquee */
     .clients-marquee {
       padding: 3rem 0;
@@ -775,19 +932,6 @@
       backdrop-filter: blur(10px);
     }
     
-    .founder-avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #38bdf8, #6366f1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      font-weight: 700;
-      color: white;
-    }
-
     .founder-avatar-img {
       width: 80px;
       height: 80px;
@@ -992,7 +1136,6 @@
       <video class="hero-video" autoplay muted loop playsinline poster="showreel-poster.jpg">
         <source src="showreel.mp4" type="video/mp4">
         <source src="showreel.webm" type="video/webm">
-        <!-- Fallback message for browsers that don't support video -->
         Your browser does not support the video tag.
       </video>
       <div class="hero-video-overlay"></div>
@@ -1056,12 +1199,14 @@
       </div>
 
       <div class="work-grid">
-        <div class="work-card">
+        <!-- FormaXR -->
+        <div class="work-card project-trigger" data-project="formaxr">
           <div class="work-card-bg" style="background-image: url('forma-thumb.jpg');"></div>
           <div class="work-card-content">
             <div class="work-card-tags">
               <span class="work-tag">Real Estate</span>
-              <span class="work-tag">Vision Pro</span>
+                <span class="work-tag">Design</span>
+                    <span class="work-tag">Vision Pro</span>
             </div>
             <h3 class="work-card-title">FormaXR</h3>
             <p class="work-card-description">
@@ -1070,12 +1215,30 @@
           </div>
         </div>
 
-        <div class="work-card">
+        <!-- YachtXR -->
+        <div class="work-card project-trigger" data-project="yachtxr">
+          <div class="work-card-bg" style="background-image: url('yachtxr-thumb.jpg');"></div>
+          <div class="work-card-content">
+            <div class="work-card-tags">
+              <span class="work-tag">Concept</span>
+              <span class="work-tag">Real-time 3D</span>
+                <span class="work-tag">Vision Pro</span>
+            </div>
+            <h3 class="work-card-title">YachtXR</h3>
+            <p class="work-card-description">
+              A cinematic XR concept for exploring a luxury yacht in real time.
+            </p>
+          </div>
+        </div>
+
+        <!-- HoloPatient -->
+        <div class="work-card project-trigger" data-project="holopatient">
           <div class="work-card-bg" style="background-image: url('holopatient-thumb.jpg');"></div>
           <div class="work-card-content">
             <div class="work-card-tags">
+                <span class="work-tag">Education</span>
               <span class="work-tag">Healthcare</span>
-              <span class="work-tag">HoloLens2, Mobile, Quest</span>
+              <span class="work-tag">HoloLens</span>
             </div>
             <h3 class="work-card-title">HoloPatient</h3>
             <p class="work-card-description">
@@ -1084,12 +1247,14 @@
           </div>
         </div>
 
-        <div class="work-card">
+        <!-- HoloHuman -->
+        <div class="work-card project-trigger" data-project="holohuman">
           <div class="work-card-bg" style="background-image: url('holohuman-thumb.jpg');"></div>
           <div class="work-card-content">
             <div class="work-card-tags">
               <span class="work-tag">Education</span>
-              <span class="work-tag">HoloLens2, Quest</span>
+              <span class="work-tag">Anatomy</span>
+                <span class="work-tag">HoloLens</span>
             </div>
             <h3 class="work-card-title">HoloHuman</h3>
             <p class="work-card-description">
@@ -1098,12 +1263,14 @@
           </div>
         </div>
 
-        <div class="work-card">
+        <!-- Airport XR -->
+        <div class="work-card project-trigger" data-project="airport">
           <div class="work-card-bg" style="background-image: url('airport-thumb.jpg');"></div>
           <div class="work-card-content">
             <div class="work-card-tags">
               <span class="work-tag">Infrastructure</span>
-              <span class="work-tag">Vision Pro</span>
+              <span class="work-tag">Enterprise</span>
+                <span class="work-tag">Vision Pro</span>
             </div>
             <h3 class="work-card-title">Airport XR</h3>
             <p class="work-card-description">
@@ -1111,22 +1278,27 @@
             </p>
           </div>
         </div>
-                <div class="work-card">
-  <div class="work-card-bg" style="background-image: url('yachtxr-thumb.jpg');"></div>
-  <div class="work-card-content">
-    <div class="work-card-tags">
-      <span class="work-tag">Concept</span>
-      <span class="work-tag">Vision Pro</span>
-    </div>
-    <h3 class="work-card-title">YachtXR</h3>
-    <p class="work-card-description">
-      A cinematic XR experience for exploring a luxury yacht in real time, in both AR and VR.
-    </p>
-  </div>
-</div>
       </div>
     </section>
 
+    <!-- Project Modal -->
+    <div class="project-modal" id="projectModal" aria-hidden="true">
+      <div class="project-modal-backdrop" id="projectModalBackdrop"></div>
+      <div class="project-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+        <button class="project-modal-close" id="projectModalClose" aria-label="Close project details">✕</button>
+        
+        <div class="project-modal-media">
+          <video id="projectModalVideo" class="project-modal-video" autoplay muted loop playsinline></video>
+        </div>
+        
+        <div class="project-modal-body">
+          <div class="project-modal-tags" id="projectModalTags"></div>
+          <h3 class="project-modal-title" id="projectModalTitle"></h3>
+          <p class="project-modal-text" id="projectModalText"></p>
+          <ul class="project-modal-list" id="projectModalList"></ul>
+        </div>
+      </div>
+    </div>
 
     <!-- Clients -->
     <section id="clients">
@@ -1263,26 +1435,6 @@
   </footer>
 
   <script>
-    // Scroll animations (optional - add class for future animations)
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          entry.target.classList.remove('animate-in');
-        }
-      });
-    }, observerOptions);
-
-    // Only observe sections that need animation
-    document.querySelectorAll('section.animate-in').forEach(section => {
-      observer.observe(section);
-    });
-
     // Navbar scroll effect
     let lastScroll = 0;
     window.addEventListener('scroll', () => {
@@ -1301,9 +1453,9 @@
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
-        e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
+          e.preventDefault();
           target.scrollIntoView({
             behavior: 'smooth',
             block: 'start'
@@ -1312,10 +1464,119 @@
       });
     });
 
-    // Mobile menu toggle (stub for future)
-    const menuToggle = document.getElementById('menuToggle');
-    menuToggle?.addEventListener('click', () => {
-      // Add mobile menu implementation here if needed
+    // ---- Project modal logic ----
+    const projectData = {
+      formaxr: {
+        title: "FormaXR",
+        video: "formaxr.mp4",
+        tags: ["Real Estate", "Apple Vision Pro", "Architectural Visualization"],
+        text: "Spatial visualisation of unbuilt apartments and interiors, built for Apple Vision Pro.",
+        bullets: [
+          "Pipeline from BIM / FBX / OBJ to optimised XR scenes",
+          "True-scale walkthroughs for sales, design and stakeholder reviews"
+        ]
+      },
+      holopatient: {
+        title: "HoloPatient",
+        video: "holopatient.mp4",
+        tags: ["Healthcare", "HoloLens", "Medical Training"],
+        text: "Mixed reality training with life-sized virtual patients in real teaching spaces.",
+        bullets: [
+          "Developed with Pearson Education & GIGXR for Microsoft HoloLens",
+          "Used globally by universities and hospitals for clinical scenarios"
+        ]
+      },
+      holohuman: {
+        title: "HoloHuman",
+        video: "holohuman.mp4",
+        tags: ["Education", "Anatomy", "3D Visualisation"],
+        text: "Anatomy teaching tool that lets learners explore the human body in full 3D at room scale.",
+        bullets: [
+          "Layered anatomical views and system-level exploration",
+          "Supports collaborative sessions across multiple headsets"
+        ]
+      },
+      airport: {
+        title: "Airport XR (NDA)",
+        video: "airportxr.mp4",
+        tags: ["Infrastructure", "Enterprise", "Visualisation"],
+        text: "Large-scale airport visualisation for a major European hub (details anonymised).",
+        bullets: [
+          "Real-time views for stakeholder presentations and planning",
+          "Optimised for comfortable performance in complex scenes"
+        ]
+      },
+      yachtxr: {
+        title: "YachtXR",
+        video: "yachtxr.mp4",
+        tags: ["Concept", "Real-time 3D", "Lifestyle"],
+        text: "A cinematic XR concept for exploring a luxury yacht in real time.",
+        bullets: [
+          "High-end materials, lighting and water effects",
+          "Blends architectural visualisation with interactive storytelling"
+        ]
+      }
+    };
+
+    const modal = document.getElementById("projectModal");
+    const modalBackdrop = document.getElementById("projectModalBackdrop");
+    const modalClose = document.getElementById("projectModalClose");
+    const modalVideo = document.getElementById("projectModalVideo");
+    const modalTags = document.getElementById("projectModalTags");
+    const modalTitle = document.getElementById("projectModalTitle");
+    const modalText = document.getElementById("projectModalText");
+    const modalList = document.getElementById("projectModalList");
+
+    function openProjectModal(key) {
+      const data = projectData[key];
+      if (!data) return;
+      
+      modalVideo.src = data.video;
+      modalVideo.load();
+      modalVideo.play().catch(() => {});
+
+      modalTitle.textContent = data.title;
+      modalText.textContent = data.text;
+
+      modalTags.innerHTML = "";
+      data.tags.forEach(tag => {
+        const span = document.createElement("span");
+        span.className = "tag";
+        span.textContent = tag;
+        modalTags.appendChild(span);
+      });
+
+      modalList.innerHTML = "";
+      data.bullets.forEach(item => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        modalList.appendChild(li);
+      });
+
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeProjectModal() {
+      modal.classList.remove("open");
+      document.body.style.overflow = "";
+      modalVideo.pause();
+      modalVideo.src = "";
+    }
+
+    document.querySelectorAll(".project-trigger").forEach(card => {
+      card.addEventListener("click", () => {
+        const key = card.getAttribute("data-project");
+        openProjectModal(key);
+      });
+    });
+
+    modalBackdrop.addEventListener("click", closeProjectModal);
+    modalClose.addEventListener("click", closeProjectModal);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("open")) {
+        closeProjectModal();
+      }
     });
   </script>
 </body>
