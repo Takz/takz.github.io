@@ -677,7 +677,7 @@
       background-size: cover, cover;
       background-position: center, center;
       background-repeat: no-repeat, no-repeat;
-      transition: transform 0.4s ease;
+      transition: transform 0.4s ease, filter 0.4s ease;
       filter: brightness(0.6) saturate(1.2);
     }
     
@@ -728,55 +728,47 @@
       line-height: 1.5;
     }
 
-.work-card-hover-hint {
-  position: absolute;
-  top: -10%;                 /* smack in the middle of the visible image */
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  
-  padding: 0.55rem 1.25rem;
-  border-radius: 999px;
-  
-  background: rgba(15, 23, 42, 0.78);
-  border: 1px solid rgba(148, 163, 184, 0.45);
-  
-  font-size: 0.75rem;
-  color: var(--muted);
-  
-  opacity: 0.2;                /* subtle default visibility */
-  transition:
-    opacity 0.25s ease,
-    transform 0.25s ease,
-    border-color 0.25s ease,
-    background 0.25s ease,
-    color 0.25s ease;
-  
-  pointer-events: none;
-  z-index: 3;
-}
+    .work-card-hover-hint {
+      position: absolute;
+      top: -10%;                 /* visually centred within the image region */
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.25rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.78);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      font-size: 0.75rem;
+      color: var(--muted);
+      opacity: 0.25;                /* subtle default visibility */
+      transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease;
+      pointer-events: none;
+      z-index: 3;
+    }
 
-.work-card:hover .work-card-hover-hint {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1.05);
-  border-color: rgba(56, 189, 248, 0.85);
-  background: rgba(15, 23, 42, 0.98);
-  color: #e5e7eb;
-}
+    .work-card:hover .work-card-hover-hint {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.05);
+      border-color: rgba(56, 189, 248, 0.85);
+      background: rgba(15, 23, 42, 0.98);
+      color: #e5e7eb;
+    }
 
+    .hint-icon {
+      font-size: 0.7rem;
+    }
 
-.hint-icon {
-  font-size: 0.7rem;
-}
-
-.hint-text {
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-
+    .hint-text {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
 
     /* Project modal */
     .project-modal {
@@ -1145,6 +1137,31 @@
       /* Faster marquee on mobile */
       .marquee-track {
         animation-duration: 15s;
+      }
+    }
+
+    /* Touch devices (no hover): make images bright by default and pill always visible */
+    @media (hover: none) and (pointer: coarse) {
+      .work-card-bg {
+        filter: none !important;
+        transform: none !important;
+      }
+
+      .work-card:hover .work-card-bg {
+        filter: none !important;
+        transform: none !important;
+      }
+
+      .work-card-hover-hint {
+        opacity: 0.9;
+        border-color: rgba(56, 189, 248, 0.85);
+        background: rgba(15, 23, 42, 0.96);
+        color: #e5e7eb;
+      }
+
+      .work-card:hover .work-card-hover-hint {
+        opacity: 0.9;
+        transform: translate(-50%, -50%);
       }
     }
   </style>
