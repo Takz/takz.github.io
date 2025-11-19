@@ -16,7 +16,7 @@
     - showreel.mp4 (and/or showreel.webm)
     - showreel-poster.jpg
 
-    Project Thumbnails:
+    Project Thumbnails (also used as modal posters):
     - forma-thumb.jpg
     - holopatient-thumb.jpg  
     - holohuman-thumb.jpg
@@ -728,6 +728,56 @@
       line-height: 1.5;
     }
 
+.work-card-hover-hint {
+  position: absolute;
+  top: -10%;                 /* smack in the middle of the visible image */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  
+  padding: 0.55rem 1.25rem;
+  border-radius: 999px;
+  
+  background: rgba(15, 23, 42, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  
+  font-size: 0.75rem;
+  color: var(--muted);
+  
+  opacity: 0.2;                /* subtle default visibility */
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    color 0.25s ease;
+  
+  pointer-events: none;
+  z-index: 3;
+}
+
+.work-card:hover .work-card-hover-hint {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.05);
+  border-color: rgba(56, 189, 248, 0.85);
+  background: rgba(15, 23, 42, 0.98);
+  color: #e5e7eb;
+}
+
+
+.hint-icon {
+  font-size: 0.7rem;
+}
+
+.hint-text {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+
     /* Project modal */
     .project-modal {
       position: fixed;
@@ -1205,13 +1255,17 @@
           <div class="work-card-content">
             <div class="work-card-tags">
               <span class="work-tag">Real Estate</span>
-                <span class="work-tag">Design</span>
-                    <span class="work-tag">Vision Pro</span>
+              <span class="work-tag">Design</span>
+              <span class="work-tag">Vision Pro</span>
             </div>
             <h3 class="work-card-title">FormaXR</h3>
             <p class="work-card-description">
               Immersive architectural visualization for unbuilt properties
             </p>
+            <div class="work-card-hover-hint">
+              <span class="hint-icon">▶</span>
+              <span class="hint-text">View preview</span>
+            </div>
           </div>
         </div>
 
@@ -1222,12 +1276,16 @@
             <div class="work-card-tags">
               <span class="work-tag">Concept</span>
               <span class="work-tag">Real-time 3D</span>
-                <span class="work-tag">Vision Pro</span>
+              <span class="work-tag">Vision Pro</span>
             </div>
             <h3 class="work-card-title">YachtXR</h3>
             <p class="work-card-description">
               A cinematic XR concept for exploring a luxury yacht in real time.
             </p>
+            <div class="work-card-hover-hint">
+              <span class="hint-icon">▶</span>
+              <span class="hint-text">View preview</span>
+            </div>
           </div>
         </div>
 
@@ -1236,7 +1294,7 @@
           <div class="work-card-bg" style="background-image: url('holopatient-thumb.jpg');"></div>
           <div class="work-card-content">
             <div class="work-card-tags">
-                <span class="work-tag">Education</span>
+              <span class="work-tag">Education</span>
               <span class="work-tag">Healthcare</span>
               <span class="work-tag">HoloLens</span>
             </div>
@@ -1244,6 +1302,10 @@
             <p class="work-card-description">
               Life-sized virtual patients for medical training worldwide
             </p>
+            <div class="work-card-hover-hint">
+              <span class="hint-icon">▶</span>
+              <span class="hint-text">View preview</span>
+            </div>
           </div>
         </div>
 
@@ -1254,12 +1316,16 @@
             <div class="work-card-tags">
               <span class="work-tag">Education</span>
               <span class="work-tag">Anatomy</span>
-                <span class="work-tag">HoloLens</span>
+              <span class="work-tag">HoloLens</span>
             </div>
             <h3 class="work-card-title">HoloHuman</h3>
             <p class="work-card-description">
               Room-scale 3D anatomy exploration for medical education
             </p>
+            <div class="work-card-hover-hint">
+              <span class="hint-icon">▶</span>
+              <span class="hint-text">View preview</span>
+            </div>
           </div>
         </div>
 
@@ -1270,12 +1336,16 @@
             <div class="work-card-tags">
               <span class="work-tag">Infrastructure</span>
               <span class="work-tag">Enterprise</span>
-                <span class="work-tag">Vision Pro</span>
+              <span class="work-tag">Vision Pro</span>
             </div>
             <h3 class="work-card-title">Airport XR</h3>
             <p class="work-card-description">
               Large-scale visualization for European infrastructure planning
             </p>
+            <div class="work-card-hover-hint">
+              <span class="hint-icon">▶</span>
+              <span class="hint-text">View preview</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1288,7 +1358,7 @@
         <button class="project-modal-close" id="projectModalClose" aria-label="Close project details">✕</button>
         
         <div class="project-modal-media">
-          <video id="projectModalVideo" class="project-modal-video" autoplay muted loop playsinline></video>
+          <video id="projectModalVideo" class="project-modal-video" autoplay muted loop playsinline poster=""></video>
         </div>
         
         <div class="project-modal-body">
@@ -1469,6 +1539,7 @@
       formaxr: {
         title: "FormaXR",
         video: "formaxr.mp4",
+        poster: "forma-thumb.jpg",
         tags: ["Real Estate", "Apple Vision Pro", "Architectural Visualization"],
         text: "Spatial visualisation of unbuilt apartments and interiors, built for Apple Vision Pro.",
         bullets: [
@@ -1479,6 +1550,7 @@
       holopatient: {
         title: "HoloPatient",
         video: "holopatient.mp4",
+        poster: "holopatient-thumb.jpg",
         tags: ["Healthcare", "HoloLens", "Medical Training"],
         text: "Mixed reality training with life-sized virtual patients in real teaching spaces.",
         bullets: [
@@ -1489,6 +1561,7 @@
       holohuman: {
         title: "HoloHuman",
         video: "holohuman.mp4",
+        poster: "holohuman-thumb.jpg",
         tags: ["Education", "Anatomy", "3D Visualisation"],
         text: "Anatomy teaching tool that lets learners explore the human body in full 3D at room scale.",
         bullets: [
@@ -1499,6 +1572,7 @@
       airport: {
         title: "Airport XR (NDA)",
         video: "airportxr.mp4",
+        poster: "airport-thumb.jpg",
         tags: ["Infrastructure", "Enterprise", "Visualisation"],
         text: "Large-scale airport visualisation for a major European hub (details anonymised).",
         bullets: [
@@ -1509,6 +1583,7 @@
       yachtxr: {
         title: "YachtXR",
         video: "yachtxr.mp4",
+        poster: "yachtxr-thumb.jpg",
         tags: ["Concept", "Real-time 3D", "Lifestyle"],
         text: "A cinematic XR concept for exploring a luxury yacht in real time.",
         bullets: [
@@ -1531,6 +1606,8 @@
       const data = projectData[key];
       if (!data) return;
       
+      // Set poster first so it shows while video buffers
+      modalVideo.poster = data.poster || "";
       modalVideo.src = data.video;
       modalVideo.load();
       modalVideo.play().catch(() => {});
@@ -1562,6 +1639,7 @@
       document.body.style.overflow = "";
       modalVideo.pause();
       modalVideo.src = "";
+      modalVideo.poster = "";
     }
 
     document.querySelectorAll(".project-trigger").forEach(card => {
