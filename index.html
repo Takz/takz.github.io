@@ -1,1047 +1,1302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Awad XR Studios - Immersive Reality Solutions</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #00ff88;
-            --dark: #0a0e1a;
-            --darker: #060910;
-            --light: #ffffff;
-            --gray: #8892b0;
-            --card-bg: rgba(20, 25, 40, 0.7);
-            --section-padding: clamp(3rem, 8vw, 6rem);
-            --content-padding: clamp(1rem, 5vw, 5%);
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--dark);
-            color: var(--light);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 14, 26, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1.5rem var(--content-padding);
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            padding: 1rem var(--content-padding);
-            background: rgba(6, 9, 16, 0.98);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, var(--primary), #00ccff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-decoration: none;
-            z-index: 1001;
-            position: relative;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--gray);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 28px;
-            height: 20px;
-            cursor: pointer;
-            z-index: 1001;
-            position: relative;
-        }
-
-        .hamburger span {
-            display: block;
-            height: 3px;
-            width: 100%;
-            background: var(--primary);
-            border-radius: 3px;
-            transition: all 0.3s ease;
-            transform-origin: center;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: translateY(8.5px) rotate(45deg);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-            transform: scaleX(0);
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: translateY(-8.5px) rotate(-45deg);
-        }
-
-        /* Mobile Menu */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                max-width: 300px;
-                height: 100vh;
-                background: rgba(10, 14, 26, 0.98);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 2rem;
-                transition: right 0.3s ease;
-                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links a {
-                font-size: 1.2rem;
-                padding: 0.5rem 1rem;
-                width: 100%;
-                text-align: center;
-            }
-
-            /* Overlay */
-            .mobile-overlay {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                background: rgba(0, 0, 0, 0.7);
-                z-index: 999;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            }
-
-            .mobile-overlay.active {
-                display: block;
-                opacity: 1;
-            }
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            min-height: 600px;
-            overflow: hidden;
-            margin-top: 0; /* Remove margin since video section handles spacing */
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-            opacity: 0.05;
-            animation: float 20s infinite ease-in-out;
-            pointer-events: none;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.2); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            height: 100%;
-            padding: var(--content-padding);
-        }
-
-        .hero-text-center {
-            text-align: center;
-            max-width: 900px;
-                        height: 100%;
-            margin: 0 auto;
-        }
-
-        .hero-text-center h1 {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--light) 0%, var(--gray) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero-text-center .tagline {
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            color: var(--primary);
-            margin-bottom: 1rem;
-            animation: fadeInUp 1s ease 0.2s backwards;
-        }
-
-        .hero-text-center p {
-            font-size: clamp(1rem, 2vw, 1.1rem);
-            color: var(--gray);
-            margin: 0 auto 2rem;
-            max-width: 700px;
-            animation: fadeInUp 1s ease 0.4s backwards;
-            padding: 0 1rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.6s backwards;
-            padding: 0 1rem;
-        }
-
-        /* Showreel Section */
-        .showreel-section {
-            background: var(--darker);
-            padding: 0;
-            padding-top: 50px;
-            position: relative;
-            /* margin-top: -76px;  */
-            /* Negative margin to go under nav */
-        }
-
-        @media (max-width: 768px) {
-            .showreel-section {
-                margin-top: 60px; /* Positive margin on mobile to go below nav */
-            }
-        }
-
-        .showreel-container {
-            width: 100%;
-            max-width: 100%;
-            position: relative;
-            background: #000;
-            aspect-ratio: 16 / 9;
-        }
-
-        .video-header {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 10;
-            width: 100%;
-            padding: 2rem;
-        }
-
-
-
-        /* Mobile adjustments for video header */
-        @media (max-width: 768px) {
-            .showreel-section {
-                margin-top: 0; /* Remove negative margin on mobile */
-            }
-
-            .video-header {
-                top: 50%;
-                padding: 1rem;
-            }
-        }
-
-        .video-header h2 {
-            font-size: clamp(1.8rem, 5vw, 3rem);
-            color: white;
-            margin-bottom: 0.75rem;
-            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
-            line-height: 1.2;
-        }
-
-        .video-header p {
-            font-size: clamp(1rem, 2.5vw, 1.4rem);
-            color: rgba(247, 247, 247, 0.95);
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
-            line-height: 1.4;
-        }
-
-        .video-wrapper-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            width: 100%;
-            height: 100%;
-        }
-
-        .video-wrapper-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Dark overlay for better text visibility */
-        .showreel-container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, 
-                rgba(0,0,0,0.8) 0%, 
-                rgba(0,0,0,0.3) 40%, 
-                rgba(0,0,0,0.3) 60%, 
-                rgba(0,0,0,0.8) 100%);
-            z-index: 5;
-            pointer-events: none;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .btn {
-            padding: 1rem 2rem;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: var(--dark);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.4);
-        }
-
-        .btn-secondary {
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            background: transparent;
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: var(--dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-        }
-
-        /* Partners Section */
-        .partners {
-            padding: var(--section-padding) var(--content-padding);
-            background: var(--darker);
-            position: relative;
-        }
-
-        .partners::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto clamp(2rem, 5vw, 4rem);
-            padding: 0 1rem;
-        }
-
-        .section-header h2 {
-            font-size: clamp(1.8rem, 4vw, 3rem);
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--light) 0%, var(--gray) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .section-header p {
-            color: var(--gray);
-            font-size: clamp(1rem, 2vw, 1.1rem);
-        }
-
-        .partners-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: clamp(1.5rem, 3vw, 3rem);
-            max-width: 1000px;
-            margin: 0 auto;
-            align-items: center;
-        }
-
-        .partner-card {
-            background: var(--card-bg);
-            padding: clamp(1.5rem, 3vw, 2rem);
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 255, 136, 0.1);
-        }
-
-        .partner-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
-        }
-
-        .partner-card h3 {
-            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-            color: var(--light);
-            margin-bottom: 0.5rem;
-        }
-
-        .partner-card p {
-            color: var(--gray);
-            font-size: clamp(0.85rem, 1.5vw, 0.9rem);
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: var(--section-padding) var(--content-padding);
-            background: var(--dark);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: clamp(1.5rem, 3vw, 2rem);
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(0, 255, 136, 0.1);
-            cursor: pointer;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.3);
-            border-color: var(--primary);
-        }
-
-        .project-image {
-            height: 250px;
-            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--primary);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, transparent, rgba(0, 255, 136, 0.2));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .project-card:hover .project-image::after {
-            opacity: 1;
-        }
-
-        .project-info {
-            padding: clamp(1.25rem, 2.5vw, 1.5rem);
-        }
-
-        .project-info h3 {
-            font-size: clamp(1.2rem, 2.5vw, 1.4rem);
-            margin-bottom: 0.5rem;
-            color: var(--light);
-        }
-
-        .project-tech {
-            color: var(--primary);
-            font-size: clamp(0.85rem, 1.5vw, 0.9rem);
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .project-description {
-            color: var(--gray);
-            line-height: 1.6;
-            font-size: clamp(0.9rem, 1.8vw, 1rem);
-        }
-
-        /* Services Section */
-        .services {
-            padding: var(--section-padding) var(--content-padding);
-            background: var(--darker);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: clamp(1.5rem, 3vw, 2rem);
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: var(--card-bg);
-            padding: clamp(2rem, 4vw, 2.5rem);
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid rgba(0, 255, 136, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 15px 40px rgba(0, 255, 136, 0.2);
-        }
-
-        .service-icon {
-            font-size: clamp(2.5rem, 5vw, 3rem);
-            margin-bottom: 1.5rem;
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary), #00ccff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .service-card h3 {
-            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-            margin-bottom: 1rem;
-            color: var(--light);
-        }
-
-        .service-card p {
-            color: var(--gray);
-            line-height: 1.6;
-            font-size: clamp(0.9rem, 1.8vw, 1rem);
-        }
-
-        /* Footer */
-        footer {
-            padding: clamp(2rem, 5vw, 3rem) var(--content-padding);
-            background: var(--darker);
-            text-align: center;
-            border-top: 1px solid rgba(0, 255, 136, 0.2);
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .footer-content h2 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: clamp(1rem, 3vw, 2rem);
-            margin: 2rem 0;
-            list-style: none;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--gray);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-size: clamp(0.9rem, 1.8vw, 1rem);
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-        }
-
-        /* Loading animation */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive Design Improvements */
-        @media (max-width: 768px) {
-            .hero {
-                height: 85vh;
-                min-height: 500px;
-                margin-top: 0;
-            }
-
-            nav {
-                padding: 1rem var(--content-padding);
-            }
-
-            nav.scrolled {
-                padding: 0.75rem var(--content-padding);
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                width: 100%;
-                max-width: 300px;
-                margin: 0 auto;
-            }
-
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
-
-            .projects-grid,
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .partners-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero {
-                height: 75vh;
-                min-height: 450px;
-            }
-
-            .partners-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .video-header {
-                padding: 1rem;
-            }
-        }
-
-        /* Accessibility Improvements */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-        /* Focus styles for keyboard navigation */
-        a:focus,
-        button:focus {
-            outline: 2px solid var(--primary);
-            outline-offset: 2px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>AwadXR – Spatial Computing Studio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="AwadXR is a spatial computing studio building Apple Vision Pro and XR experiences for real estate, infrastructure, healthcare and education."
+  />
+  <!-- 
+    REQUIRED ASSETS:
+    Place these files in the same directory as index.html:
+    
+    Video:
+    - showreel.mp4 (and/or showreel.webm for better browser support)
+    - showreel-poster.jpg (fallback image while video loads)
+    
+    Project Thumbnails:
+    - forma-thumb.jpg
+    - holopatient-thumb.jpg  
+    - holohuman-thumb.jpg
+    - airport-thumb.jpg
+    
+    Company Logos (in a 'logos' folder):
+    - logos/apple.png
+    - logos/microsoft.png
+    - logos/formaxr.png
+    - logos/adr.png
+    - logos/gigxr.png
+    - logos/pearson.jpg
+  -->
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-soft: rgba(15, 23, 42, 0.96);
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.18);
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --border: rgba(148, 163, 184, 0.25);
+      --radius-lg: 1rem;
+      --radius-xl: 1.5rem;
+      --shadow-card: 0 24px 70px rgba(15, 23, 42, 0.8);
+      --max-width: 1280px;
+    }
+
+    * { 
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    html { 
+      scroll-behavior: smooth;
+      cursor: default;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    /* Animated background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(56, 189, 248, 0.15), transparent 55%),
+        radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.12), transparent 55%),
+        radial-gradient(circle at 40% 20%, rgba(249, 115, 22, 0.08), transparent 45%);
+      pointer-events: none;
+      z-index: -1;
+      animation: gradientShift 20s ease infinite;
+    }
+    
+    @keyframes gradientShift {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(-50px, -30px) scale(1.1); }
+      66% { transform: translate(30px, 20px) scale(0.95); }
+    }
+    
+    /* Floating particles */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+      opacity: 0;
+      animation: float 20s infinite;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.4;
+      }
+      90% {
+        opacity: 0.4;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(100px);
+        opacity: 0;
+      }
+    }
+    
+    .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 18s; }
+    .particle:nth-child(2) { left: 25%; animation-delay: 2s; animation-duration: 22s; width: 3px; height: 3px; }
+    .particle:nth-child(3) { left: 40%; animation-delay: 4s; animation-duration: 20s; }
+    .particle:nth-child(4) { left: 55%; animation-delay: 1s; animation-duration: 24s; width: 5px; height: 5px; }
+    .particle:nth-child(5) { left: 70%; animation-delay: 3s; animation-duration: 19s; }
+    .particle:nth-child(6) { left: 85%; animation-delay: 5s; animation-duration: 21s; width: 3px; height: 3px; }
+    .particle:nth-child(7) { left: 95%; animation-delay: 7s; animation-duration: 23s; }
+    .particle:nth-child(8) { left: 5%; animation-delay: 6s; animation-duration: 18s; }
+    
+    a { 
+      color: inherit; 
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .shell {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* NAVBAR */
+    .nav-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      backdrop-filter: blur(20px) saturate(180%);
+      background: linear-gradient(
+        to bottom,
+        rgba(2, 6, 23, 0.85),
+        rgba(2, 6, 23, 0.3),
+        transparent
+      );
+      border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .nav-container.scrolled {
+      backdrop-filter: blur(30px) saturate(200%);
+      background: rgba(2, 6, 23, 0.95);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+    }
+    
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    
+    .nav-logo-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      position: relative;
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 30px rgba(56, 189, 248, 0.5); }
+      50% { box-shadow: 0 0 50px rgba(56, 189, 248, 0.8); }
+    }
+    
+    .nav-title {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      background: linear-gradient(120deg, #ffffff, #38bdf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+    
+    .nav-links a {
+      position: relative;
+      transition: color 0.3s ease;
+      padding: 0.5rem 0;
+    }
+    
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background: linear-gradient(90deg, #38bdf8, #a855f7);
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+    
+    .nav-links a:hover { 
+      color: #ffffff; 
+    }
+    
+    .nav-links a:hover::after { 
+      width: 100%; 
+    }
+
+    .nav-cta {
+      padding: 0.6rem 1.5rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(147, 51, 234, 0.1));
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+    }
+    
+    .nav-cta:hover {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(147, 51, 234, 0.2));
+      border-color: rgba(56, 189, 248, 0.5);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+    }
+
+    /* Mobile menu */
+    .nav-menu-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    /* HERO */
+    header.hero {
+      margin-top: 80px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-video-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    
+    .hero-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7);
+    }
+    
+    .hero-video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(to bottom, rgba(2, 6, 23, 0.1) 0%, rgba(2, 6, 23, 0.4) 50%, rgba(2, 6, 23, 0.7) 100%),
+        radial-gradient(circle at 20% 50%, rgba(56, 189, 248, 0.15), transparent 60%);
+      animation: overlayPulse 8s ease-in-out infinite;
+    }
+    
+    @keyframes overlayPulse {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 0.7; }
+    }
+    
+    .hero-content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.2rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(147, 51, 234, 0.1));
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      margin-bottom: 2rem;
+      animation: fadeInUp 0.8s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    .hero-badge .badge-icon {
+      width: 8px;
+      height: 8px;
+      background: #38bdf8;
+      border-radius: 50%;
+      animation: blink 2s ease-in-out infinite;
+    }
+    
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    
+    .hero-heading {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+    
+    .hero-heading .gradient-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #f97316 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+      animation: gradientFlow 8s ease infinite;
+    }
+    
+    @keyframes gradientFlow {
+      0%, 100% { filter: hue-rotate(0deg); }
+      50% { filter: hue-rotate(30deg); }
+    }
+    
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--muted);
+      margin-bottom: 3rem;
+      animation: fadeInUp 0.8s ease 0.4s both;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .hero-cta-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease 0.6s both;
+    }
+    
+    .btn-primary {
+      padding: 0.9rem 2.2rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      color: white;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 20px 40px rgba(56, 189, 248, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 25px 50px rgba(56, 189, 248, 0.5);
+    }
+    
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    
+    .btn-secondary {
+      padding: 0.9rem 2.2rem;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--text);
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+    
+    .btn-secondary:hover {
+      background: rgba(56, 189, 248, 0.1);
+      border-color: rgba(56, 189, 248, 0.5);
+      transform: translateY(-3px);
+    }
+    
+    /* Floating capabilities */
+    .floating-capabilities {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+    
+    .capability-card {
+      position: absolute;
+      padding: 0.8rem 1.3rem;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(2, 6, 23, 0.9), rgba(15, 23, 42, 0.9));
+      backdrop-filter: blur(30px);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      opacity: 0;
+      animation: floatCard 20s ease-in-out infinite;
+      white-space: nowrap;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    
+    @keyframes floatCard {
+      0%, 100% { 
+        opacity: 0; 
+        transform: translate(0, 20px) scale(0.9);
+      }
+      15%, 85% { 
+        opacity: 1; 
+        transform: translate(0, 0) scale(1);
+      }
+    }
+    
+    .capability-card:nth-child(1) {
+      top: 25%;
+      left: 8%;
+      animation-delay: 0s;
+    }
+    
+    .capability-card:nth-child(2) {
+      top: 35%;
+      right: 10%;
+      animation-delay: 5s;
+    }
+    
+    .capability-card:nth-child(3) {
+      bottom: 35%;
+      left: 12%;
+      animation-delay: 10s;
+    }
+    
+    .capability-card:nth-child(4) {
+      bottom: 30%;
+      right: 8%;
+      animation-delay: 15s;
+    }
+    
+    /* Stats section */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 4rem 0;
+      padding: 3rem 0;
+      border-top: 1px solid rgba(56, 189, 248, 0.1);
+      border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+    }
+    
+    .stat-card {
+      text-align: center;
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    
+    .stat-card:nth-child(1) { animation-delay: 0.1s; }
+    .stat-card:nth-child(2) { animation-delay: 0.2s; }
+    .stat-card:nth-child(3) { animation-delay: 0.3s; }
+    .stat-card:nth-child(4) { animation-delay: 0.4s; }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #38bdf8, #a855f7);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 5rem 0;
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.8s ease;
+    }
+    
+    section.animate-in {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    
+    .section-eyebrow {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .section-eyebrow::before,
+    .section-eyebrow::after {
+      content: "";
+      width: 50px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    }
+    
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    /* Work cards */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+    
+    .work-card {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.6));
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      transition: all 0.4s ease;
+      cursor: pointer;
+      position: relative;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    
+    .work-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, transparent, rgba(2, 6, 23, 0.9));
+      z-index: 1;
+    }
+    
+    .work-card-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-size: cover, cover;
+      background-position: center, center;
+      background-repeat: no-repeat, no-repeat;
+      transition: transform 0.4s ease;
+      filter: brightness(0.6) saturate(1.2);
+    }
+    
+    .work-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(56, 189, 248, 0.3);
+      box-shadow: 0 30px 60px rgba(56, 189, 248, 0.2);
+    }
+    
+    .work-card:hover .work-card-bg {
+      transform: scale(1.1);
+      filter: brightness(0.8) saturate(1.3);
+    }
+    
+    .work-card-content {
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .work-card-tags {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .work-tag {
+      padding: 0.3rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+    }
+    
+    .work-card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    
+    .work-card-description {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* Clients marquee */
+    .clients-marquee {
+      padding: 3rem 0;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(90deg, var(--bg) 0%, transparent 10%, transparent 90%, var(--bg) 100%);
+    }
+    
+    .marquee-track {
+      display: flex;
+      animation: marquee 30s linear infinite;
+    }
+    
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    .client-logo {
+      padding: 1.5rem 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      white-space: nowrap;
+      filter: grayscale(100%) brightness(0.8);
+      opacity: 0.6;
+      transition: all 0.3s ease;
+    }
+    
+    .client-logo:hover {
+      filter: grayscale(0%) brightness(1);
+      opacity: 1;
+      transform: scale(1.05);
+    }
+    
+    .client-logo img {
+      height: 35px;
+      width: auto;
+      object-fit: contain;
+    }
+    
+    .client-logo span {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      transition: color 0.3s ease;
+    }
+    
+    .client-logo:hover span {
+      color: var(--text);
+    }
+
+    /* About section */
+    .about-container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .about-text {
+      font-size: 1.25rem;
+      line-height: 1.8;
+      color: var(--muted);
+      margin-bottom: 3rem;
+    }
+    
+    .about-founder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+      border-radius: 1.5rem;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.05), rgba(147, 51, 234, 0.05));
+      border: 1px solid rgba(56, 189, 248, 0.1);
+      backdrop-filter: blur(10px);
+    }
+    
+    .founder-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #38bdf8, #6366f1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+    }
+    
+    .founder-info {
+      text-align: left;
+    }
+    
+    .founder-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+    
+    .founder-role {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* Contact section */
+    .contact-container {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    .contact-methods {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .contact-method {
+      padding: 1.5rem 2.5rem;
+      border-radius: 1rem;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.6));
+      border: 1px solid rgba(56, 189, 248, 0.15);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .contact-method:hover {
+      transform: translateY(-5px);
+      border-color: rgba(56, 189, 248, 0.3);
+      box-shadow: 0 20px 40px rgba(56, 189, 248, 0.2);
+    }
+    
+    .contact-method-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .contact-method-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* Footer */
+    .footer {
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(56, 189, 248, 0.1);
+      margin-top: 5rem;
+    }
+    
+    .footer-content {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    .footer-links a {
+      color: var(--muted);
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--text);
+    }
+    
+    .footer-copyright {
+      color: var(--muted);
+      font-size: 0.85rem;
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta {
+        display: none;
+      }
+      
+      .nav-menu-toggle {
+        display: block;
+      }
+      
+      .hero-heading {
+        font-size: 2.5rem;
+      }
+      
+      .work-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .about-founder {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .founder-info {
+        text-align: center;
+      }
+      
+      .contact-methods {
+        flex-direction: column;
+      }
+      
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .floating-capabilities {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">Awad XR Studios</a>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#partners">Partners</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="mobile-overlay" id="mobileOverlay"></div>
+  <!-- Floating particles -->
+  <div class="particles">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
 
-    <!-- Showreel Section -->
-    <section class="showreel-section">
-        <div class="showreel-container">
-            <div class="video-header">
-                <h2>Spatial Computing Experts</h2>
-                <p>Immersive environments that redefine interaction</p>
-            </div>
-            
-            <!-- Optimized Vimeo embed -->
-            <div class="video-wrapper-container">
-                <iframe 
-                    src="https://player.vimeo.com/video/1121820526?autoplay=1&loop=1&muted=1&autopause=0&background=1&controls=0&title=0&byline=0&portrait=0" 
-                    frameborder="0" 
-                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    title="Apartment Walkthrough">
-                </iframe>
-            </div>
-        </div>
-    </section>
+  <!-- Navigation -->
+  <nav class="nav-container" id="navbar">
+    <div class="nav">
+      <div class="nav-left">
+        <div class="nav-logo-mark"></div>
+        <div class="nav-title">AwadXR</div>
+      </div>
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#studio">Studio</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a href="#contact" class="nav-cta">Start a Project</a>
+      <button class="nav-menu-toggle" id="menuToggle">☰</button>
+    </div>
+  </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-text-center">
-                <p class="tagline">Pioneering Spatial Computing</p>
-                <h1>We Create Immersive XR Experiences That Transform Industries</h1>
-                <p>From enterprise training to interactive healthcare solutions, we develop cutting-edge applications for Apple Vision Pro, Meta Quest, and Microsoft HoloLens.</p>
-                <div class="cta-buttons">
-                    <a href="#projects" class="btn btn-primary">View Our Work</a>
-                    <a href="#contact" class="btn btn-secondary">Start a Project</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Partners Section -->
-    <section class="partners" id="partners">
-        <div class="section-header">
-            <h2>Trusted By Industry Leaders</h2>
-            <p>We partner with innovative companies to deliver world-class XR solutions</p>
-        </div>
-        <div class="partners-grid">
-            <div class="partner-card fade-in">
-                <h3>Apple</h3>
-                <p>Vision Pro Development Partner</p>
-            </div>
-            <div class="partner-card fade-in">
-                <h3>FormaXR</h3>
-                <p>Architectural Visualisation Solution</p>
-            </div>
-            <div class="partner-card fade-in">
-                <h3>ADR</h3>
-                <p>CAD To Realtime Immersive solution</p>
-            </div>
-            <div class="partner-card fade-in">
-                <h3>Microsoft</h3>
-                <p>Mixed Reality Development Partner</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <div class="section-header">
-            <h2>Featured Projects</h2>
-            <p>Innovative XR solutions across industries</p>
-        </div>
-        <div class="projects-grid">
-            <div class="project-card fade-in">
-                <div class="project-image">🛥️</div>
-                <div class="project-info">
-                    <h3>YachtXR</h3>
-                    <p class="project-tech">Apple Vision Pro | 2025</p>
-                    <p class="project-description">Revolutionary yacht visualization platform enabling clients to explore luxury vessels in stunning spatial detail before purchase.</p>
-                </div>
-            </div>
-            <div class="project-card fade-in">
-                <div class="project-image">🏢</div>
-                <div class="project-info">
-                    <h3>Real Estate Management</h3>
-                    <p class="project-tech">Apple Vision Pro | 2024</p>
-                    <p class="project-description">Immersive property management system transforming how real estate professionals showcase and manage properties.</p>
-                </div>
-            </div>
-            <div class="project-card fade-in">
-                <div class="project-image">🎨</div>
-                <div class="project-info">
-                    <h3>Interior Design Studio</h3>
-                    <p class="project-tech">Apple Vision Pro | FormaXR | 2024</p>
-                    <p class="project-description">Spatial design platform empowering interior designers to create and present concepts in real-world scale.</p>
-                </div>
-            </div>
-            <div class="project-card fade-in">
-                <div class="project-image">🏥</div>
-                <div class="project-info">
-                    <h3>HoloPatient</h3>
-                    <p class="project-tech">Microsoft HoloLens | 2022</p>
-                    <p class="project-description">Advanced medical training platform with Pearson Education, revolutionizing healthcare education through mixed reality.</p>
-                </div>
-            </div>
-            <div class="project-card fade-in">
-                <div class="project-image">👤</div>
-                <div class="project-info">
-                    <h3>HoloHuman</h3>
-                    <p class="project-tech">Microsoft HoloLens | 2020</p>
-                    <p class="project-description">Anatomical visualization system providing medical professionals with unprecedented 3D human body exploration.</p>
-                </div>
-            </div>
-            <div class="project-card fade-in">
-                <div class="project-image">🎓</div>
-                <div class="project-info">
-                    <h3>Educational XR Platform</h3>
-                    <p class="project-tech">Meta Quest 3 | Pearson | 2024</p>
-                    <p class="project-description">Transforming education through immersive learning experiences that increase engagement and retention.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="section-header">
-            <h2>Our Expertise</h2>
-            <p>End-to-end XR development services</p>
-        </div>
-        <div class="services-grid">
-            <div class="service-card fade-in">
-                <div class="service-icon">🎯</div>
-                <h3>XR Strategy & Consulting</h3>
-                <p>We help organizations identify opportunities and develop comprehensive XR strategies aligned with business objectives.</p>
-            </div>
-            <div class="service-card fade-in">
-                <div class="service-icon">💡</div>
-                <h3>Concept & Design</h3>
-                <p>From initial wireframes to polished prototypes, we create intuitive spatial interfaces that delight users.</p>
-            </div>
-            <div class="service-card fade-in">
-                <div class="service-icon">⚡</div>
-                <h3>Development & Engineering</h3>
-                <p>Expert development across all major XR platforms including Vision Pro, Quest, and HoloLens.</p>
-            </div>
-            <div class="service-card fade-in">
-                <div class="service-icon">🚀</div>
-                <h3>Deployment & Support</h3>
-                <p>Seamless deployment with ongoing support to ensure your XR solutions deliver continuous value.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact">
-        <div class="footer-content">
-            <h2>Let's Build Something Amazing</h2>
-            <p style="color: var(--gray); margin-bottom: 2rem;">Ready to transform your vision into reality?</p>
-            <a href="mailto:hello@awadxr.com" class="btn btn-primary">hello@awadxr.com</a>
-            <ul class="footer-links">
-                <li><a href="#">LinkedIn</a></li>
-                <li><a href="#">Twitter</a></li>
-                <li><a href="#">Instagram</a></li>
-                <li><a href="#">Vimeo</a></li>
-            </ul>
-            <p style="color: var(--gray); margin-top: 2rem;">© 2025 Awad XR Studios. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Hamburger menu functionality
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-        const mobileOverlay = document.getElementById('mobileOverlay');
-        const navLinksItems = document.querySelectorAll('.nav-links a');
-
-        // Toggle mobile menu
-        function toggleMenu() {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-            mobileOverlay.classList.toggle('active');
-            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-        }
-
-        hamburger.addEventListener('click', toggleMenu);
-        mobileOverlay.addEventListener('click', toggleMenu);
-
-        // Close menu when clicking a link
-        navLinksItems.forEach(link => {
-            link.addEventListener('click', () => {
-                if (navLinks.classList.contains('active')) {
-                    toggleMenu();
-                }
-            });
-        });
-
-        // Navbar scroll effect
-        let lastScrollY = window.scrollY;
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            const currentScrollY = window.scrollY;
-            
-            if (currentScrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-            
-            lastScrollY = currentScrollY;
-        });
-
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offset = 80; // Account for fixed header
-                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Active nav link highlighting
-        const sections = document.querySelectorAll('section[id]');
-        function highlightNavLink() {
-            const scrollY = window.scrollY;
-            
-            sections.forEach(section => {
-                const sectionHeight = section.offsetHeight;
-                const sectionTop = section.offsetTop - 150;
-                const sectionId = section.getAttribute('id');
-                const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
-                
-                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                    navLinksItems.forEach(link => link.classList.remove('active'));
-                    if (navLink) navLink.classList.add('active');
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', highlightNavLink);
-        highlightNavLink(); // Initial call
-
-        // Enhanced fade-in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target); // Stop observing once visible
-                }
-            });
-        }, observerOptions);
-
-        // Observe all fade-in elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Prevent body scroll when mobile menu is open
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
-                toggleMenu();
-            }
-        });
-
-        // Add loading state for video
-        window.addEventListener('load', () => {
-            document.body.classList.add('loaded');
-        });
-    </script>
+  <!-- Hero Section with Video -->
+  <header class="hero">
+    <!-- Background Video -->
+    <div class="hero-video-wrapper">
+      <video class="hero-video" autoplay muted loop playsinline poster="showreel-poster.jpg">
+        <source src="showreel.mp4" type="video/mp4">
+        <source src="showreel.webm" type="video/webm">
+        <!-- Fallback message for browsers that don't support video -->
+        Your browser does not support the video tag.
+      </video>
+      <div class="hero-video-overlay"></div>
+    </div>
     
-    <!-- Vimeo Player API -->
-    <script src="https://player.vimeo.com/api/player.js"></script>
+    <div class="floating-capabilities">
+      <div class="capability-card">🥽 Apple Vision Pro</div>
+      <div class="capability-card">🏥 Healthcare XR</div>
+      <div class="capability-card">🏢 Real Estate Viz</div>
+      <div class="capability-card">✈️ Infrastructure</div>
+    </div>
+    
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="badge-icon"></div>
+        <span>Spatial Computing Studio</span>
+      </div>
+      
+      <h1 class="hero-heading">
+        Building the future of<br>
+        <span class="gradient-text">mixed reality</span>
+      </h1>
+      
+      <p class="hero-subtitle">
+        Transforming complex spaces into immersive XR experiences for healthcare, real estate, and infrastructure
+      </p>
+      
+      <div class="hero-cta-group">
+        <button class="btn-primary" onclick="location.href='#work'">View Projects</button>
+        <button class="btn-secondary" onclick="location.href='#contact'">Get in Touch</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">6+</div>
+        <div class="stat-label">Enterprise Clients</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">15+</div>
+        <div class="stat-label">XR Applications</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Industries</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">2</div>
+        <div class="stat-label">Platforms</div>
+      </div>
+    </div>
+
+    <!-- Work Section -->
+    <section id="work">
+      <div class="section-header">
+        <div class="section-eyebrow">Portfolio</div>
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
+
+      <div class="work-grid">
+        <div class="work-card">
+          <div class="work-card-bg" style="background-image: url('forma-thumb.jpg');"></div>
+          <div class="work-card-content">
+            <div class="work-card-tags">
+              <span class="work-tag">Real Estate</span>
+              <span class="work-tag">Vision Pro</span>
+            </div>
+            <h3 class="work-card-title">FormaXR</h3>
+            <p class="work-card-description">
+              Immersive architectural visualization for unbuilt properties
+            </p>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-card-bg" style="background-image: url('holopatient-thumb.jpg');"></div>
+          <div class="work-card-content">
+            <div class="work-card-tags">
+              <span class="work-tag">Healthcare</span>
+              <span class="work-tag">HoloLens</span>
+            </div>
+            <h3 class="work-card-title">HoloPatient</h3>
+            <p class="work-card-description">
+              Life-sized virtual patients for medical training worldwide
+            </p>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-card-bg" style="background-image: url('holohuman-thumb.jpg');"></div>
+          <div class="work-card-content">
+            <div class="work-card-tags">
+              <span class="work-tag">Education</span>
+              <span class="work-tag">Anatomy</span>
+            </div>
+            <h3 class="work-card-title">HoloHuman</h3>
+            <p class="work-card-description">
+              Room-scale 3D anatomy exploration for medical education
+            </p>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <div class="work-card-bg" style="background-image: url('airport-thumb.jpg');"></div>
+          <div class="work-card-content">
+            <div class="work-card-tags">
+              <span class="work-tag">Infrastructure</span>
+              <span class="work-tag">Enterprise</span>
+            </div>
+            <h3 class="work-card-title">Airport XR</h3>
+            <p class="work-card-description">
+              Large-scale visualization for European infrastructure planning
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Clients -->
+    <section id="clients">
+      <div class="section-header">
+        <div class="section-eyebrow">Trusted By</div>
+        <h2 class="section-title">Leading Organizations</h2>
+      </div>
+
+      <div class="clients-marquee">
+        <div class="marquee-track">
+          <div class="client-logo">
+            <img src="logos/apple.png" alt="Apple" />
+            <span>Apple</span>
+          </div>
+          <div class="client-logo">
+            <img src="logos/microsoft.png" alt="Microsoft" />
+            <span>Microsoft</span>
+          </div>
+          <div class="client-logo">
+            <img src="logos/formaxr.png" alt="FormaXR" />
+            <span>FormaXR</span>
+          </div>
+          <div class="client-logo">
+            <img src="logos/adr.png" alt="Aeroporti di Roma" />
+            <span>ADR</span>
+          </div>
+          <div class="client-logo">
+            <img src="logos/pearson.jpg" alt="Pearson Education" />
+            <span>Pearson</span>
+          </div>
+          <div class="client-logo">
+            <img src="logos/gigxr.png" alt="GIGXR" />
+            <span>GIGXR</span>
+          </div>
+          <!-- Duplicate for seamless loop -->
+          <div class="client-logo">
+            <img src="logos/apple.png" alt="Apple" />
+            <span>Apple</span>
+          </div>
+          <div class="client-logo">
+            <img src="logos/microsoft.png" alt="Microsoft" />
+            <span>Microsoft</span>
+          </div>
+          <div class="client-logo">
+            <img src="logos/formaxr.png" alt="FormaXR" />
+            <span>FormaXR</span>
+          </div>
+          <div class="client-logo">
+            <img src="logos/adr.png" alt="Aeroporti di Roma" />
+            <span>ADR</span>
+          </div>
+          <div class="client-logo">
+            <img src="logos/pearson.jpg" alt="Pearson Education" />
+            <span>Pearson</span>
+          </div>
+          <div class="client-logo">
+            <img src="logos/gigxr.png" alt="GIGXR" />
+            <span>GIGXR</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Studio -->
+    <section id="studio">
+      <div class="section-header">
+        <div class="section-eyebrow">About</div>
+        <h2 class="section-title">The Studio</h2>
+      </div>
+
+      <div class="about-container">
+        <p class="about-text">
+          We specialize in transforming complex spaces and systems into intuitive XR experiences. From architectural walkthroughs to medical training simulations, we make the invisible visible.
+        </p>
+
+        <div class="about-founder">
+          <div class="founder-avatar">TA</div>
+          <div class="founder-info">
+            <div class="founder-name">Tarik Awad</div>
+            <div class="founder-role">Founder & XR Developer</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="section-header">
+        <div class="section-eyebrow">Get in Touch</div>
+        <h2 class="section-title">Start Your XR Project</h2>
+      </div>
+
+      <div class="contact-container">
+        <p class="about-text">
+          Ready to bring your vision into mixed reality? Let's discuss how XR can transform your business.
+        </p>
+
+        <div class="contact-methods">
+          <a href="mailto:hello@awadxr.com" class="contact-method">
+            <div class="contact-method-icon">📧</div>
+            <div class="contact-method-label">hello@awadxr.com</div>
+          </a>
+          <a href="#" class="contact-method">
+            <div class="contact-method-icon">📅</div>
+            <div class="contact-method-label">Book a Call</div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="nav-logo-mark"></div>
+        <span class="nav-title">AwadXR</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://takz.github.io/" target="_blank">Portfolio</a>
+        <a href="https://tarikawad.com" target="_blank">Blog</a>
+        <a href="#work">Projects</a>
+      </div>
+      <div class="footer-copyright">
+        © 2024 AwadXR. Spatial computing for real-world spaces.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll animations (optional - add class for future animations)
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          entry.target.classList.remove('animate-in');
+        }
+      });
+    }, observerOptions);
+
+    // Only observe sections that need animation
+    document.querySelectorAll('section.animate-in').forEach(section => {
+      observer.observe(section);
+    });
+
+    // Navbar scroll effect
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      const currentScroll = window.pageYOffset;
+      
+      if (currentScroll > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+      
+      lastScroll = currentScroll;
+    });
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menuToggle');
+    menuToggle?.addEventListener('click', () => {
+      // Add mobile menu implementation here if needed
+    });
+  </script>
 </body>
 </html>
