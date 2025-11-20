@@ -807,9 +807,15 @@
 
         .work-card-tags {
             display: flex;
-              flex-wrap: nowrap;         /* stop wrapping */
+            flex-wrap: nowrap;
             gap: 0.5rem;
             margin-bottom: 1rem;
+            /* safety */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .work-card-tags::-webkit-scrollbar {
+            display: none;
         }
 
         .work-tag {
@@ -820,8 +826,10 @@
             font-size: 0.75rem;
             font-weight: 500;
             letter-spacing: 0.05em;
-              white-space: nowrap;          /* NEVER break text */
-  flex: 0 0 auto;               /* prevent shrinking/stretching */
+            white-space: nowrap;
+            /* NEVER break text */
+            flex: 0 0 auto;
+            /* prevent shrinking/stretching */
         }
 
         .work-card-title {
@@ -1377,7 +1385,6 @@
 
             .hero-subtitle {
                 font-size: 1rem;
-                margin-bottom: 1.4rem;
             }
 
             .hero-badge {
@@ -1509,7 +1516,7 @@
             }
 
             .work-card-hover-hint {
-                opacity: 0.9;
+                opacity: 0.6;
                 border-color: rgba(56, 189, 248, 0.85);
                 background: rgba(15, 23, 42, 0.96);
                 color: #e5e7eb;
@@ -1523,7 +1530,7 @@
     </style>
 </head>
 
-<body>
+<body id="top">
     <!-- Floating particles -->
     <div class="particles">
         <div class="particle"></div>
@@ -1539,18 +1546,20 @@
     <!-- Navigation -->
     <nav class="nav-container" id="navbar">
         <div class="nav">
-            <div class="nav-left">
-                <div class="nav-logo-mark" aria-hidden="true">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.6"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2l9 5v10l-9 5-9-5V7l9-5z"></path>
-                        <path d="M12 2v20"></path>
-                        <path d="M21 7l-9 5"></path>
-                        <path d="M3 7l9 5"></path>
-                    </svg>
+            <a href="#top">
+                <div class="nav-left">
+                    <div class="nav-logo-mark" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2l9 5v10l-9 5-9-5V7l9-5z"></path>
+                            <path d="M12 2v20"></path>
+                            <path d="M21 7l-9 5"></path>
+                            <path d="M3 7l9 5"></path>
+                        </svg>
+                    </div>
+                    <div class="nav-title">AwadXR</div>
                 </div>
-                <div class="nav-title">AwadXR</div>
-            </div>
+            </a>
             <div class="nav-links">
                 <a href="#work">Work</a>
                 <a href="#studio">Studio</a>
@@ -1790,7 +1799,7 @@
                     </div>
                     <div class="client-logo">
                         <img src="logos/adr.png" alt="Aeroporti di Roma" />
-                        <span>ADR</span>
+                        <span>Aeroporti di Roma</span>
                     </div>
                     <div class="client-logo">
                         <img src="logos/pearson.jpg" alt="Pearson Education" />
@@ -1854,7 +1863,7 @@
                         <div class="founder-role">Founder & XR Developer</div>
                         <p class="founder-bio">
                             Tarik has 10+ years of XR experience, industry collaborations with Apple and Microsoft,
-                            VR–robotics integration experience, and Masters-level teaching.
+                            VR–robotics integration work, and Masters-level teaching.
                         </p>
                     </div>
                 </div>
@@ -1974,22 +1983,25 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-brand">
-                <div class="nav-logo-mark" aria-hidden="true">
-                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.6"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2l9 5v10l-9 5-9-5V7l9-5z"></path>
-                        <path d="M12 2v20"></path>
-                        <path d="M21 7l-9 5"></path>
-                        <path d="M3 7l9 5"></path>
-                    </svg>
+            <a href="#top">
+
+                <div class="footer-brand">
+                    <div class="nav-logo-mark" aria-hidden="true">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.6"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2l9 5v10l-9 5-9-5V7l9-5z"></path>
+                            <path d="M12 2v20"></path>
+                            <path d="M21 7l-9 5"></path>
+                            <path d="M3 7l9 5"></path>
+                        </svg>
+                    </div>
+                    <span class="nav-title">AwadXR</span>
                 </div>
-                <span class="nav-title">AwadXR</span>
-            </div>
+            </a>
             <div class="footer-links">
-                <a href="https://takz.github.io/" target="_blank">Portfolio</a>
+                <!--                 <a href="https://takz.github.io/" target="_blank">Portfolio</a>
                 <a href="https://tarikawad.com" target="_blank">Blog</a>
-                <a href="#work">Projects</a>
+                <a href="#work">Projects</a> -->
             </div>
             <div class="footer-copyright">
                 © 2024 AwadXR. Spatial computing for real-world spaces.
@@ -2030,8 +2042,7 @@
         // Mobile nav toggle
         const menuToggle = document.getElementById('menuToggle');
         const navbarEl = document.getElementById('navbar');
-        const navLinksEls = document.querySelectorAll('.nav-links a');
-
+        const navLinksEls = document.querySelectorAll('#navbar a[href^="#"]');
         if (menuToggle) {
             menuToggle.addEventListener('click', () => {
                 const isOpen = navbarEl.classList.toggle('mobile-open');
