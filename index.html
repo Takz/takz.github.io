@@ -256,11 +256,14 @@
         .nav-logo-mark {
             width: 32px;
             height: 32px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #38bdf8, #6366f1);
-            position: relative;
-            box-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
-            animation: pulse 2s ease-in-out infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-logo-mark svg {
+            width: 100%;
+            height: 100%;
         }
 
         @keyframes pulse {
@@ -435,6 +438,9 @@
             height: 8px;
             background: #38bdf8;
             border-radius: 50%;
+            flex: 0 0 auto;
+            display: inline-block;
+            aspect-ratio: 1 / 1;
             animation: blink 2s ease-in-out infinite;
         }
 
@@ -453,8 +459,8 @@
         .hero-heading {
             font-size: clamp(2.5rem, 6vw, 5rem);
             font-weight: 700;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
+            margin-bottom: 0.8rem;
+            line-height: 1.05;
             letter-spacing: -0.02em;
             animation: fadeInUp 0.8s ease 0.2s both;
         }
@@ -488,6 +494,8 @@
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            margin-bottom: 1.6rem;
+            /* reduce by ~20% */
             line-height: 1.6;
         }
 
@@ -611,26 +619,26 @@
 
         .capability-card:nth-child(1) {
             top: 25%;
-            left: 8%;
+            left: 10%;
             animation-delay: 0s;
         }
 
         .capability-card:nth-child(2) {
-            top: 35%;
+            top: 25%;
             right: 10%;
-            animation-delay: 5s;
+            animation-delay: 2s;
         }
 
         .capability-card:nth-child(3) {
             bottom: 35%;
             left: 12%;
-            animation-delay: 10s;
+            animation-delay: 4s;
         }
 
         .capability-card:nth-child(4) {
-            bottom: 30%;
-            right: 8%;
-            animation-delay: 15s;
+            bottom: 35%;
+            right: 12%;
+            animation-delay: 6s;
         }
 
         /* Stats section */
@@ -799,19 +807,21 @@
 
         .work-card-tags {
             display: flex;
+              flex-wrap: nowrap;         /* stop wrapping */
             gap: 0.5rem;
             margin-bottom: 1rem;
-            flex-wrap: wrap;
         }
 
         .work-tag {
-            padding: 0.3rem 0.8rem;
+            padding: 0.25rem 0.6rem;
             border-radius: 999px;
             background: rgba(56, 189, 248, 0.15);
             border: 1px solid rgba(56, 189, 248, 0.3);
             font-size: 0.75rem;
             font-weight: 500;
             letter-spacing: 0.05em;
+              white-space: nowrap;          /* NEVER break text */
+  flex: 0 0 auto;               /* prevent shrinking/stretching */
         }
 
         .work-card-title {
@@ -830,7 +840,6 @@
         .work-card-hover-hint {
             position: absolute;
             top: -10%;
-            /* visually centred within the image region */
             left: 50%;
             transform: translate(-50%, -50%);
             display: inline-flex;
@@ -843,7 +852,6 @@
             font-size: 0.75rem;
             color: var(--muted);
             opacity: 0.25;
-            /* subtle default visibility */
             transition:
                 opacity 0.25s ease,
                 transform 0.25s ease,
@@ -985,6 +993,63 @@
             border-color: rgba(56, 189, 248, 0.8);
         }
 
+        #process {
+            padding: 6rem 0 4rem;
+        }
+
+        .process-grid {
+            max-width: 980px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .process-step {
+            padding: 2rem;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 1.25rem;
+            background: rgba(2, 6, 23, 0.65);
+            text-align: center;
+            backdrop-filter: blur(12px);
+            transition: border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .process-step:hover {
+            border-color: rgba(56, 189, 248, 0.6);
+            background: rgba(2, 6, 23, 0.85);
+        }
+
+        .process-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .process-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.35rem;
+        }
+
+        .process-text {
+            font-size: 0.9rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .process-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .process-step {
+                padding: 1.6rem;
+            }
+        }
+
+
         @media (max-width: 900px) {
             .project-modal-dialog {
                 grid-template-columns: 1fr;
@@ -1053,8 +1118,22 @@
             font-size: 1.25rem;
             line-height: 1.8;
             color: var(--muted);
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
+
+        .studio-credibility {
+            margin-top: 1.2rem;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+            font-style: italic;
+            opacity: 0.75;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
+        }
+
+
 
         .about-founder {
             display: flex;
@@ -1139,6 +1218,90 @@
             color: var(--muted);
         }
 
+        .contact-chips {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: -1rem auto 2rem;
+        }
+
+        .contact-chip {
+            padding: 0.45rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            background: radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.15), rgba(15, 23, 42, 0.95));
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .contact-steps {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.5rem;
+            margin: 0 auto 3rem;
+            max-width: 780px;
+        }
+
+        .contact-step {
+            display: flex;
+            gap: 0.9rem;
+            text-align: left;
+        }
+
+        .contact-step-number {
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            border: 1px solid rgba(56, 189, 248, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #e5e7eb;
+            background: radial-gradient(circle at 30% 0%, rgba(56, 189, 248, 0.5), rgba(15, 23, 42, 1));
+        }
+
+        .contact-step-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-step-text {
+            font-size: 0.85rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .contact-method-sub {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--muted);
+            margin-top: 0.15rem;
+        }
+
+        .contact-footnote {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        /* Mobile layout */
+        @media (max-width: 768px) {
+            .contact-steps {
+                grid-template-columns: 1fr;
+                text-align: left;
+            }
+
+            .contact-step {
+                align-items: flex-start;
+            }
+        }
+
+
         /* Footer */
         .footer {
             padding: 3rem 2rem;
@@ -1196,8 +1359,36 @@
                 display: block;
             }
 
-            .hero-heading {
-                font-size: 2.5rem;
+            .hero-content {
+                padding-top: 4.5rem;
+                padding-bottom: 3.5rem;
+            }
+
+            .hero {
+                padding-top: 3.5rem;
+                /* reduce top spacing */
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                /* improves spacing & legibility */
+                line-height: 1.15;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 1.4rem;
+            }
+
+            .hero-badge {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.9rem;
+                gap: 0.35rem;
+            }
+
+            .hero-badge .badge-icon {
+                width: 6px;
+                height: 6px;
             }
 
             .work-grid {
@@ -1230,6 +1421,27 @@
                 display: none;
             }
 
+            /* Disable large background / overlay animations on mobile */
+            body::before {
+                animation: none !important;
+                transform: none !important;
+            }
+
+            .particles {
+                display: none;
+            }
+
+            .hero-video-overlay {
+                animation: none !important;
+                opacity: 0.85;
+            }
+
+            .capability-card {
+                animation: none !important;
+                opacity: 1;
+                transform: none;
+            }
+
             .clients-marquee {
                 overflow-x: auto;
                 overflow-y: hidden;
@@ -1238,17 +1450,13 @@
 
             .marquee-track {
                 animation: none;
-                /* stop auto-scrolling */
                 transform: none;
-                /* no translateX */
                 width: max-content;
-                /* shrink-wrap to content so it scrolls */
             }
 
             .client-logo {
                 flex: 0 0 auto;
-                padding: 1.5rem 1.4rem;   /* instead of 3rem */
-                /* keep each logo at its natural width */
+                padding: 1.5rem 1.4rem;
             }
 
             /* Mobile nav open state */
@@ -1289,6 +1497,7 @@
 
         /* Touch devices (no hover): make images bright by default and pill always visible */
         @media (hover: none) and (pointer: coarse) {
+
             .work-card-bg {
                 filter: none !important;
                 transform: none !important;
@@ -1331,12 +1540,21 @@
     <nav class="nav-container" id="navbar">
         <div class="nav">
             <div class="nav-left">
-                <div class="nav-logo-mark"></div>
+                <div class="nav-logo-mark" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.6"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2l9 5v10l-9 5-9-5V7l9-5z"></path>
+                        <path d="M12 2v20"></path>
+                        <path d="M21 7l-9 5"></path>
+                        <path d="M3 7l9 5"></path>
+                    </svg>
+                </div>
                 <div class="nav-title">AwadXR</div>
             </div>
             <div class="nav-links">
                 <a href="#work">Work</a>
                 <a href="#studio">Studio</a>
+                <a href="#process">Process</a>
                 <a href="#contact">Contact</a>
             </div>
             <a href="#contact" class="nav-cta">Start a Project</a>
@@ -1358,25 +1576,29 @@
 
         <div class="floating-capabilities">
             <div class="capability-card">🥽 Apple Vision Pro</div>
-            <div class="capability-card">🏥 Healthcare XR</div>
-            <div class="capability-card">🏢 Real Estate Viz</div>
+            <div class="capability-card">🏥 Healthcare</div>
+            <div class="capability-card">🏢 Real Estate</div>
             <div class="capability-card">✈️ Infrastructure</div>
         </div>
 
         <div class="hero-content">
             <div class="hero-badge">
                 <div class="badge-icon"></div>
-                <span>Spatial Computing Studio</span>
+                <span>Spatial Computing</span>
+                <div class="badge-icon"></div>
+                <span>Virtual Reality</span>
+                <div class="badge-icon"></div>
+                <span>Augmented Reality</span>
             </div>
 
             <h1 class="hero-heading">
-                Building the future of<br>
-                <span class="gradient-text">mixed reality</span>
+                Turning ideas into high-fidelity<br>
+                <span class="gradient-text">immersive experiences.</span>
             </h1>
 
             <p class="hero-subtitle">
-                Transforming complex spaces into immersive XR experiences for healthcare, real estate, and
-                infrastructure
+                We turn raw CAD, BIM, 3D and design assets into polished XR experiences built to inform, train and
+                inspire.
             </p>
 
             <div class="hero-cta-group">
@@ -1412,6 +1634,12 @@
             <div class="section-header">
                 <div class="section-eyebrow">Portfolio</div>
                 <h2 class="section-title">Featured Projects</h2>
+                <p class="about-text" style="max-width: 720px; margin: 0 auto 3rem;">
+                    Each project started with a practical need — selling unbuilt space, training clinicians, or
+                    explaining complex
+                    infrastructure — and became a tailored XR experience that teams now use in the real world.
+                </p>
+
             </div>
 
             <div class="work-grid">
@@ -1421,12 +1649,31 @@
                     <div class="work-card-content">
                         <div class="work-card-tags">
                             <span class="work-tag">Real Estate</span>
-                            <span class="work-tag">Design</span>
                             <span class="work-tag">Vision Pro</span>
+                            <span class="work-tag">Interactive</span>
                         </div>
                         <h3 class="work-card-title">FormaXR</h3>
                         <p class="work-card-description">
-                            Immersive architectural visualization for unbuilt properties
+                            Step into unbuilt apartments on Apple Vision Pro.
+                        </p>
+                        <div class="work-card-hover-hint">
+                            <span class="hint-icon">▶</span>
+                            <span class="hint-text">View preview</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Airport XR -->
+                <div class="work-card project-trigger" data-project="airport">
+                    <div class="work-card-bg" style="background-image: url('airport-thumb.jpg');"></div>
+                    <div class="work-card-content">
+                        <div class="work-card-tags">
+                            <span class="work-tag">Infrastructure</span>
+                            <span class="work-tag">Vision Pro</span>
+                            <span class="work-tag">Visualisation</span>
+                        </div>
+                        <h3 class="work-card-title">Airport XR</h3>
+                        <p class="work-card-description">
+                            Large-scale airport visualisation for a major European hub.
                         </p>
                         <div class="work-card-hover-hint">
                             <span class="hint-icon">▶</span>
@@ -1435,38 +1682,20 @@
                     </div>
                 </div>
 
-                <!-- YachtXR -->
-                <div class="work-card project-trigger" data-project="yachtxr">
-                    <div class="work-card-bg" style="background-image: url('yachtxr-thumb.jpg');"></div>
-                    <div class="work-card-content">
-                        <div class="work-card-tags">
-                            <span class="work-tag">Concept</span>
-                            <span class="work-tag">Real-time 3D</span>
-                            <span class="work-tag">Vision Pro</span>
-                        </div>
-                        <h3 class="work-card-title">YachtXR</h3>
-                        <p class="work-card-description">
-                            A cinematic XR concept for exploring a luxury yacht in real time.
-                        </p>
-                        <div class="work-card-hover-hint">
-                            <span class="hint-icon">▶</span>
-                            <span class="hint-text">View preview</span>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- HoloPatient -->
                 <div class="work-card project-trigger" data-project="holopatient">
                     <div class="work-card-bg" style="background-image: url('holopatient-thumb.jpg');"></div>
                     <div class="work-card-content">
                         <div class="work-card-tags">
-                            <span class="work-tag">Education</span>
                             <span class="work-tag">Healthcare</span>
                             <span class="work-tag">HoloLens</span>
+                            <span class="work-tag">Training</span>
                         </div>
+
                         <h3 class="work-card-title">HoloPatient</h3>
                         <p class="work-card-description">
-                            Life-sized virtual patients for medical training worldwide
+                            Life-sized virtual patients for clinical training.
                         </p>
                         <div class="work-card-hover-hint">
                             <span class="hint-icon">▶</span>
@@ -1481,12 +1710,32 @@
                     <div class="work-card-content">
                         <div class="work-card-tags">
                             <span class="work-tag">Education</span>
-                            <span class="work-tag">Anatomy</span>
                             <span class="work-tag">HoloLens</span>
+                            <span class="work-tag">Anatomy</span>
                         </div>
+
                         <h3 class="work-card-title">HoloHuman</h3>
                         <p class="work-card-description">
-                            Room-scale 3D anatomy exploration for medical education
+                            Interactive 3D anatomy at room scale.
+                        </p>
+                        <div class="work-card-hover-hint">
+                            <span class="hint-icon">▶</span>
+                            <span class="hint-text">View preview</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- YachtXR -->
+                <div class="work-card project-trigger" data-project="yachtxr">
+                    <div class="work-card-bg" style="background-image: url('yachtxr-thumb.jpg');"></div>
+                    <div class="work-card-content">
+                        <div class="work-card-tags">
+                            <span class="work-tag">Lifestyle</span>
+                            <span class="work-tag">Vision Pro</span>
+                            <span class="work-tag">Visualisation</span>
+                        </div>
+                        <h3 class="work-card-title">YachtXR</h3>
+                        <p class="work-card-description">
+                            Explore a luxury yacht in a cinematic, real-time environment.
                         </p>
                         <div class="work-card-hover-hint">
                             <span class="hint-icon">▶</span>
@@ -1495,25 +1744,6 @@
                     </div>
                 </div>
 
-                <!-- Airport XR -->
-                <div class="work-card project-trigger" data-project="airport">
-                    <div class="work-card-bg" style="background-image: url('airport-thumb.jpg');"></div>
-                    <div class="work-card-content">
-                        <div class="work-card-tags">
-                            <span class="work-tag">Infrastructure</span>
-                            <span class="work-tag">Enterprise</span>
-                            <span class="work-tag">Vision Pro</span>
-                        </div>
-                        <h3 class="work-card-title">Airport XR</h3>
-                        <p class="work-card-description">
-                            Large-scale visualization for European infrastructure planning
-                        </p>
-                        <div class="work-card-hover-hint">
-                            <span class="hint-icon">▶</span>
-                            <span class="hint-text">View preview</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -1541,7 +1771,7 @@
         <section id="clients">
             <div class="section-header">
                 <div class="section-eyebrow">Trusted By</div>
-                <h2 class="section-title">Leading Organizations</h2>
+                <h2 class="section-title">Clients & Collaborators</h2>
             </div>
 
             <div class="clients-marquee">
@@ -1608,8 +1838,13 @@
 
             <div class="about-container">
                 <p class="about-text">
-                    We specialize in transforming complex spaces and systems into intuitive XR experiences. From
-                    architectural walkthroughs to medical training simulations, we make the invisible visible.
+                    A studio focused on crafting polished, high-performance XR experiences —
+                    combining deep technical ability with a strong understanding of design, storytelling and real-world
+                    constraints.
+                </p>
+                <p class="studio-credibility">
+                    Specialising in high-fidelity, high-performance XR — from heavy 3D files to polished spatial
+                    experiences.
                 </p>
 
                 <div class="about-founder">
@@ -1618,20 +1853,46 @@
                         <div class="founder-name">Tarik Awad</div>
                         <div class="founder-role">Founder & XR Developer</div>
                         <p class="founder-bio">
-                            With over a decade in XR, Tarik has delivered spatial experiences across real estate,
-                            healthcare,
-                            education and infrastructure—collaborating with teams at Apple, Microsoft, Pearson and
-                            GIGXR,
-                            integrating VR with robotic systems in his early Dubai work at DigiRobotics, and teaching
-                            game
-                            development at Masters level.
+                            Tarik has 10+ years of XR experience, industry collaborations with Apple and Microsoft,
+                            VR–robotics integration experience, and Masters-level teaching.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
+        <section id="process">
+            <div class="section-header">
+                <div class="section-eyebrow">Process</div>
+                <h2 class="section-title">How Projects Move Fast</h2>
+            </div>
 
-        <!-- Contact -->
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="process-icon">📁</div>
+                    <div class="process-title">1. Share Your Brief</div>
+                    <p class="process-text">
+                        You send CAD, BIM, FBX/OBJ files or reference assets — plus a short outline of the goal.
+                    </p>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-icon">✨</div>
+                    <div class="process-title">2. Optimise & Prepare</div>
+                    <p class="process-text">
+                        Assets are optimised, rebuilt, cleaned, textured and staged for XR on Vision Pro or HoloLens.
+                    </p>
+                </div>
+
+                <div class="process-step">
+                    <div class="process-icon">🚀</div>
+                    <div class="process-title">3. Build & Iterate</div>
+                    <p class="process-text">
+                        A functional prototype is delivered quickly using a mature XR pipeline and pre-built systems.
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <section id="contact">
             <div class="section-header">
                 <div class="section-eyebrow">Get in Touch</div>
@@ -1640,28 +1901,89 @@
 
             <div class="contact-container">
                 <p class="about-text">
-                    Ready to bring your vision into mixed reality? Let's discuss how XR can transform your business.
+                    Tell us about your space, product or training challenge and we’ll suggest a concrete XR approach –
+                    from Apple&nbsp;Vision&nbsp;Pro prototypes to full production builds.
                 </p>
 
+                <!-- Project type chips -->
+                <div class="contact-chips">
+                    <span class="contact-chip">🏢 Real Estate</span>
+                    <span class="contact-chip">✈️ Infrastructure</span>
+                    <span class="contact-chip">🏥 Healthcare</span>
+                    <span class="contact-chip">🎓 Education</span>
+                </div>
+
+                <!-- Simple three-step flow -->
+                <div class="contact-steps">
+                    <div class="contact-step">
+                        <div class="contact-step-number">1</div>
+                        <div class="contact-step-body">
+                            <div class="contact-step-title">Share a brief</div>
+                            <div class="contact-step-text">
+                                A few lines on your project, audience and timeline are enough to start.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-step">
+                        <div class="contact-step-number">2</div>
+                        <div class="contact-step-body">
+                            <div class="contact-step-title">30-minute call</div>
+                            <div class="contact-step-text">
+                                We explore use cases, constraints and what success would look like.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-step">
+                        <div class="contact-step-number">3</div>
+                        <div class="contact-step-body">
+                            <div class="contact-step-title">Proposal & prototype</div>
+                            <div class="contact-step-text">
+                                You get a clear scope, timeline and budget, plus options for a lightweight prototype.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact methods -->
                 <div class="contact-methods">
-                    <a href="mailto:hello@awadxr.com" class="contact-method">
-                        <div class="contact-method-icon">📧</div>
-                        <div class="contact-method-label">hello@awadxr.com</div>
+                    <a href="mailto:hello@awadxr.com?subject=XR%20Project%20Enquiry&body=Hi%20Tarik,%0D%0A%0D%0AProject%20overview:%0D%0A-%20Industry:%0D%0A-%20Use%20case:%0D%0A-%20Rough%20timeline:%0D%0A-%20Budget%20range:%0D%0A%0D%0ABest,%0D%0A"
+                        class="contact-method">
+                        <div class="contact-method-icon">✉️</div>
+                        <div class="contact-method-label">
+                            Email a project brief<br />
+                            <span class="contact-method-sub">hello@awadxr.com</span>
+                        </div>
                     </a>
                     <a href="#" class="contact-method">
                         <div class="contact-method-icon">📅</div>
-                        <div class="contact-method-label">Book a Call</div>
+                        <div class="contact-method-label">
+                            Book a 30-minute call<br />
+                            <span class="contact-method-sub">Calendly or link to follow</span>
+                        </div>
                     </a>
                 </div>
+
+                <p class="contact-footnote">
+                    Typical response time: within 1–2 business days. No spam, no mailing lists.
+                </p>
             </div>
         </section>
+
     </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-brand">
-                <div class="nav-logo-mark"></div>
+                <div class="nav-logo-mark" aria-hidden="true">
+                    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.6"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2l9 5v10l-9 5-9-5V7l9-5z"></path>
+                        <path d="M12 2v20"></path>
+                        <path d="M21 7l-9 5"></path>
+                        <path d="M3 7l9 5"></path>
+                    </svg>
+                </div>
                 <span class="nav-title">AwadXR</span>
             </div>
             <div class="footer-links">
@@ -1734,58 +2056,73 @@
                 title: "FormaXR",
                 video: "formaxr.mp4",
                 poster: "forma-thumb.jpg",
-                tags: ["Real Estate", "Apple Vision Pro", "Architectural Visualization"],
-                text: "Spatial visualisation of unbuilt apartments and interiors, built for Apple Vision Pro.",
+                tags: ["Real Estate", "Apple Vision Pro", "Interactive Sales Tool"],
+                text:
+                    "Immersive apartment and interior walkthroughs that let buyers step into unbuilt properties on Apple Vision Pro.",
                 bullets: [
-                    "Pipeline from BIM / FBX / OBJ to optimised XR scenes",
-                    "True-scale walkthroughs for sales, design and stakeholder reviews"
+                    "Lets sales teams present multiple layouts and finishes as if the space already exists.",
+                    "True-scale spatial viewing for design reviews, stakeholder walkthroughs and customer demos.",
+                    "Fast to update with new units, schemes and marketing narratives as projects evolve."
                 ]
             },
+
             holopatient: {
                 title: "HoloPatient",
                 video: "holopatient.mp4",
                 poster: "holopatient-thumb.jpg",
                 tags: ["Healthcare", "HoloLens", "Medical Training"],
-                text: "Mixed reality training with life-sized virtual patients in real teaching spaces.",
+                text:
+                    "Life-sized virtual patients used by universities and hospitals worldwide for clinical training.",
                 bullets: [
-                    "Developed with Pearson Education & GIGXR for Microsoft HoloLens",
-                    "Used globally by universities and hospitals for clinical scenarios"
+                    "Developed with Pearson Education and GIGXR for Microsoft HoloLens mixed reality.",
+                    "Simulates realistic patient presentations in real teaching spaces, without physical manikins.",
+                    "Supports repeatable, scenario-based training with consistent visuals and interactions."
                 ]
             },
+
             holohuman: {
                 title: "HoloHuman",
                 video: "holohuman.mp4",
                 poster: "holohuman-thumb.jpg",
                 tags: ["Education", "Anatomy", "3D Visualisation"],
-                text: "Anatomy teaching tool that lets learners explore the human body in full 3D at room scale.",
+                text:
+                    "Room-scale 3D anatomy that lets learners explore the human body as an interactive spatial model.",
                 bullets: [
-                    "Layered anatomical views and system-level exploration",
-                    "Supports collaborative sessions across multiple headsets"
+                    "Created with Pearson Education and GIGXR as part of a mixed-reality medical education suite.",
+                    "Layered anatomical systems with the ability to isolate, hide and reveal structures in context.",
+                    "Optimised meshes and textures to balance fidelity with comfortable long-session performance."
                 ]
             },
+
             airport: {
                 title: "Airport XR (NDA)",
                 video: "airportxr.mp4",
                 poster: "airport-thumb.jpg",
-                tags: ["Infrastructure", "Enterprise", "Visualisation"],
-                text: "Large-scale airport visualisation for a major European hub (details anonymised).",
+                tags: ["Infrastructure", "Enterprise", "Vision Pro"],
+                text:
+                    "A large-scale airport visualisation for a major European hub, used for planning and stakeholder engagement.",
                 bullets: [
-                    "Real-time views for stakeholder presentations and planning",
-                    "Optimised for comfortable performance in complex scenes"
+                    "Built from a detailed Revit model, translated into a performant, navigable XR environment.",
+                    "Enables decision-makers to view terminal layouts, flows and interventions at true scale.",
+                    "Delivered under NDA with anonymised visuals and flexible deployment for internal teams."
                 ]
             },
+
             yachtxr: {
                 title: "YachtXR",
                 video: "yachtxr.mp4",
                 poster: "yachtxr-thumb.jpg",
-                tags: ["Concept", "Real-time 3D", "Lifestyle"],
-                text: "A cinematic XR concept for exploring a luxury yacht in real time.",
+                tags: ["Concept", "Real-time 3D", "Vision Pro"],
+                text:
+                    "A cinematic XR concept for exploring a luxury yacht as a fully navigable, real-time environment.",
                 bullets: [
-                    "High-end materials, lighting and water effects",
-                    "Blends architectural visualisation with interactive storytelling"
+                    "High-end materials, lighting and water effects tuned for immersive viewing on Vision Pro.",
+                    "Blends product, interior and environment visualisation for a premium lifestyle experience.",
+                    "Demonstrates a pipeline suited to yacht design, hospitality and high-end marketing narratives."
                 ]
             }
         };
+
 
         const modal = document.getElementById("projectModal");
         const modalBackdrop = document.getElementById("projectModalBackdrop");
