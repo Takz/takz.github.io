@@ -1100,49 +1100,60 @@
 
         /* Clients marquee */
         .clients-marquee {
-            padding: 3rem 0;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(90deg, var(--bg) 0%, transparent 10%, transparent 90%, var(--bg) 100%);
-        }
-
-        .marquee-track {
+            padding: 3rem 0 0;
             display: flex;
-            animation: marquee 30s linear infinite;
+            justify-content: center;
         }
 
-        @keyframes marquee {
-            0% {
-                transform: translateX(0);
-            }
-
-            100% {
-                transform: translateX(-50%);
-            }
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 2rem 3rem;
+            align-items: center;
+            justify-items: center;
+            max-width: 900px;
+            width: 100%;
         }
 
         .client-logo {
-            padding: 1.5rem 3rem;
+            padding: 0;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 1rem;
+            gap: 0.6rem;
             white-space: nowrap;
-            transition: all 0.3s ease;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+            opacity: 0.85;
         }
 
         .client-logo img {
-            height: 35px;
+            height: 36px;
             width: auto;
             object-fit: contain;
         }
 
         .client-logo span {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 600;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
             color: var(--muted);
-            transition: color 0.3s ease;
         }
+
+        .client-logo:hover {
+            transform: translateY(-2px);
+            opacity: 1;
+        }
+
+
+        /* On tablets/phones: 2 columns */
+        @media (max-width: 768px) {
+            .clients-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 1.75rem 2rem;
+            }
+        }
+
 
         /* About section */
         .about-container {
@@ -1613,12 +1624,12 @@
             <div class="hero-video-overlay"></div>
         </div>
 
-        <div class="floating-capabilities">
+<!--         <div class="floating-capabilities">
             <div class="capability-card">🥽 Apple Vision Pro</div>
             <div class="capability-card">🏥 Healthcare</div>
             <div class="capability-card">🏢 Real Estate</div>
             <div class="capability-card">✈️ Infrastructure</div>
-        </div>
+        </div> -->
 
         <div class="hero-content">
             <div class="hero-badge">
@@ -1826,7 +1837,7 @@
             </div>
 
             <div class="clients-marquee">
-                <div class="marquee-track">
+                <div class="clients-grid">
                     <div class="client-logo">
                         <img src="logos/apple.png" alt="Apple" />
                         <span>Apple</span>
@@ -1839,45 +1850,21 @@
                         <img src="logos/formaxr.png" alt="FormaXR" />
                         <span>FormaXR</span>
                     </div>
-                    <!--                     <div class="client-logo">
-                        <img src="logos/adr.png" alt="Aeroporti di Roma" />
-                        <span>Aeroporti di Roma</span>
-                    </div> -->
+                    <!--         <div class="client-logo">
+            <img src="logos/adr.png" alt="Aeroporti di Roma (ADR)" />
+            <span>Aeroporti di Roma</span>
+        </div> -->
                     <div class="client-logo">
                         <img src="logos/pearson.jpg" alt="Pearson Education" />
                         <span>Pearson</span>
                     </div>
                     <div class="client-logo">
-                        <img src="logos/gigxr.png" alt="GIGXR" />
-                        <span>GIGXR</span>
-                    </div>
-                    <!-- Duplicate for seamless loop -->
-                    <div class="client-logo duplicate">
-                        <img src="logos/apple.png" alt="Apple" />
-                        <span>Apple</span>
-                    </div>
-                    <div class="client-logo duplicate">
-                        <img src="logos/microsoft.png" alt="Microsoft" />
-                        <span>Microsoft</span>
-                    </div>
-                    <div class="client-logo duplicate">
-                        <img src="logos/formaxr.png" alt="FormaXR" />
-                        <span>FormaXR</span>
-                    </div>
-                    <!--                     <div class="client-logo duplicate">
-                        <img src="logos/adr.png" alt="Aeroporti di Roma" />
-                        <span>ADR</span>
-                    </div> -->
-                    <div class="client-logo duplicate">
-                        <img src="logos/pearson.jpg" alt="Pearson Education" />
-                        <span>Pearson</span>
-                    </div>
-                    <div class="client-logo duplicate">
                         <img src="logos/gigxr.png" alt="GIGXR" />
                         <span>GIGXR</span>
                     </div>
                 </div>
             </div>
+
         </section>
 
         <!-- Studio -->
