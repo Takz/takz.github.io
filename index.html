@@ -1045,6 +1045,35 @@
             line-height: 1.5;
         }
 
+        .testimonial {
+            padding: 6rem 1.5rem 4rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        .testimonial-card {
+            max-width: 800px;
+            padding: 2.5rem 2rem;
+            background: rgba(2, 6, 23, 0.4);
+            border: 1px solid rgba(56, 189, 248, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            text-align: center;
+        }
+
+        .testimonial-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            opacity: 0.95;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
         /* Mobile */
         @media (max-width: 768px) {
             .process-grid {
@@ -1776,6 +1805,18 @@
                 </div>
             </div>
         </div>
+        <section class="testimonial" id="testimonial">
+            <div class="testimonial-card">
+                <p class="testimonial-text">
+                    “Working with Tarik has been outstanding. His technical depth and ability to turn complex
+                    architectural data into smooth, high-fidelity XR experiences consistently elevate our projects. He
+                    delivers fast, reliably, and with a problem-solving mindset that adds real value.”
+                </p>
+                <p class="testimonial-author">
+                    — Nicolas Barale, CEO, FormaXR
+                </p>
+            </div>
+        </section>
 
         <!-- Clients -->
         <section id="clients">
@@ -1798,10 +1839,10 @@
                         <img src="logos/formaxr.png" alt="FormaXR" />
                         <span>FormaXR</span>
                     </div>
-                    <div class="client-logo">
+                    <!--                     <div class="client-logo">
                         <img src="logos/adr.png" alt="Aeroporti di Roma" />
                         <span>Aeroporti di Roma</span>
-                    </div>
+                    </div> -->
                     <div class="client-logo">
                         <img src="logos/pearson.jpg" alt="Pearson Education" />
                         <span>Pearson</span>
@@ -1823,10 +1864,10 @@
                         <img src="logos/formaxr.png" alt="FormaXR" />
                         <span>FormaXR</span>
                     </div>
-                    <div class="client-logo duplicate">
+                    <!--                     <div class="client-logo duplicate">
                         <img src="logos/adr.png" alt="Aeroporti di Roma" />
                         <span>ADR</span>
-                    </div>
+                    </div> -->
                     <div class="client-logo duplicate">
                         <img src="logos/pearson.jpg" alt="Pearson Education" />
                         <span>Pearson</span>
@@ -1964,7 +2005,7 @@
                             <span class="contact-method-sub">hello@awadxr.com</span>
                         </div>
                     </a>
-<!--                     <a href="#" class="contact-method">
+                    <!--                     <a href="#" class="contact-method">
                         <div class="contact-method-icon">📅</div>
                         <div class="contact-method-label">
                             Book a 30-minute call<br />
