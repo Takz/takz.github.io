@@ -667,16 +667,24 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
-            margin: 4rem 0;
-            padding: 3rem 0;
+            margin: 3rem 0;
+            padding: 2.5rem 0;
             border-top: 1px solid rgba(56, 189, 248, 0.1);
             border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+            align-items: flex-start;
+            /* NEW */
         }
 
         .stat-card {
             text-align: center;
             opacity: 0;
             animation: fadeInUp 0.8s ease forwards;
+            display: flex;
+            /* NEW */
+            flex-direction: column;
+            /* NEW */
+            align-items: center;
+            /* NEW */
         }
 
         .stat-card:nth-child(1) {
@@ -696,13 +704,18 @@
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
+            /* was 2.5rem */
             font-weight: 700;
             background: linear-gradient(135deg, #38bdf8, #a855f7);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             margin-bottom: 0.5rem;
+            white-space: nowrap;
+            /* NEW */
+            min-height: 2.4rem;
+            /* NEW: keeps all headers vertically aligned */
         }
 
         .stat-label {
@@ -1148,7 +1161,7 @@
             gap: 0.6rem;
             white-space: nowrap;
             transition: transform 0.25s ease, opacity 0.25s ease;
-            opacity: 0.85;
+            opacity: 1;
         }
 
         .client-logo img {
@@ -1684,20 +1697,20 @@
         <!-- Stats -->
         <div class="stats-grid">
             <div class="stat-card">
-                <div class="stat-number">6+</div>
-                <div class="stat-label">Enterprise Clients</div>
+                <div class="stat-number">10+</div>
+                <div class="stat-label">Years building immersive solutions</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">15+</div>
-                <div class="stat-label">XR Applications</div>
+                <div class="stat-number">Vision Pro</div>
+                <div class="stat-label">Specialist</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">4</div>
-                <div class="stat-label">Industries</div>
+                <div class="stat-number">Apple &amp; Microsoft</div>
+                <div class="stat-label">Collaborations</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number">2</div>
-                <div class="stat-label">Platforms</div>
+                <div class="stat-number">7+</div>
+                <div class="stat-label">End-to-end immersive apps</div>
             </div>
         </div>
 
@@ -1903,8 +1916,8 @@
                     constraints.
                 </p>
                 <p class="studio-credibility">
-                    Specialising in high-fidelity, high-performance XR — from heavy 3D files to polished spatial
-                    experiences.
+                    From complex CAD, BIM and 3D assets to seamless spatial experiences,
+                    we deliver XR that looks great and performs reliably.
                 </p>
 
                 <div class="about-founder">
@@ -2199,11 +2212,27 @@
             const data = projectData[key];
             if (!data) return;
 
-            // Set poster first so it shows while video buffers
+            const showPosterOnly = () => {
+                modalVideo.pause();
+                modalVideo.removeAttribute("src");
+                modalVideo.load();
+                modalVideo.poster = data.poster || "";
+            };
+
+            // Set poster first so it shows while video buffers, and fallback if the video is missing
+            modalVideo.onerror = showPosterOnly;
+            modalVideo.onstalled = showPosterOnly;
             modalVideo.poster = data.poster || "";
-            modalVideo.src = data.video;
-            modalVideo.load();
-            modalVideo.play().catch(() => { });
+
+            if (data.video) {
+                modalVideo.src = data.video;
+                modalVideo.load();
+                modalVideo.play().catch(() => {
+                    showPosterOnly();
+                });
+            } else {
+                showPosterOnly();
+            }
 
             modalTitle.textContent = data.title;
             modalText.textContent = data.text;
