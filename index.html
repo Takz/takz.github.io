@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description"
         content="AwadXR is a spatial computing studio building Apple Vision Pro and XR experiences for real estate, infrastructure, healthcare and education." />
+    <link rel="preload" as="video" href="showreel.mp4" type="video/mp4">
     <!-- 
     REQUIRED ASSETS:
     Place these files in the same directory as index.html:
@@ -725,12 +726,21 @@
             letter-spacing: 0.1em;
         }
 
+        .mobile-break {
+            display: none;
+        }
+
         /* SECTIONS */
         section {
             padding: 5rem 0;
             opacity: 1;
             transform: translateY(0);
             transition: all 0.8s ease;
+        }
+
+        /* Tighter contact/footer spacing */
+        #contact {
+            padding-bottom: 2.5rem;
         }
 
         #work {
@@ -916,6 +926,11 @@
             color: #e5e7eb;
         }
 
+        .work-cta {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
         .hint-icon {
             font-size: 0.7rem;
         }
@@ -1084,7 +1099,7 @@
         }
 
         .testimonial {
-            padding: 3.5rem 1.5rem 4rem;
+            padding: 2.5rem 1.5rem 3.5rem;
             display: flex;
             justify-content: center;
         }
@@ -1391,10 +1406,10 @@
 
         /* Footer */
         .footer {
-            padding: 3rem 2rem;
+            padding: 2rem;
             text-align: center;
             border-top: 1px solid rgba(56, 189, 248, 0.1);
-            margin-top: 5rem;
+            margin-top: 2.5rem;
         }
 
         .footer-content {
@@ -1452,8 +1467,11 @@
             }
 
             .hero {
-                padding-top: 3.5rem;
-                /* reduce top spacing */
+                padding-top: 1.5rem;
+                padding-bottom: 2rem;
+                margin-top: 56px;
+                align-items: center;
+                /* bring hero content back toward center on mobile */
             }
 
             .hero h1 {
@@ -1481,8 +1499,42 @@
                 grid-template-columns: 1fr;
             }
 
+            .work-card-tags {
+                flex-wrap: wrap;
+                overflow-x: visible;
+                max-width: 100%;
+            }
+
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                align-items: stretch;
+            }
+
+            .stat-number {
+                white-space: normal;
+            }
+
+            .stat-card {
+                display: grid;
+                grid-template-rows: auto 1fr;
+                justify-items: center;
+                row-gap: 0.35rem;
+                height: 100%;
+                text-align: center;
+            }
+
+            .stat-label {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                min-height: 3.2rem;
+                line-height: 1.25;
+            }
+
+            .mobile-break {
+                display: inline;
             }
 
             .about-founder {
@@ -1677,7 +1729,7 @@
             </h1>
 
             <p class="hero-subtitle">
-                We turn raw CAD, BIM, 3D and design assets into polished XR experiences built to inform, train and
+                We turn raw CAD, BIM, 3D and design assets into polished XR applications built to inform, train and
                 inspire.
             </p>
             <div class="hero-capabilities">
@@ -1698,19 +1750,19 @@
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-number">10+</div>
-                <div class="stat-label">Years building immersive solutions</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">Vision Pro</div>
-                <div class="stat-label">Specialist</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">Apple &amp; Microsoft</div>
-                <div class="stat-label">Collaborations</div>
+                <div class="stat-label">Years building<br>immersive XR</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">7+</div>
-                <div class="stat-label">End-to-end immersive apps</div>
+                <div class="stat-label">XR apps from<br>concept to launch</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">Vision<span class="mobile-break"><br></span> Pro</div>
+                <div class="stat-label">Spatial computing<br>specialist</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">Apple &amp; Microsoft</div>
+                <div class="stat-label">Collaborations<br>&amp; co-development</div>
             </div>
         </div>
 
@@ -1752,11 +1804,11 @@
                     <div class="work-card-bg" style="background-image: url('airport-thumb.jpg');"></div>
                     <div class="work-card-content">
                         <div class="work-card-tags">
-                            <span class="work-tag">Infrastructure</span>
+                            <span class="work-tag">Airport Ops</span>
                             <span class="work-tag">Vision Pro</span>
-                            <span class="work-tag">Visualisation</span>
+                            <span class="work-tag">Revit to XR</span>
                         </div>
-                        <h3 class="work-card-title">Airport XR</h3>
+                        <h3 class="work-card-title">Airport XR (NDA)</h3>
                         <p class="work-card-description">
                             Large-scale airport visualisation for a major European hub.
                         </p>
@@ -1830,6 +1882,7 @@
                 </div>
 
             </div>
+
         </section>
 
         <!-- Project Modal -->
@@ -1863,6 +1916,10 @@
                 </p>
             </div>
         </section>
+
+        <div class="work-cta" style="text-align: center; margin: 0 auto 2rem;">
+            <button class="btn-primary" onclick="location.href='#contact'">Interested? Get in touch</button>
+        </div>
 
         <!-- Clients -->
         <section id="clients">
@@ -2171,7 +2228,7 @@
 
             airport: {
                 title: "Airport XR (NDA)",
-                video: "airportxr.mp4",
+                video: "",
                 poster: "airport-thumb.jpg",
                 tags: ["Infrastructure", "Enterprise", "Vision Pro"],
                 text:
