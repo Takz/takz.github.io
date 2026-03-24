@@ -1,0 +1,28 @@
+<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- AlternateXR — Teal/Navy — Dark — Icon Only -->
+  <defs>
+    <linearGradient id="lw" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#243B5E"/>
+      <stop offset="100%" stop-color="#152240"/>
+    </linearGradient>
+    <linearGradient id="rw" x1="0" y1="0" x2="1" y2="0.5">
+      <stop offset="0%" stop-color="#2DD4BF" stop-opacity="0.62"/>
+      <stop offset="55%" stop-color="#38BDF8" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#38BDF8" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="fl" x1="0" y1="0.5" x2="1" y2="0.5">
+      <stop offset="0%" stop-color="#1E3A5F" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#2DD4BF" stop-opacity="0.38"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(16, 6)">
+    <path d="M44,4 L0,26 L0,82 L44,60 Z" fill="url(#lw)" opacity="0.92"/>
+    <path d="M44,4 L88,26 L88,82 L44,60 Z" fill="url(#rw)"/>
+    <path d="M0,82 L44,60 L88,82 L44,104 Z" fill="url(#fl)"/>
+    <g transform="translate(44,58)">
+      <path d="M0,-10 L12,-4 L0,2 L-12,-4 Z" fill="#38BDF8"/>
+      <path d="M-12,-4 L0,2 L0,14 L-12,8 Z" fill="#162742"/>
+      <path d="M12,-4 L0,2 L0,14 L12,8 Z" fill="#2DD4BF"/>
+    </g>
+  </g>
+</svg>

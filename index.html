@@ -259,6 +259,17 @@
         .nav-left {
             display: flex;
             align-items: center;
+            gap: 10px;
+        }
+
+        .nav-brand-icon {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+        }
+
+        .nav-title .xr {
+            color: #38BDF8;
         }
 
         @keyframes pulse {
@@ -1497,7 +1508,7 @@
         .footer-brand {
             display: flex;
             align-items: center;
-            gap: 0;
+            gap: 10px;
         }
 
         .footer-links {
@@ -1531,6 +1542,11 @@
 
             .nav-left {
                 order: 1;
+            }
+
+            .nav-brand-icon {
+                width: 24px;
+                height: 24px;
             }
 
             .nav-menu-toggle {
@@ -1765,7 +1781,8 @@
         <div class="nav">
             <a href="#top">
                 <div class="nav-left">
-                    <div class="nav-title">ALTERNATEXR.</div>
+                    <img src="teal-dark-icon.svg" alt="AlternateXR icon" class="nav-brand-icon">
+                    <div class="nav-title">ALTERNATE<span class="xr">XR</span></div>
                 </div>
             </a>
             <div class="nav-links">
@@ -2185,7 +2202,8 @@
         <div class="footer-content">
             <a href="#top">
                 <div class="footer-brand">
-                    <span class="nav-title">ALTERNATEXR.</span>
+                    <img src="teal-dark-icon.svg" alt="AlternateXR icon" class="nav-brand-icon">
+                    <span class="nav-title">ALTERNATE<span class="xr">XR</span></span>
                 </div>
             </a>
             <div class="footer-links">
