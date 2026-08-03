@@ -301,17 +301,42 @@ if (menuToggle) {
 
 
 // ---- Before/after wipe ----
-// A real range input drives the clip, so drag, touch, keyboard and screen
-// readers all work without reimplementing any of them. With JS off the CSS
-// default leaves it at 50% - still a legible split view.
+// The range input stays for keyboard and screen readers, but pointer input is
+// handled on the container: a native range thumb is invisible here, and on
+// mobile a drag only tracked if it happened to start on the thumb. Handling
+// pointerdown/move ourselves makes press-and-drag work anywhere on the image.
+// With JS off the CSS default leaves it at 50% - still a legible split view.
 (function () {
     const box = document.getElementById('compare');
     const range = document.getElementById('compareRange');
     if (!box || !range) return;
 
+    let touched = false;
+
     const apply = (v) => box.style.setProperty('--pos', v + '%');
     range.addEventListener('input', () => apply(range.value));
+    range.addEventListener('keydown', () => { touched = true; });
     apply(range.value);
+
+    const setFromX = (clientX) => {
+        const r = box.getBoundingClientRect();
+        const v = Math.min(100, Math.max(0, ((clientX - r.left) / r.width) * 100));
+        range.value = v;
+        apply(v);
+    };
+
+    let dragging = false;
+    box.addEventListener('pointerdown', (e) => {
+        touched = true;
+        dragging = true;
+        if (box.setPointerCapture) {
+            try { box.setPointerCapture(e.pointerId); } catch (err) { /* detached pointer */ }
+        }
+        setFromX(e.clientX);
+    });
+    box.addEventListener('pointermove', (e) => { if (dragging) setFromX(e.clientX); });
+    ['pointerup', 'pointercancel'].forEach(t =>
+        box.addEventListener(t, () => { dragging = false; }));
 
     // One slow sweep on first view: opens near the source model, then wipes
     // left to reveal the delivered render. Cancelled the moment it's touched.
@@ -324,15 +349,11 @@ if (menuToggle) {
             if (!entry.isIntersecting || done) return;
             done = true;
             io.disconnect();
+            if (touched) return;
 
             const from = 88, to = 34, ms = 1500, start = performance.now();
-            let cancelled = false;
-            const stop = () => { cancelled = true; };
-            range.addEventListener('pointerdown', stop, { once: true });
-            range.addEventListener('keydown', stop, { once: true });
-
             const step = (now) => {
-                if (cancelled) return;
+                if (touched) return;
                 const t = Math.min((now - start) / ms, 1);
                 // ease-in-out, so it settles rather than stopping dead
                 const e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
@@ -351,18 +372,50 @@ if (menuToggle) {
 // ---- State toggles ----
 // Any .stateful block: stacked <img> layers cross-faded by sibling buttons.
 // Class-based rather than id-based so a page can carry several without
-// colliding, and so the same component works on cards and full-width figures.
-document.querySelectorAll('.stateful').forEach(block => {
+// colliding. Each block also cycles on its own while in view, so the switch
+// is discovered even by people who never touch it - and stops for good the
+// first time they do.
+document.querySelectorAll('.stateful').forEach((block, blockIndex) => {
     const images = block.querySelectorAll('.statepair img');
     const buttons = block.querySelectorAll('.state-btn');
     if (!images.length || !buttons.length) return;
 
+    let index = 0;
+    let touched = false;
+    let timer = null;
+
     const select = (i) => {
+        index = i;
         images.forEach((img, n) => img.classList.toggle('is-shown', n === i));
         buttons.forEach((b, n) => b.setAttribute('aria-pressed', String(n === i)));
     };
 
+    const stopAuto = () => {
+        if (timer) { clearInterval(timer); timer = null; }
+    };
+
     buttons.forEach((btn, i) => {
-        btn.addEventListener('click', () => select(Number(btn.dataset.index ?? i)));
+        btn.addEventListener('click', () => {
+            touched = true;
+            stopAuto();
+            select(Number(btn.dataset.index ?? i));
+        });
     });
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
+
+    // Staggered so side-by-side blocks don't flip in unison.
+    const period = 3800 + blockIndex * 700;
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (touched) { io.disconnect(); return; }
+            if (entry.isIntersecting && !timer) {
+                timer = setInterval(() => select((index + 1) % images.length), period);
+            } else if (!entry.isIntersecting) {
+                stopAuto();
+            }
+        });
+    }, { threshold: 0.4 });
+    io.observe(block);
 });
