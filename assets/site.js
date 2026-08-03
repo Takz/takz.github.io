@@ -300,3 +300,70 @@ document.addEventListener("keydown", (e) => {
         select(next);
     });
 })();
+
+
+// ---- Before/after wipe ----
+// A real range input drives the clip, so drag, touch, keyboard and screen
+// readers all work without reimplementing any of them. With JS off the CSS
+// default leaves it at 50% - still a legible split view.
+(function () {
+    const box = document.getElementById('compare');
+    const range = document.getElementById('compareRange');
+    if (!box || !range) return;
+
+    const apply = (v) => box.style.setProperty('--pos', v + '%');
+    range.addEventListener('input', () => apply(range.value));
+    apply(range.value);
+
+    // One slow sweep on first view, to show it's draggable, then hand over.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
+
+    let done = false;
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting || done) return;
+            done = true;
+            io.disconnect();
+
+            const from = 8, to = 92, ms = 1400, start = performance.now();
+            let cancelled = false;
+            const stop = () => { cancelled = true; };
+            range.addEventListener('pointerdown', stop, { once: true });
+            range.addEventListener('keydown', stop, { once: true });
+
+            const step = (now) => {
+                if (cancelled) return;
+                const t = Math.min((now - start) / ms, 1);
+                // ease-in-out, so it settles rather than stopping dead
+                const e = t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+                const v = from + (to - from) * e;
+                range.value = v;
+                apply(v);
+                if (t < 1) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+        });
+    }, { threshold: 0.45 });
+    io.observe(box);
+})();
+
+
+// ---- Lighting state toggle ----
+(function () {
+    const pair = document.getElementById('showroomStates');
+    if (!pair) return;
+    const controls = pair.parentElement.querySelector('.state-controls');
+    if (!controls) return;
+
+    const images = pair.querySelectorAll('img');
+    const buttons = controls.querySelectorAll('.state-btn');
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const i = Number(btn.dataset.index);
+            images.forEach((img, n) => img.classList.toggle('is-shown', n === i));
+            buttons.forEach((b, n) => b.setAttribute('aria-pressed', String(n === i)));
+        });
+    });
+})();
