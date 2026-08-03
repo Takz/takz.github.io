@@ -229,3 +229,35 @@ document.addEventListener("keydown", (e) => {
         io.observe(s);
     });
 })();
+
+
+// ---- Hero video: keep it playing ----
+// Mobile browsers (Firefox especially) pause backgrounded video and don't
+// resume on return, leaving a frozen frame. Nudge it back whenever the page
+// becomes visible again. play() can reject - that's fine, the poster shows.
+(function () {
+    const video = document.querySelector('.hero-video');
+    if (!video) return;
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    const resume = () => {
+        if (reduced.matches) return;
+        if (document.visibilityState !== 'visible') return;
+        if (!video.paused && !video.ended) return;
+        const played = video.play();
+        if (played && played.catch) played.catch(() => { });
+    };
+
+    const halt = () => {
+        video.pause();
+        video.removeAttribute('autoplay');
+    };
+
+    if (reduced.matches) halt();
+    reduced.addEventListener('change', e => (e.matches ? halt() : resume()));
+
+    document.addEventListener('visibilitychange', resume);
+    window.addEventListener('pageshow', resume);
+    window.addEventListener('focus', resume);
+})();

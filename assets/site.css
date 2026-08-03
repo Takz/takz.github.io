@@ -2123,3 +2123,66 @@ section.visible {
         transform: none;
     }
 }
+
+/* --- nav: five items need more room than four ---------------------------- */
+/* "Case Studies" was wrapping to two lines and colliding with the wordmark
+   and CTA between ~770px and ~1100px. Keep labels on one line, and switch to
+   the hamburger before the row runs out of space rather than after. */
+.nav-links a {
+    white-space: nowrap;
+}
+
+.nav-cta {
+    white-space: nowrap;
+}
+
+@media (max-width: 1100px) {
+
+    .nav-links,
+    .nav-cta {
+        display: none;
+    }
+
+    .nav-menu-toggle {
+        display: flex;
+        order: 2;
+        margin-left: auto;
+    }
+
+    .nav-left {
+        order: 1;
+    }
+
+    .nav-links {
+        order: 3;
+    }
+
+    .nav-cta {
+        order: 4;
+    }
+
+    .nav-container.mobile-open {
+        background: rgba(2, 6, 23, 0.98);
+        border-bottom: 1px solid rgba(56, 189, 248, 0.4);
+    }
+
+    .nav-container.mobile-open .nav {
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .nav-container.mobile-open .nav-links {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+        gap: 1rem;
+    }
+
+    .nav-container.mobile-open .nav-cta {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+}
