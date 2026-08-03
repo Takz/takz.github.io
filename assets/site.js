@@ -261,3 +261,42 @@ document.addEventListener("keydown", (e) => {
     window.addEventListener('pageshow', resume);
     window.addEventListener('focus', resume);
 })();
+
+
+// ---- Material picker ----
+// Cross-fades stacked <img> layers rather than swapping src, so there's no
+// flash while the next texture decodes. Buttons carry aria-pressed; with JS
+// off the first texture stays visible and the swatches read as a plain list.
+(function () {
+    const stage = document.getElementById('matStage');
+    const group = document.getElementById('matSwatches');
+    if (!stage || !group) return;
+
+    const layers = stage.querySelectorAll('img');
+    const buttons = group.querySelectorAll('.swatch');
+    const nameEl = document.getElementById('matName');
+    const metaEl = document.getElementById('matMeta');
+
+    const select = (index) => {
+        if (!layers[index]) return;
+        layers.forEach((l, i) => l.classList.toggle('is-shown', i === index));
+        buttons.forEach((b, i) => b.setAttribute('aria-pressed', String(i === index)));
+        if (nameEl) nameEl.textContent = layers[index].dataset.name || '';
+        if (metaEl) metaEl.innerHTML = layers[index].dataset.meta || '';
+    };
+
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => select(Number(btn.dataset.index)));
+    });
+
+    // Left/right arrows move between swatches, as a radio group would.
+    group.addEventListener('keydown', (e) => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        const current = Array.from(buttons).indexOf(document.activeElement);
+        if (current === -1) return;
+        e.preventDefault();
+        const next = (current + (e.key === 'ArrowRight' ? 1 : -1) + buttons.length) % buttons.length;
+        buttons[next].focus();
+        select(next);
+    });
+})();

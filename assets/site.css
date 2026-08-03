@@ -2186,3 +2186,485 @@ section.visible {
         margin-top: 1rem;
     }
 }
+
+
+/* ============================================================================
+   PRODUCTS PAGE
+   ========================================================================== */
+
+/* Sub-page hero: shorter than the homepage, image rather than video. */
+.subhero {
+    position: relative;
+    min-height: 68vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.subhero-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.subhero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.75);
+}
+
+.subhero-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(2, 6, 23, 0.97) 4%, rgba(2, 6, 23, 0.35) 55%, rgba(2, 6, 23, 0.7) 100%);
+}
+
+.subhero-content {
+    position: relative;
+    z-index: 2;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 2rem 4rem;
+    width: 100%;
+}
+
+.subhero-kicker {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--violet);
+    margin-bottom: 1rem;
+}
+
+.subhero-title {
+    font-size: clamp(2.1rem, 5.2vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.06;
+    letter-spacing: -0.025em;
+    max-width: 18ch;
+    text-wrap: balance;
+}
+
+.subhero-title .accent {
+    color: var(--accent);
+}
+
+.subhero-sub {
+    margin-top: 1.1rem;
+    font-size: clamp(1rem, 1.7vw, 1.2rem);
+    color: var(--muted);
+    max-width: 54ch;
+    line-height: 1.6;
+}
+
+/* Prose block */
+.prose {
+    max-width: 68ch;
+    margin: 0 auto;
+}
+
+.prose p+p {
+    margin-top: 1rem;
+}
+
+.prose p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.prose strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+/* --- material picker ----------------------------------------------------- */
+.matpick {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 2rem;
+    align-items: center;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background: var(--panel);
+    backdrop-filter: blur(14px);
+    padding: 1.75rem;
+}
+
+.matpick-stage {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    background: #0b1220;
+    border: 1px solid var(--border);
+}
+
+.matpick-stage img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+}
+
+.matpick-stage img.is-shown {
+    opacity: 1;
+}
+
+.matpick-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1.5rem 1rem 0.85rem;
+    background: linear-gradient(to top, rgba(2, 6, 23, 0.92), transparent);
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.matpick-caption .meta {
+    color: var(--muted);
+}
+
+.matpick-panel h3 {
+    font-size: 1.35rem;
+    font-weight: 650;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.6rem;
+}
+
+.matpick-panel p {
+    color: var(--muted);
+    line-height: 1.65;
+    font-size: 0.96rem;
+    margin-bottom: 1.25rem;
+}
+
+.swatches {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.7rem;
+}
+
+.swatch {
+    position: relative;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 0.7rem;
+    background: transparent;
+    cursor: pointer;
+    overflow: hidden;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+    font: inherit;
+    color: inherit;
+    display: block;
+}
+
+.swatch img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    display: block;
+}
+
+.swatch-name {
+    display: block;
+    padding: 0.5rem 0.4rem;
+    font-size: 0.74rem;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-align: center;
+    background: rgba(2, 6, 23, 0.6);
+}
+
+.swatch:hover {
+    border-color: rgba(56, 189, 248, 0.5);
+    transform: translateY(-2px);
+}
+
+.swatch[aria-pressed="true"] {
+    border-color: var(--accent);
+}
+
+.swatch[aria-pressed="true"] .swatch-name {
+    color: var(--text);
+}
+
+.swatch:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.matpick-note {
+    margin-top: 1.1rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.55;
+}
+
+/* --- annotated screenshots ----------------------------------------------- */
+.shots {
+    display: grid;
+    gap: 2.5rem;
+}
+
+.shot {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.shot:nth-child(even) .shot-copy {
+    order: -1;
+}
+
+.shot-figure {
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: #0b1220;
+    box-shadow: var(--shadow-card);
+}
+
+.shot-figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.shot-step {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+}
+
+.shot-copy h3 {
+    font-size: 1.4rem;
+    font-weight: 650;
+    letter-spacing: -0.018em;
+    margin-bottom: 0.7rem;
+    text-wrap: balance;
+}
+
+.shot-copy p {
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+.shot-list {
+    list-style: none;
+    display: grid;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.shot-list li {
+    position: relative;
+    padding-left: 1.4rem;
+    font-size: 0.93rem;
+    color: var(--muted);
+    line-height: 1.55;
+}
+
+.shot-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+/* --- app callout --------------------------------------------------------- */
+.appcard {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    border: 1px solid var(--gold-line);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(135deg, var(--gold-soft), rgba(15, 23, 42, 0.6));
+    backdrop-filter: blur(14px);
+    padding: 2rem;
+}
+
+.appcard h3 {
+    font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+    text-wrap: balance;
+}
+
+.appcard p {
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 52ch;
+}
+
+.appcard-meta {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-top: 0.9rem;
+}
+
+.appstore-badge {
+    display: inline-block;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+}
+
+.appstore-badge:hover {
+    transform: translateY(-2px);
+}
+
+.appstore-badge:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 10px;
+}
+
+.appstore-badge svg {
+    display: block;
+    height: 56px;
+    width: auto;
+}
+
+/* --- spec table ---------------------------------------------------------- */
+.spec-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: rgba(2, 6, 23, 0.55);
+}
+
+.spec {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 560px;
+    font-size: 0.95rem;
+}
+
+.spec th,
+.spec td {
+    text-align: left;
+    padding: 0.85rem 1.1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+.spec thead th {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    background: rgba(15, 23, 42, 0.7);
+}
+
+.spec tbody th {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--muted);
+    white-space: nowrap;
+    width: 1%;
+}
+
+.spec td {
+    color: var(--text);
+}
+
+.spec tr:last-child th,
+.spec tr:last-child td {
+    border-bottom: 0;
+}
+
+.spec .hi {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* --- page CTA ------------------------------------------------------------ */
+.endcta {
+    text-align: center;
+    padding: 4rem 0 1rem;
+}
+
+.endcta h2 {
+    font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.8rem;
+    text-wrap: balance;
+}
+
+.endcta p {
+    color: var(--muted);
+    max-width: 52ch;
+    margin: 0 auto 1.8rem;
+    line-height: 1.65;
+}
+
+/* --- responsive ---------------------------------------------------------- */
+@media (max-width: 900px) {
+
+    .matpick,
+    .shot {
+        grid-template-columns: 1fr;
+    }
+
+    .shot:nth-child(even) .shot-copy {
+        order: 0;
+    }
+
+    .appcard {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+    }
+
+    .appcard p {
+        margin-inline: auto;
+    }
+
+    .subhero {
+        min-height: 56vh;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .matpick-stage img,
+    .swatch,
+    .appstore-badge {
+        transition: none;
+    }
+
+    .swatch:hover,
+    .appstore-badge:hover {
+        transform: none;
+    }
+}

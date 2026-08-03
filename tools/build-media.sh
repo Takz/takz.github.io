@@ -69,6 +69,31 @@ still "$AM/Screenshot 2026-08-03 at 13.09.43.png" "app-library"        1600 800
 still "$AM/Screenshot 2026-08-03 at 13.10.48.png" "app-materials"      1600 800
 still "$AM/Screenshot 2026-08-03 at 13.11.01.png" "app-textures"       1600 800
 
+echo "==> Texture library tiles"
+# Cropped out of the Texture Library screenshot at fixed pixel offsets, so this
+# breaks if that screenshot is retaken at a different window size. The durable
+# fix is to export the six basemaps straight out of Asset Manager - then these
+# become plain copies. Regenerate with: tools/build-media.sh --force
+TEXSRC="$SRC/Browser App/clean/Screenshot 2026-08-03 at 13.11.01.png"
+if [[ -f "$TEXSRC" ]] && newer "$TEXSRC" "$OUT/tex-aluminium.jpg"; then
+  python3 - "$TEXSRC" "$OUT" <<'PY' || echo "  skipped - needs Pillow (pip3 install Pillow)"
+import sys
+try:
+    from PIL import Image
+except ImportError:
+    sys.exit(1)
+src, out = sys.argv[1], sys.argv[2]
+im = Image.open(src).convert("RGB")
+Y0, Y1 = 1216, 1442
+for name, x0, x1 in [("aluminium",416,790), ("brass",860,1236),
+                     ("brushed-brass",1304,1680), ("copper",1748,2124),
+                     ("light-gold",2180,2556), ("satin-nickel",2620,2996)]:
+    im.crop((x0, Y0, x1, Y1)).resize((480, 290), Image.LANCZOS) \
+      .save(f"{out}/tex-{name}.jpg", quality=86, optimize=True)
+    print(f"  tex-{name}.jpg")
+PY
+fi
+
 echo "==> Airport before/after"
 still "$SRC/Airport/Before.png" "airport-before" 1600 800
 still "$SRC/Airport/After.png"  "airport-after"  1600 800
