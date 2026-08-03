@@ -98,38 +98,12 @@
             <div class="subhero-kicker">Avenue 01 &mdash; Products</div>
             <h1 class="subhero-title">Any product. Any space. <span class="accent">Any location on Earth.</span></h1>
             <p class="subhero-sub">
-                Upload a model. It comes back Vision-ready in minutes &mdash; hosted, and viewable at
-                true 1:1 scale in your client's own room.
+                Upload a model. Vision-ready in minutes, at true scale in your client's own room.
             </p>
         </div>
     </header>
 
     <main class="shell">
-
-        <!-- The problem -->
-        <section class="section">
-            <div class="section-header section-header--tight">
-                <div class="section-eyebrow">The problem</div>
-                <h2 class="section-title">A render can't answer &ldquo;how big is it?&rdquo;</h2>
-            </div>
-            <div class="prose">
-                <p>
-                    Every catalogue in the world has the same limitation. A product photographed in a
-                    studio, or rendered in a scene that isn't yours, leaves the buyer doing arithmetic
-                    in their head: <strong>how big is that actually, in my room, in my light, next to
-                    my furniture?</strong>
-                </p>
-                <p>
-                    A headset removes the arithmetic. The piece hangs where it would hang, at the size
-                    it would be, in the light the room actually has. What stops most companies doing
-                    this isn't the idea &mdash; it's that their 3D files were built for manufacturing
-                    or marketing renders, not for a device that has to draw them sixty times a second.
-                </p>
-                <p>
-                    That gap is the whole job. It's what the pipeline closes, automatically.
-                </p>
-            </div>
-        </section>
 
         <!-- Pipeline -->
         <section class="section pipeline" id="pipeline">
@@ -137,8 +111,7 @@
                 <div class="section-eyebrow">The pipeline</div>
                 <h2 class="section-title">Four stages, minutes end to end</h2>
                 <p class="lede">
-                    Send the file you already have. No cleanup, no export instructions, no
-                    &ldquo;please decimate first&rdquo;.
+                    A catalogue render can't answer &ldquo;how big is it, in my room?&rdquo;. This does.
                 </p>
             </div>
 
@@ -146,18 +119,14 @@
                 <li class="stage">
                     <div class="stage-num">STAGE 01</div>
                     <h3 class="stage-title">Ingest</h3>
-                    <p class="stage-text">
-                        Drop the model in as it exists. Hierarchy, naming and geometry can be as
-                        messy as they came out of your CAD package.
-                    </p>
+                    <p class="stage-text">Drop it in as it exists, however messy.</p>
                     <div class="stage-io">IN &middot; <b>all major 3D formats</b></div>
                 </li>
                 <li class="stage">
                     <div class="stage-num">STAGE 02</div>
                     <h3 class="stage-title">Optimise</h3>
                     <p class="stage-text">
-                        Automated hierarchy flattening, mesh decimation with silhouette preservation,
-                        UV work, texture atlasing and draw-call reduction &mdash; against the
+                        Automated decimation, UV work, atlasing and draw-call reduction, against the
                         Vision&nbsp;Pro frame budget.
                     </p>
                     <div class="stage-io">OUT &middot; <b>USDZ and GLB</b></div>
@@ -166,8 +135,7 @@
                     <div class="stage-num">STAGE 03</div>
                     <h3 class="stage-title">Author</h3>
                     <p class="stage-text">
-                        Material groups are detected for you. Assign finishes, upload PBR textures or
-                        generate glass &mdash; in a browser, with no 3D software open.
+                        Material groups detected for you. Assign finishes in a browser.
                     </p>
                     <div class="stage-io">OUT &middot; <b>material sets you own</b></div>
                 </li>
@@ -175,8 +143,7 @@
                     <div class="stage-num">STAGE 04</div>
                     <h3 class="stage-title">Deliver</h3>
                     <p class="stage-text">
-                        Hosted and pulled on-device, at true scale in any room &mdash; or dropped onto
-                        a location anywhere on Earth.
+                        Hosted and pulled on-device, at true scale in any room.
                     </p>
                     <div class="stage-io">OUT &middot; <b>Vision Pro</b>, AR &amp; VR</div>
                 </li>
@@ -187,88 +154,12 @@
             </p>
         </section>
 
-        <!-- Materials -->
-        <section class="section" id="materials">
-            <div class="section-header section-header--tight">
-                <div class="section-eyebrow">Materials</div>
-                <h2 class="section-title">One model, every finish you sell</h2>
-                <p class="lede">
-                    Finishes aren't baked into the model. They're a library you build once and apply
-                    to anything &mdash; and swap live, in the headset, in front of the client.
-                </p>
-            </div>
-
-            <div class="matpick">
-                <div class="matpick-stage" id="matStage">
-                    <img src="../media/tex-aluminium.jpg" alt="Aluminium texture" class="is-shown"
-                        data-name="Aluminium" data-meta="Metal &middot; Base + Mask + Normal" />
-                    <img src="../media/tex-brass.jpg" alt="Brass texture"
-                        data-name="Brass" data-meta="Metal &middot; Base + Mask + Normal" />
-                    <img src="../media/tex-brushed-brass.jpg" alt="Brushed brass texture"
-                        data-name="Brushed Brass" data-meta="Metal &middot; Base + Mask + Normal" />
-                    <img src="../media/tex-copper.jpg" alt="Copper texture"
-                        data-name="Copper" data-meta="Metal &middot; Base + Mask + Normal" />
-                    <img src="../media/tex-light-gold.jpg" alt="Light gold texture"
-                        data-name="Light Gold" data-meta="Metal &middot; Base + Mask + Normal" />
-                    <img src="../media/tex-satin-nickel.jpg" alt="Satin nickel texture"
-                        data-name="Satin Nickel" data-meta="Metal &middot; Base + Mask + Normal" />
-                    <div class="matpick-caption">
-                        <span id="matName">Aluminium</span>
-                        <span class="meta" id="matMeta">Metal &middot; Base + Mask + Normal</span>
-                    </div>
-                </div>
-
-                <div class="matpick-panel">
-                    <h3>Your finishes, in your library</h3>
-                    <p>
-                        Six of the metals sitting in a live Asset Manager library right now. Each one
-                        carries a full PBR set &mdash; basemap, mask map and normal map &mdash; so it
-                        reads as metal under real lighting rather than as a flat colour.
-                    </p>
-                    <div class="swatches" id="matSwatches" role="group" aria-label="Choose a material finish">
-                        <button type="button" class="swatch" aria-pressed="true" data-index="0">
-                            <img src="../media/tex-aluminium.jpg" alt="" width="480" height="290" loading="lazy" />
-                            <span class="swatch-name">Aluminium</span>
-                        </button>
-                        <button type="button" class="swatch" aria-pressed="false" data-index="1">
-                            <img src="../media/tex-brass.jpg" alt="" width="480" height="290" loading="lazy" />
-                            <span class="swatch-name">Brass</span>
-                        </button>
-                        <button type="button" class="swatch" aria-pressed="false" data-index="2">
-                            <img src="../media/tex-brushed-brass.jpg" alt="" width="480" height="290" loading="lazy" />
-                            <span class="swatch-name">Brushed Brass</span>
-                        </button>
-                        <button type="button" class="swatch" aria-pressed="false" data-index="3">
-                            <img src="../media/tex-copper.jpg" alt="" width="480" height="290" loading="lazy" />
-                            <span class="swatch-name">Copper</span>
-                        </button>
-                        <button type="button" class="swatch" aria-pressed="false" data-index="4">
-                            <img src="../media/tex-light-gold.jpg" alt="" width="480" height="290" loading="lazy" />
-                            <span class="swatch-name">Light Gold</span>
-                        </button>
-                        <button type="button" class="swatch" aria-pressed="false" data-index="5">
-                            <img src="../media/tex-satin-nickel.jpg" alt="" width="480" height="290" loading="lazy" />
-                            <span class="swatch-name">Satin Nickel</span>
-                        </button>
-                    </div>
-                    <p class="matpick-note">
-                        Glass is generated rather than uploaded &mdash; clear, opal, smoked, frosted,
-                        bronze and green presets, each with its own transparency and roughness, with
-                        no texture files needed at all.
-                    </p>
-                </div>
-            </div>
-        </section>
-
         <!-- Asset Manager -->
         <section class="section" id="asset-manager">
             <div class="section-header section-header--tight">
                 <div class="section-eyebrow">Asset Manager</div>
                 <h2 class="section-title">Upload it once. Then it's yours to change.</h2>
-                <p class="lede">
-                    The pipeline has a front end. Everything below happens in a browser, by you,
-                    without a single email to us.
-                </p>
+                <p class="lede">All of it in a browser, by you, without a single email to us.</p>
             </div>
 
             <div class="shots">
@@ -284,14 +175,9 @@
                         <div class="shot-step">Upload</div>
                         <h3>Your models, in one library</h3>
                         <p>
-                            Drop a file in and it's processed, thumbnailed and listed. Everything you've
-                            sent is in one place, ready to view, download or push to a headset.
+                            Drop a file in and it's processed, thumbnailed and listed &mdash; ready to
+                            view, download or push to a headset.
                         </p>
-                        <ul class="shot-list">
-                            <li>Self-serve upload, no gatekeeper</li>
-                            <li>Thumbnails generated automatically</li>
-                            <li>Download the optimised result any time</li>
-                        </ul>
                     </div>
                 </div>
 
@@ -307,15 +193,13 @@
                         <div class="shot-step">Author</div>
                         <h3>Material groups, found for you</h3>
                         <p>
-                            The model is scanned and its material groups surfaced as slots you can fill.
-                            Assign a texture, apply it, and check the result in the preview before it
-                            ever reaches a headset.
+                            Material groups are found for you and surfaced as slots to fill. Check the
+                            result in the preview, then push it straight to the headset.
                         </p>
                         <ul class="shot-list">
-                            <li>Groups detected automatically &mdash; no file prep</li>
+                            <li>No file prep needed</li>
                             <li>Live 3D preview in the browser</li>
                             <li>Reprocess at a different texture budget on demand</li>
-                            <li>Push straight to the headset with View in Immersive</li>
                         </ul>
                     </div>
                 </div>
@@ -332,14 +216,26 @@
                         <div class="shot-step">Build</div>
                         <h3>A finish library that outlives the project</h3>
                         <p>
-                            Upload basemaps, mask maps and normal maps once and reuse them across every
-                            product you own. Glass is generated from presets, so the hardest material to
-                            author is a click.
+                            Build your finishes once and reuse them across every product you own. One
+                            model, every variant you sell &mdash; swapped live in front of the client.
                         </p>
+                        <div class="finishes">
+                            <div class="finish"><img src="../media/tex-aluminium.jpg" alt="Aluminium finish"
+                                    width="74" height="46" loading="lazy" /><span>Aluminium</span></div>
+                            <div class="finish"><img src="../media/tex-brass.jpg" alt="Brass finish" width="74"
+                                    height="46" loading="lazy" /><span>Brass</span></div>
+                            <div class="finish"><img src="../media/tex-brushed-brass.jpg" alt="Brushed brass finish"
+                                    width="74" height="46" loading="lazy" /><span>Brushed Brass</span></div>
+                            <div class="finish"><img src="../media/tex-copper.jpg" alt="Copper finish" width="74"
+                                    height="46" loading="lazy" /><span>Copper</span></div>
+                            <div class="finish"><img src="../media/tex-light-gold.jpg" alt="Light gold finish"
+                                    width="74" height="46" loading="lazy" /><span>Light Gold</span></div>
+                            <div class="finish"><img src="../media/tex-satin-nickel.jpg" alt="Satin nickel finish"
+                                    width="74" height="46" loading="lazy" /><span>Satin Nickel</span></div>
+                        </div>
                         <ul class="shot-list">
                             <li>Full PBR: base, mask and normal</li>
-                            <li>Six glass presets, no upload required</li>
-                            <li>Sorted by metal, glass, plastic and wood</li>
+                            <li>Glass generated from presets, no upload</li>
                         </ul>
                     </div>
                 </div>
@@ -366,8 +262,7 @@
                         <div class="avenue-kicker">True scale</div>
                         <h3 class="avenue-title">At 1:1, where it would hang</h3>
                         <p class="avenue-text">
-                            Grab it with both hands to move and examine it. The size question answers
-                            itself the moment it's in the room.
+                            The size question answers itself the moment it's in the room.
                         </p>
                     </div>
                 </article>
@@ -384,8 +279,7 @@
                         <div class="avenue-kicker">On location</div>
                         <h3 class="avenue-title">Or anywhere on Earth</h3>
                         <p class="avenue-text">
-                            Step outside the room entirely and place the product on a real site &mdash;
-                            useful long before anything has been installed.
+                            Or place it on a real site, long before anything is installed.
                         </p>
                     </div>
                 </article>
@@ -398,11 +292,10 @@
                 <div>
                     <h3>See it for yourself, free</h3>
                     <p>
-                        The AlternateXR app on Apple&nbsp;Vision&nbsp;Pro is the pipeline's output,
-                        running. Journey of Leaves at 1:1 on your ceiling, a miniature London on your
-                        table, and a full walkable showroom &mdash; all built the way your product would be.
+                        <strong>Journey of Leaves</strong> is a real client model that came through this
+                        pipeline, running at 1:1 on Vision&nbsp;Pro. Built exactly the way yours would be.
                     </p>
-                    <div class="appcard-meta">Free &middot; visionOS 2.0 or later &middot; AlternateXR Ltd</div>
+                    <div class="appcard-meta">Free &middot; visionOS 2.0 or later</div>
                 </div>
                 <a class="appstore-badge" href="https://apps.apple.com/gb/app/alternatexr/id6792300997"
                     target="_blank" rel="noopener" aria-label="Download AlternateXR on the App Store">
@@ -477,8 +370,7 @@
         <section class="endcta">
             <h2>Send us a model</h2>
             <p>
-                Thirty minutes is enough to walk you through Asset Manager, run one of your own files
-                through it, and show you the result in a headset.
+                Thirty minutes is enough to run one of your own files through and show you the result.
             </p>
             <div class="hero-cta-group">
                 <button class="btn-primary" onclick="location.href='https://calendly.com/tarik-alternatexr/30min'">Book

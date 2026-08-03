@@ -1717,13 +1717,6 @@ section.visible {
    ========================================================================== */
 
 :root {
-    /* Gilded warm, sampled from the Journey of Leaves installation and the
-       daylit parquet in the Showroom renders. Reserved for the Spaces avenue
-       and the airport flagship — it is the one colour that isn't generic
-       spatial-computing blue. */
-    --gold: #e8b14c;
-    --gold-soft: rgba(232, 177, 76, 0.14);
-    --gold-line: rgba(232, 177, 76, 0.32);
     --violet: #8b7cf6;
     --violet-soft: rgba(139, 124, 246, 0.14);
     --violet-line: rgba(139, 124, 246, 0.32);
@@ -1797,7 +1790,7 @@ section.visible {
 
 .avenue--spaces:hover,
 .avenue--spaces:focus-within {
-    border-color: var(--gold-line);
+    border-color: rgba(56, 189, 248, 0.32);
 }
 
 .avenue-media {
@@ -1846,7 +1839,7 @@ section.visible {
 }
 
 .avenue--spaces .avenue-kicker {
-    color: var(--gold);
+    color: var(--accent);
 }
 
 .avenue-title {
@@ -1891,7 +1884,7 @@ section.visible {
 }
 
 .avenue--spaces .avenue-points li::before {
-    background: var(--gold);
+    background: var(--accent);
 }
 
 .avenue-link {
@@ -1910,7 +1903,7 @@ section.visible {
 }
 
 .avenue--spaces .avenue-link {
-    color: var(--gold);
+    color: var(--accent);
 }
 
 .avenue-link .arrow {
@@ -2047,7 +2040,7 @@ section.visible {
     font-family: var(--mono);
     font-size: clamp(1.05rem, 2.2vw, 1.45rem);
     font-weight: 600;
-    color: var(--gold);
+    color: var(--accent);
     font-variant-numeric: tabular-nums;
     letter-spacing: -0.01em;
 }
@@ -2281,139 +2274,6 @@ section.visible {
     font-weight: 600;
 }
 
-/* --- material picker ----------------------------------------------------- */
-.matpick {
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    gap: 2rem;
-    align-items: center;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-xl);
-    background: var(--panel);
-    backdrop-filter: blur(14px);
-    padding: 1.75rem;
-}
-
-.matpick-stage {
-    position: relative;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    aspect-ratio: 16 / 10;
-    background: #0b1220;
-    border: 1px solid var(--border);
-}
-
-.matpick-stage img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.45s ease;
-}
-
-.matpick-stage img.is-shown {
-    opacity: 1;
-}
-
-.matpick-caption {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 1.5rem 1rem 0.85rem;
-    background: linear-gradient(to top, rgba(2, 6, 23, 0.92), transparent);
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.08em;
-    color: var(--text);
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.matpick-caption .meta {
-    color: var(--muted);
-}
-
-.matpick-panel h3 {
-    font-size: 1.35rem;
-    font-weight: 650;
-    letter-spacing: -0.015em;
-    margin-bottom: 0.6rem;
-}
-
-.matpick-panel p {
-    color: var(--muted);
-    line-height: 1.65;
-    font-size: 0.96rem;
-    margin-bottom: 1.25rem;
-}
-
-.swatches {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.7rem;
-}
-
-.swatch {
-    position: relative;
-    padding: 0;
-    border: 1px solid var(--border);
-    border-radius: 0.7rem;
-    background: transparent;
-    cursor: pointer;
-    overflow: hidden;
-    transition: border-color 0.25s ease, transform 0.25s ease;
-    font: inherit;
-    color: inherit;
-    display: block;
-}
-
-.swatch img {
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
-    display: block;
-}
-
-.swatch-name {
-    display: block;
-    padding: 0.5rem 0.4rem;
-    font-size: 0.74rem;
-    letter-spacing: 0.04em;
-    color: var(--muted);
-    text-align: center;
-    background: rgba(2, 6, 23, 0.6);
-}
-
-.swatch:hover {
-    border-color: rgba(56, 189, 248, 0.5);
-    transform: translateY(-2px);
-}
-
-.swatch[aria-pressed="true"] {
-    border-color: var(--accent);
-}
-
-.swatch[aria-pressed="true"] .swatch-name {
-    color: var(--text);
-}
-
-.swatch:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-}
-
-.matpick-note {
-    margin-top: 1.1rem;
-    font-size: 0.85rem;
-    color: var(--muted);
-    line-height: 1.55;
-}
-
 /* --- annotated screenshots ----------------------------------------------- */
 .shots {
     display: grid;
@@ -2500,9 +2360,9 @@ section.visible {
     grid-template-columns: 1fr auto;
     gap: 2rem;
     align-items: center;
-    border: 1px solid var(--gold-line);
+    border: 1px solid rgba(56, 189, 248, 0.32);
     border-radius: var(--radius-xl);
-    background: linear-gradient(135deg, var(--gold-soft), rgba(15, 23, 42, 0.6));
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(15, 23, 42, 0.6));
     backdrop-filter: blur(14px);
     padding: 2rem;
 }
@@ -2901,7 +2761,7 @@ section.visible {
     font-size: 0.68rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--accent);
 }
 
 .feature-body h3 {
@@ -3099,4 +2959,38 @@ section.visible {
     .policy a.text-link {
         transition: none;
     }
+}
+
+/* --- inline finish strip -------------------------------------------------
+   Textures only read as materials at small sizes; shown large they are just
+   flat colour. So they sit inline with the copy as a palette, not a hero. */
+.finishes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin-top: 1.1rem;
+}
+
+.finish {
+    width: 74px;
+}
+
+.finish img {
+    width: 100%;
+    height: 46px;
+    object-fit: cover;
+    border-radius: 0.45rem;
+    border: 1px solid var(--border);
+    display: block;
+}
+
+.finish span {
+    display: block;
+    margin-top: 0.35rem;
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.3;
 }
