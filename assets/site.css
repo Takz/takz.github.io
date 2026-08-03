@@ -3010,3 +3010,93 @@ section.visible {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* ============================================================================
+   POLICY PAGES
+   ========================================================================== */
+.nav-back {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    transition: color 0.3s ease;
+}
+
+.nav-back:hover {
+    color: #ffffff;
+}
+
+.policy {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 9rem 2rem 5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.policy h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+}
+
+.policy-meta {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+}
+
+.policy-meta strong {
+    color: var(--text);
+    font-weight: 600;
+}
+
+.policy p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 1.1rem;
+}
+
+.policy h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    margin: 2.4rem 0 0.9rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(56, 189, 248, 0.12);
+}
+
+.policy a.text-link {
+    color: var(--accent);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.35);
+    transition: border-color 0.2s ease;
+}
+
+.policy a.text-link:hover {
+    border-color: var(--accent);
+}
+
+.policy address {
+    font-style: normal;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--muted);
+}
+
+@media (max-width: 768px) {
+    .policy {
+        padding-top: 7rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .nav-back,
+    .policy a.text-link {
+        transition: none;
+    }
+}
