@@ -3,67 +3,62 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>AlternateXR – XR Development Studio in London</title>
+    <title>AlternateXR – CAD and BIM to Apple Vision Pro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light">
+    <meta name="color-scheme" content="dark">
     <meta name="description"
-        content="AlternateXR is a London-based XR development studio specialising in high-fidelity AR, VR and immersive applications for Vision Pro, Meta Quest and enterprise clients across real estate, infrastructure, healthcare and education." />
+        content="AlternateXR turns CAD and BIM files into Apple Vision Pro experiences. Products appear at true 1:1 scale with switchable finishes in minutes; full BIM models become walkable, high-fidelity spaces." />
     <link rel="canonical" href="https://www.alternatexr.com/">
-    <meta property="og:title" content="AlternateXR – XR Development Studio in London">
+    <meta property="og:title" content="AlternateXR – CAD and BIM to Apple Vision Pro">
     <meta property="og:description"
-        content="AlternateXR builds Apple Vision Pro and XR experiences for real estate, infrastructure, healthcare and education.">
+        content="Two pipelines: your product in a client's room at 1:1, or your building walkable before it's built. All major 3D formats in, USDZ and GLB out.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.alternatexr.com/">
-    <meta property="og:image" content="https://www.alternatexr.com/showreel-poster.jpg">
+    <meta property="og:image" content="https://www.alternatexr.com/media/hero-poster.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AlternateXR – XR Development Studio in London">
+    <meta name="twitter:title" content="AlternateXR – CAD and BIM to Apple Vision Pro">
     <meta name="twitter:description"
-        content="Apple Vision Pro and XR experiences for real estate, infrastructure, healthcare and education.">
-    <meta name="twitter:image" content="https://www.alternatexr.com/showreel-poster.jpg">
-    <link rel="preload" as="video" href="showreel.mp4" type="video/mp4">
+        content="Products at true scale in any room. Buildings you can walk through before they exist.">
+    <meta name="twitter:image" content="https://www.alternatexr.com/media/hero-poster.jpg">
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
             "name": "AlternateXR",
-            "image": "https://www.alternatexr.com/showreel-poster.jpg",
-            "description": "XR, AR and VR development studio based in London.",
+            "legalName": "AlternateXR Ltd",
+            "image": "https://www.alternatexr.com/media/hero-poster.jpg",
+            "description": "Converts CAD, BIM and 3D models into Apple Vision Pro experiences — products at true 1:1 scale with switchable finishes, and full BIM models as walkable high-fidelity spaces.",
             "address": {
                 "@type": "PostalAddress",
+                "streetAddress": "128 City Road",
                 "addressLocality": "London",
-                "addressCountry": "UK"
+                "postalCode": "EC1V 2NX",
+                "addressCountry": "GB"
             },
-            "url": "https://www.alternatexr.com"
+            "url": "https://www.alternatexr.com",
+            "email": "hello@alternatexr.com"
         }
     </script>
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
-            "@type": "VideoObject",
-            "name": "AlternateXR Showreel",
-            "description": "Showreel of Apple Vision Pro and XR experiences for real estate, infrastructure, healthcare and education.",
-            "thumbnailUrl": "https://www.alternatexr.com/showreel-poster.jpg",
-            "uploadDate": "2024-01-01",
-            "contentUrl": "https://www.alternatexr.com/showreel.mp4",
-            "embedUrl": "https://www.alternatexr.com/showreel.mp4"
+            "@type": "SoftwareApplication",
+            "name": "AlternateXR",
+            "operatingSystem": "visionOS 2.0",
+            "applicationCategory": "DesignApplication",
+            "url": "https://apps.apple.com/gb/app/alternatexr/id6792300997",
+            "description": "View products at true scale in your own space on Apple Vision Pro, with materials that switch live.",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "GBP"
+            }
         }
     </script>
     <link rel="stylesheet" href="assets/site.css">
 </head>
 
 <body id="top">
-    <!-- Floating particles -->
-    <div class="particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-    </div>
-
     <!-- Navigation -->
     <nav class="nav-container" id="navbar">
         <div class="nav">
@@ -74,9 +69,10 @@
                 </div>
             </a>
             <div class="nav-links">
-                <a href="#work">Work</a>
+                <a href="#products">Products</a>
+                <a href="#spaces">Spaces</a>
+                <a href="#work">Case Studies</a>
                 <a href="#studio">Studio</a>
-                <a href="#process">Process</a>
                 <a href="#contact">Contact</a>
             </div>
             <a href="#contact" class="nav-cta">Start a Project</a>
@@ -95,76 +91,238 @@
     <header class="hero">
         <!-- Background Video -->
         <div class="hero-video-wrapper">
-            <video class="hero-video" autoplay muted loop playsinline poster="showreel-poster.jpg">
-                <source src="showreel.mp4" type="video/mp4">
-                <source src="showreel.webm" type="video/webm">
-                Your browser does not support the video tag.
+            <video class="hero-video" autoplay muted loop playsinline preload="metadata"
+                poster="media/hero-poster.jpg" aria-label="Apple Vision Pro passthrough footage: a gilded lighting installation hanging at true scale in a courtyard">
+                <source src="media/hero-720.mp4" type="video/mp4" media="(max-width: 900px)">
+                <source src="media/hero-1080.mp4" type="video/mp4">
             </video>
             <div class="hero-video-overlay"></div>
         </div>
         <div class="hero-content">
             <div class="hero-badge">
                 <div class="badge-icon"></div>
-                <span>Spatial Computing</span>
+                <span>Apple Vision Pro</span>
                 <div class="badge-icon"></div>
-                <span>Virtual Reality</span>
+                <span>CAD &amp; BIM</span>
                 <div class="badge-icon"></div>
-                <span>Augmented Reality</span>
+                <span>AR &amp; VR</span>
             </div>
 
             <h1 class="hero-heading">
-                Turning ideas into high-fidelity<br>
-                <span class="gradient-text">immersive experiences.</span>
+                Your CAD file. Walkable, at true scale,<br>
+                <span class="gradient-text">on Vision Pro.</span>
             </h1>
 
             <p class="hero-subtitle">
-                Premium XR, AR and VR development for Vision Pro, Meta Quest and every major immersive platform.
-                Transforming CAD, BIM and 3D assets into high-fidelity experiences that inform, train and inspire.
+                We run two pipelines. One puts a single product in your client's room at 1:1 with
+                switchable finishes &mdash; minutes from upload. One turns an entire BIM model into a
+                place they can walk through. Send us the files you already have.
             </p>
             <div class="hero-capabilities">
                 <span class="hero-chip">Real Estate</span>
                 <span class="hero-chip">Infrastructure</span>
-                <span class="hero-chip">Healthcare</span>
-                <span class="hero-chip">Education</span>
+                <span class="hero-chip">Manufacturing</span>
+                <span class="hero-chip">Retail</span>
             </div>
             <div class="hero-cta-group">
-                <button class="btn-primary" onclick="location.href='#work'">View Projects</button>
-                <button class="btn-secondary" onclick="location.href='#contact'">Get in Touch</button>
+                <button class="btn-primary" onclick="location.href='#pipeline'">See the pipeline</button>
+                <button class="btn-secondary" onclick="location.href='#contact'">Book a call</button>
             </div>
         </div>
     </header>
 
     <main class="shell">
-        <!-- Stats -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number">10+</div>
-                <div class="stat-label">Years building<br>immersive XR</div>
+        <!-- Proof strip -->
+        <section class="proof" id="clients">
+            <div class="proof-label">Built with and for</div>
+            <div class="clients-marquee">
+                <div class="clients-grid">
+                    <div class="client-logo">
+                        <img src="logos/apple.png" alt="Apple" width="36" height="36" loading="lazy" />
+                        <span>Apple</span>
+                    </div>
+                    <div class="client-logo">
+                        <img src="logos/microsoft.png" alt="Microsoft" width="36" height="36" loading="lazy" />
+                        <span>Microsoft</span>
+                    </div>
+                    <div class="client-logo">
+                        <img src="logos/formaxr.png" alt="FormaXR" width="36" height="36" loading="lazy" />
+                        <span>FormaXR</span>
+                    </div>
+                    <div class="client-logo">
+                        <img src="logos/pearson.jpg" alt="Pearson Education" width="36" height="36" loading="lazy" />
+                        <span>Pearson</span>
+                    </div>
+                    <div class="client-logo">
+                        <img src="logos/gigxr.png" alt="GIGXR" width="36" height="36" loading="lazy" />
+                        <span>GIGXR</span>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number">7+</div>
-                <div class="stat-label">XR apps from<br>concept to launch</div>
+        </section>
+
+        <!-- Two avenues -->
+        <section class="section" id="avenues">
+            <div class="section-header section-header--tight">
+                <div class="section-eyebrow">What we do</div>
+                <h2 class="section-title">Products &amp; spaces, made spatial</h2>
+                <p class="lede">
+                    Same optimisation engine, pointed at two very different scales &mdash;
+                    one object, or a hundred thousand square metres.
+                </p>
             </div>
-            <div class="stat-card">
-                <div class="stat-number">Vision<span class="mobile-break"><br></span> Pro</div>
-                <div class="stat-label">Spatial computing<br>specialist</div>
+
+            <div class="avenues">
+                <article class="avenue avenue--products" id="products">
+                    <div class="avenue-media">
+                        <img src="media/product-leaves-960.jpg"
+                            srcset="media/product-leaves-960.jpg 960w, media/product-leaves-1920.jpg 1920w"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            alt="Journey of Leaves, a gilded lighting installation by Rock &amp; Soar, shown at true scale in a room"
+                            width="960" height="540" loading="lazy" />
+                    </div>
+                    <div class="avenue-body">
+                        <div class="avenue-kicker">Avenue 01 &mdash; Products</div>
+                        <h3 class="avenue-title">One object, in their room, at 1:1</h3>
+                        <p class="avenue-text">
+                            Upload a model and it comes back Vision-ready in minutes, hosted and viewable
+                            at true scale in any space on Earth.
+                        </p>
+                        <ul class="avenue-points">
+                            <li>All major 3D formats in, USDZ and GLB out</li>
+                            <li>Materials and finishes switch live, in the headset</li>
+                            <li>You build the material sets yourself, in a browser</li>
+                        </ul>
+                        <a class="avenue-link" href="#pipeline">
+                            How the pipeline works <span class="arrow" aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="avenue avenue--spaces" id="spaces">
+                    <div class="avenue-media">
+                        <img src="media/airport-after-800.jpg"
+                            srcset="media/airport-after-800.jpg 800w, media/airport-after-1600.jpg 1600w"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            alt="Airport terminal concourse rendered in high fidelity, with signage, seating and daylight"
+                            width="800" height="448" loading="lazy" />
+                    </div>
+                    <div class="avenue-body">
+                        <div class="avenue-kicker">Avenue 02 &mdash; Spaces</div>
+                        <h3 class="avenue-title">One building, walkable, before it's built</h3>
+                        <p class="avenue-text">
+                            BIM models are built to be measured, not experienced. We turn them into
+                            high-fidelity spaces you can explore on foot, at full scale.
+                        </p>
+                        <ul class="avenue-points">
+                            <li>Revit and IFC through to a navigable environment</li>
+                            <li>Daylight, evening and seasonal lighting states</li>
+                            <li>Proven at airport terminal scale</li>
+                        </ul>
+                        <a class="avenue-link" href="#airport">
+                            See the airport project <span class="arrow" aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </article>
             </div>
-            <div class="stat-card">
-                <div class="stat-number">Apple &amp; Microsoft</div>
-                <div class="stat-label">Collaborations<br>&amp; co-development</div>
+        </section>
+
+        <!-- Pipeline -->
+        <section class="section pipeline" id="pipeline">
+            <div class="section-header section-header--tight">
+                <div class="section-eyebrow">The pipeline</div>
+                <h2 class="section-title">From your file to their headset</h2>
+                <p class="lede">
+                    Four stages. Send the files you already have &mdash; no cleanup, no export
+                    instructions, no &ldquo;please decimate first&rdquo;.
+                </p>
             </div>
-        </div>
+
+            <ol class="pipeline-grid">
+                <li class="stage">
+                    <div class="stage-num">STAGE 01</div>
+                    <h3 class="stage-title">Ingest</h3>
+                    <p class="stage-text">
+                        You send source files exactly as they exist today. We deal with the mess.
+                    </p>
+                    <div class="stage-io">IN &middot; <b>all major 3D formats</b></div>
+                </li>
+                <li class="stage">
+                    <div class="stage-num">STAGE 02</div>
+                    <h3 class="stage-title">Optimise</h3>
+                    <p class="stage-text">
+                        Automated hierarchy flattening, mesh decimation with silhouette preservation,
+                        UV work, texture atlasing and draw-call reduction &mdash; all against the
+                        Vision&nbsp;Pro frame budget.
+                    </p>
+                    <div class="stage-io">OUT &middot; <b>USDZ and GLB</b>, Vision-ready</div>
+                </li>
+                <li class="stage">
+                    <div class="stage-num">STAGE 03</div>
+                    <h3 class="stage-title">Author</h3>
+                    <p class="stage-text">
+                        Material groups are detected automatically. You assign finishes, upload PBR
+                        textures or generate glass &mdash; from a browser, with no 3D software open.
+                    </p>
+                    <div class="stage-io">OUT &middot; <b>material sets you own</b></div>
+                </li>
+                <li class="stage">
+                    <div class="stage-num">STAGE 04</div>
+                    <h3 class="stage-title">Deliver</h3>
+                    <p class="stage-text">
+                        Hosted and pulled on-device. Viewed at 1:1 in your client's own room, or
+                        entered as a full space at different times of day.
+                    </p>
+                    <div class="stage-io">OUT &middot; <b>Vision Pro</b>, AR &amp; VR</div>
+                </li>
+            </ol>
+
+            <p class="pipeline-note">
+                A single product takes <b>minutes</b>. A full space takes <b>days to weeks</b> &mdash;
+                those get automation and hands-on work both, because a building is not a chandelier.
+            </p>
+        </section>
+
+        <!-- Airport flagship -->
+        <section class="section" id="airport">
+            <div class="section-header section-header--tight">
+                <div class="section-eyebrow">Flagship</div>
+                <h2 class="section-title">An airport terminal, walkable</h2>
+                <p class="lede">
+                    A major European hub, built from the source BIM model. Thirty-seven million
+                    polygons of structural data became a space you can walk end to end on a headset.
+                </p>
+            </div>
+
+            <div class="figures">
+                <div class="figure">
+                    <div class="figure-value">37M &rarr; 4M</div>
+                    <div class="figure-label">Polygons</div>
+                </div>
+                <div class="figure">
+                    <div class="figure-value">89%</div>
+                    <div class="figure-label">Reduction</div>
+                </div>
+                <div class="figure">
+                    <div class="figure-value">220 &times; 50 &times; 14 m</div>
+                    <div class="figure-label">Walkable</div>
+                </div>
+                <div class="figure">
+                    <div class="figure-value">11,000 m&sup2;</div>
+                    <div class="figure-label">Floor area</div>
+                </div>
+            </div>
+        </section>
 
         <!-- Work Section -->
-        <section id="work">
-            <div class="section-header">
-                <div class="section-eyebrow">Portfolio</div>
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="about-text" style="max-width: 720px; margin: 0 auto 3rem;">
-                    Every project began with a practical requirement, such as selling unbuilt space, training clinicians or explaining 
-                    complex infrastructure, and evolved into a bespoke XR experience that teams now utilise in real-world scenarios. 
+        <section class="section" id="work">
+            <div class="section-header section-header--tight">
+                <div class="section-eyebrow">Case studies</div>
+                <h2 class="section-title">Ten years of shipped work</h2>
+                <p class="lede">
+                    Before the pipeline there were the projects that taught us what it needed to do &mdash;
+                    selling unbuilt space, training clinicians, explaining complex infrastructure.
                 </p>
-
             </div>
 
             <div class="work-grid">
@@ -186,26 +344,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Airport XR -->
-                <div class="work-card project-trigger" data-project="airport">
-                    <div class="work-card-bg" style="background-image: url('airport-thumb.jpg');"></div>
-                    <div class="work-card-content">
-                        <div class="work-card-tags">
-                            <span class="work-tag">Airport Ops</span>
-                            <span class="work-tag">Vision Pro</span>
-                            <span class="work-tag">Revit to XR</span>
-                        </div>
-                        <h3 class="work-card-title">Airport XR (NDA)</h3>
-                        <p class="work-card-description">
-                            Large-scale airport visualisation for a major European hub.
-                        </p>
-                        <div class="work-card-hover-hint">
-                            <span class="hint-text">View preview</span>
-                        </div>
-                    </div>
-                </div>
-
-
                 <!-- HoloPatient -->
                 <div class="work-card project-trigger" data-project="holopatient">
                     <div class="work-card-bg" style="background-image: url('holopatient-thumb.jpg');"></div>
@@ -226,28 +364,9 @@
                     </div>
                 </div>
 
-                <!-- HoloHuman -->
-                <div class="work-card project-trigger" data-project="holohuman">
-                    <div class="work-card-bg" style="background-image: url('holohuman-thumb.jpg');"></div>
-                    <div class="work-card-content">
-                        <div class="work-card-tags">
-                            <span class="work-tag">Education</span>
-                            <span class="work-tag">HoloLens</span>
-                            <span class="work-tag">Anatomy</span>
-                        </div>
-
-                        <h3 class="work-card-title">HoloHuman</h3>
-                        <p class="work-card-description">
-                            Interactive 3D anatomy at room scale.
-                        </p>
-                        <div class="work-card-hover-hint">
-                            <span class="hint-text">View preview</span>
-                        </div>
-                    </div>
-                </div>
                 <!-- YachtXR -->
                 <div class="work-card project-trigger" data-project="yachtxr">
-                    <div class="work-card-bg" style="background-image: url('yachtxr-thumb.jpg');"></div>
+                    <div class="work-card-bg" style="background-image: url('media/yachtxr-1200.jpg');"></div>
                     <div class="work-card-content">
                         <div class="work-card-tags">
                             <span class="work-tag">Lifestyle</span>
@@ -308,125 +427,58 @@
             <button class="btn-primary" onclick="location.href='#contact'">Interested? Get in touch</button>
         </div>
 
-        <!-- Clients -->
-        <section id="clients">
-            <div class="section-header">
-                <div class="section-eyebrow">Trusted By</div>
-                <h2 class="section-title">Clients & Collaborators</h2>
-            </div>
-
-            <div class="clients-marquee">
-                <div class="clients-grid">
-                    <div class="client-logo">
-                        <img src="logos/apple.png" alt="Apple" />
-                        <span>Apple</span>
-                    </div>
-                    <div class="client-logo">
-                        <img src="logos/microsoft.png" alt="Microsoft" />
-                        <span>Microsoft</span>
-                    </div>
-                    <div class="client-logo">
-                        <img src="logos/formaxr.png" alt="FormaXR" />
-                        <span>FormaXR</span>
-                    </div>
-                    <!--         <div class="client-logo">
-            <img src="logos/adr.png" alt="Aeroporti di Roma (ADR)" />
-            <span>Aeroporti di Roma</span>
-        </div> -->
-                    <div class="client-logo">
-                        <img src="logos/pearson.jpg" alt="Pearson Education" />
-                        <span>Pearson</span>
-                    </div>
-                    <div class="client-logo">
-                        <img src="logos/gigxr.png" alt="GIGXR" />
-                        <span>GIGXR</span>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
         <!-- Studio -->
-        <section id="studio">
-            <div class="section-header">
+        <section class="section" id="studio">
+            <div class="section-header section-header--tight">
                 <div class="section-eyebrow">About</div>
                 <h2 class="section-title">The Studio</h2>
             </div>
 
             <div class="about-container">
                 <p class="about-text">
-                    We are a studio focused on crafting polished, high-performance XR experiences, 
-                    combining deep technical ability with a strong understanding of design, storytelling, and real-world constraints.
+                    We build the pipeline and we build on it. Ten years of shipping spatial software &mdash;
+                    for Apple, Microsoft, Pearson and a European airport &mdash; taught us where CAD data
+                    breaks on a headset, and that became a system rather than a service.
                 </p>
                 <p class="studio-credibility">
-                    From complex CAD, BIM and 3D assets to seamless spatial experiences,
-                    we deliver XR that looks great and performs reliably.
+                    Small, technical, and fast because the hard parts are already solved.
                 </p>
 
                 <div class="about-founder">
-                    <img src="tarik.jpg" alt="Tarik Awad" class="founder-avatar-img" />
+                    <img src="media/tarik-400.jpg"
+                        srcset="media/tarik-400.jpg 400w, media/tarik-800.jpg 800w"
+                        sizes="140px" alt="Tarik Awad" class="founder-avatar-img"
+                        width="400" height="400" loading="lazy" />
                     <div class="founder-info">
                         <div class="founder-name">Tarik Awad</div>
-                        <div class="founder-role">Founder & XR Developer</div>
+                        <div class="founder-role">Founder &amp; XR Developer</div>
                         <p class="founder-bio">
                             Tarik has 10+ years of XR experience, industry collaborations with Apple and Microsoft,
-                            VR–robotics integration work, and Masters-level teaching.
+                            VR&ndash;robotics integration work, and Masters-level teaching.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
-        <section id="process">
-            <div class="section-header">
-                <div class="section-eyebrow">Process</div>
-                <h2 class="section-title">How Projects Move Fast</h2>
-            </div>
 
-            <div class="process-grid">
-                <div class="process-step">
-                    <div class="process-icon">1</div>
-                    <div class="process-title">1. Share Your Brief</div>
-                    <p class="process-text">
-                        You send CAD, BIM, FBX/OBJ files or reference assets plus a short outline of the goal.
-                    </p>
-                </div>
-
-                <div class="process-step">
-                    <div class="process-icon">2</div>
-                    <div class="process-title">2. Optimise & Prepare</div>
-                    <p class="process-text">
-                        Assets are optimised, rebuilt, cleaned, textured and staged for XR.
-                    </p>
-                </div>
-
-                <div class="process-step">
-                    <div class="process-icon">3</div>
-                    <div class="process-title">3. Build & Iterate</div>
-                    <p class="process-text">
-                        A functional prototype is delivered quickly using a mature XR pipeline and pre-built systems.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <div class="section-header">
+        <section class="section" id="contact">
+            <div class="section-header section-header--tight">
                 <div class="section-eyebrow">Get in Touch</div>
-                <h2 class="section-title">Start Your XR Project</h2>
+                <h2 class="section-title">Send us a file</h2>
             </div>
 
             <div class="contact-container">
                 <p class="about-text">
-                    Tell us about your space, product or training challenge and we’ll suggest a concrete XR approach,
-                    from Apple&nbsp;Vision&nbsp;Pro prototypes to full production builds.
+                    Tell us what you want people to see &mdash; a product, a building, a space that
+                    doesn't exist yet &mdash; and we'll tell you what the pipeline would do with it.
                 </p>
 
                 <!-- Project type chips -->
                 <div class="contact-chips">
                     <span class="contact-chip">Real Estate</span>
                     <span class="contact-chip">Infrastructure</span>
-                    <span class="contact-chip">Healthcare</span>
-                    <span class="contact-chip">Education</span>
+                    <span class="contact-chip">Manufacturing</span>
+                    <span class="contact-chip">Retail</span>
                 </div>
 
                 <!-- Simple three-step flow -->

@@ -101,20 +101,6 @@ const projectData = {
         ]
     },
 
-    airport: {
-        title: "Airport XR (NDA)",
-        video: "",
-        poster: "airport-thumb.jpg",
-        tags: ["Infrastructure", "Enterprise", "Vision Pro"],
-        text:
-            "A large-scale airport visualisation for a major European hub, used for planning and stakeholder engagement.",
-        bullets: [
-            "Built from a detailed Revit model, translated into a performant, navigable XR environment.",
-            "Enables decision-makers to view terminal layouts, flows and interventions at true scale.",
-            "Delivered under NDA with anonymised visuals and flexible deployment for internal teams."
-        ]
-    },
-
     yachtxr: {
         title: "YachtXR",
         video: "yachtxr.mp4",
@@ -210,3 +196,36 @@ document.addEventListener("keydown", (e) => {
         closeProjectModal();
     }
 });
+
+
+// ---- Pipeline stage highlight ----
+// Lights each stage as it scrolls into view. Purely decorative: the stages are
+// a plain <ol> and read fine with JS off or motion reduced.
+(function () {
+    const stages = document.querySelectorAll('.pipeline .stage');
+    if (!stages.length) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        stages.forEach(s => s.classList.add('is-active'));
+        return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+        stages.forEach(s => s.classList.add('is-active'));
+        return;
+    }
+
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-active');
+                io.unobserve(entry.target);
+            }
+        });
+    }, { rootMargin: '0px 0px -20% 0px', threshold: 0.35 });
+
+    stages.forEach((s, i) => {
+        s.style.transitionDelay = `${Math.min(i * 90, 360)}ms`;
+        io.observe(s);
+    });
+})();
