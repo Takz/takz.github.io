@@ -2951,3 +2951,62 @@ section.visible {
         transition: none;
     }
 }
+
+
+/* ============================================================================
+   CASE STUDIES PAGE
+   ========================================================================== */
+
+/* Page header for pages with no hero - clears the fixed navbar. */
+.pagehead {
+    padding: 9rem 0 0;
+    text-align: center;
+}
+
+.pagehead .section-title {
+    margin-bottom: 1rem;
+}
+
+.pagehead-kicker {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+/* Case study cards carry an era label, since the work spans ten years and
+   HoloLens-era projects shouldn't read as current platform work. */
+.work-card-era {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 3;
+    font-family: var(--mono);
+    font-size: 0.64rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(2, 6, 23, 0.8);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    backdrop-filter: blur(6px);
+}
+
+.casegrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .pagehead {
+        padding-top: 7rem;
+    }
+
+    .casegrid {
+        grid-template-columns: 1fr;
+    }
+}

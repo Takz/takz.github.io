@@ -61,8 +61,8 @@ if (menuToggle) {
 const projectData = {
     formaxr: {
         title: "FormaXR",
-        video: "formaxr.mp4",
-        poster: "forma-thumb.jpg",
+        video: "/formaxr.mp4",
+        poster: "/forma-thumb.jpg",
         tags: ["Real Estate", "Apple Vision Pro", "Interactive Sales Tool"],
         text:
             "Immersive apartment and interior walkthroughs that let buyers step into unbuilt properties on Apple Vision Pro.",
@@ -75,8 +75,8 @@ const projectData = {
 
     holopatient: {
         title: "HoloPatient",
-        video: "holopatient.mp4",
-        poster: "holopatient-thumb.jpg",
+        video: "/holopatient.mp4",
+        poster: "/holopatient-thumb.jpg",
         tags: ["Healthcare", "HoloLens", "Medical Training"],
         text:
             "Life-sized virtual patients used by universities and hospitals worldwide for clinical training.",
@@ -89,8 +89,8 @@ const projectData = {
 
     holohuman: {
         title: "HoloHuman",
-        video: "holohuman.mp4",
-        poster: "holohuman-thumb.jpg",
+        video: "/holohuman.mp4",
+        poster: "/holohuman-thumb.jpg",
         tags: ["Education", "Anatomy", "3D Visualisation"],
         text:
             "Room-scale 3D anatomy that lets learners explore the human body as an interactive spatial model.",
@@ -101,10 +101,24 @@ const projectData = {
         ]
     },
 
+    airport: {
+        title: "Airport XR",
+        video: "",
+        poster: "/media/airport-after-1600.jpg",
+        tags: ["Infrastructure", "Enterprise", "Vision Pro"],
+        text:
+            "A terminal for a major European hub, built from the source BIM model and walkable at full scale on Apple Vision Pro.",
+        bullets: [
+            "37 million polygons reduced to 4 million - an 89% cut - with silhouettes preserved.",
+            "220 x 50 x 14 metres of concourse, explored on foot rather than orbited on a screen.",
+            "Delivered anonymised, for planning and stakeholder engagement."
+        ]
+    },
+
     yachtxr: {
         title: "YachtXR",
-        video: "yachtxr.mp4",
-        poster: "yachtxr-thumb.jpg",
+        video: "/yachtxr.mp4",
+        poster: "/media/yachtxr-1200.jpg",
         tags: ["Concept", "Real-time 3D", "Vision Pro"],
         text:
             "A cinematic XR concept for exploring a luxury yacht as a fully navigable, real-time environment.",
@@ -125,6 +139,8 @@ const modalTags = document.getElementById("projectModalTags");
 const modalTitle = document.getElementById("projectModalTitle");
 const modalText = document.getElementById("projectModalText");
 const modalList = document.getElementById("projectModalList");
+// The card that opened the modal, so focus can go back to it on close.
+let lastTrigger = null;
 
 function openProjectModal(key) {
     const data = projectData[key];
@@ -171,21 +187,41 @@ function openProjectModal(key) {
     });
 
     modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
     document.body.style.overflow = "hidden";
+    if (modalClose) modalClose.focus();
 }
 
 function closeProjectModal() {
     modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
     modalVideo.pause();
     modalVideo.src = "";
     modalVideo.poster = "";
+    if (lastTrigger) {
+        lastTrigger.focus();
+        lastTrigger = null;
+    }
 }
 
+// Cards are made focusable here rather than in markup, so every page that
+// uses .project-trigger gets keyboard access without repeating attributes.
 document.querySelectorAll(".project-trigger").forEach(card => {
-    card.addEventListener("click", () => {
-        const key = card.getAttribute("data-project");
-        openProjectModal(key);
+    if (!card.hasAttribute("tabindex")) card.setAttribute("tabindex", "0");
+    if (!card.hasAttribute("role")) card.setAttribute("role", "button");
+
+    const open = () => {
+        lastTrigger = card;
+        openProjectModal(card.getAttribute("data-project"));
+    };
+
+    card.addEventListener("click", open);
+    card.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            open();
+        }
     });
 });
 
