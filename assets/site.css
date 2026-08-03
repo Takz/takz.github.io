@@ -1717,9 +1717,11 @@ section.visible {
    ========================================================================== */
 
 :root {
-    --violet: #8b7cf6;
-    --violet-soft: rgba(139, 124, 246, 0.14);
-    --violet-line: rgba(139, 124, 246, 0.32);
+    /* Same purple the hero gradient and buttons use, so the site carries one
+       violet rather than two competing ones. */
+    --violet: #a855f7;
+    --violet-soft: rgba(168, 85, 247, 0.14);
+    --violet-line: rgba(168, 85, 247, 0.32);
     --panel: rgba(15, 23, 42, 0.55);
     /* Engineering register for stage numbers, formats and figures. */
     --mono: "SF Mono", ui-monospace, Menlo, "Cascadia Mono", monospace;
@@ -3085,14 +3087,10 @@ section.visible {
     text-wrap: pretty;
 }
 
-/* The rainbow gradient (blue -> purple -> orange, hue-rotating) was the only
-   warm colour left after the gold came out, and it dated the whole hero.
-   Two stops inside the brand, no animation.
-   background-image, NOT the background shorthand: the shorthand resets
-   background-clip to border-box and the text fill collapses into a solid bar. */
-.hero-heading .gradient-text {
-    background-image: linear-gradient(100deg, #38bdf8 0%, #8b7cf6 100%);
-    animation: none;
+@media (prefers-reduced-motion: reduce) {
+    .hero-heading .gradient-text {
+        animation: none;
+    }
 }
 
 /* Chips were wrapping 3 + 1 and centring the orphan. */
@@ -3142,14 +3140,57 @@ section.visible {
     margin-top: auto;
 }
 
-/* The wipe is now the first thing after the hero, so give it room to breathe
-   and stop the figures band colliding with it. */
-#transformation .compare {
+/* ============================================================================
+   CONSOLIDATION — single-page layout
+   ========================================================================== */
+
+/* The App Store badge sits beside a text button in the hero. */
+.hero-cta-group {
+    align-items: center;
+}
+
+/* Asset Manager screenshot inside the pipeline section. */
+.pipeline-shot {
+    margin-top: 3.5rem;
+}
+
+/* Flagship case study: the airport wipe leads the work section. */
+.case-flagship {
+    margin-bottom: 3.5rem;
+}
+
+.case-flagship-head {
+    max-width: 720px;
+    margin: 0 auto 1.75rem;
+    text-align: center;
+}
+
+.case-flagship-title {
+    font-size: clamp(1.35rem, 2.6vw, 1.8rem);
+    letter-spacing: -0.01em;
+    margin: 0.6rem 0 0.5rem;
+    text-wrap: balance;
+}
+
+.case-flagship-text {
+    color: var(--muted);
+    line-height: 1.6;
+    text-wrap: pretty;
+}
+
+.case-flagship .compare {
     box-shadow: var(--shadow-card);
 }
 
-#transformation .figures {
+.case-flagship .figures {
     margin-top: 1.25rem;
+}
+
+/* Four cards read as a deliberate 2x2, not auto-fit's 3+1. */
+@media (min-width: 769px) {
+    #work .work-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 /* The hover hint sat at opacity .25 by default, so "View preview" floated

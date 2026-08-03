@@ -53,9 +53,8 @@ if (menuToggle) {
 
 
 // ---- Project modal logic ----
-// Scoped, and bails out on pages that have no modal markup. Previously this
-// ran at top level and threw on /products/ and /spaces/, which aborted every
-// block defined after it in this file.
+// Scoped, and bails out on pages that have no modal markup, so the blocks
+// below still run wherever the modal is absent.
 (function () {
     const modal = document.getElementById("projectModal");
     if (!modal) return;

@@ -15,8 +15,7 @@ const puppeteer = require(path.join(__dirname, 'node_modules/puppeteer'));
 const OUT = path.join(__dirname, 'shots');
 require('fs').mkdirSync(OUT, { recursive: true });
 
-const all = [['home','http://localhost:8765/'], ['products','http://localhost:8765/products/'],
-             ['spaces','http://localhost:8765/spaces/'], ['case-studies','http://localhost:8765/case-studies/']];
+const all = [['home','http://localhost:8765/'], ['privacy','http://localhost:8765/privacy.html']];
 const pages = process.env.ONLY ? all.filter(p => p[0] === process.env.ONLY) : all;
 
 (async () => {

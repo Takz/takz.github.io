@@ -57,6 +57,36 @@
             }
         }
     </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Product to Apple Vision Pro pipeline",
+            "provider": {
+                "@type": "Organization",
+                "name": "AlternateXR",
+                "url": "https://www.alternatexr.com"
+            },
+            "serviceType": "3D model optimisation and spatial delivery",
+            "description": "Automated conversion of CAD and 3D product models into Vision-ready USDZ and GLB, hosted and viewable at true 1:1 scale on Apple Vision Pro, with client-authored material sets.",
+            "areaServed": "Worldwide"
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "BIM to walkable spatial environment",
+            "provider": {
+                "@type": "Organization",
+                "name": "AlternateXR",
+                "url": "https://www.alternatexr.com"
+            },
+            "serviceType": "BIM and CAD conversion to explorable high-fidelity environments",
+            "description": "Conversion of Revit, IFC and other BIM sources into navigable, high-fidelity spaces for Apple Vision Pro, with lighting states and full-scale exploration.",
+            "areaServed": "Worldwide"
+        }
+    </script>
     <link rel="stylesheet" href="assets/site.css">
 </head>
 
@@ -71,9 +101,9 @@
                 </div>
             </a>
             <div class="nav-links">
-                <a href="products/">Products</a>
-                <a href="spaces/">Spaces</a>
-                <a href="case-studies/">Case Studies</a>
+                <a href="#products">Products</a>
+                <a href="#spaces">Spaces</a>
+                <a href="#work">Work</a>
                 <a href="#studio">Studio</a>
                 <a href="#contact">Contact</a>
             </div>
@@ -116,8 +146,8 @@
             </h1>
 
             <p class="hero-subtitle">
-                Two pipelines. Products land in your client's room at 1:1 in minutes.
-                Buildings become places they can walk through.
+                Products land in your client's room at 1:1 in minutes. Buildings become
+                places they can walk through. Both are live in our free app.
             </p>
             <div class="hero-capabilities">
                 <span class="hero-chip">Real Estate</span>
@@ -126,7 +156,20 @@
                 <span class="hero-chip">Retail</span>
             </div>
             <div class="hero-cta-group">
-                <button class="btn-primary" onclick="location.href='#pipeline'">See the pipeline</button>
+                <a class="appstore-badge" href="https://apps.apple.com/gb/app/alternatexr/id6792300997"
+                    target="_blank" rel="noopener" aria-label="Download AlternateXR on the App Store">
+                    <svg viewBox="0 0 120 40" role="img" aria-hidden="true" focusable="false" width="169" height="56">
+                        <rect width="120" height="40" rx="6.75" fill="#000" />
+                        <rect x="0.5" y="0.5" width="119" height="39" rx="6.25" fill="none" stroke="#a6a6a6"
+                            stroke-width="1" />
+                        <path fill="#fff"
+                            d="M24.77 20.3a4.95 4.95 0 0 1 2.36-4.15 5.07 5.07 0 0 0-3.99-2.16c-1.68-.18-3.31 1-4.17 1-.87 0-2.19-.98-3.61-.95a5.32 5.32 0 0 0-4.47 2.73c-1.93 3.35-.49 8.27 1.36 10.98.93 1.33 2 2.81 3.42 2.76 1.38-.06 1.9-.89 3.57-.89 1.65 0 2.14.89 3.58.85 1.48-.02 2.42-1.33 3.31-2.67a10.9 10.9 0 0 0 1.51-3.09 4.78 4.78 0 0 1-2.92-4.4zM22.04 12.21a4.87 4.87 0 0 0 1.11-3.49 4.96 4.96 0 0 0-3.21 1.66 4.64 4.64 0 0 0-1.14 3.36 4.1 4.1 0 0 0 3.24-1.53z" />
+                        <text x="41" y="15.5" fill="#fff" font-family="-apple-system, Helvetica, Arial, sans-serif"
+                            font-size="7.5">Download on the</text>
+                        <text x="41" y="30" fill="#fff" font-family="-apple-system, Helvetica, Arial, sans-serif"
+                            font-size="16.5" font-weight="600">App Store</text>
+                    </svg>
+                </a>
                 <button class="btn-secondary" onclick="location.href='#contact'">Book a call</button>
             </div>
         </div>
@@ -162,61 +205,12 @@
             </div>
         </section>
 
-        <!-- The transformation -->
-        <section class="section" id="transformation">
-            <div class="section-header section-header--tight">
-                <div class="section-eyebrow">What we do</div>
-                <h2 class="section-title">Complex greyscale in. A place you can walk through, out.</h2>
-                <p class="lede">
-                    An airport terminal for a major European hub. Drag to see the job.
-                </p>
-            </div>
-
-            <div class="compare" id="compare">
-                <img class="compare-img compare-before" src="media/airport-before-1600.jpg"
-                    srcset="media/airport-before-800.jpg 800w, media/airport-before-1600.jpg 1600w"
-                    sizes="(max-width: 1280px) 100vw, 1200px"
-                    alt="The terminal as an untextured grey BIM model, showing structure only"
-                    width="1600" height="895" />
-                <img class="compare-img compare-after" src="media/airport-after-1600.jpg"
-                    srcset="media/airport-after-800.jpg 800w, media/airport-after-1600.jpg 1600w"
-                    sizes="(max-width: 1280px) 100vw, 1200px"
-                    alt="The same terminal delivered: materials, lighting, signage, seating and travelators"
-                    width="1600" height="895" />
-                <input class="compare-range" id="compareRange" type="range" min="0" max="100" value="50" step="0.1"
-                    aria-label="Reveal the delivered environment" />
-                <div class="compare-divider" aria-hidden="true"></div>
-                <div class="compare-knob" aria-hidden="true">&#9664;&#9654;</div>
-                <div class="compare-tag compare-tag--before">Source BIM</div>
-                <div class="compare-tag compare-tag--after">Delivered</div>
-            </div>
-
-            <div class="figures">
-                <div class="figure">
-                    <div class="figure-value">37M &rarr; 4M</div>
-                    <div class="figure-label">Polygons</div>
-                </div>
-                <div class="figure">
-                    <div class="figure-value">89%</div>
-                    <div class="figure-label">Reduction</div>
-                </div>
-                <div class="figure">
-                    <div class="figure-value">220 &times; 50 &times; 14 m</div>
-                    <div class="figure-label">Walkable</div>
-                </div>
-                <div class="figure">
-                    <div class="figure-value">11,000 m&sup2;</div>
-                    <div class="figure-label">Floor area</div>
-                </div>
-            </div>
-        </section>
-
         <!-- Two avenues -->
         <section class="section" id="avenues">
             <div class="section-header section-header--tight">
                 <div class="section-eyebrow">What we do</div>
                 <h2 class="section-title">Products &amp; spaces, made spatial</h2>
-                <p class="lede">One engine, two scales.</p>
+                <p class="lede">One engine, two scales. Try both switches.</p>
             </div>
 
             <div class="avenues">
@@ -247,9 +241,6 @@
                             <li>Finishes swap live in the headset</li>
                             <li>You author them yourself, in a browser</li>
                         </ul>
-                        <a class="avenue-link" href="products/">
-                            Explore the Products pipeline <span class="arrow" aria-hidden="true">&rarr;</span>
-                        </a>
                     </div>
                 </article>
 
@@ -280,11 +271,37 @@
                             <li>Daylight and evening states</li>
                             <li>Proven across 220 m of airport terminal</li>
                         </ul>
-                        <a class="avenue-link" href="spaces/">
-                            Explore the Spaces pipeline <span class="arrow" aria-hidden="true">&rarr;</span>
-                        </a>
                     </div>
                 </article>
+            </div>
+        </section>
+
+        <!-- The app -->
+        <section class="section" id="app">
+            <div class="appcard">
+                <div>
+                    <h3>Both of those are running now, free</h3>
+                    <p>
+                        The AlternateXR app is our own output. <strong>Journey of Leaves</strong> is a real
+                        client model that came through the pipeline and is running on Vision&nbsp;Pro.
+                        <strong>The Digital Showroom</strong> is the quality bar we hold for full spaces.
+                    </p>
+                    <div class="appcard-meta">Free &middot; visionOS 2.0 or later</div>
+                </div>
+                <a class="appstore-badge" href="https://apps.apple.com/gb/app/alternatexr/id6792300997"
+                    target="_blank" rel="noopener" aria-label="Download AlternateXR on the App Store">
+                    <svg viewBox="0 0 120 40" role="img" aria-hidden="true" focusable="false" width="169" height="56">
+                        <rect width="120" height="40" rx="6.75" fill="#000" />
+                        <rect x="0.5" y="0.5" width="119" height="39" rx="6.25" fill="none" stroke="#a6a6a6"
+                            stroke-width="1" />
+                        <path fill="#fff"
+                            d="M24.77 20.3a4.95 4.95 0 0 1 2.36-4.15 5.07 5.07 0 0 0-3.99-2.16c-1.68-.18-3.31 1-4.17 1-.87 0-2.19-.98-3.61-.95a5.32 5.32 0 0 0-4.47 2.73c-1.93 3.35-.49 8.27 1.36 10.98.93 1.33 2 2.81 3.42 2.76 1.38-.06 1.9-.89 3.57-.89 1.65 0 2.14.89 3.58.85 1.48-.02 2.42-1.33 3.31-2.67a10.9 10.9 0 0 0 1.51-3.09 4.78 4.78 0 0 1-2.92-4.4zM22.04 12.21a4.87 4.87 0 0 0 1.11-3.49 4.96 4.96 0 0 0-3.21 1.66 4.64 4.64 0 0 0-1.14 3.36 4.1 4.1 0 0 0 3.24-1.53z" />
+                        <text x="41" y="15.5" fill="#fff" font-family="-apple-system, Helvetica, Arial, sans-serif"
+                            font-size="7.5">Download on the</text>
+                        <text x="41" y="30" fill="#fff" font-family="-apple-system, Helvetica, Arial, sans-serif"
+                            font-size="16.5" font-weight="600">App Store</text>
+                    </svg>
+                </a>
             </div>
         </section>
 
@@ -335,39 +352,46 @@
                 A single product takes <b>minutes</b>. A full space takes <b>days to weeks</b> &mdash;
                 those get automation and hands-on work both, because a building is not a chandelier.
             </p>
-        </section>
 
-        <!-- The app -->
-        <section class="section" id="app">
-            <div class="appcard">
-                <div>
-                    <h3>Both pipelines, running, free</h3>
-                    <p>
-                        The AlternateXR app is our own output. <strong>Journey of Leaves</strong> is a real
-                        client model that came through the pipeline and is running on Vision&nbsp;Pro.
-                        <strong>The Digital Showroom</strong> is the quality bar we hold for spaces like
-                        the airport.
-                    </p>
-                    <div class="appcard-meta">Free &middot; visionOS 2.0 or later</div>
+            <!-- Asset Manager: stage 03, in practice -->
+            <div class="shots pipeline-shot">
+                <div class="shot">
+                    <figure class="shot-figure">
+                        <img src="media/app-materials-1600.jpg"
+                            srcset="media/app-materials-800.jpg 800w, media/app-materials-1600.jpg 1600w"
+                            sizes="(max-width: 900px) 100vw, 50vw"
+                            alt="Asset Manager material groups panel with a live 3D preview and swappable material slots"
+                            width="1600" height="907" loading="lazy" />
+                    </figure>
+                    <div class="shot-copy">
+                        <div class="shot-step">Stage 03, in practice</div>
+                        <h3>The Asset Manager</h3>
+                        <p>
+                            Upload it once and it's yours to change. Material groups are found for you
+                            and surfaced as slots to fill &mdash; check the result in a live preview,
+                            then push it straight to the headset. Finishes you build are reusable
+                            across every product you own.
+                        </p>
+                        <div class="finishes">
+                            <div class="finish"><img src="media/tex-aluminium.jpg" alt="Aluminium finish"
+                                    width="74" height="46" loading="lazy" /><span>Aluminium</span></div>
+                            <div class="finish"><img src="media/tex-brass.jpg" alt="Brass finish" width="74"
+                                    height="46" loading="lazy" /><span>Brass</span></div>
+                            <div class="finish"><img src="media/tex-brushed-brass.jpg" alt="Brushed brass finish"
+                                    width="74" height="46" loading="lazy" /><span>Brushed Brass</span></div>
+                            <div class="finish"><img src="media/tex-copper.jpg" alt="Copper finish" width="74"
+                                    height="46" loading="lazy" /><span>Copper</span></div>
+                            <div class="finish"><img src="media/tex-light-gold.jpg" alt="Light gold finish"
+                                    width="74" height="46" loading="lazy" /><span>Light Gold</span></div>
+                            <div class="finish"><img src="media/tex-satin-nickel.jpg" alt="Satin nickel finish"
+                                    width="74" height="46" loading="lazy" /><span>Satin Nickel</span></div>
+                        </div>
+                    </div>
                 </div>
-                <a class="appstore-badge" href="https://apps.apple.com/gb/app/alternatexr/id6792300997"
-                    target="_blank" rel="noopener" aria-label="Download AlternateXR on the App Store">
-                    <svg viewBox="0 0 120 40" role="img" aria-hidden="true" focusable="false" width="169" height="56">
-                        <rect width="120" height="40" rx="6.75" fill="#000" />
-                        <rect x="0.5" y="0.5" width="119" height="39" rx="6.25" fill="none" stroke="#a6a6a6"
-                            stroke-width="1" />
-                        <path fill="#fff"
-                            d="M24.77 20.3a4.95 4.95 0 0 1 2.36-4.15 5.07 5.07 0 0 0-3.99-2.16c-1.68-.18-3.31 1-4.17 1-.87 0-2.19-.98-3.61-.95a5.32 5.32 0 0 0-4.47 2.73c-1.93 3.35-.49 8.27 1.36 10.98.93 1.33 2 2.81 3.42 2.76 1.38-.06 1.9-.89 3.57-.89 1.65 0 2.14.89 3.58.85 1.48-.02 2.42-1.33 3.31-2.67a10.9 10.9 0 0 0 1.51-3.09 4.78 4.78 0 0 1-2.92-4.4zM22.04 12.21a4.87 4.87 0 0 0 1.11-3.49 4.96 4.96 0 0 0-3.21 1.66 4.64 4.64 0 0 0-1.14 3.36 4.1 4.1 0 0 0 3.24-1.53z" />
-                        <text x="41" y="15.5" fill="#fff" font-family="-apple-system, Helvetica, Arial, sans-serif"
-                            font-size="7.5">Download on the</text>
-                        <text x="41" y="30" fill="#fff" font-family="-apple-system, Helvetica, Arial, sans-serif"
-                            font-size="16.5" font-weight="600">App Store</text>
-                    </svg>
-                </a>
             </div>
         </section>
 
-        <!-- Work Section -->
+        <!-- Work -->
         <section class="section" id="work">
             <div class="section-header section-header--tight">
                 <div class="section-eyebrow">Case studies</div>
@@ -375,9 +399,59 @@
                 <p class="lede">The projects that taught the pipeline what it needed to do.</p>
             </div>
 
+            <!-- Flagship: the airport -->
+            <div class="case-flagship">
+                <div class="case-flagship-head">
+                    <div class="eyebrow-mono">Flagship &mdash; Airport XR &middot; 2024</div>
+                    <h3 class="case-flagship-title">A terminal for a major European hub, walkable at full scale</h3>
+                    <p class="case-flagship-text">
+                        Source BIM on the left, delivered on the right, same camera. Drag it.
+                    </p>
+                </div>
+
+                <div class="compare" id="compare">
+                    <img class="compare-img compare-before" src="media/airport-before-1600.jpg"
+                        srcset="media/airport-before-800.jpg 800w, media/airport-before-1600.jpg 1600w"
+                        sizes="(max-width: 1280px) 100vw, 1200px"
+                        alt="The terminal as an untextured grey BIM model, showing structure only"
+                        width="1600" height="895" />
+                    <img class="compare-img compare-after" src="media/airport-after-1600.jpg"
+                        srcset="media/airport-after-800.jpg 800w, media/airport-after-1600.jpg 1600w"
+                        sizes="(max-width: 1280px) 100vw, 1200px"
+                        alt="The same terminal delivered: materials, lighting, signage, seating and travelators"
+                        width="1600" height="895" />
+                    <input class="compare-range" id="compareRange" type="range" min="0" max="100" value="50" step="0.1"
+                        aria-label="Reveal the delivered environment" />
+                    <div class="compare-divider" aria-hidden="true"></div>
+                    <div class="compare-knob" aria-hidden="true">&#9664;&#9654;</div>
+                    <div class="compare-tag compare-tag--before">Source BIM</div>
+                    <div class="compare-tag compare-tag--after">Delivered</div>
+                </div>
+
+                <div class="figures">
+                    <div class="figure">
+                        <div class="figure-value">37M &rarr; 4M</div>
+                        <div class="figure-label">Polygons</div>
+                    </div>
+                    <div class="figure">
+                        <div class="figure-value">89%</div>
+                        <div class="figure-label">Reduction</div>
+                    </div>
+                    <div class="figure">
+                        <div class="figure-value">220 &times; 50 &times; 14 m</div>
+                        <div class="figure-label">Walkable</div>
+                    </div>
+                    <div class="figure">
+                        <div class="figure-value">11,000 m&sup2;</div>
+                        <div class="figure-label">Floor area</div>
+                    </div>
+                </div>
+            </div>
+
             <div class="work-grid">
                 <!-- FormaXR -->
                 <div class="work-card project-trigger" data-project="formaxr">
+                    <div class="work-card-era">2024</div>
                     <div class="work-card-bg" style="background-image: url('forma-thumb.jpg');"></div>
                     <div class="work-card-content">
                         <div class="work-card-tags">
@@ -394,28 +468,10 @@
                         </div>
                     </div>
                 </div>
-                <!-- HoloPatient -->
-                <div class="work-card project-trigger" data-project="holopatient">
-                    <div class="work-card-bg" style="background-image: url('holopatient-thumb.jpg');"></div>
-                    <div class="work-card-content">
-                        <div class="work-card-tags">
-                            <span class="work-tag">Healthcare</span>
-                            <span class="work-tag">HoloLens</span>
-                            <span class="work-tag">Training</span>
-                        </div>
-
-                        <h3 class="work-card-title">HoloPatient</h3>
-                        <p class="work-card-description">
-                            Life-sized virtual patients for clinical training.
-                        </p>
-                        <div class="work-card-hover-hint">
-                            <span class="hint-text">View preview</span>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- YachtXR -->
                 <div class="work-card project-trigger" data-project="yachtxr">
+                    <div class="work-card-era">2025</div>
                     <div class="work-card-bg" style="background-image: url('media/yachtxr-1200.jpg');"></div>
                     <div class="work-card-content">
                         <div class="work-card-tags">
@@ -433,19 +489,53 @@
                     </div>
                 </div>
 
-            </div>
+                <!-- HoloPatient -->
+                <div class="work-card project-trigger" data-project="holopatient">
+                    <div class="work-card-era">HoloLens era</div>
+                    <div class="work-card-bg" style="background-image: url('holopatient-thumb.jpg');"></div>
+                    <div class="work-card-content">
+                        <div class="work-card-tags">
+                            <span class="work-tag">Healthcare</span>
+                            <span class="work-tag">HoloLens</span>
+                            <span class="work-tag">Training</span>
+                        </div>
+                        <h3 class="work-card-title">HoloPatient</h3>
+                        <p class="work-card-description">
+                            Life-sized virtual patients for clinical training.
+                        </p>
+                        <div class="work-card-hover-hint">
+                            <span class="hint-text">View preview</span>
+                        </div>
+                    </div>
+                </div>
 
-<!--             <p class="hero-subnote work-subnote">
-                Platforms & capabilities: Vision Pro · Meta Quest · XR development · AR development · VR development ·
-                immersive apps
-            </p> -->
+                <!-- HoloHuman -->
+                <div class="work-card project-trigger" data-project="holohuman">
+                    <div class="work-card-era">HoloLens era</div>
+                    <div class="work-card-bg" style="background-image: url('holohuman-thumb.jpg');"></div>
+                    <div class="work-card-content">
+                        <div class="work-card-tags">
+                            <span class="work-tag">Education</span>
+                            <span class="work-tag">HoloLens</span>
+                            <span class="work-tag">Anatomy</span>
+                        </div>
+                        <h3 class="work-card-title">HoloHuman</h3>
+                        <p class="work-card-description">
+                            Interactive 3D anatomy at room scale.
+                        </p>
+                        <div class="work-card-hover-hint">
+                            <span class="hint-text">View preview</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Project Modal -->
         <div class="project-modal" id="projectModal" aria-hidden="true">
             <div class="project-modal-backdrop" id="projectModalBackdrop"></div>
             <div class="project-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
-                <button class="project-modal-close" id="projectModalClose" aria-label="Close project details">x</button>
+                <button class="project-modal-close" id="projectModalClose" aria-label="Close project details">&times;</button>
 
                 <div class="project-modal-media">
                     <video id="projectModalVideo" class="project-modal-video" autoplay muted loop playsinline
@@ -460,6 +550,7 @@
                 </div>
             </div>
         </div>
+
         <section class="testimonial" id="testimonial">
             <div class="testimonial-card">
                 <p class="testimonial-text">
@@ -472,10 +563,6 @@
                 </p>
             </div>
         </section>
-
-        <div class="work-cta" style="text-align: center; margin: 0 auto 2rem;">
-            <button class="btn-primary" onclick="location.href='case-studies/'">All case studies</button>
-        </div>
 
         <!-- Studio -->
         <section class="section" id="studio">
@@ -507,62 +594,22 @@
             </div>
         </section>
 
+        <!-- Contact -->
         <section class="section" id="contact">
             <div class="section-header section-header--tight">
-                <div class="section-eyebrow">Get in Touch</div>
-                <h2 class="section-title">Send us a file</h2>
+                <div class="section-eyebrow">Get in touch</div>
+                <h2 class="section-title">Interested? Let's talk.</h2>
             </div>
 
             <div class="contact-container">
                 <p class="about-text">
-                    Tell us what you want people to see, and we'll tell you what the pipeline does with it.
+                    A few lines about your project is all it takes.
                 </p>
 
-                <!-- Project type chips -->
-                <div class="contact-chips">
-                    <span class="contact-chip">Real Estate</span>
-                    <span class="contact-chip">Infrastructure</span>
-                    <span class="contact-chip">Manufacturing</span>
-                    <span class="contact-chip">Retail</span>
-                </div>
-
-                <!-- Simple three-step flow -->
-                <div class="contact-steps">
-                    <div class="contact-step">
-                        <div class="contact-step-number">1</div>
-                        <div class="contact-step-body">
-                            <div class="contact-step-title">Share a brief</div>
-                            <div class="contact-step-text">
-                                A few lines on your project, audience and timeline are enough to start.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact-step">
-                        <div class="contact-step-number">2</div>
-                        <div class="contact-step-body">
-                            <div class="contact-step-title">30-minute call</div>
-                            <div class="contact-step-text">
-                                We explore use cases, constraints and what success would look like.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact-step">
-                        <div class="contact-step-number">3</div>
-                        <div class="contact-step-body">
-                            <div class="contact-step-title">Proposal & prototype</div>
-                            <div class="contact-step-text">
-                                You get a clear scope, timeline and budget, plus options for a lightweight prototype.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact methods -->
                 <div class="contact-methods">
-                    <a href="mailto:hello@alternatexr.com?subject=XR%20Project%20Enquiry&body=Hi%20Tarik,%0D%0A%0D%0AProject%20overview:%0D%0A-%20Industry:%0D%0A-%20Use%20case:%0D%0A-%20Rough%20timeline:%0D%0A-%20Budget%20range:%0D%0A%0D%0ABest,%0D%0A"
-                        class="contact-method">
+                    <a href="mailto:hello@alternatexr.com?subject=XR%20Project%20Enquiry" class="contact-method">
                         <div class="contact-method-label">
-                            Email a project brief<br />
+                            Email us<br />
                             <span class="contact-method-sub">hello@alternatexr.com</span>
                         </div>
                     </a>
@@ -573,10 +620,6 @@
                         </div>
                     </a>
                 </div>
-
-                <p class="contact-footnote">
-                    Typical response time: within 1–2 business days. No spam, no mailing lists.
-                </p>
             </div>
         </section>
 
@@ -592,9 +635,9 @@
                 </div>
             </a>
             <div class="footer-links">
-                <a href="products/">Products</a>
-                <a href="spaces/">Spaces</a>
-                <a href="case-studies/">Case Studies</a>
+                <a href="#products">Products</a>
+                <a href="#spaces">Spaces</a>
+                <a href="#work">Work</a>
                 <a href="privacy.html">Privacy</a>
             </div>
             <div class="footer-copyright">
