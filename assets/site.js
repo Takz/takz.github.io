@@ -314,7 +314,8 @@ if (menuToggle) {
     range.addEventListener('input', () => apply(range.value));
     apply(range.value);
 
-    // One slow sweep on first view, to show it's draggable, then hand over.
+    // One slow sweep on first view: opens near the source model, then wipes
+    // left to reveal the delivered render. Cancelled the moment it's touched.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (!('IntersectionObserver' in window)) return;
 
@@ -325,7 +326,7 @@ if (menuToggle) {
             done = true;
             io.disconnect();
 
-            const from = 8, to = 92, ms = 1400, start = performance.now();
+            const from = 88, to = 34, ms = 1500, start = performance.now();
             let cancelled = false;
             const stop = () => { cancelled = true; };
             range.addEventListener('pointerdown', stop, { once: true });
@@ -348,21 +349,21 @@ if (menuToggle) {
 })();
 
 
-// ---- Lighting state toggle ----
-(function () {
-    const pair = document.getElementById('showroomStates');
-    if (!pair) return;
-    const controls = pair.parentElement.querySelector('.state-controls');
-    if (!controls) return;
+// ---- State toggles ----
+// Any .stateful block: stacked <img> layers cross-faded by sibling buttons.
+// Class-based rather than id-based so a page can carry several without
+// colliding, and so the same component works on cards and full-width figures.
+document.querySelectorAll('.stateful').forEach(block => {
+    const images = block.querySelectorAll('.statepair img');
+    const buttons = block.querySelectorAll('.state-btn');
+    if (!images.length || !buttons.length) return;
 
-    const images = pair.querySelectorAll('img');
-    const buttons = controls.querySelectorAll('.state-btn');
+    const select = (i) => {
+        images.forEach((img, n) => img.classList.toggle('is-shown', n === i));
+        buttons.forEach((b, n) => b.setAttribute('aria-pressed', String(n === i)));
+    };
 
-    buttons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const i = Number(btn.dataset.index);
-            images.forEach((img, n) => img.classList.toggle('is-shown', n === i));
-            buttons.forEach((b, n) => b.setAttribute('aria-pressed', String(n === i)));
-        });
+    buttons.forEach((btn, i) => {
+        btn.addEventListener('click', () => select(Number(btn.dataset.index ?? i)));
     });
-})();
+});

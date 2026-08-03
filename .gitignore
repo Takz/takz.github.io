@@ -17,3 +17,4 @@ __pycache__/
 tools/node_modules/
 tools/package.json
 tools/package-lock.json
+tools/shots/

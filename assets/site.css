@@ -2557,9 +2557,10 @@ section.visible {
     -webkit-user-drag: none;
 }
 
-/* The finished render is revealed from the left as the handle moves right. */
+/* Source sits underneath; the delivered render occupies everything right of
+   the handle, so the pair reads left-to-right as before -> after. */
 .compare-after {
-    clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+    clip-path: inset(0 0 0 var(--pos));
 }
 
 .compare-divider {
@@ -2688,6 +2689,37 @@ section.visible {
     justify-content: center;
     margin-top: 1.1rem;
     flex-wrap: wrap;
+}
+
+/* Overlaid variant, for toggles that sit on top of card media. */
+.state-controls--overlay {
+    position: absolute;
+    left: 0.85rem;
+    bottom: 0.85rem;
+    margin: 0;
+    justify-content: flex-start;
+    z-index: 3;
+    gap: 0.4rem;
+}
+
+.state-controls--overlay .state-btn {
+    font-size: 0.68rem;
+    padding: 0.38rem 0.85rem;
+    background: rgba(2, 6, 23, 0.78);
+    backdrop-filter: blur(8px);
+}
+
+.stateful {
+    position: relative;
+}
+
+/* When a state pair drives card media it must fill the frame. */
+.avenue-media .statepair {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    border-radius: 0;
+    aspect-ratio: auto;
 }
 
 .state-btn {
@@ -2993,4 +3025,152 @@ section.visible {
     color: var(--muted);
     text-align: center;
     line-height: 1.3;
+}
+
+
+/* ============================================================================
+   DESIGN PASS - fixes only visible once rendered
+   ========================================================================== */
+
+/* Client logos arrived as a jumble: Apple a white glyph, Microsoft and FormaXR
+   in full colour, Pearson on a white plate, GigXR in bright yellow. On a dark
+   ground they fought each other and read as clip-art. Normalising to a single
+   luminance lets the names carry the weight. */
+.clients-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    max-width: 100%;
+    gap: 1.5rem 2rem;
+}
+
+.client-logo img {
+    height: 30px;
+    filter: grayscale(1) brightness(1.9) contrast(0.85);
+    opacity: 0.72;
+    transition: opacity 0.25s ease, filter 0.25s ease;
+}
+
+.client-logo:hover img {
+    opacity: 1;
+    filter: grayscale(1) brightness(2.1) contrast(0.9);
+}
+
+.client-logo span {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    opacity: 0.85;
+}
+
+@media (max-width: 860px) {
+    .clients-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    .clients-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Headline was breaking mid-clause and orphaning "scale,". */
+.hero-heading,
+.section-title,
+.subhero-title,
+.avenue-title {
+    text-wrap: balance;
+}
+
+.hero-subtitle,
+.lede {
+    text-wrap: pretty;
+}
+
+/* The rainbow gradient (blue -> purple -> orange, hue-rotating) was the only
+   warm colour left after the gold came out, and it dated the whole hero.
+   Two stops inside the brand, no animation.
+   background-image, NOT the background shorthand: the shorthand resets
+   background-clip to border-box and the text fill collapses into a solid bar. */
+.hero-heading .gradient-text {
+    background-image: linear-gradient(100deg, #38bdf8 0%, #8b7cf6 100%);
+    animation: none;
+}
+
+/* Chips were wrapping 3 + 1 and centring the orphan. */
+.hero-capabilities {
+    max-width: 640px;
+}
+
+/* Case study art was sitting under a heavy grey wash, and the hover hint
+   showed through the middle of the card. */
+.work-card-bg {
+    filter: brightness(0.82) saturate(1.05);
+}
+
+.work-card:hover .work-card-bg {
+    filter: brightness(0.95) saturate(1.1);
+}
+
+.work-card-content {
+    background: linear-gradient(to top,
+            rgba(2, 6, 23, 0.96) 0%,
+            rgba(2, 6, 23, 0.82) 45%,
+            rgba(2, 6, 23, 0) 100%);
+}
+
+/* Cards were different heights with tags landing at different baselines. */
+.casegrid,
+.work-grid {
+    align-items: stretch;
+}
+
+.work-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 340px;
+}
+
+.work-card-content {
+    margin-top: auto;
+}
+
+/* Pipeline stages had ragged bottoms where stage 01 carries less copy. */
+.pipeline-grid {
+    align-items: stretch;
+}
+
+.stage-io {
+    margin-top: auto;
+}
+
+/* The wipe is now the first thing after the hero, so give it room to breathe
+   and stop the figures band colliding with it. */
+#transformation .compare {
+    box-shadow: var(--shadow-card);
+}
+
+#transformation .figures {
+    margin-top: 1.25rem;
+}
+
+/* The hover hint sat at opacity .25 by default, so "View preview" floated
+   half-visible over every card at rest and read as a rendering fault. It only
+   needs to exist on hover; keyboard focus gets it too. */
+.work-card-hover-hint {
+    opacity: 0;
+}
+
+.work-card:focus-visible .work-card-hover-hint {
+    opacity: 1;
+}
+
+.work-card:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* Contact steps were squeezed into three narrow columns at desktop width. */
+.contact-steps {
+    max-width: 780px;
+    margin-inline: auto;
+    gap: 1.5rem;
 }

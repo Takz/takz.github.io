@@ -151,13 +151,62 @@
                         <span>FormaXR</span>
                     </div>
                     <div class="client-logo">
-                        <img src="logos/pearson.jpg" alt="Pearson Education" width="36" height="36" loading="lazy" />
+                        <img src="logos/pearson.png" alt="Pearson Education" width="36" height="36" loading="lazy" />
                         <span>Pearson</span>
                     </div>
                     <div class="client-logo">
                         <img src="logos/gigxr.png" alt="GIGXR" width="36" height="36" loading="lazy" />
                         <span>GIGXR</span>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The transformation -->
+        <section class="section" id="transformation">
+            <div class="section-header section-header--tight">
+                <div class="section-eyebrow">What we do</div>
+                <h2 class="section-title">Complex greyscale in. A place you can walk through, out.</h2>
+                <p class="lede">
+                    An airport terminal for a major European hub. Drag to see the job.
+                </p>
+            </div>
+
+            <div class="compare" id="compare">
+                <img class="compare-img compare-before" src="media/airport-before-1600.jpg"
+                    srcset="media/airport-before-800.jpg 800w, media/airport-before-1600.jpg 1600w"
+                    sizes="(max-width: 1280px) 100vw, 1200px"
+                    alt="The terminal as an untextured grey BIM model, showing structure only"
+                    width="1600" height="895" />
+                <img class="compare-img compare-after" src="media/airport-after-1600.jpg"
+                    srcset="media/airport-after-800.jpg 800w, media/airport-after-1600.jpg 1600w"
+                    sizes="(max-width: 1280px) 100vw, 1200px"
+                    alt="The same terminal delivered: materials, lighting, signage, seating and travelators"
+                    width="1600" height="895" />
+                <input class="compare-range" id="compareRange" type="range" min="0" max="100" value="50" step="0.1"
+                    aria-label="Reveal the delivered environment" />
+                <div class="compare-divider" aria-hidden="true"></div>
+                <div class="compare-knob" aria-hidden="true">&#9664;&#9654;</div>
+                <div class="compare-tag compare-tag--before">Source BIM</div>
+                <div class="compare-tag compare-tag--after">Delivered</div>
+            </div>
+
+            <div class="figures">
+                <div class="figure">
+                    <div class="figure-value">37M &rarr; 4M</div>
+                    <div class="figure-label">Polygons</div>
+                </div>
+                <div class="figure">
+                    <div class="figure-value">89%</div>
+                    <div class="figure-label">Reduction</div>
+                </div>
+                <div class="figure">
+                    <div class="figure-value">220 &times; 50 &times; 14 m</div>
+                    <div class="figure-label">Walkable</div>
+                </div>
+                <div class="figure">
+                    <div class="figure-value">11,000 m&sup2;</div>
+                    <div class="figure-label">Floor area</div>
                 </div>
             </div>
         </section>
@@ -172,12 +221,20 @@
 
             <div class="avenues">
                 <article class="avenue avenue--products" id="products">
-                    <div class="avenue-media">
-                        <img src="media/product-leaves-960.jpg"
-                            srcset="media/product-leaves-960.jpg 960w, media/product-leaves-1920.jpg 1920w"
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            alt="Journey of Leaves, a gilded lighting installation by Rock &amp; Soar, shown at true scale in a room"
-                            width="960" height="540" loading="lazy" />
+                    <div class="avenue-media stateful">
+                        <div class="statepair">
+                            <img class="is-shown" src="media/product-leaves-960.jpg"
+                                alt="Journey of Leaves, a lighting installation by Rock &amp; Soar, at true scale in a room"
+                                width="960" height="540" loading="lazy" />
+                            <img src="media/product-london-960.jpg"
+                                alt="The same product placed on a 3D model of central London"
+                                width="960" height="540" loading="lazy" />
+                        </div>
+                        <div class="state-controls state-controls--overlay" role="group"
+                            aria-label="Choose a placement">
+                            <button type="button" class="state-btn" aria-pressed="true" data-index="0">In the room</button>
+                            <button type="button" class="state-btn" aria-pressed="false" data-index="1">On location</button>
+                        </div>
                     </div>
                     <div class="avenue-body">
                         <div class="avenue-kicker">Avenue 01 &mdash; Products</div>
@@ -197,12 +254,20 @@
                 </article>
 
                 <article class="avenue avenue--spaces" id="spaces">
-                    <div class="avenue-media">
-                        <img src="media/airport-after-800.jpg"
-                            srcset="media/airport-after-800.jpg 800w, media/airport-after-1600.jpg 1600w"
-                            sizes="(max-width: 768px) 100vw, 50vw"
-                            alt="Airport terminal concourse rendered in high fidelity, with signage, seating and daylight"
-                            width="800" height="448" loading="lazy" />
+                    <div class="avenue-media stateful">
+                        <div class="statepair">
+                            <img class="is-shown" src="media/showroom-day-hero-960.jpg"
+                                alt="A finished interior in daylight, with a grand piano and chandelier"
+                                width="960" height="540" loading="lazy" />
+                            <img src="media/showroom-night-hero-960.jpg"
+                                alt="The same interior in the evening, the chandelier lit"
+                                width="960" height="540" loading="lazy" />
+                        </div>
+                        <div class="state-controls state-controls--overlay" role="group"
+                            aria-label="Choose a lighting state">
+                            <button type="button" class="state-btn" aria-pressed="true" data-index="0">Daylight</button>
+                            <button type="button" class="state-btn" aria-pressed="false" data-index="1">Evening</button>
+                        </div>
                     </div>
                     <div class="avenue-body">
                         <div class="avenue-kicker">Avenue 02 &mdash; Spaces</div>
@@ -299,36 +364,6 @@
                             font-size="16.5" font-weight="600">App Store</text>
                     </svg>
                 </a>
-            </div>
-        </section>
-
-        <!-- Airport flagship -->
-        <section class="section" id="airport">
-            <div class="section-header section-header--tight">
-                <div class="section-eyebrow">Flagship</div>
-                <h2 class="section-title">An airport terminal, walkable</h2>
-                <p class="lede">
-                    A major European hub, from source BIM to a concourse you can walk end to end.
-                </p>
-            </div>
-
-            <div class="figures">
-                <div class="figure">
-                    <div class="figure-value">37M &rarr; 4M</div>
-                    <div class="figure-label">Polygons</div>
-                </div>
-                <div class="figure">
-                    <div class="figure-value">89%</div>
-                    <div class="figure-label">Reduction</div>
-                </div>
-                <div class="figure">
-                    <div class="figure-value">220 &times; 50 &times; 14 m</div>
-                    <div class="figure-label">Walkable</div>
-                </div>
-                <div class="figure">
-                    <div class="figure-value">11,000 m&sup2;</div>
-                    <div class="figure-label">Floor area</div>
-                </div>
             </div>
         </section>
 
