@@ -3500,3 +3500,38 @@ section.visible {
     -moz-user-select: none;
     pointer-events: none;
 }
+
+/* ============================================================================
+   HERO SCRIM — for the brighter showreel
+   ==========================================================================
+   The new hero footage is a white classical interior: mean luma in the headline
+   zone is 139/255 against 117 for the old cut, and it peaks at 174. The old
+   brightness(0.7) plus a linear top-to-bottom gradient was tuned for darker
+   footage and leaves the headline washing out against the ceiling.
+
+   Rather than crushing the whole frame — which would waste the footage — this
+   darkens the middle where the type sits and lets the edges stay bright. */
+.hero-video {
+    filter: brightness(0.62) saturate(1.06);
+}
+
+.hero-video-overlay {
+    background:
+        radial-gradient(ellipse 78% 58% at 50% 52%,
+            rgba(2, 6, 23, 0.62) 0%,
+            rgba(2, 6, 23, 0.42) 45%,
+            rgba(2, 6, 23, 0.12) 78%,
+            transparent 100%),
+        linear-gradient(to bottom,
+            rgba(2, 6, 23, 0.30) 0%,
+            rgba(2, 6, 23, 0.34) 50%,
+            rgba(2, 6, 23, 0.72) 100%),
+        radial-gradient(circle at 20% 50%, rgba(56, 189, 248, 0.12), transparent 60%);
+}
+
+/* The pulse dipped the scrim to 70% opacity, which is exactly when the
+   headline lost contrast. Hold it steady. */
+.hero-video-overlay {
+    animation: none;
+    opacity: 1;
+}
