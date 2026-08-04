@@ -247,17 +247,27 @@
                 <article class="avenue avenue--products" id="products">
                     <div class="avenue-media stateful">
                         <div class="statepair">
-                            <img class="is-shown" src="media/product-leaves-960.jpg"
-                                alt="Journey of Leaves, a lighting installation by Rock &amp; Soar, at true scale in a room"
-                                width="960" height="540" loading="lazy" />
-                            <img src="media/product-london-960.jpg"
-                                alt="The same product placed on a 3D model of central London"
-                                width="960" height="540" loading="lazy" />
+                            <img class="is-shown" src="media/product-autumn-1440.jpg"
+                                srcset="media/product-autumn-960.jpg 960w, media/product-autumn-1440.jpg 1440w"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                alt="Journey of Leaves by Rock &amp; Soar in its Gilded Autumn finish, shown at full scale in a contemporary lounge"
+                                width="1440" height="810" loading="lazy" />
+                            <img src="media/product-summer-1440.jpg"
+                                srcset="media/product-summer-960.jpg 960w, media/product-summer-1440.jpg 1440w"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                alt="The same installation in its Verdant Summer finish, with green and orange leaves"
+                                width="1440" height="810" loading="lazy" />
+                            <img src="media/product-dusk-1440.jpg"
+                                srcset="media/product-dusk-960.jpg 960w, media/product-dusk-1440.jpg 1440w"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                alt="The same installation in its Aurora Dusk finish, with red, silver and bronze leaves"
+                                width="1440" height="810" loading="lazy" />
                         </div>
                         <div class="state-controls state-controls--overlay" role="group"
-                            aria-label="Choose a placement">
-                            <button type="button" class="state-btn" aria-pressed="true" data-index="0">In the room</button>
-                            <button type="button" class="state-btn" aria-pressed="false" data-index="1">On location</button>
+                            aria-label="Choose a finish">
+                            <button type="button" class="state-btn" aria-pressed="true" data-index="0">Autumn</button>
+                            <button type="button" class="state-btn" aria-pressed="false" data-index="1">Summer</button>
+                            <button type="button" class="state-btn" aria-pressed="false" data-index="2">Dusk</button>
                         </div>
                     </div>
                     <div class="avenue-body">
