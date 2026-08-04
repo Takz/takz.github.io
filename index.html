@@ -3,1779 +3,94 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>AlternateXR – XR Development Studio in London</title>
+    <title>AlternateXR – CAD and BIM to Apple Vision Pro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light">
+    <meta name="color-scheme" content="dark">
+    <link rel="icon" type="image/svg+xml" href="teal-dark-icon.svg">
+    <meta name="theme-color" content="#020617">
     <meta name="description"
-        content="AlternateXR is a London-based XR development studio specialising in high-fidelity AR, VR and immersive applications for Vision Pro, Meta Quest and enterprise clients across real estate, infrastructure, healthcare and education." />
+        content="AlternateXR turns CAD and BIM files into Apple Vision Pro experiences. Products appear at true 1:1 scale with switchable finishes in minutes; full BIM models become walkable, high-fidelity spaces." />
     <link rel="canonical" href="https://www.alternatexr.com/">
-    <meta property="og:title" content="AlternateXR – XR Development Studio in London">
+    <meta property="og:title" content="AlternateXR – CAD and BIM to Apple Vision Pro">
     <meta property="og:description"
-        content="AlternateXR builds Apple Vision Pro and XR experiences for real estate, infrastructure, healthcare and education.">
+        content="Two pipelines: your product in a client's room at 1:1, or your building walkable before it's built. All major 3D formats in, USDZ and GLB out.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.alternatexr.com/">
-    <meta property="og:image" content="https://www.alternatexr.com/showreel-poster.jpg">
+    <meta property="og:image" content="https://www.alternatexr.com/media/hero-poster.jpg">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="AlternateXR – XR Development Studio in London">
+    <meta name="twitter:title" content="AlternateXR – CAD and BIM to Apple Vision Pro">
     <meta name="twitter:description"
-        content="Apple Vision Pro and XR experiences for real estate, infrastructure, healthcare and education.">
-    <meta name="twitter:image" content="https://www.alternatexr.com/showreel-poster.jpg">
-    <link rel="preload" as="video" href="showreel.mp4" type="video/mp4">
+        content="Products at true scale in any room. Buildings you can walk through before they exist.">
+    <meta name="twitter:image" content="https://www.alternatexr.com/media/hero-poster.jpg">
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
             "name": "AlternateXR",
-            "image": "https://www.alternatexr.com/showreel-poster.jpg",
-            "description": "XR, AR and VR development studio based in London.",
+            "legalName": "AlternateXR Ltd",
+            "image": "https://www.alternatexr.com/media/hero-poster.jpg",
+            "description": "Converts CAD, BIM and 3D models into Apple Vision Pro experiences — products at true 1:1 scale with switchable finishes, and full BIM models as walkable high-fidelity spaces.",
             "address": {
                 "@type": "PostalAddress",
+                "streetAddress": "128 City Road",
                 "addressLocality": "London",
-                "addressCountry": "UK"
+                "postalCode": "EC1V 2NX",
+                "addressCountry": "GB"
             },
-            "url": "https://www.alternatexr.com"
+            "url": "https://www.alternatexr.com",
+            "email": "hello@alternatexr.com"
         }
     </script>
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
-            "@type": "VideoObject",
-            "name": "AlternateXR Showreel",
-            "description": "Showreel of Apple Vision Pro and XR experiences for real estate, infrastructure, healthcare and education.",
-            "thumbnailUrl": "https://www.alternatexr.com/showreel-poster.jpg",
-            "uploadDate": "2024-01-01",
-            "contentUrl": "https://www.alternatexr.com/showreel.mp4",
-            "embedUrl": "https://www.alternatexr.com/showreel.mp4"
+            "@type": "SoftwareApplication",
+            "name": "AlternateXR",
+            "operatingSystem": "visionOS 2.0",
+            "applicationCategory": "DesignApplication",
+            "url": "https://apps.apple.com/gb/app/alternatexr/id6792300997",
+            "description": "View products at true scale in your own space on Apple Vision Pro, with materials that switch live.",
+            "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "GBP"
+            }
         }
     </script>
-    <style>
-        :root {
-            --bg: #020617;
-            --bg-soft: rgba(15, 23, 42, 0.96);
-            --accent: #38bdf8;
-            --accent-soft: rgba(56, 189, 248, 0.18);
-            --text: #e5e7eb;
-            --muted: #9ca3af;
-            --border: rgba(148, 163, 184, 0.25);
-            --radius-lg: 1rem;
-            --radius-xl: 1.5rem;
-            --shadow-card: 0 24px 70px rgba(15, 23, 42, 0.8);
-            --max-width: 1280px;
-            color-scheme: light;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            cursor: default;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", system-ui, sans-serif;
-            color: var(--text);
-            background: var(--bg);
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Animated background */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 20% 50%, rgba(56, 189, 248, 0.15), transparent 55%),
-                radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.12), transparent 55%),
-                radial-gradient(circle at 40% 20%, rgba(249, 115, 22, 0.08), transparent 45%);
-            pointer-events: none;
-            z-index: -1;
-            /* animation: gradientShift 20s ease infinite; */
-        }
-
-        @keyframes gradientShift {
-
-            0%,
-            100% {
-                transform: translate(0, 0) scale(1);
-            }
-
-            33% {
-                transform: translate(-50px, -30px) scale(1.1);
-            }
-
-            66% {
-                transform: translate(30px, 20px) scale(0.95);
-            }
-        }
-
-        /* Floating particles */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: var(--accent);
-            border-radius: 50%;
-            opacity: 0;
-            animation: float 20s infinite;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) translateX(0);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 0.4;
-            }
-
-            90% {
-                opacity: 0.4;
-            }
-
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
-        }
-
-        .particle:nth-child(1) {
-            left: 10%;
-            animation-delay: 0s;
-            animation-duration: 18s;
-        }
-
-        .particle:nth-child(2) {
-            left: 25%;
-            animation-delay: 2s;
-            animation-duration: 22s;
-            width: 3px;
-            height: 3px;
-        }
-
-        .particle:nth-child(3) {
-            left: 40%;
-            animation-delay: 4s;
-            animation-duration: 20s;
-        }
-
-        .particle:nth-child(4) {
-            left: 55%;
-            animation-delay: 1s;
-            animation-duration: 24s;
-            width: 5px;
-            height: 5px;
-        }
-
-        .particle:nth-child(5) {
-            left: 70%;
-            animation-delay: 3s;
-            animation-duration: 19s;
-        }
-
-        .particle:nth-child(6) {
-            left: 85%;
-            animation-delay: 5s;
-            animation-duration: 21s;
-            width: 3px;
-            height: 3px;
-        }
-
-        .particle:nth-child(7) {
-            left: 95%;
-            animation-delay: 7s;
-            animation-duration: 23s;
-        }
-
-        .particle:nth-child(8) {
-            left: 5%;
-            animation-delay: 6s;
-            animation-duration: 18s;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .shell {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 2rem 4rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* NAVBAR */
-        .nav-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            backdrop-filter: blur(20px) saturate(180%);
-            background: linear-gradient(to bottom,
-                    rgba(2, 6, 23, 0.85),
-                    rgba(2, 6, 23, 0.3),
-                    transparent);
-            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .nav-container.scrolled {
-            backdrop-filter: blur(30px) saturate(200%);
-            background: rgba(2, 6, 23, 0.95);
-            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
-        }
-
-        .nav {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .nav-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .nav-brand-icon {
-            width: 32px;
-            height: 32px;
-            flex-shrink: 0;
-        }
-
-        .nav-title .xr {
-            color: #38BDF8;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                box-shadow: 0 0 30px rgba(56, 189, 248, 0.5);
-            }
-
-            50% {
-                box-shadow: 0 0 50px rgba(56, 189, 248, 0.8);
-            }
-        }
-
-        .nav-title {
-            font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            /*background: linear-gradient(20deg, #ffffff, #38bdf8);*/
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: #ffffff;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: var(--muted);
-        }
-
-        .nav-links a {
-            position: relative;
-            transition: color 0.3s ease;
-            padding: 0.5rem 0;
-        }
-
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            height: 2px;
-            width: 0;
-            background: linear-gradient(90deg, #38bdf8, #a855f7);
-            transition: width 0.3s ease;
-            border-radius: 2px;
-        }
-
-        .nav-links a:hover {
-            color: #ffffff;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-cta {
-            padding: 0.6rem 1.5rem;
-            border-radius: 999px;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(147, 51, 234, 0.1));
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-        }
-
-        .nav-cta:hover {
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(147, 51, 234, 0.2));
-            border-color: rgba(56, 189, 248, 0.5);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
-        }
-
-        /* Mobile menu */
-        .nav-menu-toggle {
-            display: none;
-            align-items: center;
-            justify-content: center;
-            width: 2.4rem;
-            height: 2.4rem;
-            padding: 0;
-            background: rgba(2, 6, 23, 0.6);
-            border: 1px solid rgba(56, 189, 248, 0.25);
-            border-radius: 0.65rem;
-            color: var(--text);
-            font-size: 1.25rem;
-            line-height: 1;
-            cursor: pointer;
-            transition: border-color 0.2s ease, background 0.2s ease;
-        }
-
-        .nav-menu-toggle:hover {
-            border-color: rgba(56, 189, 248, 0.5);
-            background: rgba(2, 6, 23, 0.8);
-        }
-
-        .nav-menu-toggle:focus-visible {
-            outline: 2px solid rgba(56, 189, 248, 0.7);
-            outline-offset: 2px;
-        }
-
-        .nav-menu-icon {
-            position: relative;
-            width: 18px;
-            height: 14px;
-            display: block;
-        }
-
-        .nav-menu-icon .bar {
-            position: absolute;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            border-radius: 999px;
-            background: currentColor;
-            transform-origin: center;
-            transition: transform 0.22s ease, opacity 0.2s ease;
-        }
-
-        .nav-menu-icon .bar:nth-child(1) {
-            top: 0;
-        }
-
-        .nav-menu-icon .bar:nth-child(2) {
-            top: 6px;
-        }
-
-        .nav-menu-icon .bar:nth-child(3) {
-            top: 12px;
-        }
-
-        .nav-menu-toggle.is-open .nav-menu-icon .bar:nth-child(1) {
-            transform: translateY(6px) rotate(45deg);
-        }
-
-        .nav-menu-toggle.is-open .nav-menu-icon .bar:nth-child(2) {
-            opacity: 0;
-            transform: scaleX(0.4);
-        }
-
-        .nav-menu-toggle.is-open .nav-menu-icon .bar:nth-child(3) {
-            transform: translateY(-6px) rotate(-45deg);
-        }
-
-        /* HERO */
-        header.hero {
-            margin-top: 72px;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-video-wrapper {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
-
-        .hero-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.7);
-        }
-
-        .hero-video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                linear-gradient(to bottom, rgba(2, 6, 23, 0.1) 0%, rgba(2, 6, 23, 0.4) 50%, rgba(2, 6, 23, 0.7) 100%),
-                radial-gradient(circle at 20% 50%, rgba(56, 189, 248, 0.15), transparent 60%);
-            animation: overlayPulse 8s ease-in-out infinite;
-        }
-
-        @keyframes overlayPulse {
-
-            0%,
-            100% {
-                opacity: 0.9;
-            }
-
-            50% {
-                opacity: 0.7;
-            }
-        }
-
-        .hero-content {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            z-index: 10;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1.2rem;
-            border-radius: 999px;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(147, 51, 234, 0.1));
-            border: 1px solid rgba(56, 189, 248, 0.2);
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            margin-bottom: 2rem;
-            animation: fadeInUp 0.8s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .hero-badge .badge-icon {
-            width: 8px;
-            height: 8px;
-            background: #38bdf8;
-            border-radius: 50%;
-            flex: 0 0 auto;
-            display: inline-block;
-            aspect-ratio: 1 / 1;
-            animation: blink 2s ease-in-out infinite;
-        }
-
-        @keyframes blink {
-
-            0%,
-            100% {
-                opacity: 1;
-            }
-
-            50% {
-                opacity: 0.3;
-            }
-        }
-
-        .hero-heading {
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-            line-height: 1.05;
-            letter-spacing: -0.02em;
-            animation: fadeInUp 0.8s ease 0.2s both;
-        }
-
-        .hero-heading .gradient-text {
-            background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #f97316 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            display: inline-block;
-            animation: gradientFlow 8s ease infinite;
-        }
-
-        @keyframes gradientFlow {
-
-            0%,
-            100% {
-                filter: hue-rotate(0deg);
-            }
-
-            50% {
-                filter: hue-rotate(30deg);
-            }
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
-            margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease 0.4s both;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-bottom: 1.6rem;
-            /* reduce by ~20% */
-            line-height: 1.6;
-        }
-
-        .hero-subnote {
-            font-size: 0.95rem;
-            color: var(--muted);
-            margin-top: 0.5rem;
-            margin-bottom: 2.2rem;
-            animation: fadeInUp 0.8s ease 0.55s both;
-        }
-
-        .work-subnote {
-            text-align: center;
-            max-width: 780px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 1rem;
-            margin-bottom: 2.2rem;
-        }
-
-        .hero-capabilities {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.5rem;
-            margin: 0 auto 2.2rem;
-            max-width: 520px;
-        }
-
-        .hero-chip {
-            padding: 0.4rem 0.9rem;
-            border-radius: 999px;
-            border: 1px solid rgba(56, 189, 248, 0.35);
-            background: radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.18), rgba(15, 23, 42, 0.96));
-            font-size: 0.8rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--muted);
-        }
-
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-cta-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease 0.6s both;
-        }
-
-        .btn-primary {
-            padding: 0.9rem 2.2rem;
-            border-radius: 999px;
-            background: linear-gradient(135deg, #38bdf8, #6366f1);
-            color: white;
-            font-weight: 600;
-            font-size: 0.95rem;
-            letter-spacing: 0.05em;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 20px 40px rgba(56, 189, 248, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 25px 50px rgba(56, 189, 248, 0.5);
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-secondary {
-            padding: 0.9rem 2.2rem;
-            border-radius: 999px;
-            background: transparent;
-            color: var(--text);
-            font-weight: 600;
-            font-size: 0.95rem;
-            letter-spacing: 0.05em;
-            border: 1px solid rgba(148, 163, 184, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(56, 189, 248, 0.1);
-            border-color: rgba(56, 189, 248, 0.5);
-            transform: translateY(-3px);
-        }
-
-        /* Floating capabilities */
-        .floating-capabilities {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        .capability-card {
-            position: absolute;
-            padding: 0.8rem 1.3rem;
-            border-radius: 999px;
-            background: linear-gradient(135deg, rgba(2, 6, 23, 0.9), rgba(15, 23, 42, 0.9));
-            backdrop-filter: blur(30px);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            opacity: 0;
-            animation: floatCard 20s ease-in-out infinite;
-            white-space: nowrap;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        @keyframes floatCard {
-
-            0%,
-            100% {
-                opacity: 0;
-                transform: translate(0, 20px) scale(0.9);
-            }
-
-            15%,
-            85% {
-                opacity: 1;
-                transform: translate(0, 0) scale(1);
-            }
-        }
-
-        .capability-card:nth-child(1) {
-            top: 25%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .capability-card:nth-child(2) {
-            top: 25%;
-            right: 10%;
-            animation-delay: 2s;
-        }
-
-        .capability-card:nth-child(3) {
-            bottom: 35%;
-            left: 12%;
-            animation-delay: 4s;
-        }
-
-        .capability-card:nth-child(4) {
-            bottom: 35%;
-            right: 12%;
-            animation-delay: 6s;
-        }
-
-        /* Stats section */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-            padding: 2.5rem 0;
-            border-top: 1px solid rgba(56, 189, 248, 0.1);
-            border-bottom: 1px solid rgba(56, 189, 248, 0.1);
-            align-items: flex-start;
-            /* NEW */
-        }
-
-        .stat-card {
-            text-align: center;
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
-            display: flex;
-            /* NEW */
-            flex-direction: column;
-            /* NEW */
-            align-items: center;
-            /* NEW */
-        }
-
-        .stat-card:nth-child(1) {
-            animation-delay: 0.1s;
-        }
-
-        .stat-card:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-
-        .stat-card:nth-child(3) {
-            animation-delay: 0.3s;
-        }
-
-        .stat-card:nth-child(4) {
-            animation-delay: 0.4s;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            /* was 2.5rem */
-            font-weight: 700;
-            background: linear-gradient(135deg, #38bdf8, #a855f7);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 0.5rem;
-            white-space: nowrap;
-            /* NEW */
-            min-height: 2.4rem;
-            /* NEW: keeps all headers vertically aligned */
-        }
-
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .mobile-break {
-            display: none;
-        }
-
-        /* SECTIONS */
-        section {
-            padding: 5rem 0;
-            opacity: 1;
-            transform: translateY(0);
-            transition: all 0.8s ease;
-        }
-
-        /* Tighter contact/footer spacing */
-        #contact {
-            padding-bottom: 2.5rem;
-        }
-
-        #work {
-            padding-bottom: 3.5rem;
-        }
-
-        section.animate-in {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-eyebrow {
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .section-eyebrow::before,
-        .section-eyebrow::after {
-            content: "";
-            width: 50px;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-
-        /* Work cards */
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .work-card {
-            border-radius: 1.5rem;
-            overflow: hidden;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.6));
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(56, 189, 248, 0.15);
-            transition: all 0.4s ease;
-            cursor: pointer;
-            position: relative;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
-
-        .work-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, transparent, rgba(2, 6, 23, 0.9));
-            z-index: 1;
-        }
-
-        .work-card-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-size: cover, cover;
-            background-position: center, center;
-            background-repeat: no-repeat, no-repeat;
-            transition: transform 0.4s ease, filter 0.4s ease;
-            filter: brightness(0.6) saturate(1.2);
-        }
-
-        .work-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(56, 189, 248, 0.3);
-            box-shadow: 0 30px 60px rgba(56, 189, 248, 0.2);
-        }
-
-        .work-card:hover .work-card-bg {
-            transform: scale(1.1);
-            filter: brightness(0.8) saturate(1.3);
-        }
-
-        .work-card-content {
-            padding: 2rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .work-card-tags {
-            display: flex;
-            flex-wrap: nowrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            /* safety */
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .work-card-tags::-webkit-scrollbar {
-            display: none;
-        }
-
-        .work-tag {
-            padding: 0.25rem 0.6rem;
-            border-radius: 999px;
-            background: rgba(56, 189, 248, 0.15);
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            font-size: 0.75rem;
-            font-weight: 500;
-            letter-spacing: 0.05em;
-            white-space: nowrap;
-            /* NEVER break text */
-            flex: 0 0 auto;
-            /* prevent shrinking/stretching */
-        }
-
-        .work-card-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .work-card-description {
-            font-size: 0.95rem;
-            color: var(--muted);
-            line-height: 1.5;
-        }
-
-        .work-card-hover-hint {
-            position: absolute;
-            top: -10%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.55rem 1.25rem;
-            border-radius: 999px;
-            background: rgba(15, 23, 42, 0.78);
-            border: 1px solid rgba(148, 163, 184, 0.45);
-            font-size: 0.75rem;
-            color: var(--muted);
-            opacity: 0.25;
-            transition:
-                opacity 0.25s ease,
-                transform 0.25s ease,
-                border-color 0.25s ease,
-                background 0.25s ease,
-                color 0.25s ease;
-            pointer-events: none;
-            z-index: 3;
-        }
-
-        .work-card:hover .work-card-hover-hint {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1.05);
-            border-color: rgba(56, 189, 248, 0.85);
-            background: rgba(15, 23, 42, 0.98);
-            color: #e5e7eb;
-        }
-
-        .work-cta {
-            text-align: center;
-            margin-top: 1rem;
-        }
-
-        .hint-icon {
-            font-size: 0.7rem;
-        }
-
-        .hint-text {
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-        }
-
-        /* Project modal */
-        .project-modal {
-            position: fixed;
-            inset: 0;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 200;
-        }
-
-        .project-modal.open {
-            display: flex;
-        }
-
-        .project-modal-backdrop {
-            position: absolute;
-            inset: 0;
-            background: rgba(2, 6, 23, 0.85);
-            backdrop-filter: blur(18px);
-        }
-
-        .project-modal-dialog {
-            position: relative;
-            z-index: 1;
-            max-width: 960px;
-            width: 90%;
-            max-height: 80vh;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.98));
-            border-radius: 1.5rem;
-            border: 1px solid rgba(56, 189, 248, 0.3);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
-            display: grid;
-            grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-            overflow: hidden;
-        }
-
-        .project-modal-media {
-            position: relative;
-            background: #020617;
-        }
-
-        .project-modal-video {
-            width: 100%;
-            height: 100%;
-            max-height: 80vh;
-            object-fit: cover;
-            display: block;
-        }
-
-        .project-modal-body {
-            padding: 1.8rem;
-            overflow-y: auto;
-        }
-
-        .project-modal-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .project-modal-tags .tag {
-            padding: 0.25rem 0.7rem;
-            border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.7);
-            font-size: 0.75rem;
-            color: var(--muted);
-        }
-
-        .project-modal-title {
-            font-size: 1.4rem;
-            margin: 0 0 0.6rem 0;
-        }
-
-        .project-modal-text {
-            font-size: 0.95rem;
-            color: var(--muted);
-            margin-bottom: 0.6rem;
-        }
-
-        .project-modal-list {
-            padding-left: 1.1rem;
-            font-size: 0.88rem;
-            color: var(--muted);
-        }
-
-        .project-modal-list li+li {
-            margin-top: 0.2rem;
-        }
-
-        .project-modal-close {
-            position: absolute;
-            top: 0.9rem;
-            right: 0.9rem;
-            border: none;
-            background: rgba(15, 23, 42, 0.9);
-            color: var(--muted);
-            border-radius: 999px;
-            width: 32px;
-            height: 32px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(148, 163, 184, 0.6);
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-        }
-
-        .project-modal-close:hover {
-            color: #e5e7eb;
-            border-color: rgba(56, 189, 248, 0.8);
-        }
-
-        #process {
-            padding: 6rem 0 4rem;
-        }
-
-        .process-grid {
-            max-width: 980px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-        }
-
-        .process-step {
-            padding: 2rem;
-            border: 1px solid rgba(56, 189, 248, 0.25);
-            border-radius: 1.25rem;
-            background: rgba(2, 6, 23, 0.65);
-            text-align: center;
-            backdrop-filter: blur(12px);
-            transition: border-color 0.25s ease, background 0.25s ease;
-        }
-
-        .process-step:hover {
-            border-color: rgba(56, 189, 248, 0.6);
-            background: rgba(2, 6, 23, 0.85);
-        }
-
-        .process-icon {
-            font-size: 2rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .process-title {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 0.35rem;
-        }
-
-        .process-text {
-            font-size: 0.9rem;
-            color: var(--muted);
-            line-height: 1.5;
-        }
-
-        .testimonial {
-            padding: 2.5rem 1.5rem 3.5rem;
-            display: flex;
-            justify-content: center;
-        }
-
-        .testimonial-card {
-            max-width: 800px;
-            padding: 2.5rem 2rem;
-            background: rgba(2, 6, 23, 0.4);
-            border: 1px solid rgba(56, 189, 248, 0.1);
-            border-radius: 20px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(20px);
-            text-align: center;
-        }
-
-        .testimonial-text {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            opacity: 0.95;
-            margin-bottom: 1.5rem;
-        }
-
-        .testimonial-author {
-            font-size: 0.95rem;
-            opacity: 0.7;
-        }
-
-        /* Mobile */
-        @media (max-width: 768px) {
-            .process-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .process-step {
-                padding: 1.6rem;
-            }
-        }
-
-
-        @media (max-width: 900px) {
-            .project-modal-dialog {
-                grid-template-columns: 1fr;
-                max-height: 90vh;
-            }
-
-            .project-modal-media {
-                max-height: 45vh;
-            }
-        }
-
-        /* Clients marquee */
-        .clients-marquee {
-            padding: 3rem 0 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        .clients-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 2rem 3rem;
-            align-items: center;
-            justify-items: center;
-            max-width: 900px;
-            width: 100%;
-        }
-
-        .client-logo {
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.6rem;
-            white-space: nowrap;
-            transition: transform 0.25s ease, opacity 0.25s ease;
-            opacity: 1;
-        }
-
-        .client-logo img {
-            height: 36px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .client-logo span {
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--muted);
-        }
-
-        .client-logo:hover {
-            transform: translateY(-2px);
-            opacity: 1;
-        }
-
-
-        /* On tablets/phones: 2 columns */
-        @media (max-width: 768px) {
-            .clients-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 1.75rem 2rem;
-            }
-        }
-
-
-        /* About section */
-        .about-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-text {
-            font-size: 1.25rem;
-            line-height: 1.8;
-            color: var(--muted);
-            margin-bottom: 4rem;
-        }
-
-        .studio-credibility {
-            margin-top: 1.2rem;
-            margin-bottom: 2rem;
-            font-size: 0.95rem;
-            font-style: italic;
-            opacity: 0.75;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.4;
-        }
-
-
-
-        .about-founder {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-            padding: 2rem;
-            border-radius: 1.5rem;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.05), rgba(147, 51, 234, 0.05));
-            border: 1px solid rgba(56, 189, 248, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .founder-avatar-img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid rgba(148, 163, 184, 0.7);
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
-        }
-
-        .founder-info {
-            text-align: left;
-            max-width: 460px;
-        }
-
-        .founder-name {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-
-        .founder-role {
-            color: var(--muted);
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .founder-bio {
-            font-size: 0.95rem;
-            color: var(--muted);
-            line-height: 1.6;
-        }
-
-        /* Contact section */
-        .contact-container {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .contact-methods {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-method {
-            padding: 1.5rem 2.5rem;
-            border-radius: 1rem;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.6));
-            border: 1px solid rgba(56, 189, 248, 0.15);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .contact-method:hover {
-            transform: translateY(-5px);
-            border-color: rgba(56, 189, 248, 0.3);
-            box-shadow: 0 20px 40px rgba(56, 189, 248, 0.2);
-        }
-
-        .contact-method-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-method-label {
-            font-size: 0.9rem;
-            color: var(--muted);
-        }
-
-        .contact-chips {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 0.5rem;
-            margin: -1rem auto 2rem;
-            margin-top: 1rem;
-        }
-
-        .contact-chip {
-            padding: 0.45rem 0.9rem;
-            border-radius: 999px;
-            border: 1px solid rgba(56, 189, 248, 0.35);
-            background: radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.15), rgba(15, 23, 42, 0.95));
-            font-size: 0.8rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--muted);
-        }
-
-        .contact-steps {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1.5rem;
-            margin: 0 auto 3rem;
-            max-width: 780px;
-        }
-
-        .contact-step {
-            display: flex;
-            gap: 0.9rem;
-            text-align: left;
-        }
-
-        .contact-step-number {
-            width: 26px;
-            height: 26px;
-            border-radius: 999px;
-            border: 1px solid rgba(56, 189, 248, 0.6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            color: #e5e7eb;
-            background: radial-gradient(circle at 30% 0%, rgba(56, 189, 248, 0.5), rgba(15, 23, 42, 1));
-        }
-
-        .contact-step-title {
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 0.2rem;
-        }
-
-        .contact-step-text {
-            font-size: 0.85rem;
-            color: var(--muted);
-            line-height: 1.5;
-        }
-
-        .contact-method-sub {
-            display: block;
-            font-size: 0.8rem;
-            color: var(--muted);
-            margin-top: 0.15rem;
-        }
-
-        .contact-footnote {
-            margin-top: 2rem;
-            font-size: 0.8rem;
-            color: var(--muted);
-        }
-
-        /* Mobile layout */
-        @media (max-width: 768px) {
-            .contact-steps {
-                grid-template-columns: 1fr;
-                text-align: left;
-            }
-
-            .contact-step {
-                align-items: flex-start;
-            }
-        }
-
-
-        /* Footer */
-        .footer {
-            padding: 2rem 0;
-            text-align: center;
-            border-top: 1px solid rgba(56, 189, 248, 0.1);
-            margin-top: 2.5rem;
-        }
-
-        .footer-content {
-            max-width: var(--max-width);
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .footer-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .footer-links a {
-            color: var(--muted);
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--text);
-        }
-
-        .footer-copyright {
-            color: var(--muted);
-            font-size: 0.85rem;
-            width: 100%;
-            margin-top: 2rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-
-            .nav-links,
-            .nav-cta {
-                display: none;
-            }
-
-            .nav-left {
-                order: 1;
-            }
-
-            .nav-brand-icon {
-                width: 24px;
-                height: 24px;
-            }
-
-            .nav-menu-toggle {
-                display: flex;
-                order: 2;
-                margin-left: auto;
-            }
-
-            .nav-links {
-                order: 3;
-            }
-
-            .nav-cta {
-                order: 4;
-            }
-
-            .hero-content {
-                padding-top: 4.5rem;
-                padding-bottom: 3.5rem;
-            }
-
-            .hero {
-                padding-top: 1.5rem;
-                padding-bottom: 2rem;
-                margin-top: 56px;
-                align-items: center;
-                /* bring hero content back toward center on mobile */
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-                /* improves spacing & legibility */
-                line-height: 1.15;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .hero-badge {
-                font-size: 0.75rem;
-                padding: 0.4rem 0.9rem;
-                gap: 0.35rem;
-            }
-
-            .hero-badge .badge-icon {
-                width: 6px;
-                height: 6px;
-            }
-
-            .work-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .work-card-tags {
-                flex-wrap: wrap;
-                overflow-x: visible;
-                max-width: 100%;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-                align-items: stretch;
-            }
-
-            .stat-number {
-                white-space: normal;
-            }
-
-            .stat-card {
-                display: grid;
-                grid-template-rows: auto 1fr;
-                justify-items: center;
-                row-gap: 0.35rem;
-                height: 100%;
-                text-align: center;
-            }
-
-            .stat-label {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-align: center;
-                min-height: 3.2rem;
-                line-height: 1.25;
-            }
-
-            .mobile-break {
-                display: inline;
-            }
-
-            .about-founder {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .founder-info {
-                text-align: center;
-            }
-
-            .contact-methods {
-                flex-direction: column;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .floating-capabilities {
-                display: none;
-            }
-
-            /* Disable large background / overlay animations on mobile */
-            body::before {
-                animation: none !important;
-                transform: none !important;
-            }
-
-            .particles {
-                display: none;
-            }
-
-            .hero-video-overlay {
-                animation: none !important;
-                opacity: 0.85;
-            }
-
-            .capability-card {
-                animation: none !important;
-                opacity: 1;
-                transform: none;
-            }
-
-            .clients-marquee {
-                overflow-x: auto;
-                overflow-y: hidden;
-                -webkit-overflow-scrolling: touch;
-            }
-
-            .marquee-track {
-                animation: none;
-                transform: none;
-                width: max-content;
-            }
-
-            .client-logo {
-                flex: 0 0 auto;
-                padding: 1.5rem 1.4rem;
-            }
-
-            /* Mobile nav open state */
-            .nav-container.mobile-open {
-                background: rgba(2, 6, 23, 0.98);
-                border-bottom: 1px solid rgba(56, 189, 248, 0.4);
-            }
-
-            .nav-container.mobile-open .nav {
-                flex-wrap: wrap;
-                align-items: center;
-            }
-
-            .nav-container.mobile-open .nav-links {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                margin-top: 1rem;
-                gap: 1rem;
-            }
-
-            .nav-container.mobile-open .nav-cta {
-                display: flex;
-                width: 100%;
-                justify-content: center;
-                margin-top: 1rem;
-            }
-
-            .nav-container.mobile-open .nav-menu-toggle {
-                transform: rotate(0deg);
-            }
-
-            .duplicate {
-                display: none !important;
-            }
-
-        }
-
-        /* Touch devices (no hover): make images bright by default and pill always visible */
-        @media (hover: none) and (pointer: coarse) {
-
-            .work-card-bg {
-                filter: none !important;
-                transform: none !important;
-            }
-
-            .work-card:hover .work-card-bg {
-                filter: none !important;
-                transform: none !important;
-            }
-
-            .work-card-hover-hint {
-                opacity: 0.6;
-                border-color: rgba(56, 189, 248, 0.85);
-                background: rgba(15, 23, 42, 0.96);
-                color: #e5e7eb;
-            }
-
-            .work-card:hover .work-card-hover-hint {
-                opacity: 0.9;
-                transform: translate(-50%, -50%);
-            }
-        }
-    </style>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "Product to Apple Vision Pro pipeline",
+            "provider": {
+                "@type": "Organization",
+                "name": "AlternateXR",
+                "url": "https://www.alternatexr.com"
+            },
+            "serviceType": "3D model optimisation and spatial delivery",
+            "description": "Automated conversion of CAD and 3D product models into Vision-ready USDZ and GLB, hosted and viewable at true 1:1 scale on Apple Vision Pro, with client-authored material sets.",
+            "areaServed": "Worldwide"
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": "BIM to walkable spatial environment",
+            "provider": {
+                "@type": "Organization",
+                "name": "AlternateXR",
+                "url": "https://www.alternatexr.com"
+            },
+            "serviceType": "BIM and CAD conversion to explorable high-fidelity environments",
+            "description": "Conversion of Revit, IFC and other BIM sources into navigable, high-fidelity spaces for Apple Vision Pro, with lighting states and full-scale exploration.",
+            "areaServed": "Worldwide"
+        }
+    </script>
+    <link rel="stylesheet" href="assets/site.css?v=202608041125">
 </head>
 
 <body id="top">
-    <!-- Floating particles -->
-    <div class="particles">
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-        <div class="particle"></div>
-    </div>
-
     <!-- Navigation -->
     <nav class="nav-container" id="navbar">
         <div class="nav">
@@ -1786,9 +101,10 @@
                 </div>
             </a>
             <div class="nav-links">
+                <a href="#avenues">What we do</a>
+                <a href="#pipeline">Pipeline</a>
                 <a href="#work">Work</a>
                 <a href="#studio">Studio</a>
-                <a href="#process">Process</a>
                 <a href="#contact">Contact</a>
             </div>
             <a href="#contact" class="nav-cta">Start a Project</a>
@@ -1807,81 +123,328 @@
     <header class="hero">
         <!-- Background Video -->
         <div class="hero-video-wrapper">
-            <video class="hero-video" autoplay muted loop playsinline poster="showreel-poster.jpg">
-                <source src="showreel.mp4" type="video/mp4">
-                <source src="showreel.webm" type="video/webm">
-                Your browser does not support the video tag.
+            <video class="hero-video" autoplay muted loop playsinline preload="metadata"
+                poster="media/hero-poster.jpg" aria-label="Apple Vision Pro passthrough footage: a gilded lighting installation hanging at true scale in a courtyard">
+                <source src="media/hero-720.mp4" type="video/mp4" media="(max-width: 900px)">
+                <source src="media/hero-1080.mp4" type="video/mp4">
             </video>
             <div class="hero-video-overlay"></div>
         </div>
         <div class="hero-content">
             <div class="hero-badge">
                 <div class="badge-icon"></div>
-                <span>Spatial Computing</span>
+                <span>Apple Vision Pro</span>
                 <div class="badge-icon"></div>
-                <span>Virtual Reality</span>
+                <span>CAD &amp; BIM</span>
                 <div class="badge-icon"></div>
-                <span>Augmented Reality</span>
+                <span>AR &amp; VR</span>
             </div>
 
             <h1 class="hero-heading">
-                Turning ideas into high-fidelity<br>
-                <span class="gradient-text">immersive experiences.</span>
+                Your CAD file. Walkable, at true scale,<br>
+                <span class="gradient-text">on Vision Pro.</span>
             </h1>
 
             <p class="hero-subtitle">
-                Premium XR, AR and VR development for Vision Pro, Meta Quest and every major immersive platform.
-                Transforming CAD, BIM and 3D assets into high-fidelity experiences that inform, train and inspire.
+                Products land in your client's room at 1:1 in minutes. Buildings become
+                places they can walk through. Both are live in our free app.
             </p>
             <div class="hero-capabilities">
                 <span class="hero-chip">Real Estate</span>
                 <span class="hero-chip">Infrastructure</span>
-                <span class="hero-chip">Healthcare</span>
-                <span class="hero-chip">Education</span>
+                <span class="hero-chip">Manufacturing</span>
+                <span class="hero-chip">Retail</span>
             </div>
             <div class="hero-cta-group">
-                <button class="btn-primary" onclick="location.href='#work'">View Projects</button>
-                <button class="btn-secondary" onclick="location.href='#contact'">Get in Touch</button>
+                <a class="appstore-badge" href="https://apps.apple.com/gb/app/alternatexr/id6792300997"
+                    target="_blank" rel="noopener" aria-label="Download AlternateXR on the App Store">
+                    <svg viewBox="0 0 120 40" role="img" aria-hidden="true" focusable="false" width="169" height="56">
+                        <rect width="120" height="40" rx="6.75" fill="#000" />
+                        <rect x="0.5" y="0.5" width="119" height="39" rx="6.25" fill="none" stroke="#a6a6a6"
+                            stroke-width="1" />
+                        <path fill="#fff"
+                            d="M24.77 20.3a4.95 4.95 0 0 1 2.36-4.15 5.07 5.07 0 0 0-3.99-2.16c-1.68-.18-3.31 1-4.17 1-.87 0-2.19-.98-3.61-.95a5.32 5.32 0 0 0-4.47 2.73c-1.93 3.35-.49 8.27 1.36 10.98.93 1.33 2 2.81 3.42 2.76 1.38-.06 1.9-.89 3.57-.89 1.65 0 2.14.89 3.58.85 1.48-.02 2.42-1.33 3.31-2.67a10.9 10.9 0 0 0 1.51-3.09 4.78 4.78 0 0 1-2.92-4.4zM22.04 12.21a4.87 4.87 0 0 0 1.11-3.49 4.96 4.96 0 0 0-3.21 1.66 4.64 4.64 0 0 0-1.14 3.36 4.1 4.1 0 0 0 3.24-1.53z" />
+                        <text x="41" y="15.5" fill="#fff" font-family="-apple-system, Helvetica, Arial, sans-serif"
+                            font-size="7.5">Download on the</text>
+                        <text x="41" y="30" fill="#fff" font-family="-apple-system, Helvetica, Arial, sans-serif"
+                            font-size="16.5" font-weight="600">App Store</text>
+                    </svg>
+                </a>
+                <button class="btn-secondary" onclick="location.href='#contact'">Book a call</button>
             </div>
         </div>
     </header>
 
     <main class="shell">
-        <!-- Stats -->
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number">10+</div>
-                <div class="stat-label">Years building<br>immersive XR</div>
+        <!-- Proof strip -->
+        <section class="proof" id="clients">
+            <div class="proof-label">Built with and for</div>
+            <div class="clients-marquee">
+                <div class="clients-grid">
+                    <div class="client-logo">
+                        <img src="logos/apple.png" alt="Apple" width="36" height="36" loading="lazy" />
+                        <span>Apple</span>
+                    </div>
+                    <div class="client-logo">
+                        <img src="logos/microsoft.png" alt="Microsoft" width="36" height="36" loading="lazy" />
+                        <span>Microsoft</span>
+                    </div>
+                    <div class="client-logo">
+                        <img src="logos/formaxr.png" alt="FormaXR" width="36" height="36" loading="lazy" />
+                        <span>FormaXR</span>
+                    </div>
+                    <div class="client-logo">
+                        <img src="logos/pearson.png" alt="Pearson Education" width="36" height="36" loading="lazy" />
+                        <span>Pearson</span>
+                    </div>
+                    <div class="client-logo">
+                        <img src="logos/gigxr.png" alt="GIGXR" width="36" height="36" loading="lazy" />
+                        <span>GIGXR</span>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <div class="stat-number">7+</div>
-                <div class="stat-label">XR apps from<br>concept to launch</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">Vision<span class="mobile-break"><br></span> Pro</div>
-                <div class="stat-label">Spatial computing<br>specialist</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">Apple &amp; Microsoft</div>
-                <div class="stat-label">Collaborations<br>&amp; co-development</div>
-            </div>
-        </div>
+        </section>
 
-        <!-- Work Section -->
-        <section id="work">
-            <div class="section-header">
-                <div class="section-eyebrow">Portfolio</div>
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="about-text" style="max-width: 720px; margin: 0 auto 3rem;">
-                    Every project began with a practical requirement, such as selling unbuilt space, training clinicians or explaining 
-                    complex infrastructure, and evolved into a bespoke XR experience that teams now utilise in real-world scenarios. 
+        <!-- Two avenues -->
+        <section class="section" id="avenues">
+            <div class="section-header section-header--tight">
+                <div class="section-eyebrow">What we do</div>
+                <h2 class="section-title">Spaces &amp; products, made spatial</h2>
+                <p class="lede">One engine, two scales.</p>
+            </div>
+
+            <div class="avenues">
+                <article class="avenue avenue--spaces" id="spaces">
+                    <div class="avenue-media stateful">
+                        <div class="statepair">
+                            <img class="is-shown" src="media/showroom-day-hero-960.jpg"
+                                alt="A finished interior in daylight, with a grand piano and chandelier"
+                                width="960" height="540" loading="lazy" />
+                            <img src="media/showroom-night-hero-960.jpg"
+                                alt="The same interior in the evening, the chandelier lit"
+                                width="960" height="540" loading="lazy" />
+                        </div>
+                        <div class="state-controls state-controls--overlay" role="group"
+                            aria-label="Choose a lighting state">
+                            <button type="button" class="state-btn" aria-pressed="true" data-index="0">Daylight</button>
+                            <button type="button" class="state-btn" aria-pressed="false" data-index="1">Evening</button>
+                        </div>
+                    </div>
+                    <div class="avenue-body">
+                        <div class="avenue-kicker">Spaces</div>
+                        <h3 class="avenue-title">One building, walkable, before it's built</h3>
+                        <p class="avenue-text">
+                            BIM in. A place you can explore on foot, out.
+                        </p>
+                        <ul class="avenue-points">
+                            <li>Revit and IFC to a navigable environment</li>
+                            <li>Daylight and evening states</li>
+                            <li>Proven across 220 m of airport terminal</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="avenue avenue--products" id="products">
+                    <div class="avenue-media stateful">
+                        <div class="statepair">
+                            <img class="is-shown" src="media/product-autumn-1440.jpg"
+                                srcset="media/product-autumn-960.jpg 960w, media/product-autumn-1440.jpg 1440w"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                alt="Journey of Leaves by Rock &amp; Soar in its Gilded Autumn finish, shown at full scale in a contemporary lounge"
+                                width="1440" height="810" loading="lazy" />
+                            <img src="media/product-summer-1440.jpg"
+                                srcset="media/product-summer-960.jpg 960w, media/product-summer-1440.jpg 1440w"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                alt="The same installation in its Verdant Summer finish, with green and orange leaves"
+                                width="1440" height="810" loading="lazy" />
+                            <img src="media/product-dusk-1440.jpg"
+                                srcset="media/product-dusk-960.jpg 960w, media/product-dusk-1440.jpg 1440w"
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                alt="The same installation in its Aurora Dusk finish, with red, silver and bronze leaves"
+                                width="1440" height="810" loading="lazy" />
+                        </div>
+                        <div class="state-controls state-controls--overlay" role="group"
+                            aria-label="Choose a finish">
+                            <button type="button" class="state-btn" aria-pressed="true" data-index="0">Autumn</button>
+                            <button type="button" class="state-btn" aria-pressed="false" data-index="1">Summer</button>
+                            <button type="button" class="state-btn" aria-pressed="false" data-index="2">Dusk</button>
+                        </div>
+                    </div>
+                    <div class="avenue-body">
+                        <div class="avenue-kicker">Products</div>
+                        <h3 class="avenue-title">One object, in their room, at 1:1</h3>
+                        <p class="avenue-text">
+                            Upload a model, get it back Vision-ready in minutes.
+                        </p>
+                        <ul class="avenue-points">
+                            <li>All major 3D formats accepted</li>
+                            <li>Finishes swap live in the headset</li>
+                            <li>You change them yourself, in a browser</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+
+        </section>
+
+        <!-- What we've done: the airport wipe, given its own section so the delivered
+             work reads as a counterpart to "What we do" rather than a footnote to it. -->
+        <section class="section" id="flagship">
+            <div class="section-header section-header--tight">
+                <div class="section-eyebrow">What we've done</div>
+                <h2 class="section-title">A whole terminal, walkable at full scale</h2>
+                <p class="lede">
+                    A major European hub, built from the source BIM. Drag the handle &mdash;
+                    source on the left, delivered on the right, same camera.
                 </p>
-
             </div>
+
+            <div class="case-flagship case-flagship--inline">
+                <div class="compare" id="compare">
+                    <img class="compare-img compare-before" draggable="false" src="media/airport-before-1600.jpg"
+                        srcset="media/airport-before-800.jpg 800w, media/airport-before-1600.jpg 1600w, media/airport-before-2400.jpg 2400w"
+                        sizes="(max-width: 1280px) 100vw, 1200px"
+                        alt="The terminal as an untextured grey BIM model, showing structure only"
+                        width="3400" height="1902" />
+                    <img class="compare-img compare-after" draggable="false" src="media/airport-after-1600.jpg"
+                        srcset="media/airport-after-800.jpg 800w, media/airport-after-1600.jpg 1600w, media/airport-after-2400.jpg 2400w"
+                        sizes="(max-width: 1280px) 100vw, 1200px"
+                        alt="The same terminal delivered: materials, lighting, signage, seating and travelators"
+                        width="3400" height="1902" />
+                    <input class="compare-range" id="compareRange" type="range" min="0" max="100" value="50" step="0.1"
+                        aria-label="Reveal the delivered environment" />
+                    <div class="compare-divider" aria-hidden="true"></div>
+                    <div class="compare-knob" aria-hidden="true">&#9664;&#9654;</div>
+                    <div class="compare-tag compare-tag--before">Source BIM</div>
+                    <div class="compare-tag compare-tag--after">Delivered</div>
+                </div>
+
+                <div class="figures">
+                    <div class="figure">
+                        <div class="figure-value">37M &rarr; 4M</div>
+                        <div class="figure-label">Polygons</div>
+                    </div>
+                    <div class="figure">
+                        <div class="figure-value">89%</div>
+                        <div class="figure-label">Reduction</div>
+                    </div>
+                    <div class="figure">
+                        <div class="figure-value">220 &times; 50 &times; 14 m</div>
+                        <div class="figure-label">Walkable</div>
+                    </div>
+                    <div class="figure">
+                        <div class="figure-value">11,000 m&sup2;</div>
+                        <div class="figure-label">Floor area</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pipeline -->
+        <section class="section pipeline" id="pipeline">
+            <div class="section-header section-header--tight">
+                <div class="section-eyebrow">The pipeline</div>
+                <h2 class="section-title">From your file to their headset</h2>
+                <p class="lede">Send the files you already have. No cleanup first.</p>
+            </div>
+
+            <ol class="pipeline-grid">
+                <li class="stage">
+                    <div class="stage-num">STAGE 01</div>
+                    <h3 class="stage-title">Send</h3>
+                    <p class="stage-text">Your files, exactly as they are.</p>
+                    <div class="stage-io">IN &middot; <b>all major 3D formats</b></div>
+                </li>
+                <li class="stage">
+                    <div class="stage-num">STAGE 02</div>
+                    <h3 class="stage-title">Optimise</h3>
+                    <p class="stage-text">
+                        Millions of polygons cut down until it runs smoothly in the headset,
+                        without losing the shapes people recognise.
+                    </p>
+                    <div class="stage-io">OUT &middot; <b>a Vision-ready model</b></div>
+                </li>
+                <li class="stage">
+                    <div class="stage-num">STAGE 03</div>
+                    <h3 class="stage-title">Style</h3>
+                    <p class="stage-text">
+                        Change materials and finishes yourself, in the browser. No 3D software
+                        needed.
+                    </p>
+                    <div class="stage-io">OUT &middot; <b>finishes you control</b></div>
+                </li>
+                <li class="stage">
+                    <div class="stage-num">STAGE 04</div>
+                    <h3 class="stage-title">View</h3>
+                    <p class="stage-text">
+                        At real size in your client's room, or as a space they walk through.
+                    </p>
+                    <div class="stage-io">OUT &middot; <b>Vision Pro</b>, AR &amp; VR</div>
+                </li>
+            </ol>
+
+            <p class="pipeline-note">
+                A single product takes <b>minutes</b>. A full space takes <b>days to weeks</b>,
+                with hands-on work alongside the automation.
+            </p>
+
+            <!-- Asset Manager / "Stage 03, in practice" — held back. The screenshot shows a
+                 whole application window at 590px, so nothing in it can be read, and the
+                 finish swatches flatten to near-identical colour blocks at 74px. Restore
+                 once there's a cropped detail shot and finishes shown on the object.
+            <div class="shots pipeline-shot">
+                <div class="shot">
+                    <figure class="shot-figure">
+                        <img src="media/app-materials-1600.jpg"
+                            srcset="media/app-materials-800.jpg 800w, media/app-materials-1600.jpg 1600w"
+                            sizes="(max-width: 900px) 100vw, 50vw"
+                            alt="Asset Manager material groups panel with a live 3D preview and swappable material slots"
+                            width="1600" height="907" loading="lazy" />
+                    </figure>
+                    <div class="shot-copy">
+                        <div class="shot-step">Stage 03, in practice</div>
+                        <h3>The Asset Manager</h3>
+                        <p>
+                            Upload it once and it's yours to change. The parts that can take a finish
+                            are found for you &mdash; pick materials, check the live preview, then push
+                            it straight to the headset. Finishes you build once work across every
+                            product you own.
+                        </p>
+                        <div class="finishes">
+                            <div class="finish"><img src="media/tex-aluminium.jpg" alt="Aluminium finish"
+                                    width="74" height="46" loading="lazy" /><span>Aluminium</span></div>
+                            <div class="finish"><img src="media/tex-brass.jpg" alt="Brass finish" width="74"
+                                    height="46" loading="lazy" /><span>Brass</span></div>
+                            <div class="finish"><img src="media/tex-brushed-brass.jpg" alt="Brushed brass finish"
+                                    width="74" height="46" loading="lazy" /><span>Brushed Brass</span></div>
+                            <div class="finish"><img src="media/tex-copper.jpg" alt="Copper finish" width="74"
+                                    height="46" loading="lazy" /><span>Copper</span></div>
+                            <div class="finish"><img src="media/tex-light-gold.jpg" alt="Light gold finish"
+                                    width="74" height="46" loading="lazy" /><span>Light Gold</span></div>
+                            <div class="finish"><img src="media/tex-satin-nickel.jpg" alt="Satin nickel finish"
+                                    width="74" height="46" loading="lazy" /><span>Satin Nickel</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            -->
+        </section>
+
+        <!-- Work -->
+        <section class="section" id="work">
+            <div class="section-header section-header--tight">
+                <div class="section-eyebrow">Case studies</div>
+                <h2 class="section-title">Ten years of shipped work</h2>
+                <p class="lede">The projects that taught the pipeline what it needed to do.</p>
+            </div>
+
+            <!-- The airport flagship now leads "What we do" (see #avenues), so the
+                 claim and its proof are read together rather than 3,000px apart. -->
 
             <div class="work-grid">
                 <!-- FormaXR -->
                 <div class="work-card project-trigger" data-project="formaxr">
+                    <div class="work-card-era">2024</div>
                     <div class="work-card-bg" style="background-image: url('forma-thumb.jpg');"></div>
                     <div class="work-card-content">
                         <div class="work-card-tags">
@@ -1898,68 +461,14 @@
                         </div>
                     </div>
                 </div>
-                <!-- Airport XR -->
-                <div class="work-card project-trigger" data-project="airport">
-                    <div class="work-card-bg" style="background-image: url('airport-thumb.jpg');"></div>
-                    <div class="work-card-content">
-                        <div class="work-card-tags">
-                            <span class="work-tag">Airport Ops</span>
-                            <span class="work-tag">Vision Pro</span>
-                            <span class="work-tag">Revit to XR</span>
-                        </div>
-                        <h3 class="work-card-title">Airport XR (NDA)</h3>
-                        <p class="work-card-description">
-                            Large-scale airport visualisation for a major European hub.
-                        </p>
-                        <div class="work-card-hover-hint">
-                            <span class="hint-text">View preview</span>
-                        </div>
-                    </div>
-                </div>
 
-
-                <!-- HoloPatient -->
-                <div class="work-card project-trigger" data-project="holopatient">
-                    <div class="work-card-bg" style="background-image: url('holopatient-thumb.jpg');"></div>
-                    <div class="work-card-content">
-                        <div class="work-card-tags">
-                            <span class="work-tag">Healthcare</span>
-                            <span class="work-tag">HoloLens</span>
-                            <span class="work-tag">Training</span>
-                        </div>
-
-                        <h3 class="work-card-title">HoloPatient</h3>
-                        <p class="work-card-description">
-                            Life-sized virtual patients for clinical training.
-                        </p>
-                        <div class="work-card-hover-hint">
-                            <span class="hint-text">View preview</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- HoloHuman -->
-                <div class="work-card project-trigger" data-project="holohuman">
-                    <div class="work-card-bg" style="background-image: url('holohuman-thumb.jpg');"></div>
-                    <div class="work-card-content">
-                        <div class="work-card-tags">
-                            <span class="work-tag">Education</span>
-                            <span class="work-tag">HoloLens</span>
-                            <span class="work-tag">Anatomy</span>
-                        </div>
-
-                        <h3 class="work-card-title">HoloHuman</h3>
-                        <p class="work-card-description">
-                            Interactive 3D anatomy at room scale.
-                        </p>
-                        <div class="work-card-hover-hint">
-                            <span class="hint-text">View preview</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- YachtXR -->
+                <!-- YachtXR — held back pending new card art. The current thumbnail puts
+                     the yacht on a suburban lawn, which reads against "cinematic" and
+                     "luxury". Restore this block once there's a framed render, and switch
+                     #work .work-grid back to two columns (see site.css).
                 <div class="work-card project-trigger" data-project="yachtxr">
-                    <div class="work-card-bg" style="background-image: url('yachtxr-thumb.jpg');"></div>
+                    <div class="work-card-era">2025</div>
+                    <div class="work-card-bg" style="background-image: url('media/yachtxr-1200.jpg');"></div>
                     <div class="work-card-content">
                         <div class="work-card-tags">
                             <span class="work-tag">Lifestyle</span>
@@ -1975,20 +484,55 @@
                         </div>
                     </div>
                 </div>
+                -->
 
+                <!-- HoloPatient -->
+                <div class="work-card project-trigger" data-project="holopatient">
+                    <div class="work-card-era">HoloLens era</div>
+                    <div class="work-card-bg" style="background-image: url('holopatient-thumb.jpg');"></div>
+                    <div class="work-card-content">
+                        <div class="work-card-tags">
+                            <span class="work-tag">Healthcare</span>
+                            <span class="work-tag">HoloLens</span>
+                            <span class="work-tag">Training</span>
+                        </div>
+                        <h3 class="work-card-title">HoloPatient</h3>
+                        <p class="work-card-description">
+                            Life-sized virtual patients for clinical training.
+                        </p>
+                        <div class="work-card-hover-hint">
+                            <span class="hint-text">View preview</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HoloHuman -->
+                <div class="work-card project-trigger" data-project="holohuman">
+                    <div class="work-card-era">HoloLens era</div>
+                    <div class="work-card-bg" style="background-image: url('holohuman-thumb.jpg');"></div>
+                    <div class="work-card-content">
+                        <div class="work-card-tags">
+                            <span class="work-tag">Education</span>
+                            <span class="work-tag">HoloLens</span>
+                            <span class="work-tag">Anatomy</span>
+                        </div>
+                        <h3 class="work-card-title">HoloHuman</h3>
+                        <p class="work-card-description">
+                            Interactive 3D anatomy at room scale.
+                        </p>
+                        <div class="work-card-hover-hint">
+                            <span class="hint-text">View preview</span>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-<!--             <p class="hero-subnote work-subnote">
-                Platforms & capabilities: Vision Pro · Meta Quest · XR development · AR development · VR development ·
-                immersive apps
-            </p> -->
         </section>
 
         <!-- Project Modal -->
         <div class="project-modal" id="projectModal" aria-hidden="true">
             <div class="project-modal-backdrop" id="projectModalBackdrop"></div>
             <div class="project-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
-                <button class="project-modal-close" id="projectModalClose" aria-label="Close project details">x</button>
+                <button class="project-modal-close" id="projectModalClose" aria-label="Close project details">&times;</button>
 
                 <div class="project-modal-media">
                     <video id="projectModalVideo" class="project-modal-video" autoplay muted loop playsinline
@@ -2003,6 +547,7 @@
                 </div>
             </div>
         </div>
+
         <section class="testimonial" id="testimonial">
             <div class="testimonial-card">
                 <p class="testimonial-text">
@@ -2016,182 +561,107 @@
             </div>
         </section>
 
-        <div class="work-cta" style="text-align: center; margin: 0 auto 2rem;">
-            <button class="btn-primary" onclick="location.href='#contact'">Interested? Get in touch</button>
-        </div>
-
-        <!-- Clients -->
-        <section id="clients">
-            <div class="section-header">
-                <div class="section-eyebrow">Trusted By</div>
-                <h2 class="section-title">Clients & Collaborators</h2>
-            </div>
-
-            <div class="clients-marquee">
-                <div class="clients-grid">
-                    <div class="client-logo">
-                        <img src="logos/apple.png" alt="Apple" />
-                        <span>Apple</span>
-                    </div>
-                    <div class="client-logo">
-                        <img src="logos/microsoft.png" alt="Microsoft" />
-                        <span>Microsoft</span>
-                    </div>
-                    <div class="client-logo">
-                        <img src="logos/formaxr.png" alt="FormaXR" />
-                        <span>FormaXR</span>
-                    </div>
-                    <!--         <div class="client-logo">
-            <img src="logos/adr.png" alt="Aeroporti di Roma (ADR)" />
-            <span>Aeroporti di Roma</span>
-        </div> -->
-                    <div class="client-logo">
-                        <img src="logos/pearson.jpg" alt="Pearson Education" />
-                        <span>Pearson</span>
-                    </div>
-                    <div class="client-logo">
-                        <img src="logos/gigxr.png" alt="GIGXR" />
-                        <span>GIGXR</span>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
         <!-- Studio -->
-        <section id="studio">
-            <div class="section-header">
+        <section class="section" id="studio">
+            <div class="section-header section-header--tight">
                 <div class="section-eyebrow">About</div>
                 <h2 class="section-title">The Studio</h2>
             </div>
 
             <div class="about-container">
                 <p class="about-text">
-                    We are a studio focused on crafting polished, high-performance XR experiences, 
-                    combining deep technical ability with a strong understanding of design, storytelling, and real-world constraints.
-                </p>
-                <p class="studio-credibility">
-                    From complex CAD, BIM and 3D assets to seamless spatial experiences,
-                    we deliver XR that looks great and performs reliably.
+                    Ten years of shipping spatial software taught us where CAD data breaks on a
+                    headset. That became a system rather than a service.
                 </p>
 
-                <div class="about-founder">
-                    <img src="tarik.jpg" alt="Tarik Awad" class="founder-avatar-img" />
-                    <div class="founder-info">
-                        <div class="founder-name">Tarik Awad</div>
-                        <div class="founder-role">Founder & XR Developer</div>
-                        <p class="founder-bio">
-                            Tarik has 10+ years of XR experience, industry collaborations with Apple and Microsoft,
-                            VR–robotics integration work, and Masters-level teaching.
-                        </p>
+                <div class="team">
+                    <div class="about-founder">
+                        <img src="media/tarik-400.jpg"
+                            srcset="media/tarik-400.jpg 400w, media/tarik-800.jpg 800w"
+                            sizes="140px" alt="Tarik Awad" class="founder-avatar-img"
+                            width="400" height="400" loading="lazy" />
+                        <div class="founder-info">
+                            <div class="founder-name">Tarik Awad</div>
+                            <div class="founder-role">Founder &amp; XR Developer</div>
+                            <p class="founder-bio">
+                                Tarik has 10+ years of XR experience, industry collaborations with Apple and Microsoft,
+                                VR&ndash;robotics integration work, and Masters-level teaching.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="about-founder">
+                        <img src="media/camila-400.jpg" sizes="140px" alt="Camila Vignoni"
+                            class="founder-avatar-img" width="400" height="400" loading="lazy" />
+                        <div class="founder-info">
+                            <div class="founder-name">Camila Vignoni</div>
+                            <div class="founder-role">3D Artist</div>
+                            <p class="founder-bio">
+                                Camila has several years of 3D production experience &mdash; modelling,
+                                retopology, UVs and look development &mdash; and specialises in the advanced
+                                optimisation that real-time delivery demands.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section id="process">
-            <div class="section-header">
-                <div class="section-eyebrow">Process</div>
-                <h2 class="section-title">How Projects Move Fast</h2>
-            </div>
 
-            <div class="process-grid">
-                <div class="process-step">
-                    <div class="process-icon">1</div>
-                    <div class="process-title">1. Share Your Brief</div>
-                    <p class="process-text">
-                        You send CAD, BIM, FBX/OBJ files or reference assets plus a short outline of the goal.
+        <!-- The app: a quiet download strip near the foot of the page, after the
+             work has done the persuading. -->
+        <section class="section" id="app">
+            <div class="appcard">
+                <div>
+                    <h3>Both are in one free app</h3>
+                    <p>
+                        <strong>Journey of Leaves</strong> and <strong>The Digital Showroom</strong>
+                        both live inside AlternateXR on Apple Vision&nbsp;Pro.
                     </p>
                 </div>
-
-                <div class="process-step">
-                    <div class="process-icon">2</div>
-                    <div class="process-title">2. Optimise & Prepare</div>
-                    <p class="process-text">
-                        Assets are optimised, rebuilt, cleaned, textured and staged for XR.
-                    </p>
-                </div>
-
-                <div class="process-step">
-                    <div class="process-icon">3</div>
-                    <div class="process-title">3. Build & Iterate</div>
-                    <p class="process-text">
-                        A functional prototype is delivered quickly using a mature XR pipeline and pre-built systems.
-                    </p>
-                </div>
+                <a class="appstore-badge" href="https://apps.apple.com/gb/app/alternatexr/id6792300997"
+                    target="_blank" rel="noopener" aria-label="Download AlternateXR on the App Store">
+                    <svg viewBox="0 0 120 40" role="img" aria-hidden="true" focusable="false" width="169" height="56">
+                        <rect width="120" height="40" rx="6.75" fill="#000" />
+                        <rect x="0.5" y="0.5" width="119" height="39" rx="6.25" fill="none" stroke="#a6a6a6"
+                            stroke-width="1" />
+                        <path fill="#fff"
+                            d="M24.77 20.3a4.95 4.95 0 0 1 2.36-4.15 5.07 5.07 0 0 0-3.99-2.16c-1.68-.18-3.31 1-4.17 1-.87 0-2.19-.98-3.61-.95a5.32 5.32 0 0 0-4.47 2.73c-1.93 3.35-.49 8.27 1.36 10.98.93 1.33 2 2.81 3.42 2.76 1.38-.06 1.9-.89 3.57-.89 1.65 0 2.14.89 3.58.85 1.48-.02 2.42-1.33 3.31-2.67a10.9 10.9 0 0 0 1.51-3.09 4.78 4.78 0 0 1-2.92-4.4zM22.04 12.21a4.87 4.87 0 0 0 1.11-3.49 4.96 4.96 0 0 0-3.21 1.66 4.64 4.64 0 0 0-1.14 3.36 4.1 4.1 0 0 0 3.24-1.53z" />
+                        <text x="41" y="15.5" fill="#fff" font-family="-apple-system, Helvetica, Arial, sans-serif"
+                            font-size="7.5">Download on the</text>
+                        <text x="41" y="30" fill="#fff" font-family="-apple-system, Helvetica, Arial, sans-serif"
+                            font-size="16.5" font-weight="600">App Store</text>
+                    </svg>
+                </a>
             </div>
         </section>
 
-        <section id="contact">
-            <div class="section-header">
-                <div class="section-eyebrow">Get in Touch</div>
-                <h2 class="section-title">Start Your XR Project</h2>
+        <!-- Contact -->
+        <section class="section" id="contact">
+            <div class="section-header section-header--tight">
+                <div class="section-eyebrow">Get in touch</div>
+                <h2 class="section-title">Tell us what you're building</h2>
             </div>
 
-            <div class="contact-container">
-                <p class="about-text">
-                    Tell us about your space, product or training challenge and we’ll suggest a concrete XR approach,
-                    from Apple&nbsp;Vision&nbsp;Pro prototypes to full production builds.
+            <div class="contact-box">
+                <p class="contact-lede">
+                    Send a model, or just describe the idea.
                 </p>
 
-                <!-- Project type chips -->
-                <div class="contact-chips">
-                    <span class="contact-chip">Real Estate</span>
-                    <span class="contact-chip">Infrastructure</span>
-                    <span class="contact-chip">Healthcare</span>
-                    <span class="contact-chip">Education</span>
-                </div>
-
-                <!-- Simple three-step flow -->
-                <div class="contact-steps">
-                    <div class="contact-step">
-                        <div class="contact-step-number">1</div>
-                        <div class="contact-step-body">
-                            <div class="contact-step-title">Share a brief</div>
-                            <div class="contact-step-text">
-                                A few lines on your project, audience and timeline are enough to start.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact-step">
-                        <div class="contact-step-number">2</div>
-                        <div class="contact-step-body">
-                            <div class="contact-step-title">30-minute call</div>
-                            <div class="contact-step-text">
-                                We explore use cases, constraints and what success would look like.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact-step">
-                        <div class="contact-step-number">3</div>
-                        <div class="contact-step-body">
-                            <div class="contact-step-title">Proposal & prototype</div>
-                            <div class="contact-step-text">
-                                You get a clear scope, timeline and budget, plus options for a lightweight prototype.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact methods -->
-                <div class="contact-methods">
-                    <a href="mailto:hello@alternatexr.com?subject=XR%20Project%20Enquiry&body=Hi%20Tarik,%0D%0A%0D%0AProject%20overview:%0D%0A-%20Industry:%0D%0A-%20Use%20case:%0D%0A-%20Rough%20timeline:%0D%0A-%20Budget%20range:%0D%0A%0D%0ABest,%0D%0A"
-                        class="contact-method">
-                        <div class="contact-method-label">
-                            Email a project brief<br />
-                            <span class="contact-method-sub">hello@alternatexr.com</span>
-                        </div>
+                <div class="contact-actions">
+                    <a class="cta-primary" href="https://calendly.com/tarik-alternatexr/30min"
+                        target="_blank" rel="noopener">
+                        Book a 30-minute call
+                        <span class="cta-arrow" aria-hidden="true">&rarr;</span>
                     </a>
-                    <a href="https://calendly.com/tarik-alternatexr/30min" class="contact-method">
-                        <div class="contact-method-label">
-                            Book a 30-minute call<br />
-                            <span class="contact-method-sub">Calendly</span>
-                        </div>
+                    <!-- The mailto pre-fills a short brief: a static site can't post a form,
+                         but it can hand the visitor the form. -->
+                    <a class="cta-secondary"
+                        href="mailto:hello@alternatexr.com?subject=Project%20enquiry&amp;body=Project%3A%0D%0A%0D%0ASource%20files%20(Revit%2C%20IFC%2C%20STEP%2C%20FBX%2C%20OBJ)%3A%0D%0A%0D%0ATimeline%3A%0D%0A%0D%0A">
+                        hello@alternatexr.com
                     </a>
                 </div>
 
-                <p class="contact-footnote">
-                    Typical response time: within 1–2 business days. No spam, no mailing lists.
-                </p>
+                <p class="contact-foot">London &middot; working worldwide</p>
             </div>
         </section>
 
@@ -2207,9 +677,10 @@
                 </div>
             </a>
             <div class="footer-links">
-                <!--                 <a href="https://takz.github.io/" target="_blank">Portfolio</a>
-                <a href="https://tarikawad.com" target="_blank">Blog</a>
-                <a href="#work">Projects</a> -->
+                <a href="#avenues">What we do</a>
+                <a href="#work">Work</a>
+                <a href="#studio">Studio</a>
+                <a href="privacy.html">Privacy</a>
             </div>
             <div class="footer-copyright">
                 AlternateXR Ltd, 16943134, 128 City Road, London, England, EC1V 2NX
@@ -2217,220 +688,7 @@
         </div>
     </footer>
 
-    <script>
-        // Navbar scroll effect
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            const currentScroll = window.pageYOffset;
-
-            if (currentScroll > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-
-            lastScroll = currentScroll;
-        });
-
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    e.preventDefault();
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Mobile nav toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const navbarEl = document.getElementById('navbar');
-        const navLinksEls = document.querySelectorAll('#navbar a[href^="#"]');
-        if (menuToggle) {
-            const setMenuToggleState = (isOpen) => {
-                menuToggle.classList.toggle('is-open', isOpen);
-                menuToggle.setAttribute('aria-expanded', String(isOpen));
-                menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-            };
-
-            setMenuToggleState(false);
-
-            menuToggle.addEventListener('click', () => {
-                const isOpen = navbarEl.classList.toggle('mobile-open');
-                setMenuToggleState(isOpen);
-            });
-
-            // Close menu when a link is tapped
-            navLinksEls.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (navbarEl.classList.contains('mobile-open')) {
-                        navbarEl.classList.remove('mobile-open');
-                        setMenuToggleState(false);
-                    }
-                });
-            });
-        }
-
-
-        // ---- Project modal logic ----
-        const projectData = {
-            formaxr: {
-                title: "FormaXR",
-                video: "formaxr.mp4",
-                poster: "forma-thumb.jpg",
-                tags: ["Real Estate", "Apple Vision Pro", "Interactive Sales Tool"],
-                text:
-                    "Immersive apartment and interior walkthroughs that let buyers step into unbuilt properties on Apple Vision Pro.",
-                bullets: [
-                    "Lets sales teams present multiple layouts and finishes as if the space already exists.",
-                    "True-scale spatial viewing for design reviews, stakeholder walkthroughs and customer demos.",
-                    "Fast to update with new units, schemes and marketing narratives as projects evolve."
-                ]
-            },
-
-            holopatient: {
-                title: "HoloPatient",
-                video: "holopatient.mp4",
-                poster: "holopatient-thumb.jpg",
-                tags: ["Healthcare", "HoloLens", "Medical Training"],
-                text:
-                    "Life-sized virtual patients used by universities and hospitals worldwide for clinical training.",
-                bullets: [
-                    "Developed with Pearson Education and GIGXR for Microsoft HoloLens mixed reality.",
-                    "Simulates realistic patient presentations in real teaching spaces, without physical manikins.",
-                    "Supports repeatable, scenario-based training with consistent visuals and interactions."
-                ]
-            },
-
-            holohuman: {
-                title: "HoloHuman",
-                video: "holohuman.mp4",
-                poster: "holohuman-thumb.jpg",
-                tags: ["Education", "Anatomy", "3D Visualisation"],
-                text:
-                    "Room-scale 3D anatomy that lets learners explore the human body as an interactive spatial model.",
-                bullets: [
-                    "Created with Pearson Education and GIGXR as part of a mixed-reality medical education suite.",
-                    "Layered anatomical systems with the ability to isolate, hide and reveal structures in context.",
-                    "Optimised meshes and textures to balance fidelity with comfortable long-session performance."
-                ]
-            },
-
-            airport: {
-                title: "Airport XR (NDA)",
-                video: "",
-                poster: "airport-thumb.jpg",
-                tags: ["Infrastructure", "Enterprise", "Vision Pro"],
-                text:
-                    "A large-scale airport visualisation for a major European hub, used for planning and stakeholder engagement.",
-                bullets: [
-                    "Built from a detailed Revit model, translated into a performant, navigable XR environment.",
-                    "Enables decision-makers to view terminal layouts, flows and interventions at true scale.",
-                    "Delivered under NDA with anonymised visuals and flexible deployment for internal teams."
-                ]
-            },
-
-            yachtxr: {
-                title: "YachtXR",
-                video: "yachtxr.mp4",
-                poster: "yachtxr-thumb.jpg",
-                tags: ["Concept", "Real-time 3D", "Vision Pro"],
-                text:
-                    "A cinematic XR concept for exploring a luxury yacht as a fully navigable, real-time environment.",
-                bullets: [
-                    "High-end materials, lighting and water effects tuned for immersive viewing on Vision Pro.",
-                    "Blends product, interior and environment visualisation for a premium lifestyle experience.",
-                    "Demonstrates a pipeline suited to yacht design, hospitality and high-end marketing narratives."
-                ]
-            }
-        };
-
-
-        const modal = document.getElementById("projectModal");
-        const modalBackdrop = document.getElementById("projectModalBackdrop");
-        const modalClose = document.getElementById("projectModalClose");
-        const modalVideo = document.getElementById("projectModalVideo");
-        const modalTags = document.getElementById("projectModalTags");
-        const modalTitle = document.getElementById("projectModalTitle");
-        const modalText = document.getElementById("projectModalText");
-        const modalList = document.getElementById("projectModalList");
-
-        function openProjectModal(key) {
-            const data = projectData[key];
-            if (!data) return;
-
-            const showPosterOnly = () => {
-                modalVideo.pause();
-                modalVideo.removeAttribute("src");
-                modalVideo.load();
-                modalVideo.poster = data.poster || "";
-            };
-
-            // Set poster first so it shows while video buffers, and fallback if the video is missing
-            modalVideo.onerror = showPosterOnly;
-            modalVideo.onstalled = showPosterOnly;
-            modalVideo.poster = data.poster || "";
-
-            if (data.video) {
-                modalVideo.src = data.video;
-                modalVideo.load();
-                modalVideo.play().catch(() => {
-                    showPosterOnly();
-                });
-            } else {
-                showPosterOnly();
-            }
-
-            modalTitle.textContent = data.title;
-            modalText.textContent = data.text;
-
-            modalTags.innerHTML = "";
-            data.tags.forEach(tag => {
-                const span = document.createElement("span");
-                span.className = "tag";
-                span.textContent = tag;
-                modalTags.appendChild(span);
-            });
-
-            modalList.innerHTML = "";
-            data.bullets.forEach(item => {
-                const li = document.createElement("li");
-                li.textContent = item;
-                modalList.appendChild(li);
-            });
-
-            modal.classList.add("open");
-            document.body.style.overflow = "hidden";
-        }
-
-        function closeProjectModal() {
-            modal.classList.remove("open");
-            document.body.style.overflow = "";
-            modalVideo.pause();
-            modalVideo.src = "";
-            modalVideo.poster = "";
-        }
-
-        document.querySelectorAll(".project-trigger").forEach(card => {
-            card.addEventListener("click", () => {
-                const key = card.getAttribute("data-project");
-                openProjectModal(key);
-            });
-        });
-
-        modalBackdrop.addEventListener("click", closeProjectModal);
-        modalClose.addEventListener("click", closeProjectModal);
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape" && modal.classList.contains("open")) {
-                closeProjectModal();
-            }
-        });
-    </script>
+    <script src="assets/site.js?v=202608041125" defer></script>
 </body>
 
 </html>

@@ -1,0 +1,20 @@
+# Source media — masters live here, only derived web assets in media/ are committed.
+# These are 4K stills and ProRes-scale video; committing them would bloat git history
+# permanently. Regenerate everything under media/ with tools/build-media.sh
+AlternateXR Media/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Editor / tooling
+.vscode/
+.idea/
+venv/
+__pycache__/
+
+# Media build tooling — bootstrapped by tools/build-media.sh, not committed
+tools/node_modules/
+tools/package.json
+tools/package-lock.json
+tools/shots/
