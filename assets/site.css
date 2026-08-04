@@ -3535,3 +3535,10 @@ section.visible {
     animation: none;
     opacity: 1;
 }
+
+/* The airport lost its project name when the wipe moved into its own section —
+   the old eyebrow read "Flagship — Airport XR · 2024". Put the credit back
+   under the title so the work is attributable, not just a demo. */
+.flagship-credit {
+    margin: 0.6rem 0 0.9rem;
+}
