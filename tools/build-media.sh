@@ -95,8 +95,8 @@ PY
 fi
 
 echo "==> Airport before/after"
-still "$SRC/Airport/Before.png" "airport-before" 1600 800
-still "$SRC/Airport/After.png"  "airport-after"  1600 800
+still "$SRC/Airport/Before.png" "airport-before" 2400 1600 800
+still "$SRC/Airport/After.png"  "airport-after"  2400 1600 800
 
 echo "==> Digital Showroom"
 AS="$SRC/AppStore"
