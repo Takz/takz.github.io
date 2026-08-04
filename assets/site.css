@@ -3248,3 +3248,336 @@ section.visible {
     margin-inline: auto;
     gap: 1.5rem;
 }
+
+/* ============================================================================
+   REORDER + CONTACT REBUILD
+   The airport wipe moved into "What we do"; the Asset Manager block and the
+   YachtXR card are commented out in index.html; contact was rebuilt around a
+   single primary action.
+   ========================================================================== */
+
+/* --- airport wipe, now inline under the two avenue cards ----------------- */
+.case-flagship--inline {
+    margin-top: 3.5rem;
+    margin-bottom: 0;
+}
+
+/* --- work grid: three cards while YachtXR is held back -------------------
+   Restore `repeat(2, ...)` when the fourth card comes back, or four cards
+   will read as an awkward 3 + 1. */
+@media (min-width: 769px) {
+    #work .work-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1080px) {
+    #work .work-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* --- the studio: two people ---------------------------------------------- */
+.team {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    max-width: 1040px;
+    margin-inline: auto;
+    align-items: stretch;
+}
+
+/* The card was built for one centred person; in a pair it needs to sit left
+   so the two bios share a reading edge. */
+.team .about-founder {
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1.25rem;
+    padding: 1.6rem;
+    text-align: left;
+}
+
+.team .founder-info {
+    text-align: left;
+    max-width: none;
+}
+
+.team .founder-avatar-img {
+    flex: 0 0 auto;
+}
+
+@media (max-width: 820px) {
+    .team {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 560px) {
+    .team .about-founder {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .team .founder-avatar-img {
+        width: 64px;
+        height: 64px;
+    }
+}
+
+/* --- contact -------------------------------------------------------------
+   Was two low-contrast ghost boxes of equal weight with no primary action.
+   Now: one solid button, one outlined fallback, and the questions a brief
+   would ask sitting alongside — a static site can't post a form, so it hands
+   the visitor the form instead. */
+.contact-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: start;
+    max-width: 1000px;
+    margin-inline: auto;
+}
+
+.contact-lede {
+    font-size: 1.08rem;
+    line-height: 1.7;
+    color: var(--muted);
+    max-width: 46ch;
+    text-wrap: pretty;
+}
+
+.contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+}
+
+/* Solid accent with a near-black label: 9.4:1, versus 2.1:1 for the white-on-
+   accent gradient the old buttons used. */
+.cta-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.95rem 1.6rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #020617;
+    font-weight: 650;
+    font-size: 0.98rem;
+    letter-spacing: 0.01em;
+    border: 1px solid var(--accent);
+    box-shadow: 0 14px 34px rgba(56, 189, 248, 0.22);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.cta-primary:hover {
+    background: #7dd3fc;
+    border-color: #7dd3fc;
+    transform: translateY(-2px);
+    box-shadow: 0 20px 44px rgba(56, 189, 248, 0.34);
+}
+
+.cta-arrow {
+    transition: transform 0.25s ease;
+}
+
+.cta-primary:hover .cta-arrow {
+    transform: translateX(3px);
+}
+
+.cta-secondary {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.1rem;
+    padding: 0.72rem 1.4rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: rgba(2, 6, 23, 0.5);
+    transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+.cta-secondary:hover {
+    border-color: rgba(56, 189, 248, 0.55);
+    background: rgba(2, 6, 23, 0.75);
+    transform: translateY(-2px);
+}
+
+.cta-label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.25;
+}
+
+.cta-sub {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--muted);
+    line-height: 1.3;
+}
+
+.cta-primary:focus-visible,
+.cta-secondary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+.contact-foot {
+    margin-top: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: 0.8;
+}
+
+.contact-brief {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: var(--panel);
+    backdrop-filter: blur(14px);
+    padding: 1.5rem;
+}
+
+.brief-title {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.1rem;
+}
+
+.brief-list {
+    list-style: none;
+    counter-reset: brief;
+    display: grid;
+    gap: 1rem;
+}
+
+.brief-list li {
+    counter-increment: brief;
+    position: relative;
+    padding-left: 2rem;
+}
+
+.brief-list li::before {
+    content: counter(brief, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--accent);
+    opacity: 0.85;
+}
+
+.brief-list b {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 0.15rem;
+}
+
+.brief-list span {
+    display: block;
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.55;
+}
+
+.brief-note {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.82rem;
+    color: var(--muted);
+}
+
+/* The old layout left ~150px of dead space between the CTAs and the footer. */
+#contact {
+    padding-bottom: 4rem;
+}
+
+@media (max-width: 860px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-lede {
+        max-width: none;
+    }
+}
+
+@media (max-width: 420px) {
+    .contact-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cta-primary,
+    .cta-secondary {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .cta-primary,
+    .cta-secondary,
+    .cta-arrow {
+        transition: none;
+    }
+
+    .cta-primary:hover,
+    .cta-secondary:hover {
+        transform: none;
+    }
+
+    .cta-primary:hover .cta-arrow {
+        transform: none;
+    }
+}
+
+/* .about-container caps at 800px, which squeezed two bios into ~215px columns.
+   Widen the studio section only; keep the intro line at a readable measure. */
+#studio .about-container {
+    max-width: 1040px;
+}
+
+#studio .about-text {
+    max-width: 62ch;
+    margin-inline: auto;
+    margin-bottom: 3rem;
+}
+
+/* Bottoms of the two contact columns were ragged, and the gap to the footer
+   was still doing nothing. Push the location line down and tighten the tail. */
+.contact-grid {
+    align-items: stretch;
+}
+
+.contact-lead {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-foot {
+    margin-top: auto;
+    padding-top: 1.5rem;
+}
+
+#contact {
+    padding-bottom: 1.5rem;
+}
+
+@media (max-width: 860px) {
+    .contact-foot {
+        margin-top: 0;
+    }
+}

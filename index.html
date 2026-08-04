@@ -274,13 +274,64 @@
                     </div>
                 </article>
             </div>
+
+            <!-- Airport wipe: proof that Avenue 02 holds up at real building scale.
+                 Sits inside "What we do" rather than the case studies, so the claim
+                 and its evidence are read together. -->
+            <div class="case-flagship case-flagship--inline">
+                <div class="case-flagship-head">
+                    <div class="eyebrow-mono">Spaces, at scale &mdash; Airport XR &middot; 2024</div>
+                    <h3 class="case-flagship-title">A terminal for a major European hub, walkable at full scale</h3>
+                    <p class="case-flagship-text">
+                        Source BIM on the left, delivered on the right, same camera. Drag it.
+                    </p>
+                </div>
+
+                <div class="compare" id="compare">
+                    <img class="compare-img compare-before" src="media/airport-before-1600.jpg"
+                        srcset="media/airport-before-800.jpg 800w, media/airport-before-1600.jpg 1600w"
+                        sizes="(max-width: 1280px) 100vw, 1200px"
+                        alt="The terminal as an untextured grey BIM model, showing structure only"
+                        width="1600" height="895" />
+                    <img class="compare-img compare-after" src="media/airport-after-1600.jpg"
+                        srcset="media/airport-after-800.jpg 800w, media/airport-after-1600.jpg 1600w"
+                        sizes="(max-width: 1280px) 100vw, 1200px"
+                        alt="The same terminal delivered: materials, lighting, signage, seating and travelators"
+                        width="1600" height="895" />
+                    <input class="compare-range" id="compareRange" type="range" min="0" max="100" value="50" step="0.1"
+                        aria-label="Reveal the delivered environment" />
+                    <div class="compare-divider" aria-hidden="true"></div>
+                    <div class="compare-knob" aria-hidden="true">&#9664;&#9654;</div>
+                    <div class="compare-tag compare-tag--before">Source BIM</div>
+                    <div class="compare-tag compare-tag--after">Delivered</div>
+                </div>
+
+                <div class="figures">
+                    <div class="figure">
+                        <div class="figure-value">37M &rarr; 4M</div>
+                        <div class="figure-label">Polygons</div>
+                    </div>
+                    <div class="figure">
+                        <div class="figure-value">89%</div>
+                        <div class="figure-label">Reduction</div>
+                    </div>
+                    <div class="figure">
+                        <div class="figure-value">220 &times; 50 &times; 14 m</div>
+                        <div class="figure-label">Walkable</div>
+                    </div>
+                    <div class="figure">
+                        <div class="figure-value">11,000 m&sup2;</div>
+                        <div class="figure-label">Floor area</div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- The app -->
         <section class="section" id="app">
             <div class="appcard">
                 <div>
-                    <h3>Both of those are running now, free</h3>
+                    <h3>Both demos are running now, free</h3>
                     <p>
                         <strong>Journey of Leaves</strong> is a real client model, straight from the
                         pipeline. <strong>The Digital Showroom</strong> is the bar we hold for full
@@ -353,7 +404,10 @@
                 with hands-on work alongside the automation.
             </p>
 
-            <!-- Asset Manager: stage 03, in practice -->
+            <!-- Asset Manager / "Stage 03, in practice" — held back. The screenshot shows a
+                 whole application window at 590px, so nothing in it can be read, and the
+                 finish swatches flatten to near-identical colour blocks at 74px. Restore
+                 once there's a cropped detail shot and finishes shown on the object.
             <div class="shots pipeline-shot">
                 <div class="shot">
                     <figure class="shot-figure">
@@ -389,6 +443,7 @@
                     </div>
                 </div>
             </div>
+            -->
         </section>
 
         <!-- Work -->
@@ -399,54 +454,8 @@
                 <p class="lede">The projects that taught the pipeline what it needed to do.</p>
             </div>
 
-            <!-- Flagship: the airport -->
-            <div class="case-flagship">
-                <div class="case-flagship-head">
-                    <div class="eyebrow-mono">Flagship &mdash; Airport XR &middot; 2024</div>
-                    <h3 class="case-flagship-title">A terminal for a major European hub, walkable at full scale</h3>
-                    <p class="case-flagship-text">
-                        Source BIM on the left, delivered on the right, same camera. Drag it.
-                    </p>
-                </div>
-
-                <div class="compare" id="compare">
-                    <img class="compare-img compare-before" src="media/airport-before-1600.jpg"
-                        srcset="media/airport-before-800.jpg 800w, media/airport-before-1600.jpg 1600w"
-                        sizes="(max-width: 1280px) 100vw, 1200px"
-                        alt="The terminal as an untextured grey BIM model, showing structure only"
-                        width="1600" height="895" />
-                    <img class="compare-img compare-after" src="media/airport-after-1600.jpg"
-                        srcset="media/airport-after-800.jpg 800w, media/airport-after-1600.jpg 1600w"
-                        sizes="(max-width: 1280px) 100vw, 1200px"
-                        alt="The same terminal delivered: materials, lighting, signage, seating and travelators"
-                        width="1600" height="895" />
-                    <input class="compare-range" id="compareRange" type="range" min="0" max="100" value="50" step="0.1"
-                        aria-label="Reveal the delivered environment" />
-                    <div class="compare-divider" aria-hidden="true"></div>
-                    <div class="compare-knob" aria-hidden="true">&#9664;&#9654;</div>
-                    <div class="compare-tag compare-tag--before">Source BIM</div>
-                    <div class="compare-tag compare-tag--after">Delivered</div>
-                </div>
-
-                <div class="figures">
-                    <div class="figure">
-                        <div class="figure-value">37M &rarr; 4M</div>
-                        <div class="figure-label">Polygons</div>
-                    </div>
-                    <div class="figure">
-                        <div class="figure-value">89%</div>
-                        <div class="figure-label">Reduction</div>
-                    </div>
-                    <div class="figure">
-                        <div class="figure-value">220 &times; 50 &times; 14 m</div>
-                        <div class="figure-label">Walkable</div>
-                    </div>
-                    <div class="figure">
-                        <div class="figure-value">11,000 m&sup2;</div>
-                        <div class="figure-label">Floor area</div>
-                    </div>
-                </div>
-            </div>
+            <!-- The airport flagship now leads "What we do" (see #avenues), so the
+                 claim and its proof are read together rather than 3,000px apart. -->
 
             <div class="work-grid">
                 <!-- FormaXR -->
@@ -469,7 +478,10 @@
                     </div>
                 </div>
 
-                <!-- YachtXR -->
+                <!-- YachtXR — held back pending new card art. The current thumbnail puts
+                     the yacht on a suburban lawn, which reads against "cinematic" and
+                     "luxury". Restore this block once there's a framed render, and switch
+                     #work .work-grid back to two columns (see site.css).
                 <div class="work-card project-trigger" data-project="yachtxr">
                     <div class="work-card-era">2025</div>
                     <div class="work-card-bg" style="background-image: url('media/yachtxr-1200.jpg');"></div>
@@ -488,6 +500,7 @@
                         </div>
                     </div>
                 </div>
+                -->
 
                 <!-- HoloPatient -->
                 <div class="work-card project-trigger" data-project="holopatient">
@@ -577,18 +590,34 @@
                     headset. That became a system rather than a service.
                 </p>
 
-                <div class="about-founder">
-                    <img src="media/tarik-400.jpg"
-                        srcset="media/tarik-400.jpg 400w, media/tarik-800.jpg 800w"
-                        sizes="140px" alt="Tarik Awad" class="founder-avatar-img"
-                        width="400" height="400" loading="lazy" />
-                    <div class="founder-info">
-                        <div class="founder-name">Tarik Awad</div>
-                        <div class="founder-role">Founder &amp; XR Developer</div>
-                        <p class="founder-bio">
-                            Tarik has 10+ years of XR experience, industry collaborations with Apple and Microsoft,
-                            VR&ndash;robotics integration work, and Masters-level teaching.
-                        </p>
+                <div class="team">
+                    <div class="about-founder">
+                        <img src="media/tarik-400.jpg"
+                            srcset="media/tarik-400.jpg 400w, media/tarik-800.jpg 800w"
+                            sizes="140px" alt="Tarik Awad" class="founder-avatar-img"
+                            width="400" height="400" loading="lazy" />
+                        <div class="founder-info">
+                            <div class="founder-name">Tarik Awad</div>
+                            <div class="founder-role">Founder &amp; XR Developer</div>
+                            <p class="founder-bio">
+                                Tarik has 10+ years of XR experience, industry collaborations with Apple and Microsoft,
+                                VR&ndash;robotics integration work, and Masters-level teaching.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="about-founder">
+                        <img src="media/camila-400.jpg" sizes="140px" alt="Camila Vignoni"
+                            class="founder-avatar-img" width="400" height="400" loading="lazy" />
+                        <div class="founder-info">
+                            <div class="founder-name">Camila Vignoni</div>
+                            <div class="founder-role">3D Artist</div>
+                            <p class="founder-bio">
+                                Camila builds the assets that end up in the headset &mdash; modelling, retopology,
+                                UVs and materials. She works across product and architectural sources, tuning
+                                fidelity so a scene still reads at full scale without costing frames.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -598,28 +627,53 @@
         <section class="section" id="contact">
             <div class="section-header section-header--tight">
                 <div class="section-eyebrow">Get in touch</div>
-                <h2 class="section-title">Interested? Let's talk.</h2>
+                <h2 class="section-title">Tell us what you're building</h2>
             </div>
 
-            <div class="contact-container">
-                <p class="about-text">
-                    A few lines about your project is all it takes.
-                </p>
+            <div class="contact-grid">
+                <div class="contact-lead">
+                    <p class="contact-lede">
+                        Send a model, a drawing set, or just a description of the idea. You'll get a
+                        straight answer on whether it's a fit, what it takes, and what it costs
+                        &mdash; from the person who'd do the work, not an account manager.
+                    </p>
 
-                <div class="contact-methods">
-                    <a href="mailto:hello@alternatexr.com?subject=XR%20Project%20Enquiry" class="contact-method">
-                        <div class="contact-method-label">
-                            Email us<br />
-                            <span class="contact-method-sub">hello@alternatexr.com</span>
-                        </div>
-                    </a>
-                    <a href="https://calendly.com/tarik-alternatexr/30min" class="contact-method">
-                        <div class="contact-method-label">
-                            Book a 30-minute call<br />
-                            <span class="contact-method-sub">Calendly</span>
-                        </div>
-                    </a>
+                    <div class="contact-actions">
+                        <a class="cta-primary" href="https://calendly.com/tarik-alternatexr/30min"
+                            target="_blank" rel="noopener">
+                            Book a 30-minute call
+                            <span class="cta-arrow" aria-hidden="true">&rarr;</span>
+                        </a>
+                        <!-- The mailto pre-fills the three questions in the panel opposite:
+                             a static site can't post a form, but it can hand people the form. -->
+                        <a class="cta-secondary"
+                            href="mailto:hello@alternatexr.com?subject=Project%20enquiry&amp;body=Project%3A%0D%0A%0D%0ASource%20files%20(Revit%2C%20IFC%2C%20STEP%2C%20FBX%2C%20OBJ)%3A%0D%0A%0D%0ATimeline%3A%0D%0A%0D%0AAnything%20else%3A%0D%0A">
+                            <span class="cta-label">Email us</span>
+                            <span class="cta-sub">hello@alternatexr.com</span>
+                        </a>
+                    </div>
+
+                    <p class="contact-foot">London &middot; working worldwide</p>
                 </div>
+
+                <aside class="contact-brief" aria-label="What to include in your enquiry">
+                    <div class="brief-title">What helps us answer fast</div>
+                    <ol class="brief-list">
+                        <li>
+                            <b>What you're building</b>
+                            <span>A product, a space, or both.</span>
+                        </li>
+                        <li>
+                            <b>The files you already have</b>
+                            <span>Revit, IFC, STEP, FBX, OBJ &mdash; whatever's on disk. No cleanup first.</span>
+                        </li>
+                        <li>
+                            <b>Roughly when you need it</b>
+                            <span>A single product takes minutes. A full space takes days to weeks.</span>
+                        </li>
+                    </ol>
+                    <p class="brief-note">Email us and these three questions are already in the message.</p>
+                </aside>
             </div>
         </section>
 
