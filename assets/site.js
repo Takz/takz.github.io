@@ -413,8 +413,9 @@ document.querySelectorAll('.stateful').forEach((block, blockIndex) => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (!('IntersectionObserver' in window)) return;
 
-    // Staggered so side-by-side blocks don't flip in unison.
-    const period = 3800 + blockIndex * 700;
+    // Staggered so side-by-side blocks don't flip in unison. Paced so the swap
+    // is noticed before most people scroll past.
+    const period = 2600 + blockIndex * 500;
     const io = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (touched) { io.disconnect(); return; }

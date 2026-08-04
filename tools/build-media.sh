@@ -138,7 +138,7 @@ else
   newer "$FILM" "$OUT/hero-720.mp4"  && encode 1280 26 "$OUT/hero-720.mp4"
   if newer "$FILM" "$OUT/hero-poster.jpg"; then
     "$FF" -hide_banner -loglevel error -y -ss "$POSTER_AT" -i "$FILM" \
-      -frames:v 1 -vf "scale=1920:-2" -q:v 4 "$OUT/hero-poster.jpg"
+      -frames:v 1 -vf "scale=2560:-2" -q:v 3 "$OUT/hero-poster.jpg"
     printf '  %-38s %s\n' "hero-poster.jpg" "$(du -h "$OUT/hero-poster.jpg" | cut -f1)"
   fi
 fi
