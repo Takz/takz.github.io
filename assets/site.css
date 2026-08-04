@@ -3464,3 +3464,39 @@ section.visible {
         transform: none;
     }
 }
+
+/* --- app card: a download strip, not a panel -----------------------------
+   It was ~215px tall to carry a badge and two sentences. Tighter padding, a
+   smaller heading and a single line bring it down to roughly half that. */
+.appcard {
+    padding: 1.3rem 1.6rem;
+    gap: 1.5rem;
+}
+
+.appcard h3 {
+    font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    margin-bottom: 0.3rem;
+}
+
+.appcard p {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    max-width: 68ch;
+}
+
+/* Scoped so the hero badge keeps its full size. */
+.appcard .appstore-badge svg {
+    height: 46px;
+}
+
+/* Firefox ignores -webkit-user-drag, so the images are also marked
+   draggable="false" in markup; this keeps selection off the whole frame. */
+.compare {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.compare-img {
+    -moz-user-select: none;
+    pointer-events: none;
+}

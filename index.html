@@ -101,8 +101,8 @@
                 </div>
             </a>
             <div class="nav-links">
-                <a href="#products">Products</a>
-                <a href="#spaces">Spaces</a>
+                <a href="#avenues">What we do</a>
+                <a href="#pipeline">Pipeline</a>
                 <a href="#work">Work</a>
                 <a href="#studio">Studio</a>
                 <a href="#contact">Contact</a>
@@ -209,41 +209,11 @@
         <section class="section" id="avenues">
             <div class="section-header section-header--tight">
                 <div class="section-eyebrow">What we do</div>
-                <h2 class="section-title">Products &amp; spaces, made spatial</h2>
+                <h2 class="section-title">Spaces &amp; products, made spatial</h2>
                 <p class="lede">One engine, two scales.</p>
             </div>
 
             <div class="avenues">
-                <article class="avenue avenue--products" id="products">
-                    <div class="avenue-media stateful">
-                        <div class="statepair">
-                            <img class="is-shown" src="media/product-leaves-960.jpg"
-                                alt="Journey of Leaves, a lighting installation by Rock &amp; Soar, at true scale in a room"
-                                width="960" height="540" loading="lazy" />
-                            <img src="media/product-london-960.jpg"
-                                alt="The same product placed on a 3D model of central London"
-                                width="960" height="540" loading="lazy" />
-                        </div>
-                        <div class="state-controls state-controls--overlay" role="group"
-                            aria-label="Choose a placement">
-                            <button type="button" class="state-btn" aria-pressed="true" data-index="0">In the room</button>
-                            <button type="button" class="state-btn" aria-pressed="false" data-index="1">On location</button>
-                        </div>
-                    </div>
-                    <div class="avenue-body">
-                        <div class="avenue-kicker">Avenue 01 &mdash; Products</div>
-                        <h3 class="avenue-title">One object, in their room, at 1:1</h3>
-                        <p class="avenue-text">
-                            Upload a model, get it back Vision-ready in minutes.
-                        </p>
-                        <ul class="avenue-points">
-                            <li>All major 3D formats accepted</li>
-                            <li>Finishes swap live in the headset</li>
-                            <li>You change them yourself, in a browser</li>
-                        </ul>
-                    </div>
-                </article>
-
                 <article class="avenue avenue--spaces" id="spaces">
                     <div class="avenue-media stateful">
                         <div class="statepair">
@@ -261,7 +231,7 @@
                         </div>
                     </div>
                     <div class="avenue-body">
-                        <div class="avenue-kicker">Avenue 02 &mdash; Spaces</div>
+                        <div class="avenue-kicker">Spaces</div>
                         <h3 class="avenue-title">One building, walkable, before it's built</h3>
                         <p class="avenue-text">
                             BIM in. A place you can explore on foot, out.
@@ -270,6 +240,36 @@
                             <li>Revit and IFC to a navigable environment</li>
                             <li>Daylight and evening states</li>
                             <li>Proven across 220 m of airport terminal</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <article class="avenue avenue--products" id="products">
+                    <div class="avenue-media stateful">
+                        <div class="statepair">
+                            <img class="is-shown" src="media/product-leaves-960.jpg"
+                                alt="Journey of Leaves, a lighting installation by Rock &amp; Soar, at true scale in a room"
+                                width="960" height="540" loading="lazy" />
+                            <img src="media/product-london-960.jpg"
+                                alt="The same product placed on a 3D model of central London"
+                                width="960" height="540" loading="lazy" />
+                        </div>
+                        <div class="state-controls state-controls--overlay" role="group"
+                            aria-label="Choose a placement">
+                            <button type="button" class="state-btn" aria-pressed="true" data-index="0">In the room</button>
+                            <button type="button" class="state-btn" aria-pressed="false" data-index="1">On location</button>
+                        </div>
+                    </div>
+                    <div class="avenue-body">
+                        <div class="avenue-kicker">Products</div>
+                        <h3 class="avenue-title">One object, in their room, at 1:1</h3>
+                        <p class="avenue-text">
+                            Upload a model, get it back Vision-ready in minutes.
+                        </p>
+                        <ul class="avenue-points">
+                            <li>All major 3D formats accepted</li>
+                            <li>Finishes swap live in the headset</li>
+                            <li>You change them yourself, in a browser</li>
                         </ul>
                     </div>
                 </article>
@@ -283,11 +283,9 @@
                 <div>
                     <h3>Both demos are running now, free</h3>
                     <p>
-                        <strong>Journey of Leaves</strong> is a real client model, straight from the
-                        pipeline. <strong>The Digital Showroom</strong> is the bar we hold for full
-                        spaces. Try them both in our Vision&nbsp;Pro app.
+                        <strong>Journey of Leaves</strong>, straight from the pipeline, and
+                        <strong>The Digital Showroom</strong>. Free &middot; visionOS&nbsp;2.0 or later.
                     </p>
-                    <div class="appcard-meta">Free &middot; visionOS 2.0 or later</div>
                 </div>
                 <a class="appstore-badge" href="https://apps.apple.com/gb/app/alternatexr/id6792300997"
                     target="_blank" rel="noopener" aria-label="Download AlternateXR on the App Store">
@@ -320,12 +318,12 @@
 
             <div class="case-flagship case-flagship--inline">
                 <div class="compare" id="compare">
-                    <img class="compare-img compare-before" src="media/airport-before-1600.jpg"
+                    <img class="compare-img compare-before" draggable="false" src="media/airport-before-1600.jpg"
                         srcset="media/airport-before-800.jpg 800w, media/airport-before-1600.jpg 1600w"
                         sizes="(max-width: 1280px) 100vw, 1200px"
                         alt="The terminal as an untextured grey BIM model, showing structure only"
                         width="1600" height="895" />
-                    <img class="compare-img compare-after" src="media/airport-after-1600.jpg"
+                    <img class="compare-img compare-after" draggable="false" src="media/airport-after-1600.jpg"
                         srcset="media/airport-after-800.jpg 800w, media/airport-after-1600.jpg 1600w"
                         sizes="(max-width: 1280px) 100vw, 1200px"
                         alt="The same terminal delivered: materials, lighting, signage, seating and travelators"
@@ -668,9 +666,9 @@
                 </div>
             </a>
             <div class="footer-links">
-                <a href="#products">Products</a>
-                <a href="#spaces">Spaces</a>
+                <a href="#avenues">What we do</a>
                 <a href="#work">Work</a>
+                <a href="#studio">Studio</a>
                 <a href="privacy.html">Privacy</a>
             </div>
             <div class="footer-copyright">
