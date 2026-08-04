@@ -115,15 +115,6 @@ echo "==> Hero film"
 FILM="$SRC/Website Hero.mp4"
 POSTER_AT=0.5        # seconds — frame used for the poster / OG image
 
-# The reel arrives with two stretches of app UI in shot: the Journey of Leaves
-# info card runs 3.50-7.70s, and the showroom control bar 11.80-13.70s. Both sat
-# directly behind the headline, so KEEP splices the three clean runs instead.
-# That also takes 17.5s down to 11.4s, which is what brings the file in budget.
-# Re-derive these timings with a scene scan if the master is ever recut.
-KEEP="[0:v]trim=0:3.50,setpts=PTS-STARTPTS[a];\
-[0:v]trim=7.70:11.80,setpts=PTS-STARTPTS[b];\
-[0:v]trim=13.70:17.54,setpts=PTS-STARTPTS[c];\
-[a][b][c]concat=n=3:v=1:a=0[cat]"
 
 # encode <width> <crf> <outfile>
 # Audio is dropped: the hero is a muted background loop, so it's pure weight.
@@ -131,7 +122,7 @@ KEEP="[0:v]trim=0:3.50,setpts=PTS-STARTPTS[a];\
 encode() {
   local w="$1" crf="$2" dst="$3"
   "$FF" -hide_banner -loglevel error -y -i "$FILM" \
-    -filter_complex "$KEEP;[cat]scale=$w:-2[v]" -map "[v]" -an \
+    -map 0:v:0 -an -vf "scale=$w:-2" \
     -c:v libx264 -profile:v high -preset slow -crf "$crf" \
     -pix_fmt yuv420p -movflags +faststart "$dst"
   printf '  %-38s %s\n' "$(basename "$dst")" "$(du -h "$dst" | cut -f1)"
@@ -143,8 +134,8 @@ elif [[ -z "$FF" ]]; then
   echo "  SKIPPED — no ffmpeg available and npm not found." >&2
   echo "            install ffmpeg, or set FFMPEG=/path/to/ffmpeg" >&2
 else
-  newer "$FILM" "$OUT/hero-1080.mp4" && encode 1920 32 "$OUT/hero-1080.mp4"
-  newer "$FILM" "$OUT/hero-720.mp4"  && encode 1280 32 "$OUT/hero-720.mp4"
+  newer "$FILM" "$OUT/hero-1080.mp4" && encode 1920 26 "$OUT/hero-1080.mp4"
+  newer "$FILM" "$OUT/hero-720.mp4"  && encode 1280 26 "$OUT/hero-720.mp4"
   if newer "$FILM" "$OUT/hero-poster.jpg"; then
     "$FF" -hide_banner -loglevel error -y -ss "$POSTER_AT" -i "$FILM" \
       -frames:v 1 -vf "scale=1920:-2" -q:v 4 "$OUT/hero-poster.jpg"
