@@ -3542,3 +3542,20 @@ section.visible {
 .flagship-credit {
     margin: 0.6rem 0 0.9rem;
 }
+
+/* The pipeline section restated the Products card almost verbatim — three of its
+   four stages, near word for word — so it was cut. Its two original claims live
+   here instead, directly under the pair they describe. */
+.avenues-note {
+    max-width: 62ch;
+    margin: 2rem auto 0;
+    text-align: center;
+    color: var(--muted);
+    line-height: 1.65;
+    text-wrap: pretty;
+}
+
+.avenues-note b {
+    color: var(--text);
+    font-weight: 600;
+}
