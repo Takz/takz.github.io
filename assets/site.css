@@ -3595,3 +3595,66 @@ section.visible {
         padding: 1.25rem 1.2rem;
     }
 }
+
+/* Outcome as scannable points rather than a paragraph — nobody reads prose
+   wedged between a figures band and the next section. */
+.outcome-points {
+    list-style: none;
+    display: grid;
+    gap: 0.55rem;
+    margin-top: 0.9rem;
+}
+
+.outcome-points li {
+    position: relative;
+    padding-left: 1.4rem;
+    color: var(--muted);
+    line-height: 1.55;
+    text-wrap: pretty;
+}
+
+.outcome-points li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+/* --- footer social ------------------------------------------------------- */
+.footer-social {
+    display: flex;
+    gap: 0.9rem;
+    align-items: center;
+}
+
+.footer-social a {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.footer-social a:hover {
+    color: var(--text);
+    border-color: rgba(56, 189, 248, 0.55);
+    background: rgba(56, 189, 248, 0.1);
+}
+
+.footer-social a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .footer-social a {
+        transition: none;
+    }
+}
