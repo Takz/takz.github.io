@@ -3601,13 +3601,15 @@ section.visible {
 .outcome-points {
     list-style: none;
     display: grid;
-    gap: 0.55rem;
-    margin-top: 0.9rem;
+    /* 9px between rows against a 24.8px line height read as cramped; the label
+       also sat only 14px clear of the list, so it looked like a fourth row. */
+    gap: 0.85rem;
+    margin-top: 1.15rem;
 }
 
 .outcome-points li {
     position: relative;
-    padding-left: 1.4rem;
+    padding-left: 1.35rem;
     color: var(--muted);
     line-height: 1.55;
     text-wrap: pretty;
@@ -3616,10 +3618,10 @@ section.visible {
 .outcome-points li::before {
     content: "";
     position: absolute;
-    left: 0;
-    top: 0.62em;
-    width: 7px;
-    height: 7px;
+    left: 0.1rem;
+    top: 0.58em;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background: var(--accent);
 }
@@ -3656,5 +3658,21 @@ section.visible {
 @media (prefers-reduced-motion: reduce) {
     .footer-social a {
         transition: none;
+    }
+}
+
+/* On a phone the panel is narrow and the points fill it. On desktop the same
+   list left two-thirds of a 1216px panel empty, which is why the spacing read
+   as wrong — the layout was the cause, not the gaps. Three columns fill the
+   width and rhyme with the four-column figures band directly above. */
+@media (min-width: 860px) {
+    .outcome-points {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.75rem;
+        margin-top: 1.25rem;
+    }
+
+    .outcome-points li {
+        padding-left: 1.15rem;
     }
 }
