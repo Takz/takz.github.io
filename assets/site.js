@@ -325,10 +325,18 @@ if (menuToggle) {
         apply(v);
     };
 
+    // Firefox starts a native image drag on mousedown, which swallows the pointer
+    // stream and leaves the handle stuck. -webkit-user-drag does nothing there, so
+    // cancel the drag outright; the images also carry draggable="false".
+    box.addEventListener('dragstart', (e) => e.preventDefault());
+
     let dragging = false;
     box.addEventListener('pointerdown', (e) => {
         touched = true;
         dragging = true;
+        // Mouse only: stops Firefox's drag/selection default without touching
+        // touch scrolling, which `touch-action: pan-y` already handles.
+        if (e.pointerType === 'mouse') e.preventDefault();
         if (box.setPointerCapture) {
             try { box.setPointerCapture(e.pointerId); } catch (err) { /* detached pointer */ }
         }
@@ -405,8 +413,9 @@ document.querySelectorAll('.stateful').forEach((block, blockIndex) => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     if (!('IntersectionObserver' in window)) return;
 
-    // Staggered so side-by-side blocks don't flip in unison.
-    const period = 3800 + blockIndex * 700;
+    // Staggered so side-by-side blocks don't flip in unison. Paced so the swap
+    // is noticed before most people scroll past.
+    const period = 2600 + blockIndex * 500;
     const io = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (touched) { io.disconnect(); return; }

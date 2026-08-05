@@ -95,8 +95,8 @@ PY
 fi
 
 echo "==> Airport before/after"
-still "$SRC/Airport/Before.png" "airport-before" 1600 800
-still "$SRC/Airport/After.png"  "airport-after"  1600 800
+still "$SRC/Airport/Before.png" "airport-before" 2400 1600 800
+still "$SRC/Airport/After.png"  "airport-after"  2400 1600 800
 
 echo "==> Digital Showroom"
 AS="$SRC/AppStore"
@@ -112,8 +112,9 @@ still "$AS/axr_volume_london.png" "product-london" 1920 960
 still "$AS/axr_volume_menu.png"   "product-menu"   1920 960
 
 echo "==> Hero film"
-FILM="$SRC/AlternateXR App Store Connect.mp4"
-POSTER_AT=2          # seconds — frame used for the poster / OG image
+FILM="$SRC/Website Hero.mp4"
+POSTER_AT=0.5        # seconds — frame used for the poster / OG image
+
 
 # encode <width> <crf> <outfile>
 # Audio is dropped: the hero is a muted background loop, so it's pure weight.
@@ -121,7 +122,8 @@ POSTER_AT=2          # seconds — frame used for the poster / OG image
 encode() {
   local w="$1" crf="$2" dst="$3"
   "$FF" -hide_banner -loglevel error -y -i "$FILM" \
-    -an -vf "scale=$w:-2" -c:v libx264 -profile:v high -preset slow -crf "$crf" \
+    -map 0:v:0 -an -vf "scale=$w:-2" \
+    -c:v libx264 -profile:v high -preset slow -crf "$crf" \
     -pix_fmt yuv420p -movflags +faststart "$dst"
   printf '  %-38s %s\n' "$(basename "$dst")" "$(du -h "$dst" | cut -f1)"
 }
@@ -132,11 +134,11 @@ elif [[ -z "$FF" ]]; then
   echo "  SKIPPED — no ffmpeg available and npm not found." >&2
   echo "            install ffmpeg, or set FFMPEG=/path/to/ffmpeg" >&2
 else
-  newer "$FILM" "$OUT/hero-1080.mp4" && encode 1920 28 "$OUT/hero-1080.mp4"
-  newer "$FILM" "$OUT/hero-720.mp4"  && encode 1280 28 "$OUT/hero-720.mp4"
+  newer "$FILM" "$OUT/hero-1080.mp4" && encode 1920 26 "$OUT/hero-1080.mp4"
+  newer "$FILM" "$OUT/hero-720.mp4"  && encode 1280 26 "$OUT/hero-720.mp4"
   if newer "$FILM" "$OUT/hero-poster.jpg"; then
     "$FF" -hide_banner -loglevel error -y -ss "$POSTER_AT" -i "$FILM" \
-      -frames:v 1 -vf "scale=1920:-2" -q:v 4 "$OUT/hero-poster.jpg"
+      -frames:v 1 -vf "scale=2560:-2" -q:v 3 "$OUT/hero-poster.jpg"
     printf '  %-38s %s\n' "hero-poster.jpg" "$(du -h "$OUT/hero-poster.jpg" | cut -f1)"
   fi
 fi
