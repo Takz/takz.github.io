@@ -143,6 +143,36 @@ else
   fi
 fi
 
+echo "==> App Store preview (click-to-play, in the app card)"
+# Unlike the hero this keeps its audio and is never autoplayed, so quality
+# matters more than bytes: preload="none" in the markup means nothing is
+# fetched until a visitor presses play.
+PREVIEW="$SRC/AlternateXR App Store Connect.mp4"
+PREVIEW_POSTER_AT=13     # leaves mid-swap, with the app's own info card in shot
+
+preview() {
+  local w="$1" crf="$2" dst="$3"
+  "$FF" -hide_banner -loglevel error -y -i "$PREVIEW" \
+    -map 0:v:0 -map 0:a:0 -vf "scale=$w:-2" \
+    -c:v libx264 -profile:v high -preset slow -crf "$crf" -pix_fmt yuv420p \
+    -c:a aac -b:a 128k -movflags +faststart "$dst"
+  printf '  %-38s %s\n' "$(basename "$dst")" "$(du -h "$dst" | cut -f1)"
+}
+
+if [[ ! -f "$PREVIEW" ]]; then
+  echo "  skipped — $PREVIEW not found"
+elif [[ -z "$FF" ]]; then
+  echo "  skipped — no ffmpeg"
+else
+  newer "$PREVIEW" "$OUT/app-preview-1080.mp4" && preview 1920 24 "$OUT/app-preview-1080.mp4"
+  newer "$PREVIEW" "$OUT/app-preview-720.mp4"  && preview 1280 26 "$OUT/app-preview-720.mp4"
+  if newer "$PREVIEW" "$OUT/app-preview-poster.jpg"; then
+    "$FF" -hide_banner -loglevel error -y -ss "$PREVIEW_POSTER_AT" -i "$PREVIEW" \
+      -frames:v 1 -vf "scale=1920:-2" -q:v 3 "$OUT/app-preview-poster.jpg"
+    printf '  %-38s %s\n' "app-preview-poster.jpg" "$(du -h "$OUT/app-preview-poster.jpg" | cut -f1)"
+  fi
+fi
+
 echo "==> Re-compress oversized legacy assets"
 [[ -f "$ROOT/tarik.jpg" ]]         && still "$ROOT/tarik.jpg"         "tarik"    800 400
 [[ -f "$ROOT/yachtxr-thumb.jpg" ]] && still "$ROOT/yachtxr-thumb.jpg" "yachtxr"  1200 600
