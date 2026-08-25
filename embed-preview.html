@@ -96,18 +96,15 @@
     </script>
     <link rel="stylesheet" href="assets/site.css?v=202608041125">
     <style>
-        /* embed preview card */
-        .live{margin:1.5rem 0 0;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--panel);backdrop-filter:blur(14px);overflow:hidden}
-        .live-head{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:end;padding:1.75rem 1.75rem 1.25rem}
-        .live-kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}
-        .live-title{font-size:clamp(1.5rem,2.6vw,1.95rem);font-weight:700;letter-spacing:-.02em;line-height:1.15;text-wrap:balance}
-        .live-text{color:var(--muted);line-height:1.65;max-width:58ch;margin-top:.6rem}
-        .live-text strong{color:var(--text);font-weight:600}
-        .live-open{display:inline-flex;align-items:center;gap:.5rem;white-space:nowrap;font-weight:600;font-size:.95rem;color:var(--accent);padding-bottom:.2rem}
-        .live-open .arrow{transition:transform .25s ease}.live-open:hover .arrow{transform:translateX(4px)}
-        .live-frame{position:relative;margin:0 1.75rem 1.75rem;border-radius:var(--radius-lg);overflow:hidden;background:#0b1220;border:1px solid var(--border)}
+        /* live demo section */
+        #live .lede strong{color:var(--text);font-weight:600}
+        .live-frame{position:relative;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;background:#0b1220;box-shadow:var(--shadow-card)}
         .live-frame iframe{display:block}
-        @media(max-width:768px){.live-head{grid-template-columns:1fr;align-items:start;padding:1.25rem 1rem 1rem}.live-frame{margin:0 0 .75rem;border-radius:0;border-left:0;border-right:0}.live-frame iframe{aspect-ratio:3/4!important}}
+        .live-open-row{margin:1.25rem 0 0;text-align:center}
+        .live-open{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.95rem;color:var(--accent)}
+        .live-open .arrow{transition:transform .25s ease}.live-open:hover .arrow{transform:translateX(4px)}
+        .live-open:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:3px}
+        @media(max-width:768px){.live-frame{border-radius:var(--radius-lg)}.live-frame iframe{aspect-ratio:3/4!important}}
     </style>
 </head>
 
@@ -305,31 +302,31 @@
                 </article>
             </div>
 
-            <!-- Preview: Rock & Soar Storm configurator, embedded. -->
-            <article class="live" id="live">
-                <div class="live-head">
-                    <div>
-                        <div class="live-kicker">Live demo</div>
-                        <h3 class="live-title">Try a product configurator, right here</h3>
-                        <p class="live-text">
-                            <strong>Storm</strong> by Rock &amp; Soar, built from their CAD. Orbit it, change the glass,
-                            the metal, the arrangement and the room &mdash; the dimensions follow.
-                        </p>
-                    </div>
-                    <a class="live-open" href="https://rockandsoar.alternatexr.com/storm/" target="_blank" rel="noopener">Open full screen <span class="arrow">&rarr;</span></a>
-                </div>
-                <div class="live-frame">
-                    <iframe src="https://rockandsoar.alternatexr.com/storm/"
-        style="border:0;width:100%;aspect-ratio:4/3;min-height:480px;max-height:90vh"
-        allow="fullscreen" title="Storm configurator by Rock &amp; Soar"></iframe>
-                </div>
-            </article>
 
             <p class="avenues-note">
                 Send the files you already have &mdash; no cleanup first. A single product takes
                 <b>minutes</b>; a full space, <b>days to weeks</b>.
             </p>
         </section>
+
+        <!-- Live demo: the Rock & Soar Storm configurator, embedded. -->
+        <section class="section" id="live">
+            <div class="section-header section-header--tight">
+                <div class="section-eyebrow">Live demo</div>
+                <h2 class="section-title">Try a product configurator, right here</h2>
+                <p class="lede">
+                    <strong>Storm</strong> by Rock &amp; Soar, built from their CAD. Orbit it, change the glass,
+                    the metal, the arrangement and the room &mdash; the dimensions follow.
+                </p>
+            </div>
+            <div class="live-frame">
+                <iframe src="https://rockandsoar.alternatexr.com/storm/"
+        style="border:0;width:100%;aspect-ratio:4/3;min-height:480px;max-height:90vh"
+        allow="fullscreen" title="Storm configurator by Rock &amp; Soar"></iframe>
+            </div>
+            <p class="live-open-row">
+                <a class="live-open" href="https://rockandsoar.alternatexr.com/storm/" target="_blank" rel="noopener">Open full screen <span class="arrow">&rarr;</span></a>
+            </p>
 
         <!-- What we've done: the airport wipe, given its own section so the delivered
              work reads as a counterpart to "What we do" rather than a footnote to it. -->
