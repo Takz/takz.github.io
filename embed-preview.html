@@ -122,16 +122,21 @@
         .live-open{display:inline-flex;align-items:center;gap:.45rem;flex:0 0 auto;font-weight:600;font-size:.9rem;color:var(--accent);white-space:nowrap}
         .live-open .arrow{transition:transform .25s ease}.live-open:hover .arrow{transform:translate(2px,-2px)}
         .live-open:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:3px}
-        #live .figures{margin-top:1.25rem}
-        #live .figure-value{white-space:nowrap}
+        .live-after{display:grid;grid-template-columns:1fr 1.15fr;gap:2.5rem;align-items:start;margin-top:2.25rem;padding-top:2rem;border-top:1px solid var(--border)}
+        .live-after h3{font-size:clamp(1.3rem,2.2vw,1.6rem);font-weight:700;letter-spacing:-.02em;line-height:1.2;text-wrap:balance}
+        .live-after-lead p{margin-top:.8rem;color:var(--muted);line-height:1.65;max-width:46ch}
+        .live-after-lead p b{color:var(--text);font-weight:600}
+        .live-after-points{list-style:none;display:grid;gap:.9rem}
+        .live-after-points li{position:relative;padding-left:1.4rem;color:var(--muted);line-height:1.6;font-size:.95rem}
+        .live-after-points li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+        .live-after-points b{color:var(--text);font-weight:600}
         @media(max-width:768px){
             .live-card{margin-inline:-1rem;border-radius:var(--radius-lg)}
             .live-frame{aspect-ratio:3/4;max-height:78vh;min-height:0}
             .live-bar{padding:.75rem 1.75rem}
             .live-open .label{display:none}
             .live-attrib .long{display:none}
-            #live .figure-value{font-size:1rem}
-            #live .figure-label{font-size:.68rem}
+            .live-after{grid-template-columns:1fr;gap:1.5rem;margin-top:1.75rem}
         }
         @media(prefers-reduced-motion:reduce){.live-dot{animation:none}.live-gate,.live-open .arrow{transition:none}}
     </style>
@@ -344,11 +349,12 @@
              frame scrolls out of view. -->
         <section class="section" id="live">
             <div class="section-header section-header--tight">
-                <div class="section-eyebrow">Live</div>
-                <h2 class="section-title">Their CAD, configurable in your browser</h2>
+                <div class="section-eyebrow">Products, live</div>
+                <h2 class="section-title">Your collection, explorable</h2>
                 <p class="lede">
-                    <strong>Storm</strong> by Rock &amp; Soar, built from their CAD and running live below.
-                    Orbit it, change the glass, the metal and the arrangement &mdash; the dimensions follow.
+                    <strong>Storm</strong> by Rock &amp; Soar: engineering CAD in, a piece customers can configure,
+                    share and picture in their own space out &mdash; in any browser, on any device, nothing to
+                    install. The same asset hangs at 1:1 on Vision Pro.
                 </p>
             </div>
 
@@ -371,23 +377,18 @@
                 </div>
             </div>
 
-            <div class="figures">
-                <div class="figure">
-                    <div class="figure-value">1,291 &times; 585 mm</div>
-                    <div class="figure-label">Footprint</div>
+            <div class="live-after">
+                <div class="live-after-lead">
+                    <h3>Have a collection in Rhino, STEP or STL?</h3>
+                    <p>That's all we need. Send the files as they are, plus photographs of the built piece,
+                        and your customers could be exploring it <b>this month</b> &mdash; on your site, in your
+                        showroom, on a tablet in a client meeting.</p>
                 </div>
-                <div class="figure">
-                    <div class="figure-value">743 mm</div>
-                    <div class="figure-label">Drop</div>
-                </div>
-                <div class="figure">
-                    <div class="figure-value">25 &middot; 3</div>
-                    <div class="figure-label">Droplets &middot; lights</div>
-                </div>
-                <div class="figure">
-                    <div class="figure-value">5 &middot; 3 &middot; 6</div>
-                    <div class="figure-label">Glass &middot; textures &middot; metals</div>
-                </div>
+                <ul class="live-after-points">
+                    <li><b>Measured, not modelled.</b> Every element sits where it hangs in the built fixture; the look is matched to your photographs, not invented.</li>
+                    <li><b>One asset, every screen.</b> The browser piece and the Vision Pro piece share geometry, finishes and saved configurations.</li>
+                    <li><b>Yours to embed.</b> One line of HTML, and it refuses to run on domains you haven't approved. Every configuration is a link.</li>
+                </ul>
             </div>
         </section>
 
