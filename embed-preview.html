@@ -96,15 +96,44 @@
     </script>
     <link rel="stylesheet" href="assets/site.css?v=202608041125">
     <style>
-        /* live demo section */
+        /* live demo section: the Storm configurator as a card, with a gate over the
+           frame so orbit controls never capture the page scroll. Sky accent only. */
         #live .lede strong{color:var(--text);font-weight:600}
-        .live-frame{position:relative;border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;background:#0b1220;box-shadow:var(--shadow-card)}
-        .live-frame iframe{display:block}
-        .live-open-row{margin:1.25rem 0 0;text-align:center}
-        .live-open{display:inline-flex;align-items:center;gap:.5rem;font-weight:600;font-size:.95rem;color:var(--accent)}
-        .live-open .arrow{transition:transform .25s ease}.live-open:hover .arrow{transform:translateX(4px)}
+        .live-card{border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;background:var(--panel);backdrop-filter:blur(14px);box-shadow:var(--shadow-card)}
+        .live-frame{position:relative;width:100%;background:#0b1220;aspect-ratio:16/9;max-height:70vh;min-height:360px;overflow:hidden}
+        .live-frame iframe{position:absolute;inset:0;width:100%!important;height:100%!important;aspect-ratio:auto!important;min-height:0!important;max-height:none!important;display:block;pointer-events:none}
+        .live-card.is-active .live-frame iframe{pointer-events:auto}
+        .live-gate{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;width:100%;padding:1.5rem;border:0;cursor:pointer;color:var(--text);font:inherit;text-align:center;
+            background:radial-gradient(ellipse at 50% 40%,rgba(56,189,248,.16),transparent 60%),linear-gradient(to bottom,rgba(2,6,23,.72),rgba(2,6,23,.6) 50%,rgba(2,6,23,.82));
+            transition:opacity .3s ease,visibility .3s ease}
+        .live-gate:hover{background:radial-gradient(ellipse at 50% 40%,rgba(56,189,248,.22),transparent 60%),linear-gradient(to bottom,rgba(2,6,23,.66),rgba(2,6,23,.52) 50%,rgba(2,6,23,.78))}
+        .live-gate:focus-visible{outline:2px solid var(--accent);outline-offset:-6px}
+        .live-card.is-active .live-gate{opacity:0;visibility:hidden;pointer-events:none}
+        .live-pill{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .8rem;border-radius:999px;border:1px solid rgba(56,189,248,.4);background:rgba(2,6,23,.7);font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+        .live-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(56,189,248,.6);animation:liveDot 2s ease-out infinite}
+        @keyframes liveDot{0%{box-shadow:0 0 0 0 rgba(56,189,248,.6)}70%{box-shadow:0 0 0 9px rgba(56,189,248,0)}100%{box-shadow:0 0 0 0 rgba(56,189,248,0)}}
+        .live-cta{font-size:clamp(1.25rem,2.4vw,1.7rem);font-weight:700;letter-spacing:-.02em;line-height:1.15}
+        .live-cta .tap,.live-hint .tap{display:none}
+        .live-hint{font-size:.85rem;color:var(--muted);letter-spacing:.02em}
+        @media(hover:none) and (pointer:coarse){.live-cta .click,.live-hint .click{display:none}.live-cta .tap,.live-hint .tap{display:inline}}
+        .live-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 1.25rem;border-top:1px solid var(--border)}
+        .live-attrib{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .live-attrib b{color:var(--text);font-weight:600}
+        .live-open{display:inline-flex;align-items:center;gap:.45rem;flex:0 0 auto;font-weight:600;font-size:.9rem;color:var(--accent);white-space:nowrap}
+        .live-open .arrow{transition:transform .25s ease}.live-open:hover .arrow{transform:translate(2px,-2px)}
         .live-open:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:3px}
-        @media(max-width:768px){.live-frame{border-radius:var(--radius-lg)}.live-frame iframe{aspect-ratio:3/4!important}}
+        #live .figures{margin-top:1.25rem}
+        #live .figure-value{white-space:nowrap}
+        @media(max-width:768px){
+            .live-card{margin-inline:-1rem;border-radius:var(--radius-lg)}
+            .live-frame{aspect-ratio:3/4;max-height:78vh;min-height:0}
+            .live-bar{padding:.75rem 1.75rem}
+            .live-open .label{display:none}
+            .live-attrib .long{display:none}
+            #live .figure-value{font-size:1rem}
+            #live .figure-label{font-size:.68rem}
+        }
+        @media(prefers-reduced-motion:reduce){.live-dot{animation:none}.live-gate,.live-open .arrow{transition:none}}
     </style>
 </head>
 
@@ -296,7 +325,7 @@
                         <ul class="avenue-points">
                             <li>All major 3D formats accepted</li>
                             <li>Finishes swap live in the headset</li>
-                            <li>You change them yourself, in a browser</li>
+                            <li>At true 1:1 in the room</li>
                         </ul>
                     </div>
                 </article>
@@ -309,24 +338,57 @@
             </p>
         </section>
 
-        <!-- Live demo: the Rock & Soar Storm configurator, embedded. -->
+        <!-- Live demo: the Rock & Soar Storm configurator, embedded. The gate button
+             sits over the frame until clicked, so the configurator's orbit controls
+             cannot capture the page scroll; it re-arms when the pointer leaves or the
+             frame scrolls out of view. -->
         <section class="section" id="live">
             <div class="section-header section-header--tight">
-                <div class="section-eyebrow">Live demo</div>
-                <h2 class="section-title">Try a product configurator, right here</h2>
+                <div class="section-eyebrow">Live</div>
+                <h2 class="section-title">Their CAD, configurable in your browser</h2>
                 <p class="lede">
-                    <strong>Storm</strong> by Rock &amp; Soar, built from their CAD. Orbit it, change the glass,
-                    the metal, the arrangement and the room &mdash; the dimensions follow.
+                    <strong>Storm</strong> by Rock &amp; Soar, built from their CAD and running live below.
+                    Orbit it, change the glass, the metal and the arrangement &mdash; the dimensions follow.
                 </p>
             </div>
-            <div class="live-frame">
-                <iframe src="https://rockandsoar.alternatexr.com/storm/"
+
+            <div class="live-card" id="liveCard">
+                <div class="live-frame" id="liveFrame">
+                    <iframe src="https://rockandsoar.alternatexr.com/storm/"
         style="border:0;width:100%;aspect-ratio:4/3;min-height:480px;max-height:90vh"
-        allow="fullscreen" title="Storm configurator by Rock &amp; Soar"></iframe>
+        allow="fullscreen" title="Storm configurator by Rock &amp; Soar" loading="lazy"></iframe>
+                    <button type="button" class="live-gate" id="liveGate" aria-label="Explore the Storm configurator">
+                        <span class="live-pill"><span class="live-dot" aria-hidden="true"></span>Live configurator</span>
+                        <span class="live-cta"><span class="click">Click to explore</span><span class="tap">Tap to explore</span></span>
+                        <span class="live-hint"><span class="click">drag to orbit &middot; scroll to zoom</span><span class="tap">drag to orbit &middot; pinch to zoom</span></span>
+                    </button>
+                </div>
+                <div class="live-bar">
+                    <div class="live-attrib"><b>Storm</b> &middot; Rock &amp; Soar<span class="long"> &middot; from the client's CAD</span></div>
+                    <a class="live-open" href="https://rockandsoar.alternatexr.com/storm/" target="_blank" rel="noopener">
+                        <span class="label">Open in a new tab</span><span class="arrow" aria-hidden="true">&nearr;</span>
+                    </a>
+                </div>
             </div>
-            <p class="live-open-row">
-                <a class="live-open" href="https://rockandsoar.alternatexr.com/storm/" target="_blank" rel="noopener">Open full screen <span class="arrow">&rarr;</span></a>
-            </p>
+
+            <div class="figures">
+                <div class="figure">
+                    <div class="figure-value">1,291 &times; 585 mm</div>
+                    <div class="figure-label">Footprint</div>
+                </div>
+                <div class="figure">
+                    <div class="figure-value">743 mm</div>
+                    <div class="figure-label">Drop</div>
+                </div>
+                <div class="figure">
+                    <div class="figure-value">25 &middot; 3</div>
+                    <div class="figure-label">Droplets &middot; lights</div>
+                </div>
+                <div class="figure">
+                    <div class="figure-value">5 &middot; 3 &middot; 6</div>
+                    <div class="figure-label">Glass &middot; textures &middot; metals</div>
+                </div>
+            </div>
         </section>
 
         <!-- What we've done: the airport wipe, given its own section so the delivered
@@ -679,6 +741,37 @@
         </div>
     </footer>
 
+    <script>
+        (function () {
+            var card = document.getElementById('liveCard');
+            var frame = document.getElementById('liveFrame');
+            var gate = document.getElementById('liveGate');
+            if (!card || !frame || !gate) return;
+            var armedY = 0;
+            function arm() {
+                if (!card.classList.contains('is-active')) return;
+                card.classList.remove('is-active');
+            }
+            function disarm() {
+                card.classList.add('is-active');
+                armedY = window.scrollY;
+            }
+            gate.addEventListener('click', disarm);
+            // Desktop: leaving the frame hands the wheel back to the page.
+            frame.addEventListener('mouseleave', arm);
+            // Any page scroll while active (touch outside the frame, keys, scrollbar)
+            // means the visitor has moved on; re-arm so the frame can't trap them.
+            window.addEventListener('scroll', function () {
+                if (card.classList.contains('is-active') && Math.abs(window.scrollY - armedY) > 80) arm();
+            }, { passive: true });
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver(function (entries) {
+                    entries.forEach(function (e) { if (e.intersectionRatio < 0.5) arm(); });
+                }, { threshold: [0, 0.5] }).observe(frame);
+            }
+            document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { arm(); gate.focus(); } });
+        })();
+    </script>
     <script src="assets/site.js?v=202608041125" defer></script>
 </body>
 
