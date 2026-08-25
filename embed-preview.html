@@ -98,13 +98,16 @@
     <style>
         /* embed preview card */
         .live{margin:1.5rem 0 0;border:1px solid var(--border);border-radius:var(--radius-xl);background:var(--panel);backdrop-filter:blur(14px);overflow:hidden}
-        .live-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.1rem 1.5rem}
-        .live-kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--violet)}
-        .live-open{display:inline-flex;align-items:center;gap:.5rem;white-space:nowrap;font-weight:600;font-size:.9rem;color:var(--violet)}
+        .live-head{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:end;padding:1.75rem 1.75rem 1.25rem}
+        .live-kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}
+        .live-title{font-size:clamp(1.5rem,2.6vw,1.95rem);font-weight:700;letter-spacing:-.02em;line-height:1.15;text-wrap:balance}
+        .live-text{color:var(--muted);line-height:1.65;max-width:58ch;margin-top:.6rem}
+        .live-text strong{color:var(--text);font-weight:600}
+        .live-open{display:inline-flex;align-items:center;gap:.5rem;white-space:nowrap;font-weight:600;font-size:.95rem;color:var(--accent);padding-bottom:.2rem}
         .live-open .arrow{transition:transform .25s ease}.live-open:hover .arrow{transform:translateX(4px)}
-        .live-frame{position:relative;margin:0 1.5rem 1.5rem;border-radius:var(--radius-lg);overflow:hidden;background:#0b1220;border:1px solid var(--border)}
+        .live-frame{position:relative;margin:0 1.75rem 1.75rem;border-radius:var(--radius-lg);overflow:hidden;background:#0b1220;border:1px solid var(--border)}
         .live-frame iframe{display:block}
-        @media(max-width:768px){.live-head{padding:1rem}.live-frame{margin:0 0 .75rem;border-radius:0;border-left:0;border-right:0}.live-frame iframe{aspect-ratio:3/4!important}}
+        @media(max-width:768px){.live-head{grid-template-columns:1fr;align-items:start;padding:1.25rem 1rem 1rem}.live-frame{margin:0 0 .75rem;border-radius:0;border-left:0;border-right:0}.live-frame iframe{aspect-ratio:3/4!important}}
     </style>
 </head>
 
@@ -305,7 +308,14 @@
             <!-- Preview: Rock & Soar Storm configurator, embedded. -->
             <article class="live" id="live">
                 <div class="live-head">
-                    <div class="live-kicker">Live &middot; Rock &amp; Soar &middot; Storm</div>
+                    <div>
+                        <div class="live-kicker">Live demo</div>
+                        <h3 class="live-title">Try a product configurator, right here</h3>
+                        <p class="live-text">
+                            <strong>Storm</strong> by Rock &amp; Soar, built from their CAD. Orbit it, change the glass,
+                            the metal, the arrangement and the room &mdash; the dimensions follow.
+                        </p>
+                    </div>
                     <a class="live-open" href="https://rockandsoar.alternatexr.com/storm/" target="_blank" rel="noopener">Open full screen <span class="arrow">&rarr;</span></a>
                 </div>
                 <div class="live-frame">
