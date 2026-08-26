@@ -154,8 +154,10 @@ if (menuToggle) {
         };
 
         // Set poster first so it shows while video buffers, and fallback if the video is missing
+        // Only a real error means the file is missing; 'stalled' fires on slow
+        // networks mid-buffer and must not be treated as failure.
         modalVideo.onerror = showPosterOnly;
-        modalVideo.onstalled = showPosterOnly;
+        modalVideo.onstalled = null;
         modalVideo.poster = data.poster || "";
 
         if (data.video) {
@@ -197,7 +199,8 @@ if (menuToggle) {
         modal.setAttribute("aria-hidden", "true");
         document.body.style.overflow = "";
         modalVideo.pause();
-        modalVideo.src = "";
+        modalVideo.removeAttribute("src");
+        modalVideo.load();
         modalVideo.poster = "";
         if (lastTrigger) {
             lastTrigger.focus();
@@ -428,3 +431,30 @@ document.querySelectorAll('.stateful').forEach((block, blockIndex) => {
     }, { threshold: 0.4 });
     io.observe(block);
 });
+
+// ---- Live demo gate ----
+// The embedded configurator only takes pointer/wheel input after one click, so a
+// visitor scrolling the page never gets caught by its orbit controls. It stays
+// active until the frame leaves the viewport entirely.
+(function () {
+    var card = document.getElementById('liveCard');
+    var frame = document.getElementById('liveFrame');
+    var gate = document.getElementById('liveGate');
+    if (!card || !frame || !gate) return;
+    function arm() {
+        if (!card.classList.contains('is-active')) return;
+        card.classList.remove('is-active');
+    }
+    function disarm() {
+        card.classList.add('is-active');
+    }
+    gate.addEventListener('click', disarm);
+    // Stay active once clicked. Only re-arm when the frame has left the
+    // viewport entirely, so a returning visitor never lands in a scroll trap.
+    if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) { if (!e.isIntersecting) arm(); });
+        }, { threshold: 0 }).observe(frame);
+    }
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { arm(); gate.focus(); } });
+})();

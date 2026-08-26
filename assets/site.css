@@ -10,7 +10,7 @@
     --radius-xl: 1.5rem;
     --shadow-card: 0 24px 70px rgba(15, 23, 42, 0.8);
     --max-width: 1280px;
-    color-scheme: light;
+    color-scheme: dark;
 }
 
 * {
@@ -3732,3 +3732,48 @@ section.visible {
         margin-inline: 0;
     }
 }
+
+/* --- live demo (Rock & Soar configurator embed) ------------------------- */
+/* live demo section: the Journey of Leaves configurator as a card, with a click-to-activate
+   gate so the configurator cannot capture the page scroll until asked. Sky accent only. */
+#live .lede strong{color:var(--text);font-weight:600}
+.live-card{border:1px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;background:var(--panel);backdrop-filter:blur(14px);box-shadow:var(--shadow-card)}
+.live-frame{position:relative;width:100%;background:#0b1220;aspect-ratio:16/9;max-height:70vh;min-height:360px;overflow:hidden}
+.live-frame iframe{position:absolute;inset:0;width:100%!important;height:100%!important;aspect-ratio:auto!important;min-height:0!important;max-height:none!important;display:block;pointer-events:none}
+.live-card.is-active .live-frame iframe{pointer-events:auto}
+.live-gate{position:absolute;inset:0;z-index:2;border:0;padding:0;background:transparent;cursor:pointer;font:inherit}
+.live-gate:focus-visible{outline:2px solid var(--accent);outline-offset:-6px}
+.live-card.is-active .live-gate{display:none}
+.live-badge{position:absolute;left:1rem;top:1rem;z-index:3;display:flex;flex-direction:column;align-items:flex-start;gap:.45rem;pointer-events:none}
+.live-pill{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .8rem;border-radius:999px;border:1px solid rgba(56,189,248,.4);background:rgba(2,6,23,.72);backdrop-filter:blur(8px);font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.live-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(56,189,248,.6);animation:liveDot 2s ease-out infinite}
+@keyframes liveDot{0%{box-shadow:0 0 0 0 rgba(56,189,248,.6)}70%{box-shadow:0 0 0 9px rgba(56,189,248,0)}100%{box-shadow:0 0 0 0 rgba(56,189,248,0)}}
+.live-hint{display:inline-block;padding:.3rem .65rem;border-radius:.5rem;background:rgba(2,6,23,.6);backdrop-filter:blur(8px);font-size:.8rem;color:var(--text);letter-spacing:.01em;transition:opacity .25s ease}
+.live-hint .on,.live-hint .tap{display:none}
+.live-card.is-active .live-hint .idle{display:none}
+.live-card.is-active .live-hint .on{display:inline}
+.live-card.is-active .live-hint{color:var(--muted)}
+@media(hover:none) and (pointer:coarse){.live-hint .click{display:none}.live-hint .tap{display:inline}.live-card.is-active .live-hint .idle .tap{display:none}}
+.live-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 1.25rem;border-top:1px solid var(--border)}
+.live-attrib{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.live-attrib b{color:var(--text);font-weight:600}
+.live-open{display:inline-flex;align-items:center;gap:.45rem;flex:0 0 auto;font-weight:600;font-size:.9rem;color:var(--accent);white-space:nowrap}
+.live-open .arrow{transition:transform .25s ease}.live-open:hover .arrow{transform:translate(2px,-2px)}
+.live-open:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:3px}
+.live-after{display:grid;grid-template-columns:1fr 1.15fr;gap:2.5rem;align-items:start;margin-top:2.25rem;padding-top:2rem;border-top:1px solid var(--border)}
+.live-after h3{font-size:clamp(1.3rem,2.2vw,1.6rem);font-weight:700;letter-spacing:-.02em;line-height:1.2;text-wrap:balance}
+.live-after-lead p{margin-top:.8rem;color:var(--muted);line-height:1.65;max-width:46ch}
+.live-after-lead p b{color:var(--text);font-weight:600}
+.live-after-points{list-style:none;display:grid;gap:.9rem}
+.live-after-points li{position:relative;padding-left:1.4rem;color:var(--muted);line-height:1.6;font-size:.95rem}
+.live-after-points li::before{content:"";position:absolute;left:0;top:.62em;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.live-after-points b{color:var(--text);font-weight:600}
+@media(max-width:768px){
+    .live-card{margin-inline:-1rem;border-radius:var(--radius-lg)}
+    .live-frame{aspect-ratio:3/4;max-height:78vh;min-height:0}
+    .live-bar{padding:.75rem 1.75rem}
+    .live-open .label{display:none}
+    .live-attrib .long{display:none}
+    .live-after{grid-template-columns:1fr;gap:1.5rem;margin-top:1.75rem}
+}
+@media(prefers-reduced-motion:reduce){.live-dot{animation:none}.live-gate,.live-open .arrow{transition:none}}

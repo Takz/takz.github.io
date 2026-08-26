@@ -93,7 +93,7 @@
             "areaServed": "Worldwide"
         }
     </script>
-    <link rel="stylesheet" href="assets/site.css?v=202608041125">
+    <link rel="stylesheet" href="assets/site.css?v=202608261000">
 </head>
 
 <body id="top">
@@ -138,21 +138,21 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <div class="badge-icon"></div>
-                <span>Apple Vision Pro</span>
-                <div class="badge-icon"></div>
                 <span>CAD &amp; BIM</span>
                 <div class="badge-icon"></div>
-                <span>AR &amp; VR</span>
+                <span>Web &amp; Mobile</span>
+                <div class="badge-icon"></div>
+                <span>Apple Vision Pro</span>
             </div>
 
             <h1 class="hero-heading">
-                Your CAD file. Walkable, at true scale,<br>
-                <span class="gradient-text">on Vision Pro.</span>
+                Your CAD file. Explorable on<br>
+                <span class="gradient-text">web, mobile and Vision Pro.</span>
             </h1>
 
             <p class="hero-subtitle">
-                Products land in your client's room at 1:1 in minutes. Buildings become
-                places they can walk through. Both are live in our free app.
+                Products your customers can configure in any browser, and see at 1:1 in
+                their own room on Vision Pro. Buildings become places they can walk through.
             </p>
             <div class="hero-capabilities">
                 <span class="hero-chip">Real Estate</span>
@@ -284,16 +284,65 @@
                         <ul class="avenue-points">
                             <li>All major 3D formats accepted</li>
                             <li>Finishes swap live in the headset</li>
-                            <li>You change them yourself, in a browser</li>
+                            <li>At true 1:1 in the room</li>
                         </ul>
                     </div>
                 </article>
             </div>
 
+
             <p class="avenues-note">
                 Send the files you already have &mdash; no cleanup first. A single product takes
                 <b>minutes</b>; a full space, <b>days to weeks</b>.
             </p>
+        </section>
+
+        <!-- Live demo: the Rock & Soar Journey of Leaves configurator, embedded. A click-to-activate
+             gate keeps the configurator from capturing the page scroll until asked;
+             it re-arms only once the frame has left the viewport. -->
+        <section class="section" id="live">
+            <div class="section-header section-header--tight">
+                <div class="section-eyebrow">Products, live</div>
+                <h2 class="section-title">Your collection, explorable</h2>
+                <p class="lede">
+                    <strong>Journey of Leaves</strong> by Rock &amp; Soar: engineering CAD in, a piece customers can configure,
+                    share and picture in their own space out &mdash; in any browser, on any device, nothing to
+                    install. The same asset hangs at 1:1 on Vision Pro.
+                </p>
+            </div>
+
+            <div class="live-card" id="liveCard">
+                <div class="live-frame" id="liveFrame">
+                    <iframe src="https://rockandsoar.alternatexr.com/jol/"
+        style="border:0;width:100%;aspect-ratio:4/3;min-height:480px;max-height:90vh"
+        allow="fullscreen" title="Journey of Leaves configurator by Rock &amp; Soar" loading="lazy"></iframe>
+                    <button type="button" class="live-gate" id="liveGate" aria-label="Activate the Journey of Leaves configurator"></button>
+                    <div class="live-badge" id="liveBadge" aria-live="polite">
+                        <span class="live-pill"><span class="live-dot" aria-hidden="true"></span>Live configurator</span>
+                        <span class="live-hint"><span class="idle"><span class="click">Click to activate</span><span class="tap">Tap to activate</span></span><span class="on"><span class="click">drag to orbit &middot; right-drag to pan &middot; scroll to zoom</span><span class="tap">drag to orbit &middot; two fingers to pan &middot; pinch to zoom</span></span></span>
+                    </div>
+                </div>
+                <div class="live-bar">
+                    <div class="live-attrib"><b>Journey of Leaves</b> &middot; Rock &amp; Soar<span class="long"> &middot; from the client's CAD</span></div>
+                    <a class="live-open" href="https://rockandsoar.alternatexr.com/jol/" target="_blank" rel="noopener">
+                        <span class="label">Open in a new tab</span><span class="arrow" aria-hidden="true">&nearr;</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="live-after">
+                <div class="live-after-lead">
+                    <h3>Have a collection in Rhino, STEP or STL?</h3>
+                    <p>That's all we need. Send the files as they are, plus photographs of the built piece,
+                        and your customers could be exploring it <b>this month</b> &mdash; on your site, in your
+                        showroom, on a tablet in a client meeting.</p>
+                </div>
+                <ul class="live-after-points">
+                    <li><b>Measured, not modelled.</b> Every element sits where it hangs in the built fixture; the look is matched to your photographs, not invented.</li>
+                    <li><b>One asset, every screen.</b> The browser piece and the Vision Pro piece share geometry, finishes and saved configurations.</li>
+                    <li><b>Yours to embed.</b> One line of HTML, and it refuses to run on domains you haven't approved. Every configuration is a link.</li>
+                </ul>
+            </div>
         </section>
 
         <!-- What we've done: the airport wipe, given its own section so the delivered
@@ -366,9 +415,6 @@
                 <h2 class="section-title">Ten years of shipped work</h2>
                 <p class="lede">The projects that taught the pipeline what it needed to do.</p>
             </div>
-
-            <!-- The airport flagship now leads "What we do" (see #avenues), so the
-                 claim and its proof are read together rather than 3,000px apart. -->
 
             <div class="work-grid">
                 <!-- FormaXR -->
@@ -646,7 +692,7 @@
         </div>
     </footer>
 
-    <script src="assets/site.js?v=202608041125" defer></script>
+    <script src="assets/site.js?v=202608261000" defer></script>
 </body>
 
 </html>
