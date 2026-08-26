@@ -102,19 +102,19 @@
         .live-frame{position:relative;width:100%;background:#0b1220;aspect-ratio:16/9;max-height:70vh;min-height:360px;overflow:hidden}
         .live-frame iframe{position:absolute;inset:0;width:100%!important;height:100%!important;aspect-ratio:auto!important;min-height:0!important;max-height:none!important;display:block;pointer-events:none}
         .live-card.is-active .live-frame iframe{pointer-events:auto}
-        .live-gate{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.85rem;width:100%;padding:1.5rem;border:0;cursor:pointer;color:var(--text);font:inherit;text-align:center;
-            background:radial-gradient(ellipse at 50% 40%,rgba(56,189,248,.16),transparent 60%),linear-gradient(to bottom,rgba(2,6,23,.72),rgba(2,6,23,.6) 50%,rgba(2,6,23,.82));
-            transition:opacity .3s ease,visibility .3s ease}
-        .live-gate:hover{background:radial-gradient(ellipse at 50% 40%,rgba(56,189,248,.22),transparent 60%),linear-gradient(to bottom,rgba(2,6,23,.66),rgba(2,6,23,.52) 50%,rgba(2,6,23,.78))}
+        .live-gate{position:absolute;inset:0;z-index:2;border:0;padding:0;background:transparent;cursor:pointer;font:inherit}
         .live-gate:focus-visible{outline:2px solid var(--accent);outline-offset:-6px}
-        .live-card.is-active .live-gate{opacity:0;visibility:hidden;pointer-events:none}
-        .live-pill{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .8rem;border-radius:999px;border:1px solid rgba(56,189,248,.4);background:rgba(2,6,23,.7);font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+        .live-card.is-active .live-gate{display:none}
+        .live-badge{position:absolute;left:1rem;top:1rem;z-index:3;display:flex;flex-direction:column;align-items:flex-start;gap:.45rem;pointer-events:none}
+        .live-pill{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .8rem;border-radius:999px;border:1px solid rgba(56,189,248,.4);background:rgba(2,6,23,.72);backdrop-filter:blur(8px);font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
         .live-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(56,189,248,.6);animation:liveDot 2s ease-out infinite}
         @keyframes liveDot{0%{box-shadow:0 0 0 0 rgba(56,189,248,.6)}70%{box-shadow:0 0 0 9px rgba(56,189,248,0)}100%{box-shadow:0 0 0 0 rgba(56,189,248,0)}}
-        .live-cta{font-size:clamp(1.25rem,2.4vw,1.7rem);font-weight:700;letter-spacing:-.02em;line-height:1.15}
-        .live-cta .tap,.live-hint .tap{display:none}
-        .live-hint{font-size:.85rem;color:var(--muted);letter-spacing:.02em}
-        @media(hover:none) and (pointer:coarse){.live-cta .click,.live-hint .click{display:none}.live-cta .tap,.live-hint .tap{display:inline}}
+        .live-hint{display:inline-block;padding:.3rem .65rem;border-radius:.5rem;background:rgba(2,6,23,.6);backdrop-filter:blur(8px);font-size:.8rem;color:var(--text);letter-spacing:.01em;transition:opacity .25s ease}
+        .live-hint .on,.live-hint .tap{display:none}
+        .live-card.is-active .live-hint .idle{display:none}
+        .live-card.is-active .live-hint .on{display:inline}
+        .live-card.is-active .live-hint{color:var(--muted)}
+        @media(hover:none) and (pointer:coarse){.live-hint .click{display:none}.live-hint .tap{display:inline}.live-card.is-active .live-hint .idle .tap{display:none}}
         .live-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 1.25rem;border-top:1px solid var(--border)}
         .live-attrib{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
         .live-attrib b{color:var(--text);font-weight:600}
@@ -362,11 +362,11 @@
                     <iframe src="https://rockandsoar.alternatexr.com/jol/"
         style="border:0;width:100%;aspect-ratio:4/3;min-height:480px;max-height:90vh"
         allow="fullscreen" title="Journey of Leaves configurator by Rock &amp; Soar" loading="lazy"></iframe>
-                    <button type="button" class="live-gate" id="liveGate" aria-label="Explore the Journey of Leaves configurator">
+                    <button type="button" class="live-gate" id="liveGate" aria-label="Activate the Journey of Leaves configurator"></button>
+                    <div class="live-badge" id="liveBadge" aria-live="polite">
                         <span class="live-pill"><span class="live-dot" aria-hidden="true"></span>Live configurator</span>
-                        <span class="live-cta"><span class="click">Click to explore</span><span class="tap">Tap to explore</span></span>
-                        <span class="live-hint"><span class="click">drag to orbit &middot; scroll to zoom</span><span class="tap">drag to orbit &middot; pinch to zoom</span></span>
-                    </button>
+                        <span class="live-hint"><span class="idle"><span class="click">Click to activate</span><span class="tap">Tap to activate</span></span><span class="on"><span class="click">drag to orbit &middot; right-drag to pan &middot; scroll to zoom</span><span class="tap">drag to orbit &middot; two fingers to pan &middot; pinch to zoom</span></span></span>
+                    </div>
                 </div>
                 <div class="live-bar">
                     <div class="live-attrib"><b>Journey of Leaves</b> &middot; Rock &amp; Soar<span class="long"> &middot; from the client's CAD</span></div>
@@ -744,27 +744,20 @@
             var frame = document.getElementById('liveFrame');
             var gate = document.getElementById('liveGate');
             if (!card || !frame || !gate) return;
-            var armedY = 0;
             function arm() {
                 if (!card.classList.contains('is-active')) return;
                 card.classList.remove('is-active');
             }
             function disarm() {
                 card.classList.add('is-active');
-                armedY = window.scrollY;
             }
             gate.addEventListener('click', disarm);
-            // Desktop: leaving the frame hands the wheel back to the page.
-            frame.addEventListener('mouseleave', arm);
-            // Any page scroll while active (touch outside the frame, keys, scrollbar)
-            // means the visitor has moved on; re-arm so the frame can't trap them.
-            window.addEventListener('scroll', function () {
-                if (card.classList.contains('is-active') && Math.abs(window.scrollY - armedY) > 80) arm();
-            }, { passive: true });
+            // Stay active once clicked. Only re-arm when the frame has left the
+            // viewport entirely, so a returning visitor never lands in a scroll trap.
             if ('IntersectionObserver' in window) {
                 new IntersectionObserver(function (entries) {
-                    entries.forEach(function (e) { if (e.intersectionRatio < 0.5) arm(); });
-                }, { threshold: [0, 0.5] }).observe(frame);
+                    entries.forEach(function (e) { if (!e.isIntersecting) arm(); });
+                }, { threshold: 0 }).observe(frame);
             }
             document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { arm(); gate.focus(); } });
         })();
