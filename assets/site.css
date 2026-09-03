@@ -3777,3 +3777,13 @@ section.visible {
     .live-after{grid-template-columns:1fr;gap:1.5rem;margin-top:1.75rem}
 }
 @media(prefers-reduced-motion:reduce){.live-dot{animation:none}.live-gate,.live-open .arrow{transition:none}}
+
+/* Products, live — now a sub-section of "What we do", under the Products avenue */
+.live-sub{margin-top:2.5rem;padding-top:2.25rem;border-top:1px solid var(--border)}
+.live-sub-head{text-align:center;display:flex;flex-direction:column;align-items:center;gap:.7rem;margin-bottom:1.5rem}
+.live-sub-head .avenue-kicker{color:var(--violet)}
+.live-sub-title{font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;letter-spacing:-.02em;line-height:1.15;text-wrap:balance;margin:0}
+.live-sub-lede{max-width:62ch;margin:0;color:var(--muted);line-height:1.65;text-wrap:pretty}
+.live-switch{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem;margin:0 0 1.25rem}
+.live-try{text-align:center;color:var(--muted);margin:.9rem 0 0;font-size:.92rem}
+@media (max-width:640px){.live-switch{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding:0 0 .4rem;scrollbar-width:none;-webkit-overflow-scrolling:touch}.live-switch::-webkit-scrollbar{display:none}.live-switch .state-btn{flex:0 0 auto}}

@@ -156,6 +156,10 @@ if (menuToggle) {
         // Set poster first so it shows while video buffers, and fallback if the video is missing
         // Only a real error means the file is missing; 'stalled' fires on slow
         // networks mid-buffer and must not be treated as failure.
+        // A missing file is the only reason to fall back to the poster. A refused
+        // play() (autoplay policy, Low Power Mode, no gesture) is not: keep the source
+        // and hand the visitor the controls so they can press play themselves.
+        const keepWithControls = () => { modalVideo.controls = true; };
         modalVideo.onerror = showPosterOnly;
         modalVideo.onstalled = null;
         modalVideo.poster = data.poster || "";
@@ -163,8 +167,9 @@ if (menuToggle) {
         if (data.video) {
             modalVideo.src = data.video;
             modalVideo.load();
+            modalVideo.controls = false;
             modalVideo.play().catch(() => {
-                showPosterOnly();
+                keepWithControls();
             });
         } else {
             showPosterOnly();
@@ -458,3 +463,16 @@ document.querySelectorAll('.stateful').forEach((block, blockIndex) => {
     }
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { arm(); gate.focus(); } });
 })();
+
+// ---- Live configurator: the piece switcher (What we do > Live now) ----
+(function(){var P={jol:['Journey of Leaves','leaf'],storm:['Storm','droplet'],chitinous:['Chitinous','wing'],mom:['Movement of Matter','petal'],fracture:['Fracture','strand']};
+var bs=document.querySelectorAll('.live-switch [data-piece]');
+bs.forEach(function(b){b.addEventListener('click',function(){
+ bs.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+ var k=b.dataset.piece,url='https://rockandsoar.alternatexr.com/'+k+'/';
+ ['liveName','liveLedeName'].forEach(function(id){var e=document.getElementById(id);if(e)e.textContent=P[k][0];});
+ var n=document.getElementById('liveNoun');if(n)n.textContent=P[k][1];
+ var o=document.getElementById('liveOpen');if(o)o.href=url;
+ var f=document.querySelector('#liveFrame iframe');if(f){f.src=url;f.title=P[k][0]+' configurator by Rock & Soar';}
+ var c=document.getElementById('liveCard');if(c)c.classList.remove('is-active');
+ var g=document.getElementById('liveGate');if(g)g.hidden=false;});});})();

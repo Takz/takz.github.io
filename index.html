@@ -93,7 +93,7 @@
             "areaServed": "Worldwide"
         }
     </script>
-    <link rel="stylesheet" href="assets/site.css?v=202608261000">
+    <link rel="stylesheet" href="assets/site.css?v=202609031728">
 </head>
 
 <body id="top">
@@ -151,7 +151,7 @@
             </h1>
 
             <p class="hero-subtitle">
-                Products your customers can configure in any browser, and see at 1:1 in
+                Products your customers can arrange and configure in any browser, and see at 1:1 in
                 their own room on Vision Pro. Buildings become places they can walk through.
             </p>
             <div class="hero-capabilities">
@@ -159,6 +159,7 @@
                 <span class="hero-chip">Infrastructure</span>
                 <span class="hero-chip">Manufacturing</span>
                 <span class="hero-chip">Retail</span>
+                <span class="hero-chip">Design Studios</span>
             </div>
             <div class="hero-cta-group">
                 <a class="appstore-badge" href="https://apps.apple.com/gb/app/alternatexr/id6792300997"
@@ -277,73 +278,81 @@
                     </div>
                     <div class="avenue-body">
                         <div class="avenue-kicker">Products</div>
-                        <h3 class="avenue-title">One object, in their room, at 1:1</h3>
+                        <h3 class="avenue-title">One piece, arranged by its customer</h3>
                         <p class="avenue-text">
-                            Upload a model, get it back Vision-ready in minutes.
+                            A design studio's piece, from its own CAD. Customers set the arrangement, the room and the finish, and share it as a link.
                         </p>
                         <ul class="avenue-points">
-                            <li>All major 3D formats accepted</li>
-                            <li>Finishes swap live in the headset</li>
-                            <li>At true 1:1 in the room</li>
+                            <li>Measured from the built piece, so every arrangement can be made</li>
+                            <li>Leads to your inbox, with the drawings to build from</li>
+                            <li>The same piece at 1:1 on Vision Pro</li>
                         </ul>
                     </div>
                 </article>
             </div>
 
 
+                        
+            <div class="live-sub" id="live">
+                <div class="live-sub-head">
+                    <div class="avenue-kicker">Live now</div>
+                    <h3 class="live-sub-title">Your collection, explorable</h3>
+                    <p class="live-sub-lede"><strong id="liveLedeName">Journey of Leaves</strong> by Rock &amp; Soar: engineering CAD in, a piece customers can arrange,
+                        fit to their room, finish and share as a link out &mdash; in any browser, on any device, nothing to install.
+                        The same asset hangs at 1:1 on Vision Pro.</p>
+                </div>
+                <div class="live-switch" role="group" aria-label="Choose a piece">
+                    <button type="button" class="state-btn" aria-pressed="true" data-piece="jol">Journey of Leaves</button>
+                    <button type="button" class="state-btn" aria-pressed="false" data-piece="storm">Storm</button>
+                    <button type="button" class="state-btn" aria-pressed="false" data-piece="chitinous">Chitinous</button>
+                    <button type="button" class="state-btn" aria-pressed="false" data-piece="mom">Movement of Matter</button>
+                    <button type="button" class="state-btn" aria-pressed="false" data-piece="fracture">Fracture</button>
+                </div>
+                <div class="live-card" id="liveCard">
+                    <div class="live-frame" id="liveFrame">
+                        <iframe src="https://rockandsoar.alternatexr.com/jol/"
+            style="border:0;width:100%;aspect-ratio:4/3;min-height:480px;max-height:90vh"
+            allow="fullscreen" title="Configurator by Rock &amp; Soar" loading="lazy"></iframe>
+                        <button type="button" class="live-gate" id="liveGate" aria-label="Activate the configurator"></button>
+                        <div class="live-badge" id="liveBadge" aria-live="polite">
+                            <span class="live-pill"><span class="live-dot" aria-hidden="true"></span>Live configurator</span>
+                            <span class="live-hint"><span class="idle"><span class="click">Click to activate</span><span class="tap">Tap to activate</span></span><span class="on"><span class="click">drag to orbit &middot; right-drag to pan &middot; scroll to zoom</span><span class="tap">drag to orbit &middot; two fingers to pan &middot; pinch to zoom</span></span></span>
+                        </div>
+                    </div>
+                    <div class="live-bar">
+                        <div class="live-attrib"><b id="liveName">Journey of Leaves</b> &middot; Rock &amp; Soar<span class="long"> &middot; from the client's CAD</span></div>
+                        <a class="live-open" id="liveOpen" href="https://rockandsoar.alternatexr.com/jol/" target="_blank" rel="noopener">
+                            <span class="label">Open in a new tab</span><span class="arrow" aria-hidden="true">&nearr;</span>
+                        </a>
+                    </div>
+                </div>
+                <p class="live-try">Try it: pick a pattern &middot; type in the room &middot; drag a <span id="liveNoun">leaf</span> by hand</p>
+                <div class="live-after">
+                    <div class="live-after-lead">
+                        <h3>Have a collection in Rhino, STEP or STL?</h3>
+                        <p>That's all we need. Send the files as they are, plus photographs of the built piece,
+                            and your customers could be arranging it <b>within a day</b> &mdash; on your site, in your
+                            showroom, on a tablet in a client meeting.</p>
+                    </div>
+                    <ul class="live-after-points">
+                        <li><b>Measured, not modelled.</b> Every element sits where it hangs in the built fixture, and every arrangement a customer makes keeps the maker's own spacing, so it can be built.</li>
+                        <li><b>One asset, every screen.</b> The browser piece and the Vision Pro piece share geometry, finishes and saved configurations.</li>
+                        <li><b>Yours to embed.</b> One line of HTML, and it refuses to run on domains you haven't approved. Every configuration is a link.</li>
+                        <li><b>Leads, with the drawings.</b> A saved design reaches your inbox with the customer's address; the ceiling plan, cable schedule and DXF follow from it.</li>
+                    </ul>
+                </div>
+            </div>
+
             <p class="avenues-note">
-                Send the files you already have &mdash; no cleanup first. A single product takes
-                <b>minutes</b>; a full space, <b>days to weeks</b>.
+                Send the files you already have &mdash; no cleanup first. A single piece is live
+                <b>within a day</b>; a full space, <b>days to weeks</b>.
             </p>
         </section>
 
         <!-- Live demo: the Rock & Soar Journey of Leaves configurator, embedded. A click-to-activate
              gate keeps the configurator from capturing the page scroll until asked;
              it re-arms only once the frame has left the viewport. -->
-        <section class="section" id="live">
-            <div class="section-header section-header--tight">
-                <div class="section-eyebrow">Products, live</div>
-                <h2 class="section-title">Your collection, explorable</h2>
-                <p class="lede">
-                    <strong>Journey of Leaves</strong> by Rock &amp; Soar: engineering CAD in, a piece customers can configure,
-                    share and picture in their own space out &mdash; in any browser, on any device, nothing to
-                    install. The same asset hangs at 1:1 on Vision Pro.
-                </p>
-            </div>
-
-            <div class="live-card" id="liveCard">
-                <div class="live-frame" id="liveFrame">
-                    <iframe src="https://rockandsoar.alternatexr.com/jol/"
-        style="border:0;width:100%;aspect-ratio:4/3;min-height:480px;max-height:90vh"
-        allow="fullscreen" title="Journey of Leaves configurator by Rock &amp; Soar" loading="lazy"></iframe>
-                    <button type="button" class="live-gate" id="liveGate" aria-label="Activate the Journey of Leaves configurator"></button>
-                    <div class="live-badge" id="liveBadge" aria-live="polite">
-                        <span class="live-pill"><span class="live-dot" aria-hidden="true"></span>Live configurator</span>
-                        <span class="live-hint"><span class="idle"><span class="click">Click to activate</span><span class="tap">Tap to activate</span></span><span class="on"><span class="click">drag to orbit &middot; right-drag to pan &middot; scroll to zoom</span><span class="tap">drag to orbit &middot; two fingers to pan &middot; pinch to zoom</span></span></span>
-                    </div>
-                </div>
-                <div class="live-bar">
-                    <div class="live-attrib"><b>Journey of Leaves</b> &middot; Rock &amp; Soar<span class="long"> &middot; from the client's CAD</span></div>
-                    <a class="live-open" href="https://rockandsoar.alternatexr.com/jol/" target="_blank" rel="noopener">
-                        <span class="label">Open in a new tab</span><span class="arrow" aria-hidden="true">&nearr;</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="live-after">
-                <div class="live-after-lead">
-                    <h3>Have a collection in Rhino, STEP or STL?</h3>
-                    <p>That's all we need. Send the files as they are, plus photographs of the built piece,
-                        and your customers could be exploring it <b>this month</b> &mdash; on your site, in your
-                        showroom, on a tablet in a client meeting.</p>
-                </div>
-                <ul class="live-after-points">
-                    <li><b>Measured, not modelled.</b> Every element sits where it hangs in the built fixture; the look is matched to your photographs, not invented.</li>
-                    <li><b>One asset, every screen.</b> The browser piece and the Vision Pro piece share geometry, finishes and saved configurations.</li>
-                    <li><b>Yours to embed.</b> One line of HTML, and it refuses to run on domains you haven't approved. Every configuration is a link.</li>
-                </ul>
-            </div>
-        </section>
+        
 
         <!-- What we've done: the airport wipe, given its own section so the delivered
              work reads as a counterpart to "What we do" rather than a footnote to it. -->
@@ -692,7 +701,7 @@
         </div>
     </footer>
 
-    <script src="assets/site.js?v=202608261000" defer></script>
+    <script src="assets/site.js?v=202609031728" defer></script>
 </body>
 
 </html>
