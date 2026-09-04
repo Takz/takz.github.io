@@ -466,6 +466,9 @@ document.querySelectorAll('.stateful').forEach((block, blockIndex) => {
 
 // ---- Live configurator: the piece switcher (What we do > Live now) ----
 (function(){var P={jol:['Journey of Leaves','leaf'],storm:['Storm','droplet'],chitinous:['Chitinous','wing'],mom:['Movement of Matter','petal'],fracture:['Fracture','strand']};
+/* ?diag on the homepage passes through to the embedded configurator, which then prints what it decided */
+var DIAG=/[?&]diag\b/.test(location.search);
+if(DIAG){var f0=document.querySelector('#liveFrame iframe');if(f0&&f0.src.indexOf('diag')<0)f0.src+=(f0.src.indexOf('?')<0?'?':'&')+'diag';}
 var bs=document.querySelectorAll('.live-switch [data-piece]');
 bs.forEach(function(b){b.addEventListener('click',function(){
  bs.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
@@ -473,6 +476,6 @@ bs.forEach(function(b){b.addEventListener('click',function(){
  ['liveName','liveLedeName'].forEach(function(id){var e=document.getElementById(id);if(e)e.textContent=P[k][0];});
  var n=document.getElementById('liveNoun');if(n)n.textContent=P[k][1];
  var o=document.getElementById('liveOpen');if(o)o.href=url;
- var f=document.querySelector('#liveFrame iframe');if(f){f.src=url;f.title=P[k][0]+' configurator by Rock & Soar';}
+ var f=document.querySelector('#liveFrame iframe');if(f){f.src=url+(DIAG?'?diag':'');f.title=P[k][0]+' configurator by Rock & Soar';}
  var c=document.getElementById('liveCard');if(c)c.classList.remove('is-active');
  var g=document.getElementById('liveGate');if(g)g.hidden=false;});});})();
